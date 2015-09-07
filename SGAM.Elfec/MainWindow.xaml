@@ -1,0 +1,54 @@
+﻿<sgam:FlatWindow x:Class="SGAM.Elfec.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+        Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
+        Title="SGAM Elfec" Height="480" Width="720">
+    <Grid Margin="-1" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="115" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="21" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" BorderBrush="{StaticResource TabBorderBrush}" >
+            <TabItem Header="INICIO" Style="{StaticResource FirstTabStyle}">
+            </TabItem>
+            <TabItem Header="APLICACIONES" IsSelected="True">
+                <StackPanel Orientation="Horizontal" >
+                    <sgam:RibbonGroupBox Header="Gestión" Width="100">
+                        <Button BorderThickness="0" Height="45" Width="45" HorizontalAlignment="Left" ToolTip="Agregar nueva aplicación" >
+                            <Image Height="36" Width="36" Source="pack://application:,,,/Resources/NewApp.png" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                        </Button>
+                    </sgam:RibbonGroupBox>
+                    <sgam:RibbonGroupBox Header="Herramientas" Width="150">
+                    </sgam:RibbonGroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="DISPOSITIVOS MÓVILES" >
+            </TabItem>
+            <TabItem Header="GRUPOS DE DISPOSITIVOS" >
+            </TabItem>
+        </TabControl>
+        <sgam:TransitioningContentControl Grid.Row="1" Name="InnerContent" Transition="ModernUITransition" >
+        </sgam:TransitioningContentControl>
+        <Grid Style="{StaticResource BottomBar}" Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowApps" ToolTip="Ver aplicaciones" Click="BtnShowApps_Click" Width="30">
+                    <Button.Content>
+                        <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/App.png" />
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowMobiles" ToolTip="Ver dispositivos móviles" Click="BtnShowMobiles_Click" Width="30">
+                    <Button.Content>
+                        <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/Phone.png" />
+                    </Button.Content>
+                </Button>
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowGroups" ToolTip="Ver grupos de dispositivos" Click="BtnShowGroups_Click" Width="30">
+                    <Button.Content>
+                        <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/PhoneGroup.png" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</sgam:FlatWindow>

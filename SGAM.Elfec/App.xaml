@@ -1,0 +1,21 @@
+﻿<Application x:Class="SGAM.Elfec.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Button.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Menu.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TabItem.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/BottomBar.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ScrollBar.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListView.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

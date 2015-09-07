@@ -1,0 +1,190 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI"
+                    xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell">
+    <ResourceDictionary.MergedDictionaries>
+        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--EFFECTS-->
+    <DropShadowEffect x:Key="WindowShadowEffect" ShadowDepth="1" BlurRadius="8" Direction="270" Color="Black"/>
+
+    <!--BUTTONS-->
+    <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="border" Background="{TemplateBinding Background}">
+                        <Path Name="icon" SnapsToDevicePixels="True" Margin="9,-3,10,0" VerticalAlignment="Center" RenderOptions.EdgeMode="Aliased"
+                                  Data="M 4.41 3.16 C 5.60 4.36 6.79 5.56 8.00 6.75 C 9.21 5.56 10.40 4.36 11.59 3.16 C 11.90 3.47 12.53 4.10 12.84 4.41 C 11.64 5.60 10.44 6.79 9.25 8.00 C 10.44 9.21 11.64 10.40 12.84 11.59 C 12.53 11.90 11.90 12.53 11.59 12.84 C 10.40 11.64 9.21 10.44 8.00 9.25 C 6.79 10.44 5.60 11.64 4.41 12.84 C 4.10 12.53 3.47 11.90 3.16 11.59 C 4.36 10.40 5.56 9.21 6.75 8.00 C 5.56 6.79 4.36 5.60 3.16 4.41 C 3.47 4.10 4.10 3.47 4.41 3.16 Z"  Fill="{StaticResource IconBrush}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconPressedBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MaximizeButton" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="border" Background="{TemplateBinding Background}">
+                        <Path Name="icon" Data="M0,9.999V0h9.998v9.999H0z M8.998,3H1v5.999h7.999V3z" Fill="{StaticResource IconBrush}" 
+                               SnapsToDevicePixels="True"  RenderOptions.EdgeMode="Aliased"   Margin="9,0,10,0" VerticalAlignment="Center"></Path>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconPressedBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="RestoreButton" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="border" Background="{TemplateBinding Background}">
+                        <Path Name="icon" Margin="9,0,10,0" VerticalAlignment="Center"   SnapsToDevicePixels="True"        RenderOptions.EdgeMode="Aliased"
+                                  Data="M 3.00 0.00 L 12.00 0.00 L 12.00 8.00 C 11.25 8.00 9.75 8.00 9.00 8.00 C 9.00 9.33 9.00 10.67 9.00 12.00 L 0.00 12.00 L 0.00 4.00 C 0.75 4.00 2.25 4.00 3.00 4.00 C 3.00 2.67 3.00 1.33 3.00 0.00 M 4.00 2.00 C 4.00 2.50 4.00 3.50 4.00 4.00 L 9.00 4.00 C 9.00 4.75 9.00 6.25 9.00 7.00 C 9.50 7.00 10.50 7.00 11.00 7.00 L 11.00 2.00 C 9.25 2.00 5.75 2.00 4.00 2.00 M 1.00 6.00 L 1.00 11.00 C 2.75 11.00 6.25 11.00 8.00 11.00 L 8.00 6.00 C 6.25 6.00 2.75 6.00 1.00 6.00 Z" Fill="{StaticResource IconBrush}" >
+                        </Path>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconPressedBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MinimizeButton" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="border" Background="{TemplateBinding Background}">
+                        <Path Name="icon" Margin="9,5,11,0" VerticalAlignment="Center"  SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased"
+                                  Data="M0,-1 H9V1 H0 z" Fill="{StaticResource IconBrush}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource IconPressedBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--CONVERTERS-->
+    <sgam:IconToImageSourceConverter x:Key="converter" />
+
+    <!--FLAT WINDOW-->
+
+    <Style TargetType="{x:Type sgam:FlatWindow}">
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="AllowsTransparency"  Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="MinWidth" Value="150" />
+        <Setter Property="MinHeight" Value="50" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="shell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <shell:WindowChrome  CaptionHeight="1"  
+                            GlassFrameThickness="0,0,0,1"
+                            ResizeBorderThickness="6"
+                             />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type sgam:FlatWindow}">
+                    <Grid Background="Transparent">
+                        <Border Name="WindowBorder" BorderBrush="{StaticResource MainColorBrush}" BorderThickness="1" Background="White" Margin="6" Effect="{StaticResource WindowShadowEffect}" >
+                            <Grid>
+                                <Grid Name="TitleBar" Height="28" Background="White"  VerticalAlignment="Top">
+                                    <Image Source="{TemplateBinding Icon , Converter={StaticResource converter}, ConverterParameter=32}" Margin="9,5" Height="18" Width="18" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{TemplateBinding  Title}" Foreground="Black" FontFamily="Segoe UI" FontSize="12" />
+                                    <Button Visibility="{TemplateBinding MinimizeButtonVisibility}" Name="MinimizeButton" HorizontalAlignment="Right" Background="White" Margin="0,3,58,3" Style="{StaticResource MinimizeButton}" />
+                                    <Button Visibility="{TemplateBinding MaxResButtonVisibility}" Name="MaxResButton" HorizontalAlignment="Right" Background="White" Margin="0,3,29,3" Style="{StaticResource RestoreButton}" />
+                                    <Button Name="CloseButton" HorizontalAlignment="Right" Background="White" Margin="0,3,0,3" Style="{StaticResource CloseButton}" />
+                                </Grid>
+                                <Grid Name="GridContent" Margin="0,28,0,0">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <AdornerDecorator>
+                                            <ContentPresenter/>
+                                        </AdornerDecorator>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="false">
+                            <Setter TargetName="WindowBorder" Property="Effect" Value="{x:Null}"></Setter>
+                            <Setter TargetName="WindowBorder" Property="BorderBrush" Value="{StaticResource BorderGrayBrush}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsActive" Value="true">
+                            <Setter TargetName="WindowBorder" Property="Effect" Value="{StaticResource WindowShadowEffect}"></Setter>
+                            <Setter TargetName="WindowBorder" Property="BorderBrush" Value="{StaticResource MainColorBrush}"></Setter>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="MaxResButton" Property="Style" Value="{StaticResource RestoreButton}"></Setter>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="MaxResButton" Property="Style" Value="{StaticResource MaximizeButton}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

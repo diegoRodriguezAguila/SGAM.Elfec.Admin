@@ -12,6 +12,8 @@
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Button.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Menu.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBox.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/PasswordBox.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TabItem.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/BottomBar.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ScrollBar.xaml" />

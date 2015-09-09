@@ -1,4 +1,5 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<sgam:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--COLORS-->
     <Color x:Key="MainColor">#18468D</Color>
@@ -37,4 +38,4 @@
     <SolidColorBrush x:Key="RibonGroupBoxSeparator" Color="#E1E1E1" />
     <SolidColorBrush x:Key="GrayText" Color="#666666" />
     <SolidColorBrush x:Key="TooltipBorderBrush" Color="#BEBEBE" />
-</ResourceDictionary>
+</sgam:SharedResourceDictionary>

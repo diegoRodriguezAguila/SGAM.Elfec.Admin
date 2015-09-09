@@ -29,7 +29,6 @@ namespace SGAM.Elfec
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
             ChangeToAllAppsView();
-
             //new LoginWindow().ShowDialog();
         }
 

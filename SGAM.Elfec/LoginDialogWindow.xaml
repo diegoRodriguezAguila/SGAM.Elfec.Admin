@@ -6,7 +6,17 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         Title="LoginWindow" Height="400" Width="350">
-    <Grid>
-
-    </Grid>
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center" >
+        <Label Content="Iniciar sesión" FontSize="36" Margin="0,40,0,0"
+               Foreground="{StaticResource BlackTextBrush}"
+                FontFamily="Segoe UI Light"/>
+        <Label Content="Usuario" Margin="0,20,0,0" />
+        <TextBox Name="TxtUsername"  Height="32" VerticalContentAlignment="Center" />
+        <Label Content="Contraseña" Margin="0,5,0,0" />
+        <PasswordBox Name="TxtPassword"  Height="32" PasswordChar="●" VerticalContentAlignment="Center" />
+        <Button Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 
+                Content="Iniciar sesión" Margin="0,20,0,0" Height="32" Padding="10,0,10,0" 
+                FontSize="14" FontWeight="SemiBold"  HorizontalAlignment="Left" />
+    </StackPanel>
 </Fluent:RibbonWindow>

@@ -11,5 +11,10 @@ namespace SGAM.Elfec.Presenters
         public LoginPresenter(ILoginView view) : base(view)
         {
         }
+
+        public void Login()
+        {
+
+        }
     }
 }

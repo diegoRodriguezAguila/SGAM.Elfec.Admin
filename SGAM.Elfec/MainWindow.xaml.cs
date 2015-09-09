@@ -29,6 +29,7 @@ namespace SGAM.Elfec
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
             ChangeToAllAppsView();
+            Loaded += buttonGreen_Click;
             //new LoginWindow().ShowDialog();
         }
 

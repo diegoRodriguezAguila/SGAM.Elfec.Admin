@@ -7,6 +7,7 @@ namespace SGAM.Elfec.Presenters.Views
 {
     public interface ILoginView : IBaseView
     {
-
+        string Username { get; }
+        string Password { get; }
     }
 }

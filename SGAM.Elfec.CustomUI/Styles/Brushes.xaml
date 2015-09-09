@@ -18,7 +18,7 @@
     <Color x:Key="TabBorder">#D5D5D5</Color>
     <Color x:Key="SoftGray">#EEF0F0F0</Color>
     <Color x:Key="TooltipBorder">#BEBEBE</Color>
-    
+
     <!--BRUSHES-->
     <SolidColorBrush x:Key="MainColorBrush" Color="#18468D" />
     <SolidColorBrush x:Key="MainColorHighlightBrush" Color="#4A6DA5" />
@@ -38,4 +38,5 @@
     <SolidColorBrush x:Key="RibonGroupBoxSeparator" Color="#E1E1E1" />
     <SolidColorBrush x:Key="GrayText" Color="#666666" />
     <SolidColorBrush x:Key="TooltipBorderBrush" Color="#BEBEBE" />
+    <SolidColorBrush x:Key="TextErrorColorBrush" Color="#C85305" />
 </sgam:SharedResourceDictionary>

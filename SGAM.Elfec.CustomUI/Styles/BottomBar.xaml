@@ -5,9 +5,9 @@
         <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 <!--BOTTOM BAR-->
-    <Style TargetType="Grid" x:Key="BottomBar">
+    <Style TargetType="StatusBar" x:Key="BottomBar">
         <Setter Property="Background" Value="{StaticResource MainColorBrush}"/>
-        <Setter Property="Height" Value="21" />
+        <Setter Property="Height" Value="24" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
     </Style>

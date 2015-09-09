@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SGAM.Elfec.DataAccess\SGAM.Elfec.DataAccess.csproj">
+    <ProjectReference Include="..\SGAM.Elfec.DataAccess\SGAM.Elfec.WebServices.csproj">
       <Project>{76a3eba4-65b4-4bc8-8f6e-f63b1cee91e3}</Project>
-      <Name>SGAM.Elfec.DataAccess</Name>
+      <Name>SGAM.Elfec.WebServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.Model\SGAM.Elfec.Model.csproj">
       <Project>{57df609e-1c63-49d4-a290-345781183faa}</Project>

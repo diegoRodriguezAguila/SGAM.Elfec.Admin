@@ -130,6 +130,7 @@
 
     <Style TargetType="{x:Type sgam:FlatWindow}">
         <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="AllowsTransparency"  Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True" />

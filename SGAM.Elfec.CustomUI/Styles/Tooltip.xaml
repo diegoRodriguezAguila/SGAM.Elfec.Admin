@@ -7,13 +7,15 @@
     <DropShadowEffect x:Key="WindowShadowEffect" ShadowDepth="0" BlurRadius="4" Color="{StaticResource SoftGray}"/>
     <Style x:Key="{x:Type ToolTip}"
        TargetType="ToolTip">
-    <Setter Property="OverridesDefaultStyle"
+
+        <Setter Property="OverridesDefaultStyle"
           Value="true" />
-    <Setter Property="HasDropShadow"
+        <Setter Property="HasDropShadow"
           Value="True" />
-    <Setter Property="Template">
-        <Setter.Value>
-            <ControlTemplate TargetType="ToolTip">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
                     <Border Padding="4" >
                         <Border Name="Border"
                 BorderThickness="1"
@@ -23,20 +25,22 @@
                 BorderBrush="{StaticResource TooltipBorderBrush}"
                 Height="{TemplateBinding Height}">
 
-                    <ContentPresenter Margin="4"
+                            <ContentPresenter Margin="4"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top" />
+                            VerticalAlignment="Top"
+                            TextBlock.Foreground="{StaticResource BlackTextBrush}"
+                            TextBlock.FontSize="12"/>
                         </Border>
                     </Border>
-                <ControlTemplate.Triggers>
+                    <ControlTemplate.Triggers>
                         <Trigger Property="HasDropShadow"
                    Value="true">
                             <Setter TargetName="Border" Property="Effect" Value="{StaticResource WindowShadowEffect}" />
                             <Setter TargetName="Border" Property="SnapsToDevicePixels" Value="true" />
-                    </Trigger>
-                </ControlTemplate.Triggers>
-            </ControlTemplate>
-        </Setter.Value>
-    </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using SGAM.Elfec.CustomUI;
+﻿using Fluent;
+using SGAM.Elfec.CustomUI;
 using SGAM.Elfec.Interfaces;
 using SGAM.Elfec.Presenters;
 using System;
@@ -21,13 +22,15 @@ namespace SGAM.Elfec
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : FlatWindow, IMainWindowView
+    public partial class MainWindow : RibbonWindow, IMainWindowView
     {
         public MainWindow()
         {
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
             ChangeToAllAppsView();
+
+            //new LoginWindow().ShowDialog();
         }
 
         #region Constants
@@ -109,5 +112,12 @@ namespace SGAM.Elfec
             }
         }
         #endregion
+
+        private void buttonGreen_Click(object sender, RoutedEventArgs e)
+        {
+            var loginDialog = new LoginDialogWindow();
+            loginDialog.Owner = this;
+            loginDialog.ShowDialog();
+        }
     }
 }

@@ -12,14 +12,6 @@ namespace SGAM.Elfec.Presenters.Views
     {
         string Username { get; }
         string Password { get; }
-        ///<summary>
-        /// Notifica al usuario que hay errores en el campo de nombre de usuario
-        ///</summary>
-        void ShowErrorsInUsernameField(IList<Exception> errors);
-        ///<summary>
-        /// Notifica al usuario que hay errores en el campo de contraseña
-        ///</summary>
-        void ShowErrorsInPasswordField(IList<Exception> errors);
         /// <summary>
         /// Muestra los errores ocurridos durante el intento de login
         /// </summary>

@@ -19,15 +19,17 @@ using System.Windows.Shapes;
 
 namespace SGAM.Elfec
 {
+
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
     public partial class LoginDialogWindow : RibbonWindow, ILoginView
     {
+        public object Text { get; set; }
         private LoginPresenter Presenter { get; set; }
         private IndeterminateLoading _indeterminateLoading;
         private ErrorMessage _errorMessage;
-        
+
 
         public LoginDialogWindow()
         {
@@ -37,6 +39,7 @@ namespace SGAM.Elfec
             _indeterminateLoading.Margin = new Thickness(0, 20, 0, 0);
             _errorMessage = new ErrorMessage();
             _errorMessage.BtnOk.Click += BtnOk_Click;
+            DataContext = this;
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
@@ -46,17 +49,42 @@ namespace SGAM.Elfec
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            ShowWaiting();
-             //Presenter.Login();
-             Thread timer = new Thread(() => 
-            {
-                Thread.Sleep(6000);
-                Transitioning.Dispatcher.Invoke(new Action(()=> 
-                {
-                    _errorMessage.TxtErrorMessage.Text = "Error el pinche usuario que quiere acceder esta drogado o algo asi bien chido!";
-                    Transitioning.Content = _errorMessage; }));
-                });
-            timer.Start();
+            bool validUsername = IsUsernameValid();
+            bool validPassword = IsPasswordValid();
+            if(validUsername && validPassword)
+                Presenter.Login();
+        }
+
+        private bool IsFieldValid(Control txtField, Label lblError)
+        {
+            IList<ValidationError> errors = Validation.GetErrors(txtField);
+            bool hasErrors = errors.Count > 0;
+            lblError.Visibility = hasErrors ? Visibility.Visible : Visibility.Collapsed;
+            if (hasErrors)
+                lblError.Content = MessageListFormatter
+                    .FormatFromObjectList(errors, (e) => { return e.ErrorContent.ToString(); });
+            return hasErrors;
+        }
+
+
+        private bool IsUsernameValid()
+        {
+            BindingExpression be = TxtUsername.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty);
+            be.UpdateSource();
+            bool res = IsFieldValid(TxtUsername, LblUsernameError);
+            Validation.ClearInvalid(be);
+            return res;
+        }
+
+        private bool IsPasswordValid()
+        {
+            TxtDummyPassword.Text = TxtPassword.Password;
+            object a = Text;
+            BindingExpression be = TxtDummyPassword.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty);
+            be.UpdateSource();
+            bool res =  IsFieldValid(TxtDummyPassword, LblPasswordError);
+            TxtDummyPassword.Text = null;
+            return res;
         }
 
         #region Interface Methods
@@ -73,36 +101,39 @@ namespace SGAM.Elfec
 
         public void ShowLoginErrors(IList<Exception> validationErrors)
         {
-            _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(validationErrors);
-            Transitioning.Content = _errorMessage;
+            if (validationErrors.Count > 0)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(validationErrors);
+                    Transitioning.Content = _errorMessage;
+                }));
+            }
         }
 
         public void ShowWaiting()
         {
-            _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoginUser;
-            Transitioning.Content = _indeterminateLoading;
+            Dispatcher.BeginInvoke(new Action(() => 
+            {
+                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoginUser;
+                Transitioning.Content = _indeterminateLoading;
+            }));
         }
 
         public void UpdateWaiting(string waitingMessage)
         {
-            _indeterminateLoading.TxtLoadingMessage.Text = waitingMessage;
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _indeterminateLoading.TxtLoadingMessage.Text = waitingMessage;
+            }));
         }
 
         public void HideWaiting()
         {
-            Transitioning.Content = null;
-        }
-
-        public void ShowErrorsInUsernameField(IList<Exception> errors)
-        {
-            TxtUsernameError.Visibility = Visibility.Visible;
-            TxtUsernameError.Content = MessageListFormatter.FormatFromErrorList(errors);
-        }
-
-        public void ShowErrorsInPasswordField(IList<Exception> errors)
-        {
-            TxtPasswordError.Visibility = Visibility.Visible;
-            TxtPasswordError.Content = MessageListFormatter.FormatFromErrorList(errors);
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                Transitioning.Content = null;
+            }));
         }
 
         #endregion

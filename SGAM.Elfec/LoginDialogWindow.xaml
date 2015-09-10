@@ -5,6 +5,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         xmlns:Local="clr-namespace:SGAM.Elfec.UserControls"
         xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+        xmlns:Rules="clr-namespace:SGAM.Elfec.ValidationRules"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
@@ -18,12 +19,29 @@
         <Controls:TransitioningContentControl DockPanel.Dock="Top" Name="Transitioning"
                VerticalContentAlignment="Top" Margin="0,20,0,0"  Transition="Left" >
             <StackPanel Name="LoginPanel" Orientation="Vertical"   >
-                <Label Name="TxtUsernameError" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
+                <Label Name="LblUsernameError" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
                 <Label Content="{x:Static Res:Resources.LblUsername}"/>
-                <TextBox Name="TxtUsername"  Height="32" VerticalContentAlignment="Center" />
-                <Label Name="TxtPasswordError" Margin="0,5,0,0" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
+                <TextBox Name="TxtUsername" Height="32" VerticalContentAlignment="Center" >
+                    <TextBox.Text>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" UpdateSourceTrigger="Explicit">
+                            <Binding.ValidationRules>
+                                <Rules:NotNullOrEmptyRule FieldName="usuario" IsMale="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Label Name="LblPasswordError" Margin="0,5,0,0" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
                 <Label Content="{x:Static Res:Resources.LblPassword}" Margin="0,5,0,0" />
-                <PasswordBox Name="TxtPassword"  Height="32" PasswordChar="●" VerticalContentAlignment="Center" />
+                <PasswordBox  Name="TxtPassword"  Height="32" PasswordChar="●" VerticalContentAlignment="Center" />
+                <TextBox Name="TxtDummyPassword" VerticalContentAlignment="Center" Visibility="Collapsed" >
+                    <TextBox.Text>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" UpdateSourceTrigger="Explicit">
+                            <Binding.ValidationRules>
+                                <Rules:NotNullOrEmptyRule FieldName="contraseña" IsMale="False" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <Button Name="BtnLogin" Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 
                 Content="{x:Static Res:Resources.BtnLogin}" Margin="0,20,0,0" Height="32" Padding="10,0,10,0" 
                 FontSize="14" FontWeight="SemiBold"  HorizontalAlignment="Left" Click="BtnLogin_Click" />

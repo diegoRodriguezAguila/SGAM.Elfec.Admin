@@ -117,6 +117,7 @@
     <Compile Include="UserControls\IndeterminateLoading.xaml.cs">
       <DependentUpon>IndeterminateLoading.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValidationRules\NotNullOrEmptyRule.cs" />
     <Page Include="LoginDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

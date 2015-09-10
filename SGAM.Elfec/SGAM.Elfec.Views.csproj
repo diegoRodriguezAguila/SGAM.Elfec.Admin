@@ -173,7 +173,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -190,6 +190,10 @@
     <ProjectReference Include="..\SGAM.Elfec.CustomUI\SGAM.Elfec.CustomUI.csproj">
       <Project>{1c40feb7-e7e6-427d-a533-8b5242bf07dc}</Project>
       <Name>SGAM.Elfec.CustomUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGAM.Elfec.Helpers\SGAM.Elfec.Helpers.csproj">
+      <Project>{b96cf4d8-cd3c-413f-8ddc-ec57586a7f6a}</Project>
+      <Name>SGAM.Elfec.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.Presenters\SGAM.Elfec.Presenters.csproj">
       <Project>{86e1ecfd-226c-4fe7-bdff-5c6b64c19c0b}</Project>

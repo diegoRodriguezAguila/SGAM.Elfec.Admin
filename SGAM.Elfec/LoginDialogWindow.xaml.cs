@@ -1,4 +1,5 @@
 ﻿using Fluent;
+using SGAM.Elfec.Helpers.Text;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
@@ -44,10 +45,10 @@ namespace SGAM.Elfec
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {   
-            Transitioning.Content = _indeterminateLoading;
-            //Presenter.Login();
-            Thread timer = new Thread(() => 
+        {
+            ShowWaiting();
+             //Presenter.Login();
+             Thread timer = new Thread(() => 
             {
                 Thread.Sleep(6000);
                 Transitioning.Dispatcher.Invoke(new Action(()=> 
@@ -68,6 +69,40 @@ namespace SGAM.Elfec
         public string Password
         {
             get { return TxtPassword.Password; }
+        }
+
+        public void ShowLoginErrors(IList<Exception> validationErrors)
+        {
+            _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(validationErrors);
+            Transitioning.Content = _errorMessage;
+        }
+
+        public void ShowWaiting()
+        {
+            _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoginUser;
+            Transitioning.Content = _indeterminateLoading;
+        }
+
+        public void UpdateWaiting(string waitingMessage)
+        {
+            _indeterminateLoading.TxtLoadingMessage.Text = waitingMessage;
+        }
+
+        public void HideWaiting()
+        {
+            Transitioning.Content = null;
+        }
+
+        public void ShowErrorsInUsernameField(IList<Exception> errors)
+        {
+            TxtUsernameError.Visibility = Visibility.Visible;
+            TxtUsernameError.Content = MessageListFormatter.FormatFromErrorList(errors);
+        }
+
+        public void ShowErrorsInPasswordField(IList<Exception> errors)
+        {
+            TxtPasswordError.Visibility = Visibility.Visible;
+            TxtPasswordError.Content = MessageListFormatter.FormatFromErrorList(errors);
         }
 
         #endregion

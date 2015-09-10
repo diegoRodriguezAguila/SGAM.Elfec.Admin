@@ -4,24 +4,28 @@
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         xmlns:Local="clr-namespace:SGAM.Elfec.UserControls"
+        xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
+        SnapsToDevicePixels="True"
         HorizontalContentAlignment="Center"
         Title="LoginWindow" Height="400" Width="350">
     <DockPanel Width="Auto" Margin="60,40,60,0" >
-        <Label DockPanel.Dock="Top" Content="Iniciar sesión" FontSize="36"
+        <Label DockPanel.Dock="Top" Content="{x:Static Res:Resources.LblLogin}" FontSize="36"
                Foreground="{StaticResource BlackTextBrush}"
                FontFamily="Segoe UI Light"/>
         <Controls:TransitioningContentControl DockPanel.Dock="Top" Name="Transitioning"
                VerticalContentAlignment="Top" Margin="0,20,0,0"  Transition="Left" >
             <StackPanel Name="LoginPanel" Orientation="Vertical"   >
-                <Label Content="Usuario"/>
+                <Label Name="TxtUsernameError" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
+                <Label Content="{x:Static Res:Resources.LblUsername}"/>
                 <TextBox Name="TxtUsername"  Height="32" VerticalContentAlignment="Center" />
-                <Label Content="Contraseña" Margin="0,5,0,0" />
+                <Label Name="TxtPasswordError" Margin="0,5,0,0" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
+                <Label Content="{x:Static Res:Resources.LblPassword}" Margin="0,5,0,0" />
                 <PasswordBox Name="TxtPassword"  Height="32" PasswordChar="●" VerticalContentAlignment="Center" />
                 <Button Name="BtnLogin" Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 
-                Content="Iniciar sesión" Margin="0,20,0,0" Height="32" Padding="10,0,10,0" 
+                Content="{x:Static Res:Resources.BtnLogin}" Margin="0,20,0,0" Height="32" Padding="10,0,10,0" 
                 FontSize="14" FontWeight="SemiBold"  HorizontalAlignment="Left" Click="BtnLogin_Click" />
             </StackPanel>
         </Controls:TransitioningContentControl>

@@ -63,7 +63,7 @@ namespace SGAM.Elfec
             if (hasErrors)
                 lblError.Content = MessageListFormatter
                     .FormatFromObjectList(errors, (e) => { return e.ErrorContent.ToString(); });
-            return hasErrors;
+            return !hasErrors;
         }
 
 

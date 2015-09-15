@@ -23,7 +23,9 @@ namespace SGAM.Elfec.Presenters
         {
             new Thread(() =>
             {
-                
+                View.ShowWaiting();
+
+
             }).Start();
         }
     }

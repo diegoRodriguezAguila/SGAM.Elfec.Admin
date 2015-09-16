@@ -1,8 +1,7 @@
-﻿using SGAM.Elfec.Presenters.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SGAM.Elfec.Model;
+using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Presenters.Views;
+using SGAM.Elfec.Security;
 using System.Threading;
 
 namespace SGAM.Elfec.Presenters
@@ -21,11 +20,19 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         public void Login()
         {
+            string username = View.Username;
+            string password = View.Password;
             new Thread(() =>
             {
                 View.ShowWaiting();
-
-
+                var callback = new ResultCallback<User>();
+                callback.Success += (s, u) => { View.HideWaiting(); };
+                callback.Failure += (s, errors) =>
+                {
+                    View.HideWaiting();
+                    View.ShowLoginErrors(errors);
+                };
+                SessionManager.Instance.LogIn(username, password, callback);
             }).Start();
         }
     }

@@ -27,7 +27,7 @@ namespace SGAM.Elfec.WebServices
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>Punto de acceso al webservice rest</returns>
-        public static T Create<T>() where T : IJsonEndpoint
+        public static T Create<T>() where T : ISgamApiEndpoint
         {
             var settings = new JsonSerializerSettings()
             {

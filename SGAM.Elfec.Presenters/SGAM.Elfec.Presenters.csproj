@@ -65,6 +65,10 @@
       <Project>{57df609e-1c63-49d4-a290-345781183faa}</Project>
       <Name>SGAM.Elfec.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SGAM.Elfec.Security\SGAM.Elfec.Security.csproj">
+      <Project>{8302f8e5-e8da-4f23-a523-e69e25cc0bd0}</Project>
+      <Name>SGAM.Elfec.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -42,7 +42,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <Button Name="BtnLogin" Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 
+                <Button Name="BtnLogin" Style="{StaticResource BlueButtonStyle}" IsDefault="True" VerticalContentAlignment="Center" 
                 Content="{x:Static Res:Resources.BtnLogin}" Margin="0,20,0,0" Height="32" Padding="10,0,10,0" 
                 FontSize="14" FontWeight="SemiBold"  HorizontalAlignment="Left" Click="BtnLogin_Click" />
             </StackPanel>

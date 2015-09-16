@@ -5,17 +5,9 @@ using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SGAM.Elfec
 {
@@ -45,13 +37,14 @@ namespace SGAM.Elfec
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
             Transitioning.Content = LoginPanel;
+            TxtPassword.Clear();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             bool validUsername = IsUsernameValid();
             bool validPassword = IsPasswordValid();
-            if(validUsername && validPassword)
+            if (validUsername && validPassword)
                 Presenter.Login();
         }
 
@@ -82,7 +75,7 @@ namespace SGAM.Elfec
             object a = Text;
             BindingExpression be = TxtDummyPassword.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty);
             be.UpdateSource();
-            bool res =  IsFieldValid(TxtDummyPassword, LblPasswordError);
+            bool res = IsFieldValid(TxtDummyPassword, LblPasswordError);
             TxtDummyPassword.Text = null;
             return res;
         }
@@ -113,7 +106,7 @@ namespace SGAM.Elfec
 
         public void ShowWaiting()
         {
-            Dispatcher.BeginInvoke(new Action(() => 
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoginUser;
                 Transitioning.Content = _indeterminateLoading;

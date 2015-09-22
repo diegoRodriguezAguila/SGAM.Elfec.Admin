@@ -4,6 +4,9 @@ using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Exceptions;
 using SGAM.Elfec.WebServices;
 using System;
+
+using System.Linq;
+using System.Collections.Generic;
 using System.Net.Http;
 
 namespace SGAM.Elfec.Security
@@ -13,7 +16,7 @@ namespace SGAM.Elfec.Security
         private static WeakReference<SessionManager> _sessionManagerInstanceRef;
 
         /// <summary>
-        /// No se puede instanciar esta clase directamente, debe utilizar la propiedad <see cref=""/>
+        /// No se puede instanciar esta clase directamente, debe utilizar la propiedad <see cref="Instance"/>
         /// </summary>
         private SessionManager()
         {
@@ -37,25 +40,37 @@ namespace SGAM.Elfec.Security
                 return currentSessionManager;
             }
         }
-
+        /// <summary>
+        /// Inicia el proceso de login del usuario
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="callback"></param>
         public async void LogIn(string username, string password, ResultCallback<User> callback = null)
         {
+            IList<Exception> errors = new List<Exception>();
             if (callback == null)
                 callback = new ResultCallback<User>();
             try
             {
                 var user = await new ServerTokenAuth().LogInAsync(username, password);
                 if (user != null)
-                    callback.OnSuccess(this, user);
+                {
+                    if (PermissionManager.Instance.HasAdminAccessPermission(user))
+                        callback.OnSuccess(this, user);
+                    else errors.Add(new PermissionException(user, Permission.ADMIN_ACCESS));
+                }
             }
             catch (ApiException e)
             {
-                callback.OnFailure(this, RestErrorInterpreter.InterpretError(e));
+                errors.Add(RestErrorInterpreter.InterpretError(e));
             }
             catch (HttpRequestException)
             {
-                callback.OnFailure(this, new ServerConnectException());
+                errors.Add(new ServerConnectException());
             }
+            if(errors.Count>0)
+                callback.OnFailure(this, errors.ToArray());
         }
     }
 }

@@ -29,8 +29,8 @@ namespace SGAM.Elfec
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
             ChangeToAllAppsView();
-            Loaded += buttonGreen_Click;
-            //new LoginWindow().ShowDialog();
+            //Loaded += buttonGreen_Click;
+            Activated += (s, e)=> { buttonGreen_Click(null, null); };
         }
 
         #region Constants

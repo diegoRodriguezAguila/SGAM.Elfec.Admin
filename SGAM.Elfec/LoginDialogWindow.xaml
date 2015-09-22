@@ -8,6 +8,7 @@
         xmlns:Rules="clr-namespace:SGAM.Elfec.ValidationRules"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
+        Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
         ResizeMode="NoResize"
         SnapsToDevicePixels="True"
         HorizontalContentAlignment="Center"

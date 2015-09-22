@@ -7,7 +7,7 @@
         Title="SGAM Elfec" Height="480" Width="720">
     <Grid Margin="-1" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="115" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
@@ -25,9 +25,15 @@
             <!--Tabs-->
             <Fluent:RibbonTabItem Header="APLICACIONES">
                 <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button Name="buttonGreen" ToolTip="Agregar nueva aplicación" Header="Agregar nueva aplicación"
-                           Icon="pack://application:,,,/Resources/NewApp.png"
-                           LargeIcon="pack://application:,,,/Resources/NewApp.png" Click="buttonGreen_Click" />
+                    <Fluent:Button Name="buttonGreen" ToolTip="Agregar nueva aplicación" Header="Agregar nueva aplicación"                        
+                           Click="buttonGreen_Click" >
+                        <Fluent:Button.LargeIcon>
+                            <Viewbox Child="{StaticResource ContactPictureMenu}" />
+                        </Fluent:Button.LargeIcon>
+                        <Fluent:Button.Icon>
+                            <Viewbox Child="{StaticResource ContactPictureMenu}" />
+                        </Fluent:Button.Icon>
+                    </Fluent:Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="DISPOSITIVOS MÓVILES">

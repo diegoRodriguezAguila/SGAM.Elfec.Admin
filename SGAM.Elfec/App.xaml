@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListView.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
+                <ResourceDictionary Source="/Resources/SVG/IconsResourceDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

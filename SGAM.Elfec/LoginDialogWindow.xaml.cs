@@ -45,7 +45,7 @@ namespace SGAM.Elfec
             bool validUsername = IsUsernameValid();
             bool validPassword = IsPasswordValid();
             if (validUsername && validPassword)
-                Presenter.Login();
+                Presenter.LogIn();
         }
 
         private bool IsFieldValid(Control txtField, Label lblError)

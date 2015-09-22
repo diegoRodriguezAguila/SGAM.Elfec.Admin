@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PermissionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerTokenAuth.cs" />
     <Compile Include="SessionManager.cs" />

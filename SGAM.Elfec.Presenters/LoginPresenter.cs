@@ -18,7 +18,7 @@ namespace SGAM.Elfec.Presenters
         /// <summary>
         /// Inicia el proceso de Login
         /// </summary>
-        public void Login()
+        public void LogIn()
         {
             string username = View.Username;
             string password = View.Password;
@@ -26,7 +26,11 @@ namespace SGAM.Elfec.Presenters
             {
                 View.ShowWaiting();
                 var callback = new ResultCallback<User>();
-                callback.Success += (s, u) => { View.HideWaiting(); };
+                callback.Success += (s, user) =>
+                {
+                    View.HideWaiting();
+
+                };
                 callback.Failure += (s, errors) =>
                 {
                     View.HideWaiting();

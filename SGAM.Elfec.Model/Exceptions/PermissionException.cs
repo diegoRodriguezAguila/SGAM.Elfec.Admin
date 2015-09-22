@@ -17,13 +17,14 @@ namespace SGAM.Elfec.Model.Exceptions
         public PermissionException(User user, Permission permission)
         {
             _permission = permission;
+            _user = user;
         }
 
         public override string Message
         {
             get
             {
-                return "El usuario " + _user.Username + " no tiene " + _permission.Description;
+                return "El usuario " + _user.Username + " no tiene el permiso de: " + _permission.Description;
             }
         }
     }

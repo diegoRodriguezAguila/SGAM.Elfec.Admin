@@ -70,13 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiEndpoints\ISgamApiEndpoint.cs" />
-    <Compile Include="ApiEndpoints\ISessionsEndpoint.cs" />
-    <Compile Include="JsonContractResolver\DeliminatorSeparatedPropertyNamesContractResolver .cs" />
-    <Compile Include="JsonContractResolver\SnakeCasePropertyNamesContractResolver.cs" />
+    <Compile Include="WebServices\ApiEndpoints\ISgamApiEndpoint.cs" />
+    <Compile Include="WebServices\ApiEndpoints\ISessionsEndpoint.cs" />
+    <Compile Include="WebServices\JsonContractResolver\DeliminatorSeparatedPropertyNamesContractResolver .cs" />
+    <Compile Include="WebServices\JsonContractResolver\SnakeCasePropertyNamesContractResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestEndpointFactory.cs" />
-    <Compile Include="RestErrorInterpreter.cs" />
+    <Compile Include="WebServices\RestEndpointFactory.cs" />
+    <Compile Include="WebServices\RestErrorInterpreter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

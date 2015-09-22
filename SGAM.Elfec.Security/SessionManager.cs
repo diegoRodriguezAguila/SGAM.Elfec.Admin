@@ -2,7 +2,7 @@
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Exceptions;
-using SGAM.Elfec.WebServices;
+using SGAM.Elfec.DataAccess.WebServices;
 using System;
 
 using System.Linq;
@@ -43,9 +43,9 @@ namespace SGAM.Elfec.Security
         /// <summary>
         /// Inicia el proceso de login del usuario
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="callback"></param>
+        /// <param name="username">nombre de usuario</param>
+        /// <param name="password">contraseña</param>
+        /// <param name="callback">callback para eventos de errores y exito</param>
         public async void LogIn(string username, string password, ResultCallback<User> callback = null)
         {
             IList<Exception> errors = new List<Exception>();

@@ -1,7 +1,7 @@
-﻿using SGAM.Elfec.Model;
+﻿using SGAM.Elfec.DataAccess.WebServices;
+using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
+using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.WebServices;
-using SGAM.Elfec.WebServices;
-using SGAM.Elfec.WebServices.ApiEndpoints;
 using System.Threading.Tasks;
 
 namespace SGAM.Elfec.Security

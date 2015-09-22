@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
 using RestEase;
-using SGAM.Elfec.WebServices.ApiEndpoints;
-using SGAM.Elfec.WebServices.JsonContractResolver;
+using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
+using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGAM.Elfec.WebServices
+namespace SGAM.Elfec.DataAccess.WebServices
 {
     /// <summary>
     /// Factory para obtener el Endpoint de los webservices

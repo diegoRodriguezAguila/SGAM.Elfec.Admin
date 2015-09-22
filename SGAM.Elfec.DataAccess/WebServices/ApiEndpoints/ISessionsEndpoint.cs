@@ -3,7 +3,7 @@ using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.WebServices;
 using System.Threading.Tasks;
 
-namespace SGAM.Elfec.WebServices.ApiEndpoints
+namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
 {
     public interface ISessionsEndpoint : ISgamApiEndpoint
     {

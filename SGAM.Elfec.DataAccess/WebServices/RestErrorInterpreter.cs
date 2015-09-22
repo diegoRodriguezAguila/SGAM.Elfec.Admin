@@ -5,7 +5,7 @@ using SGAM.Elfec.Model.WebServices;
 using System;
 using System.Net;
 
-namespace SGAM.Elfec.WebServices
+namespace SGAM.Elfec.DataAccess.WebServices
 {
     /// <summary>
     /// Se encarga de interpretar el error de la api adecuadamente

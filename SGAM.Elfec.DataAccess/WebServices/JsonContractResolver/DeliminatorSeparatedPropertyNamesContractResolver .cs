@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGAM.Elfec.WebServices.JsonContractResolver
+namespace SGAM.Elfec.DataAccess.WebServices.JsonContractResolver
 {
     public class DeliminatorSeparatedPropertyNamesContractResolver : DefaultContractResolver
     {

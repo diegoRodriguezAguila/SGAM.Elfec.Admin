@@ -9,7 +9,7 @@ namespace SGAM.Elfec.Model
     public class Permission
     {
         public static readonly Permission ADMIN_ACCESS = new Permission { Name = "ACCESO_APP_ADMINISTRADOR",
-            Description = "Permiso para acceder a la aplicación administradora de aplicaciones móviles",
+            Description = "Acceso al sistema de gestión de aplicaciones móviles",
             Status = 1 };
 
         public String Name { get; set; }

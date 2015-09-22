@@ -1,12 +1,12 @@
 ﻿using RestEase;
+using SGAM.Elfec.DataAccess.WebServices;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Exceptions;
-using SGAM.Elfec.DataAccess.WebServices;
+using SGAM.Elfec.WebServices.LocalStorage;
 using System;
-
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 
 namespace SGAM.Elfec.Security
@@ -57,7 +57,10 @@ namespace SGAM.Elfec.Security
                 if (user != null)
                 {
                     if (PermissionManager.Instance.HasAdminAccessPermission(user))
+                    {
+                        UserDAL.SaveUser(AuthTokenProtect.ProtectToken(user));
                         callback.OnSuccess(this, user);
+                    }
                     else errors.Add(new PermissionException(user, Permission.ADMIN_ACCESS));
                 }
             }
@@ -69,7 +72,7 @@ namespace SGAM.Elfec.Security
             {
                 errors.Add(new ServerConnectException());
             }
-            if(errors.Count>0)
+            if (errors.Count > 0)
                 callback.OnFailure(this, errors.ToArray());
         }
     }

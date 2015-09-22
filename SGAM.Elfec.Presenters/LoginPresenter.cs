@@ -29,11 +29,10 @@ namespace SGAM.Elfec.Presenters
                 callback.Success += (s, user) =>
                 {
                     View.HideWaiting();
-
+                    View.NotifySuccessfulLogin(user);
                 };
                 callback.Failure += (s, errors) =>
                 {
-                    View.HideWaiting();
                     View.ShowLoginErrors(errors);
                 };
                 SessionManager.Instance.LogIn(username, password, callback);

@@ -1,5 +1,6 @@
 ﻿using Fluent;
 using SGAM.Elfec.Helpers.Text;
+using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
@@ -11,16 +12,23 @@ using System.Windows.Data;
 
 namespace SGAM.Elfec
 {
-
+    public delegate void UserLoggedInEventHandler(object sender, User loggedUser);
+    public delegate void LoginCanceledEventHandler(object sender, EventArgs e);
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
     public partial class LoginDialogWindow : RibbonWindow, ILoginView
     {
-        public object Text { get; set; }
+        #region Events
+
+        public event UserLoggedInEventHandler UserLoggedIn;
+        public event LoginCanceledEventHandler LoginCanceled;
+        #endregion
+
         private LoginPresenter Presenter { get; set; }
         private IndeterminateLoading _indeterminateLoading;
         private ErrorMessage _errorMessage;
+        private bool _manualClosing;
 
 
         public LoginDialogWindow()
@@ -31,7 +39,11 @@ namespace SGAM.Elfec
             _indeterminateLoading.Margin = new Thickness(0, 20, 0, 0);
             _errorMessage = new ErrorMessage();
             _errorMessage.BtnOk.Click += BtnOk_Click;
-            DataContext = this;
+            Closed += (s, e) =>
+            {
+                if (!_manualClosing && LoginCanceled != null)
+                    LoginCanceled(s, e);
+            };
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
@@ -72,7 +84,6 @@ namespace SGAM.Elfec
         private bool IsPasswordValid()
         {
             TxtDummyPassword.Text = TxtPassword.Password;
-            object a = Text;
             BindingExpression be = TxtDummyPassword.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty);
             be.UpdateSource();
             bool res = IsFieldValid(TxtDummyPassword, LblPasswordError);
@@ -126,6 +137,18 @@ namespace SGAM.Elfec
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 Transitioning.Content = null;
+            }));
+        }
+
+        public void NotifySuccessfulLogin(User loggedUser)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _manualClosing = true;
+                Close();
+                _manualClosing = false;
+                if (UserLoggedIn != null)
+                    UserLoggedIn(this, loggedUser);
             }));
         }
 

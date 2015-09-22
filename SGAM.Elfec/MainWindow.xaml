@@ -11,7 +11,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
-        <Fluent:Ribbon>
+        <Fluent:Ribbon >
             <!--Backstage-->
             <Fluent:Ribbon.Menu>
                 <Fluent:Backstage Header="INICIO" >
@@ -23,6 +23,15 @@
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
             <!--Tabs-->
+            <Fluent:RibbonTabItem Header="DISPOSITIVOS MÓVILES">
+                <Fluent:RibbonGroupBox Header="Group">
+                    <Fluent:Button  Header="Green"
+                           Icon="Images\Green.png"
+                           LargeIcon="Images\GreenLarge.png" />
+                    <Fluent:Button Header="Grey" Icon="Images\Gray.png"
+                           LargeIcon="Images\GrayLarge.png" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="APLICACIONES">
                 <Fluent:RibbonGroupBox Header="Group">
                     <Fluent:Button Name="buttonGreen" ToolTip="Agregar nueva aplicación" Header="Agregar nueva aplicación"                        
@@ -36,15 +45,20 @@
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="DISPOSITIVOS MÓVILES">
-                <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button  Header="Green"
-                           Icon="Images\Green.png"
-                           LargeIcon="Images\GreenLarge.png" />
-                    <Fluent:Button Header="Grey" Icon="Images\Gray.png"
-                           LargeIcon="Images\GrayLarge.png" />
-                </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
+            <Fluent:Ribbon.ToolBarItems>
+                <Fluent:DropDownButton SizeDefinition="Middle" Margin="5,0,5,0" Header="drodriguezd" >
+                    <Fluent:DropDownButton.Icon> 
+                        <Viewbox Width="16" Height="16" Child="{StaticResource ContactPictureMenu}" />
+                    </Fluent:DropDownButton.Icon>
+                    <StackPanel Orientation="Vertical" Margin="7">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="60" Height="60" Child="{StaticResource ContactPictureMenu}" />
+                            <Label FontSize="18" Foreground="{StaticResource BlackTextBrush}" Content="drodriguezd" />
+                        </StackPanel>
+                        <TextBlock Margin="0,10,0,0" Text="Cambiar de usuario" Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}" />
+                    </StackPanel>
+                </Fluent:DropDownButton>
+            </Fluent:Ribbon.ToolBarItems>
         </Fluent:Ribbon>
         <sgam:TransitioningContentControl Grid.Row="1" Name="InnerContent" Transition="ModernUITransition" >
         </sgam:TransitioningContentControl>

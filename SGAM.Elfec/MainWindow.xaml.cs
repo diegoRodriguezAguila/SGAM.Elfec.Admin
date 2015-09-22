@@ -1,21 +1,7 @@
 ﻿using Fluent;
-using SGAM.Elfec.CustomUI;
 using SGAM.Elfec.Interfaces;
-using SGAM.Elfec.Presenters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SGAM.Elfec
 {
@@ -29,9 +15,13 @@ namespace SGAM.Elfec
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
             ChangeToAllAppsView();
-            //Loaded += buttonGreen_Click;
-            Activated += (s, e)=> { buttonGreen_Click(null, null); };
+            _isFirstActivated = true;
+            //Activated += (s, e) => { ShowLoginDialog(); };
         }
+
+        #region Private Variables
+        private bool _isFirstActivated;
+        #endregion
 
         #region Constants
         public const string SELECTED_TAG = "Selected";
@@ -64,6 +54,18 @@ namespace SGAM.Elfec
             ChangeToAllDeviceGroupsView();
         }
 
+        private void ShowLoginDialog()
+        {
+            if (_isFirstActivated)
+            {
+                _isFirstActivated = false;
+                var loginDialog = new LoginDialogWindow();
+                loginDialog.Owner = this;
+                loginDialog.LoginCanceled += (s, e) => { Close(); };
+                loginDialog.ShowDialog();
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -72,7 +74,7 @@ namespace SGAM.Elfec
             this.Close();
         }
 
-        public void ChangeTitle(string title=null)
+        public void ChangeTitle(string title = null)
         {
             Title = (title != null ? (title + " - ") : "") + MAIN_TITLE;
         }
@@ -115,9 +117,7 @@ namespace SGAM.Elfec
 
         private void buttonGreen_Click(object sender, RoutedEventArgs e)
         {
-            var loginDialog = new LoginDialogWindow();
-            loginDialog.Owner = this;
-            loginDialog.ShowDialog();
+
         }
     }
 }

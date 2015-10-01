@@ -1,17 +1,33 @@
-﻿using KitaroDB;
+﻿using NDatabase;
 using SGAM.Elfec.Model;
 
 namespace SGAM.Elfec.WebServices.LocalStorage
 {
     public class UserDAL
     {
-        private const string USER_FILE = "User.sgam";
+        private const string USER_DB = "User.sgam";
 
-        public static void SaveUser(User user)
+        /// <summary>
+        /// Representa al usuario logeado actual, solo puede existir un usuario actual a la vez
+        /// </summary>
+        public static User CurrentUser
         {
-            using (DB database = DB.Create(USER_FILE))
+            get
             {
-                database.Update(user.Username, user.AuthenticationToken);
+                using (var odb = OdbFactory.Open(USER_DB))
+                {
+                    return odb.QueryAndExecute<User>().GetFirst();
+                }
+            }
+            set
+            {
+                using (var odb = OdbFactory.Open(USER_DB))
+                {
+                    var currentUser = odb.QueryAndExecute<User>().GetFirst();
+                    if (currentUser != null)
+                        odb.Delete(currentUser);
+                    odb.Store(value);
+                }
             }
         }
     }

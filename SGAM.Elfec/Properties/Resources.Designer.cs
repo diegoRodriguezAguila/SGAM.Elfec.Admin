@@ -106,6 +106,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obteniendo información de dispositivos….
+        /// </summary>
+        public static string MsgLoadingDevices {
+            get {
+                return ResourceManager.GetString("MsgLoadingDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Validando información de usuario….
         /// </summary>
         public static string MsgLoginUser {

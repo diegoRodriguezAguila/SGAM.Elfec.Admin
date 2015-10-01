@@ -1,6 +1,5 @@
 ﻿using SGAM.Elfec.Model;
 using System;
-using System.Collections.Generic;
 
 namespace SGAM.Elfec.Presenters.Views
 {
@@ -15,7 +14,7 @@ namespace SGAM.Elfec.Presenters.Views
         /// Muestra los errores ocurridos durante el intento de login
         /// </summary>
         /// <param name="validationErrors">errores de validación de lógin</param>
-        void ShowLoginErrors(IList<Exception> validationErrors);
+        void ShowLoginErrors(params Exception[] validationErrors);
         /// <summary>
         /// Notifica que el usuario se logeó exitosamente
         /// </summary>

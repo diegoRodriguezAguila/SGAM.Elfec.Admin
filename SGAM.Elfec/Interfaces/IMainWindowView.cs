@@ -12,7 +12,7 @@ namespace SGAM.Elfec.Interfaces
         void CloseWindow();
         void ChangeTitle(string title);
         void ChangeToAllAppsView();
-        void ChangeToAllMobileDevicesView();
+        void ChangeToDevicesView();
         void ChangeToAllDeviceGroupsView();
         void ChangeToView<T>(T view) where T : Control;
         void GoBack();

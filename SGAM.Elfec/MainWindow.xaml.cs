@@ -14,7 +14,7 @@ namespace SGAM.Elfec
         {
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
-            ChangeToAllAppsView();
+            ChangeToDevicesView();
             _isFirstActivated = true;
             //Activated += (s, e) => { ShowLoginDialog(); };
         }
@@ -33,7 +33,7 @@ namespace SGAM.Elfec
         private void ChangePrincipalView(string btnShowAppsTag, string btnShowMobilesTag, string btnShowGroupsTag, Control view)
         {
             BtnShowApps.Tag = btnShowAppsTag;
-            BtnShowMobiles.Tag = btnShowMobilesTag;
+            BtnShowDevices.Tag = btnShowMobilesTag;
             BtnShowGroups.Tag = btnShowGroupsTag;
             MainWindowService.Instance.Navigation.Clear();
             ChangeToView(view);
@@ -46,7 +46,7 @@ namespace SGAM.Elfec
 
         private void BtnShowMobiles_Click(object sender, RoutedEventArgs e)
         {
-            ChangeToAllMobileDevicesView();
+            ChangeToDevicesView();
         }
 
         private void BtnShowGroups_Click(object sender, RoutedEventArgs e)
@@ -85,10 +85,10 @@ namespace SGAM.Elfec
                 ChangePrincipalView(SELECTED_TAG, null, null, new ShowAllApps());
         }
 
-        public void ChangeToAllMobileDevicesView()
+        public void ChangeToDevicesView()
         {
-            if ((string)BtnShowMobiles.Tag != SELECTED_TAG)
-                ChangePrincipalView(null, SELECTED_TAG, null, new ShowAllMobileDevices());
+            if ((string)BtnShowDevices.Tag != SELECTED_TAG)
+                ChangePrincipalView(null, SELECTED_TAG, null, new ShowDevices());
         }
 
         public void ChangeToAllDeviceGroupsView()

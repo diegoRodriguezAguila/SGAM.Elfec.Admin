@@ -101,7 +101,9 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -122,8 +124,8 @@
     <Compile Include="ShowAllDeviceGroups.xaml.cs">
       <DependentUpon>ShowAllDeviceGroups.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowAllMobileDevices.xaml.cs">
-      <DependentUpon>ShowAllMobileDevices.xaml</DependentUpon>
+    <Compile Include="ShowDevices.xaml.cs">
+      <DependentUpon>ShowDevices.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ErrorMessage.xaml.cs">
       <DependentUpon>ErrorMessage.xaml</DependentUpon>
@@ -164,7 +166,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShowAllMobileDevices.xaml">
+    <Page Include="ShowDevices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

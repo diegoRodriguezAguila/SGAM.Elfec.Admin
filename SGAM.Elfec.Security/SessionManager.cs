@@ -58,7 +58,7 @@ namespace SGAM.Elfec.Security
                 {
                     if (PermissionManager.Instance.HasAdminAccessPermission(user))
                     {
-                        UserDAL.SaveUser(AuthTokenProtect.ProtectToken(user));
+                        UserDAL.CurrentUser = AuthTokenProtect.ProtectToken(user);
                         callback.OnSuccess(this, user);
                     }
                     else errors.Add(new PermissionException(user, Permission.ADMIN_ACCESS));

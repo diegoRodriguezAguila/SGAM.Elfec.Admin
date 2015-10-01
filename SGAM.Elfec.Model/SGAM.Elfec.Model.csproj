@@ -86,6 +86,7 @@
     <Compile Include="Callbacks\Callback.cs" />
     <Compile Include="Callbacks\ResultCallback.cs" />
     <Compile Include="Callbacks\VoidCallback.cs" />
+    <Compile Include="Device.cs" />
     <Compile Include="Exceptions\PermissionException.cs" />
     <Compile Include="Exceptions\ServerConnectException.cs" />
     <Compile Include="Exceptions\ServerSideException.cs" />

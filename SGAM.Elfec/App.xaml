@@ -15,6 +15,7 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />

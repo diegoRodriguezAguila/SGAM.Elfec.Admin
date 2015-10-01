@@ -25,7 +25,7 @@ namespace SGAM.Elfec
         public event LoginCanceledEventHandler LoginCanceled;
         #endregion
 
-        private LoginPresenter Presenter { get; set; }
+        private LoginPresenter _presenter;
         private IndeterminateLoading _indeterminateLoading;
         private ErrorMessage _errorMessage;
         private bool _manualClosing;
@@ -34,7 +34,7 @@ namespace SGAM.Elfec
         public LoginDialogWindow()
         {
             InitializeComponent();
-            Presenter = new LoginPresenter(this);
+            _presenter = new LoginPresenter(this);
             _indeterminateLoading = new IndeterminateLoading();
             _indeterminateLoading.Margin = new Thickness(0, 20, 0, 0);
             _errorMessage = new ErrorMessage();
@@ -57,7 +57,7 @@ namespace SGAM.Elfec
             bool validUsername = IsUsernameValid();
             bool validPassword = IsPasswordValid();
             if (validUsername && validPassword)
-                Presenter.LogIn();
+                _presenter.LogIn();
         }
 
         private bool IsFieldValid(Control txtField, Label lblError)
@@ -103,9 +103,9 @@ namespace SGAM.Elfec
             get { return TxtPassword.Password; }
         }
 
-        public void ShowLoginErrors(IList<Exception> validationErrors)
+        public void ShowLoginErrors(params Exception[] validationErrors)
         {
-            if (validationErrors.Count > 0)
+            if (validationErrors.Length > 0)
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {

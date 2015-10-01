@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
         Title="SGAM Elfec" Height="480" Width="720">
     <Grid Margin="-1" >
@@ -11,7 +12,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
-        <Fluent:Ribbon >
+        <Fluent:Ribbon Grid.Row="0" >
             <!--Backstage-->
             <Fluent:Ribbon.Menu>
                 <Fluent:Backstage Header="INICIO" >
@@ -60,28 +61,21 @@
                 </Fluent:DropDownButton>
             </Fluent:Ribbon.ToolBarItems>
         </Fluent:Ribbon>
-        <sgam:TransitioningContentControl Grid.Row="1" Name="InnerContent" Transition="ModernUITransition" >
-        </sgam:TransitioningContentControl>
-        
-        <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
+        <Controls:TransitioningContentControl Grid.Row="1" Name="InnerContent" Transition="Left" />
+
+            <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
             <TextBlock VerticalAlignment="Center" Foreground="White">
             Ready</TextBlock>
             <Separator />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowApps" ToolTip="Ver aplicaciones" Click="BtnShowApps_Click" Width="30">
-                    <Button.Content>
-                        <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/App.png" />
-                    </Button.Content>
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowDevices" ToolTip="Ver dispositivos" Click="BtnShowMobiles_Click" Width="30">
+                    <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/Phone.png" />
                 </Button>
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowMobiles" ToolTip="Ver dispositivos móviles" Click="BtnShowMobiles_Click" Width="30">
-                    <Button.Content>
-                        <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/Phone.png" />
-                    </Button.Content>
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowApps" ToolTip="Ver aplicaciones" Click="BtnShowApps_Click" Width="30">
+                    <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/App.png" />
                 </Button>
                 <Button Style="{StaticResource BottomBarButton}" Name="BtnShowGroups" ToolTip="Ver grupos de dispositivos" Click="BtnShowGroups_Click" Width="30">
-                    <Button.Content>
-                        <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/PhoneGroup.png" />
-                    </Button.Content>
+                    <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/PhoneGroup.png" />
                 </Button>
             </StackPanel>
         </StatusBar>

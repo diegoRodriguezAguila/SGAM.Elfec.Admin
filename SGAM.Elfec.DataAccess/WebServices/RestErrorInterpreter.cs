@@ -21,6 +21,8 @@ namespace SGAM.Elfec.DataAccess.WebServices
         {
             if (apiException.StatusCode == HttpStatusCode.InternalServerError)
                 return new ServerSideException();
+            if (apiException.StatusCode == HttpStatusCode.Unauthorized)
+                return new Exception("Che no tienes permiso dude");
             RestErrorResponse error = JsonConvert.DeserializeObject<RestErrorResponse>(apiException.Content);
             return new Exception(error.Errors);
         }

@@ -110,6 +110,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\DeviceModelToImageSourceConverter.cs" />
     <Compile Include="Interfaces\IMainWindowView.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>

@@ -29,7 +29,7 @@
                             Background="{TemplateBinding Background}" 
                             Padding="{TemplateBinding Padding}" 
                             SnapsToDevicePixels="true">
-                            <ContentPresenter 
+                        <ContentPresenter 
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -62,39 +62,5 @@
         </Setter>
 
     </Style>
-
-    <DataTemplate x:Key="DeviceItemTemplate" >
-        <StackPanel Height="80"  Width="180" Orientation="Horizontal">
-            <Image Margin="5,0" VerticalAlignment="Center" Width="64" Height="64" 
-                   RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True" />
-            <StackPanel  Width="100" VerticalAlignment="Center" Margin="5,0">
-                <TextBlock FontSize="12" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}" />
-                <TextBlock FontSize="10" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" >
-                                <Run Text="{Binding Brand}" />
-                                <Run Text=" " />
-                                <Run Text="{Binding Model}" />
-                </TextBlock>
-                <TextBlock FontSize="10" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Name="PhoneNumber" 
-                                       Text="{Binding PhoneNumber}" />
-                <TextBlock FontSize="10" TextWrapping="Wrap" Text="{Binding PackageName}" >
-                                <Run Text="{Binding Platform}" />
-                                <Run Text=" " />
-                                <Run Text="{Binding OsVersion}" />
-                </TextBlock>
-            </StackPanel>
-        </StackPanel>
-    </DataTemplate>
-
-    <DataTemplate x:Key="AppItemTemplate" >
-        <StackPanel Height="80"  Width="180" Orientation="Horizontal">
-            <Image Margin="5,0" VerticalAlignment="Center" Width="64" Height="64" RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True" />
-            <StackPanel  Width="100" VerticalAlignment="Center" Margin="5,0">
-                <TextBlock FontSize="12" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}" />
-                <TextBlock FontSize="10" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Name="Version" Text="{Binding Version, StringFormat=v. {0}}" />
-                <TextBlock FontSize="10" TextWrapping="Wrap" Name="PackageName" Text="{Binding PackageName}" />
-            </StackPanel>
-        </StackPanel>
-    </DataTemplate>
-
 
 </ResourceDictionary>

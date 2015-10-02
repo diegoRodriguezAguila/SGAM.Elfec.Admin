@@ -1,9 +1,8 @@
-﻿using RestEase;
-
-namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
+﻿namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
 {
-    [Header("Accept", "application/json")]
-    [Header("Content-Type", "application/json")]
+    /// <summary>
+    /// Base endpoint interface
+    /// </summary>
     public interface ISgamApiEndpoint
     {
 

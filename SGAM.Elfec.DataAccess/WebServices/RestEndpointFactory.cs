@@ -1,8 +1,13 @@
 ﻿using Newtonsoft.Json;
 using RestEase;
+using RestEase.Implementation;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SGAM.Elfec.DataAccess.WebServices
 {
@@ -23,13 +28,34 @@ namespace SGAM.Elfec.DataAccess.WebServices
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>Punto de acceso al webservice rest</returns>
-        public static T Create<T>()
+        public static T Create<T>() where T : ISgamApiEndpoint
         {
+            var httpClient = new HttpClient(
+                new ModifyingClientHttpHandler(PutHeaders))
+            {
+                BaseAddress = new Uri(BASE_URL),
+            };
             var settings = new JsonSerializerSettings()
             {
                 ContractResolver = new SnakeCasePropertyNamesContractResolver()
             };
-            return RestClient.For<T>(BASE_URL, settings);
+
+            return RestClient.For<T>(httpClient, settings);
+        }
+
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        /// <summary>
+        /// Se encarga de modificar el request poniendo los headers adecuados
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        private static async Task PutHeaders(HttpRequestMessage request, CancellationToken cancellationToken)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            request.Headers.Add("Accept", "application/json");
+            if (request.Content != null)
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         }
 
         /// <summary>
@@ -39,13 +65,13 @@ namespace SGAM.Elfec.DataAccess.WebServices
         /// <param name="username">usuario para autenticación</param>
         /// <param name="authToken">token para autenticación</param>
         /// <returns>Punto de acceso al webservice rest</returns>
-        public static T Create<T>(string username, string authToken) where T : ISgamApiEndpoint
+        public static T Create<T>(string username, string authToken) where T : ISgamAuthenticatedEndpoint
         {
             T endpoint = Create<T>();
             if (username != null && authToken != null)
             {
-                (endpoint as IDevicesEndpoint).ApiToken = authToken;
-                (endpoint as IDevicesEndpoint).ApiUsername = username;
+                endpoint.ApiToken = authToken;
+                endpoint.ApiUsername = username;
             }
             return endpoint;
         }

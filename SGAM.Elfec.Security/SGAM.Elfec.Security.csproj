@@ -56,8 +56,8 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestEase, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestEase.1.0.1\lib\net45\RestEase.dll</HintPath>
+    <Reference Include="RestEase, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestEase.1.0.2\lib\net45\RestEase.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -78,10 +78,6 @@
     <Compile Include="SessionManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SGAM.Elfec.BusinessLogic\SGAM.Elfec.BusinessLogic.csproj">
-      <Project>{9dad2247-7b21-4702-a7a8-46a51842e84d}</Project>
-      <Name>SGAM.Elfec.BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.DataAccess\SGAM.Elfec.DataAccess.csproj">
       <Project>{76a3eba4-65b4-4bc8-8f6e-f63b1cee91e3}</Project>
       <Name>SGAM.Elfec.DataAccess</Name>

@@ -75,5 +75,16 @@ namespace SGAM.Elfec.Security
             if (errors.Count > 0)
                 callback.OnFailure(this, errors.ToArray());
         }
+
+        /// <summary>
+        /// Es el usuario logeado actual
+        /// </summary>
+        public User CurrentLoggedUser
+        {
+            get
+            {
+                return AuthTokenProtect.UnprotectToken(UserDAL.CurrentUser);
+            }
+        }
     }
 }

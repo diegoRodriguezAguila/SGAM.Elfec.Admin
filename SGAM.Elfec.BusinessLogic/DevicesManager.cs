@@ -2,6 +2,7 @@
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Security;
 using System.Collections.Generic;
 
 namespace SGAM.Elfec.BusinessLogic
@@ -14,11 +15,14 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback"></param>
         public static void GetAllDevices(ResultCallback<IList<Device>> callback)
         {
+            User user = SessionManager.Instance.CurrentLoggedUser;
             var restInvoker = new RestInvoker<IList<Device>>();
             restInvoker.InvokeWebService(callback, () =>
             {
+                var parameters = new Dictionary<string, string>();
+                parameters["order"] = "status:desc";
                 return RestEndpointFactory
-                    .Create<IDevicesEndpoint>("drodriguezd", "1KFcx4VxRs5aqYum9cro").GetAllDevices(null);
+                    .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken).GetAllDevices(parameters);
             });
         }
     }

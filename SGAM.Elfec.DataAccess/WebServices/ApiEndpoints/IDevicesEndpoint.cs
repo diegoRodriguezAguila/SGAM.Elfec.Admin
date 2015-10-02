@@ -5,14 +5,10 @@ using System.Threading.Tasks;
 
 namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
 {
-    public interface IDevicesEndpoint : ISgamApiEndpoint
+    public interface IDevicesEndpoint : ISgamAuthenticatedEndpoint
     {
-        [Header("X-Api-Token")]
-        string ApiToken { get; set; }
-        [Header("X-Api-Username")]
-        string ApiUsername { get; set; }
         // The "devices" is a relative path the a base URL, which we'll provide later
         [Get("/devices")]
-        Task<IList<Device>> GetAllDevices([QueryMap] IDictionary<string, object> filters);
+        Task<IList<Device>> GetAllDevices([QueryMap] IDictionary<string, string> filters);
     }
 }

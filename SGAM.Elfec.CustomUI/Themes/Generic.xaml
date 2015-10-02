@@ -3,9 +3,17 @@
                     xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI"
                     xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell">
     <ResourceDictionary.MergedDictionaries>
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/FlatWindow.xaml" />
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TransitioningContentControl.xaml" />
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Button.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Menu.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBox.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/PasswordBox.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TabItem.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/BottomBar.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ScrollBar.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListView.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

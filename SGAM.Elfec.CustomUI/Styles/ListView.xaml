@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI">
     <ResourceDictionary.MergedDictionaries>
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style x:Key="WrapPanelListView" TargetType="{x:Type ListView}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -17,33 +17,38 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ListViewItemOptionStyle" TargetType="ListViewItem">
+    <Style x:Key="ListViewItemOptionStyle" TargetType="{x:Type ListViewItem}">
         <Setter Property="Margin" Value="5" />
         <Setter Property="Template">
             <Setter.Value>
                 <!-- Trun off default selection-->
-                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                <ControlTemplate TargetType="ListViewItem">
                     <Border x:Name="Bd" 
                             BorderThickness="1"
                             BorderBrush="{StaticResource BlueButtonBorderBrush}"
-                            Background="{TemplateBinding Background}" 
-                            Padding="{TemplateBinding Padding}" 
+                            Background="{TemplateBinding Background}"                          
+                            Margin="0"
+                            Padding="0" 
                             SnapsToDevicePixels="true">
                         <ContentPresenter 
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
+                        </ContentPresenter>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground"
-                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            <Setter Property="Opacity" TargetName="Bd"
+                                    Value="0.5"/>
                         </Trigger>
+
                         <Trigger Property="IsSelected" Value="True" >
                             <Setter Property="Background" Value="{StaticResource BlueButtonSelectedBrush}" />
                             <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource BlueButtonSelectedBrush}" />
                         </Trigger>
+                        
                         <Trigger Property="IsMouseOver" Value="True" >
                             <Setter Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
                             <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource BlueButtonOverBrush}" />

@@ -3,52 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
-             xmlns:local="clr-namespace:SGAM.Elfec.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="{x:Static Fluent:MetroColors.ThemeColorKey}">#18468D</Color>
-            <local:DeviceModelToImageSourceConverter x:Key="DeviceImageConverter" />
-            <Style TargetType="TextBlock" x:Key="HoverUnderlineStyle">
-                <Setter Property="Foreground" Value="{StaticResource BlackTextBrush}" />
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="TextBlock.TextDecorations" Value="Underline" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <DataTemplate x:Key="DeviceItemTemplate" >
-                <StackPanel Height="80"  Width="180" Orientation="Horizontal" >
-                    <Image Margin="5,0" VerticalAlignment="Center" Width="64" Height="64" 
-                   RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True"
-                   Source="{Binding Model, Converter={StaticResource DeviceImageConverter}}" />
-                    <StackPanel  Width="100" VerticalAlignment="Center" Margin="5,0">
-                        <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}" />
-                        <TextBlock FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" >
-                                <Run Text="{Binding Brand}" />    
-                                <Run Text="{Binding Model}" />
-                        </TextBlock>
-                        <TextBlock FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Name="PhoneNumber" 
-                                       Text="{Binding PhoneNumber}" >
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding PhoneNumber}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <TextBlock FontSize="11" TextWrapping="Wrap" Text="{Binding PackageName}" >
-                                <Run Text="{Binding Platform}" />
-                                <Run Text="{Binding OsVersion}" />
-                        </TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-
+            
             <DataTemplate x:Key="AppItemTemplate" >
                 <StackPanel Height="80"  Width="180" Orientation="Horizontal">
                     <Image Margin="5,0" VerticalAlignment="Center" Width="64" Height="64" RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True" />
@@ -59,20 +18,12 @@
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Button.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Menu.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBox.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/PasswordBox.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TabItem.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/BottomBar.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ScrollBar.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListView.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
-                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
+                <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="/Resources/SVG/IconsResourceDictionary.xaml" />
+                <ResourceDictionary Source="/Styles/Device.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

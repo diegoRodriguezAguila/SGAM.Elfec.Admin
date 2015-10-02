@@ -18,6 +18,6 @@
         public string ScreenResolution { get; set; }
         public double? Camera { get; set; }
         public double? SdMemoryCard { get; set; }
-        public int Status { get; set; }
+        public short Status { get; set; }
     }
 }

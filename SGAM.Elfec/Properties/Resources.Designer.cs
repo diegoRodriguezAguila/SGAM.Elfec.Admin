@@ -106,6 +106,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autorizar dispositivo.
+        /// </summary>
+        public static string MenuItemAuthorizeDevice {
+            get {
+                return ResourceManager.GetString("MenuItemAuthorizeDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obteniendo información de dispositivos….
         /// </summary>
         public static string MsgLoadingDevices {

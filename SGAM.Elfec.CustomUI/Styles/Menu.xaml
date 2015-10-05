@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI">
     <ResourceDictionary.MergedDictionaries>
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!--MENUITEM-->
@@ -58,6 +58,9 @@
                 <Setter TargetName="Border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
                 <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
             </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{StaticResource BlackTextBrush}" />
             </Trigger>
@@ -96,6 +99,9 @@
             <Trigger Property="IsHighlighted" Value="true">
                 <Setter TargetName="Border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
             </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+            </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground" Value="Gray" />
             </Trigger>
@@ -129,6 +135,9 @@
             </Trigger>
             <Trigger Property="IsHighlighted" Value="true">
                 <Setter TargetName="Border" Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
             </Trigger>
             <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="True">
                 <Setter TargetName="SubmenuBorder" Property="Padding" Value="0,3,0,3" />

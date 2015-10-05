@@ -26,4 +26,92 @@
             </Path.Data>
         </Path>
     </Canvas>
+
+    <Canvas x:Key="AuthDevice" Name="Capa_1" SnapsToDevicePixels="True" Canvas.Left="0" Canvas.Top="0" Width="347.971" Height="347.971">
+            <Canvas.RenderTransform>
+                <TranslateTransform X="0" Y="0"/>
+            </Canvas.RenderTransform>
+            <Canvas.Resources/>
+            <!--Unknown tag: metadata-->
+            <!--Unknown tag: sodipodi:namedview-->
+            <Canvas Name="g3057" Opacity="1">
+                <Canvas.RenderTransform>
+                    <MatrixTransform Matrix="1.8924506 0 0 1.8924506 87.314489 88.787546"/>
+                </Canvas.RenderTransform>
+                <Canvas Name="g3017" Opacity="1">
+                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3019" Fill="#FF000000">
+                        <Path.Data>
+                            <PathGeometry Figures="M 96.939 17.358 83.968 5.959 C 83.57 5.607 83.041 5.428 82.519 5.465 81.99 5.5 81.496 5.743 81.146 6.142 L 34.1 59.688 17.372 37.547 c -0.319 -0.422 -0.794 -0.701 -1.319 -0.773 -0.524 -0.078 -1.059 0.064 -1.481 0.385 L 0.794 47.567 c -0.881 0.666 -1.056 1.92 -0.39 2.801 l 30.974 40.996 c 0.362 0.479 0.922 0.771 1.522 0.793 0.024 0 0.049 0 0.073 0 0.574 0 1.122 -0.246 1.503 -0.68 L 97.12 20.18 c 0.73 -0.829 0.649 -2.094 -0.181 -2.822 z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+                <Canvas Name="g3021" Opacity="1"/>
+                <Canvas Name="g3023" Opacity="1"/>
+                <Canvas Name="g3025" Opacity="1"/>
+                <Canvas Name="g3027" Opacity="1"/>
+                <Canvas Name="g3029" Opacity="1"/>
+                <Canvas Name="g3031" Opacity="1"/>
+                <Canvas Name="g3033" Opacity="1"/>
+                <Canvas Name="g3035" Opacity="1"/>
+                <Canvas Name="g3037" Opacity="1"/>
+                <Canvas Name="g3039" Opacity="1"/>
+                <Canvas Name="g3041" Opacity="1"/>
+                <Canvas Name="g3043" Opacity="1"/>
+                <Canvas Name="g3045" Opacity="1"/>
+                <Canvas Name="g3047" Opacity="1"/>
+                <Canvas Name="g3049" Opacity="1"/>
+            </Canvas>
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3" Fill="#FF18468D">
+                <Path.Data>
+                    <PathGeometry Figures="M 317.309 54.367 C 257.933 54.367 212.445 37.403 173.98 0 135.519 37.403 90.033 54.367 30.662 54.367 c 0 97.405 -20.155 236.937 143.317 293.604 163.484 -56.666 143.33 -196.198 143.33 -293.604 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+            <Canvas Name="g5"/>
+            <Canvas Name="g7"/>
+            <Canvas Name="g9"/>
+            <Canvas Name="g11"/>
+            <Canvas Name="g13"/>
+            <Canvas Name="g15"/>
+            <Canvas Name="g17"/>
+            <Canvas Name="g19"/>
+            <Canvas Name="g21"/>
+            <Canvas Name="g23"/>
+            <Canvas Name="g25"/>
+            <Canvas Name="g27"/>
+            <Canvas Name="g29"/>
+            <Canvas Name="g31"/>
+            <Canvas Name="g33"/>
+            <Canvas Name="g3886" Opacity="1">
+                <Canvas.RenderTransform>
+                    <MatrixTransform Matrix="0.54055578 0 0 0.54055578 7.6991673 -86.502237"/>
+                </Canvas.RenderTransform>
+                <Canvas Name="g3845" Opacity="1">
+                    <Canvas Name="Small_Icons" Opacity="1">
+                        <Canvas Name="Artboard_4" Opacity="1">
+                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="Rectangle_63" Fill="#FFFFFFFF">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 448.2324 352.77386 49.22393 41.26139 c 2.94455 2.49057 3.48982 7.12498 0.94562 10.16123 L 286.89483 656.23756 c -1.67184 1.99933 -3.98147 2.83566 -6.23502 2.5446 -1.58014 -0.0729 -3.14391 -0.65498 -4.45224 -1.74511 L 136.88108 540.1228 c -3.10871 -2.58104 -3.63679 -7.27112 -1.07335 -10.32456 l 41.15209 -49.04176 c 2.49057 -2.96216 7.21627 -3.38094 10.37942 -0.72703 l 84.88645 71.21903 165.82829 -197.65712 c 2.72636 -3.21678 7.12497 -3.39813 10.17842 -0.8175 z" FillRule="NonZero"/>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Canvas>
+                <Canvas Name="g3850" Opacity="1"/>
+                <Canvas Name="g3852" Opacity="1"/>
+                <Canvas Name="g3854" Opacity="1"/>
+                <Canvas Name="g3856" Opacity="1"/>
+                <Canvas Name="g3858" Opacity="1"/>
+                <Canvas Name="g3860" Opacity="1"/>
+                <Canvas Name="g3862" Opacity="1"/>
+                <Canvas Name="g3864" Opacity="1"/>
+                <Canvas Name="g3866" Opacity="1"/>
+                <Canvas Name="g3868" Opacity="1"/>
+                <Canvas Name="g3870" Opacity="1"/>
+                <Canvas Name="g3872" Opacity="1"/>
+                <Canvas Name="g3874" Opacity="1"/>
+                <Canvas Name="g3876" Opacity="1"/>
+                <Canvas Name="g3878" Opacity="1"/>
+            </Canvas>
+        </Canvas>
+
 </ResourceDictionary>

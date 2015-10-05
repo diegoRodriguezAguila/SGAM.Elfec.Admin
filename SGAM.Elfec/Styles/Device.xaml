@@ -1,11 +1,41 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+                    xmlns:res="clr-namespace:SGAM.Elfec.Properties"
                     xmlns:local="clr-namespace:SGAM.Elfec">
     <converters:DeviceModelToImageSourceConverter x:Key="DeviceImageConverter" />
     <converters:DeviceStatusToBackgroundConverter x:Key="DeviceStatusConverter" />
     <converters:DeviceStatusToOpacityConverter x:Key="DeviceStatusOpacityConverter" />
 
+    <!--Device Context Menu-->
+    
+    <ContextMenu x:Key="DeviceItemContextMenu" >
+        <MenuItem Command="{Binding RelativeSource=
+                {RelativeSource FindAncestor, 
+                AncestorType={x:Type ListView}}, 
+                Path=DataContext.AuthorizeDevice}"
+                  CommandParameter="{Binding}">
+            <MenuItem.Header>
+                <Grid Height="25" Background="Transparent" >
+                    <TextBlock Text="{x:Static res:Resources.MenuItemAuthorizeDevice}" VerticalAlignment="Center" />
+                </Grid>
+            </MenuItem.Header>
+            <MenuItem.Icon>
+                <Grid Height="25" Width="25" Background="Transparent" >
+                    <Viewbox Height="18" Child="{StaticResource AuthDevice}" />
+                </Grid>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+    
+    <!--Device ListItem Style-->
+    <Style x:Key="DeviceItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
+           TargetType="ListViewItem">
+        <Setter Property="ContextMenu" Value="{StaticResource DeviceItemContextMenu}" />
+    </Style>
+    
+    <!--Device ItemTemplate-->
+    
     <DataTemplate x:Key="DeviceItemTemplate" >
         <StackPanel Height="80"  Width="190" Background="{Binding Status, 
                     Converter={StaticResource DeviceStatusConverter}}" Opacity="{Binding Status, 

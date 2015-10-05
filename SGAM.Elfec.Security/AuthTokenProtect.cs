@@ -19,6 +19,8 @@ namespace SGAM.Elfec.Security
         /// <returns></returns>
         public static User ProtectToken(User user)
         {
+            if (user == null)
+                return null;
             user.AuthenticationToken = ProtectToken(user.AuthenticationToken);
             return user;
         }
@@ -30,6 +32,8 @@ namespace SGAM.Elfec.Security
         /// <returns></returns>
         public static User UnprotectToken(User user)
         {
+            if (user == null)
+                return null;
             user.AuthenticationToken = UnprotectToken(user.AuthenticationToken);
             return user;
         }

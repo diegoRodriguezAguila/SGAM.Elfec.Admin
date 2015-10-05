@@ -3,7 +3,7 @@
                     xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI"
                     xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell">
     <ResourceDictionary.MergedDictionaries>
-        <sgam:SharedResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <!--EFFECTS-->
     <DropShadowEffect x:Key="WindowShadowEffect" ShadowDepth="1" BlurRadius="8" Direction="270" Color="Black"/>

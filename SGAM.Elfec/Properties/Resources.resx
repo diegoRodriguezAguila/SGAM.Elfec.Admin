@@ -132,6 +132,9 @@
   <data name="LblUsername" xml:space="preserve">
     <value>Usuario</value>
   </data>
+  <data name="MenuItemAuthorizeDevice" xml:space="preserve">
+    <value>Autorizar dispositivo</value>
+  </data>
   <data name="MsgLoadingDevices" xml:space="preserve">
     <value>Obteniendo información de dispositivos…</value>
   </data>

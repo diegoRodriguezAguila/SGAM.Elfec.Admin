@@ -1,18 +1,20 @@
 ﻿using SGAM.Elfec.Model;
 using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 
 namespace SGAM.Elfec.Converters
 {
-    public class DeviceStatusToOpacityConverter : IValueConverter
+    public class DeviceStatusToMenuItemVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DeviceStatus status = (DeviceStatus)value;
-            if (status == DeviceStatus.Unauthorized)
-                return 0.65;
-            return 1;
+            String menuItem = parameter.ToString();
+            if (status == DeviceStatus.AuthPending)
+                return Visibility.Visible;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

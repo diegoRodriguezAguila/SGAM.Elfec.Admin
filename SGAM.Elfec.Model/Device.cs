@@ -1,6 +1,24 @@
 ﻿namespace SGAM.Elfec.Model
 {
     /// <summary>
+    /// Enum de los estados de un dispositivo
+    /// </summary>
+    public enum DeviceStatus
+    {
+        /// <summary>
+        /// Estado de dispositivo inhabilitado para el uso del sistema
+        /// </summary>
+        Unauthorized,
+        /// <summary>
+        /// Estado de dispositivo habilitado para el uso del sistema
+        /// </summary>
+        Authorized,
+        /// <summary>
+        /// Estado de dispositvo pendiente de autorización
+        /// </summary>
+        AuthPending
+    }
+    /// <summary>
     /// Modelo de Dispositivos
     /// </summary>
     public class Device
@@ -18,6 +36,7 @@
         public string ScreenResolution { get; set; }
         public double? Camera { get; set; }
         public double? SdMemoryCard { get; set; }
-        public short Status { get; set; }
+        private short _status;
+        public DeviceStatus Status { get { return (DeviceStatus)_status; } set { _status = (short)value; } }
     }
 }

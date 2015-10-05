@@ -6,6 +6,7 @@
     <converters:DeviceModelToImageSourceConverter x:Key="DeviceImageConverter" />
     <converters:DeviceStatusToBackgroundConverter x:Key="DeviceStatusConverter" />
     <converters:DeviceStatusToOpacityConverter x:Key="DeviceStatusOpacityConverter" />
+    <converters:DeviceStatusToMenuItemVisibilityConverter x:Key="DeviceStatusMenuItemConverter" />
 
     <!--Device Context Menu-->
     
@@ -14,7 +15,9 @@
                 {RelativeSource FindAncestor, 
                 AncestorType={x:Type ListView}}, 
                 Path=DataContext.AuthorizeDevice}"
-                  CommandParameter="{Binding}">
+                  CommandParameter="{Binding}" Visibility="{Binding Path=Status, 
+            Converter={StaticResource DeviceStatusMenuItemConverter},
+            ConverterParameter='AuthDevice'}" >
             <MenuItem.Header>
                 <Grid Height="25" Background="Transparent" >
                     <TextBlock Text="{x:Static res:Resources.MenuItemAuthorizeDevice}" VerticalAlignment="Center" />

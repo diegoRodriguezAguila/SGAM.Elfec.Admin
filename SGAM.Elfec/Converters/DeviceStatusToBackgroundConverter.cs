@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGAM.Elfec.Model;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -8,12 +9,12 @@ namespace SGAM.Elfec.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            short status = (short)value;
+            DeviceStatus status = (DeviceStatus)value;
             switch (status)
             {
-                case 0:
+                case DeviceStatus.Unauthorized:
                     return "#54BFBFBF";
-                case 2:
+                case DeviceStatus.AuthPending:
                     return "#2415386F";
                 default:
                     return "#00000000";

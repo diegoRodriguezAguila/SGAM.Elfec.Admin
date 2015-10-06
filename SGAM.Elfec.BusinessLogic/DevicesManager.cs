@@ -25,5 +25,41 @@ namespace SGAM.Elfec.BusinessLogic
                     .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken).GetAllDevices(parameters);
             });
         }
+
+        public static void AuthorizeDevice(Device deviceToAuth, ResultCallback<Device> callback)
+        {
+            User user = SessionManager.Instance.CurrentLoggedUser;
+            var restInvoker = new RestInvoker<Device>();
+            restInvoker.InvokeWebService(callback, () =>
+            {
+                var parameters = new Dictionary<string, string>();
+                parameters["order"] = "status:desc";
+                return RestEndpointFactory
+                    .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken)
+                    .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth));
+            });
+        }
+
+        /// <summary>
+        /// Crea una copia de solo los valores actualizables en la autorización de un dispositivo
+        /// </summary>
+        /// <param name="deviceToAuth"></param>
+        /// <returns></returns>
+        private static Device PrepareDeviceForAuth(Device deviceToAuth)
+        {
+            return new Device()
+            {
+                Name = deviceToAuth.Name,
+                PhoneNumber = deviceToAuth.PhoneNumber,
+                IdCiscoAsa = deviceToAuth.IdCiscoAsa,
+                ScreenSize = deviceToAuth.ScreenSize,
+                ScreenResolution = deviceToAuth.ScreenResolution,
+                Camera = deviceToAuth.Camera,
+                SdMemoryCard = deviceToAuth.SdMemoryCard,
+                GmailAccount = deviceToAuth.GmailAccount,
+                Comments = deviceToAuth.Comments,
+                Status = DeviceStatus.Authorized
+            };
+        }
     }
 }

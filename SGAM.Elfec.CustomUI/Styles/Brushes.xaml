@@ -33,6 +33,7 @@
     <SolidColorBrush x:Key="IconOverBrush" Color="#3E6DB5" />
     <SolidColorBrush x:Key="IconPressedBrush" Color="#19478A" />
     <SolidColorBrush x:Key="BlackTextBrush" Color="#5D5D5D" />
+    <SolidColorBrush x:Key="AlmostBlackTextBrush" Color="#444444" />
     <SolidColorBrush x:Key="MenuBorderBrush" Color="#C6C6C6" />
     <SolidColorBrush x:Key="TabBorderBrush" Color="#D5D5D5" />
     <SolidColorBrush x:Key="RibonGroupBoxSeparator" Color="#E1E1E1" />

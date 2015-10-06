@@ -123,6 +123,66 @@
   <data name="BtnOk" xml:space="preserve">
     <value>Aceptar</value>
   </data>
+  <data name="LblAuthorizeDevice" xml:space="preserve">
+    <value>Autorizar dispositivo</value>
+  </data>
+  <data name="LblDeviceBasebandVersion" xml:space="preserve">
+    <value>Versión banda base:</value>
+  </data>
+  <data name="LblDeviceBluetoothMac" xml:space="preserve">
+    <value>Dirección MAC bluetooth:</value>
+  </data>
+  <data name="LblDeviceBrand" xml:space="preserve">
+    <value>Marca:</value>
+  </data>
+  <data name="LblDeviceCamera" xml:space="preserve">
+    <value>Cámara:</value>
+  </data>
+  <data name="LblDeviceComments" xml:space="preserve">
+    <value>Comentarios:</value>
+  </data>
+  <data name="LblDeviceGmailAccount" xml:space="preserve">
+    <value>Cuenta gmail:</value>
+  </data>
+  <data name="LblDeviceIdCiscoASA" xml:space="preserve">
+    <value>Id. Cisco ASA:</value>
+  </data>
+  <data name="LblDeviceIMEI" xml:space="preserve">
+    <value>IMEI:</value>
+  </data>
+  <data name="LblDeviceModel" xml:space="preserve">
+    <value>Modelo:</value>
+  </data>
+  <data name="LblDeviceName" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="LblDeviceOSVersion" xml:space="preserve">
+    <value>Versión:</value>
+  </data>
+  <data name="LblDevicePhoneNumber" xml:space="preserve">
+    <value>N° teléfono:</value>
+  </data>
+  <data name="LblDevicePlatform" xml:space="preserve">
+    <value>Sistema operativo:</value>
+  </data>
+  <data name="LblDeviceScreenRes" xml:space="preserve">
+    <value>Resolución pantalla:</value>
+  </data>
+  <data name="LblDeviceScreenSize" xml:space="preserve">
+    <value>Tamaño pantalla:</value>
+  </data>
+  <data name="LblDeviceSDMemoryCard" xml:space="preserve">
+    <value>SD Memoria:</value>
+  </data>
+  <data name="LblDeviceSerial" xml:space="preserve">
+    <value>N° de serie:</value>
+  </data>
+  <data name="LblDeviceStatus" xml:space="preserve">
+    <value>Estado:</value>
+  </data>
+  <data name="LblDeviceWifiMac" xml:space="preserve">
+    <value>Dirección MAC wifi:</value>
+  </data>
   <data name="LblLogin" xml:space="preserve">
     <value>Iniciar sesión</value>
   </data>
@@ -140,5 +200,20 @@
   </data>
   <data name="MsgLoginUser" xml:space="preserve">
     <value>Validando información de usuario…</value>
+  </data>
+  <data name="BtnAuthorize" xml:space="preserve">
+    <value>Autorizar</value>
+  </data>
+  <data name="DeviceStatusAuthorized" xml:space="preserve">
+    <value>Autorizado</value>
+  </data>
+  <data name="DeviceStatusAuthPending" xml:space="preserve">
+    <value>Pendiente de autorización</value>
+  </data>
+  <data name="DeviceStatusUnauthorized" xml:space="preserve">
+    <value>No autorizado</value>
+  </data>
+  <data name="LblStatusbarDefault" xml:space="preserve">
+    <value>Listo</value>
   </data>
 </root>

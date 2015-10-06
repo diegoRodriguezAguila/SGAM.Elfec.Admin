@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RestEase;
-using RestEase.Implementation;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
 using System;
@@ -30,17 +29,12 @@ namespace SGAM.Elfec.DataAccess.WebServices
         /// <returns>Punto de acceso al webservice rest</returns>
         public static T Create<T>() where T : ISgamApiEndpoint
         {
-            var httpClient = new HttpClient(
-                new ModifyingClientHttpHandler(PutHeaders))
-            {
-                BaseAddress = new Uri(BASE_URL),
-            };
             var settings = new JsonSerializerSettings()
             {
-                ContractResolver = new SnakeCasePropertyNamesContractResolver()
+                ContractResolver = new SnakeCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore
             };
-
-            return RestClient.For<T>(httpClient, settings);
+            return RestClient.For<T>(BASE_URL, PutHeaders, settings);
         }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -53,7 +47,6 @@ namespace SGAM.Elfec.DataAccess.WebServices
         private static async Task PutHeaders(HttpRequestMessage request, CancellationToken cancellationToken)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            request.Headers.Add("Accept", "application/json");
             if (request.Content != null)
                 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         }

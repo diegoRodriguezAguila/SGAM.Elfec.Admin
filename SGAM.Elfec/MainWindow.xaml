@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
         Title="SGAM Elfec" Height="480" Width="720">
@@ -64,8 +65,7 @@
         <Controls:TransitioningContentControl Grid.Row="1" Name="InnerContent" Transition="Left" />
 
             <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
-            <TextBlock VerticalAlignment="Center" Foreground="White">
-            Ready</TextBlock>
+            <TextBlock Name="TxtStatus" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="White" Text="{x:Static Res:Resources.LblStatusbarDefault}" />
             <Separator />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                 <Button Style="{StaticResource BottomBarButton}" Name="BtnShowDevices" ToolTip="Ver dispositivos" Click="BtnShowMobiles_Click" Width="30">

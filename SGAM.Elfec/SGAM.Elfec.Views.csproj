@@ -110,11 +110,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AuthorizeDevice.xaml.cs">
+      <DependentUpon>AuthorizeDevice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\ListItemCommand.cs" />
     <Compile Include="Converters\DeviceModelToImageSourceConverter.cs" />
     <Compile Include="Converters\DeviceStatusToBackgroundConverter.cs" />
     <Compile Include="Converters\DeviceStatusToMenuItemVisibilityConverter.cs" />
     <Compile Include="Converters\DeviceStatusToOpacityConverter.cs" />
+    <Compile Include="Converters\DeviceStatusToStringConverter.cs" />
     <Compile Include="Interfaces\IMainWindowView.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
@@ -139,6 +143,10 @@
       <DependentUpon>IndeterminateLoading.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValidationRules\NotNullOrEmptyRule.cs" />
+    <Page Include="AuthorizeDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

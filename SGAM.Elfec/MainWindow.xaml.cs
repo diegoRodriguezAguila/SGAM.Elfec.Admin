@@ -99,20 +99,32 @@ namespace SGAM.Elfec
 
         public void ChangeToView<T>(T view) where T : Control
         {
-            InnerContent.Content = view;
             MainWindowService.Instance.Navigation.Push(view);
+            InnerContent.Content = view;
             ChangeTitle(view.Tag as string);
         }
 
         public void GoBack()
         {
-            if (MainWindowService.Instance.Navigation.Count > 0)
+            if (MainWindowService.Instance.Navigation.Count > 1)
             {
-                var view = MainWindowService.Instance.Navigation.Pop();
+                MainWindowService.Instance.Navigation.Pop();
+                var view = MainWindowService.Instance.Navigation.Peek();
                 InnerContent.Content = view;
                 ChangeTitle(view.Tag as string);
             }
         }
+
+        public void SetStatusBar(string status)
+        {
+            TxtStatus.Text = status;
+        }
+
+        public void SetStatusBarDefault()
+        {
+            TxtStatus.Text = Properties.Resources.LblStatusbarDefault;
+        }
+
         #endregion
 
         private void buttonGreen_Click(object sender, RoutedEventArgs e)

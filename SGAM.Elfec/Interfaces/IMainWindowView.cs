@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SGAM.Elfec.Interfaces
 {
@@ -16,5 +11,7 @@ namespace SGAM.Elfec.Interfaces
         void ChangeToAllDeviceGroupsView();
         void ChangeToView<T>(T view) where T : Control;
         void GoBack();
+        void SetStatusBar(string status);
+        void SetStatusBarDefault();
     }
 }

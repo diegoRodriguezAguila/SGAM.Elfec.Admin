@@ -10,5 +10,8 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
         // The "devices" is a relative path the a base URL, which we'll provide later
         [Get("/devices")]
         Task<IList<Device>> GetAllDevices([QueryMap] IDictionary<string, string> filters);
+        [Put("/devices/{imei}")]
+        Task<Device> UpdateDevice([Path] string imei, [Body] Device deviceToUpdate);
+
     }
 }

@@ -64,12 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizeDevicePresenter.cs" />
     <Compile Include="BasePresenter.cs" />
     <Compile Include="LoginPresenter.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowAllAppsPresenter.cs" />
     <Compile Include="ShowDevicesPresenter.cs" />
+    <Compile Include="Views\IAuthorizeDeviceView.cs" />
     <Compile Include="Views\ILoadingContentErrorView.cs" />
     <Compile Include="Views\IShowDevicesView.cs" />
     <Compile Include="Views\IWaitingView.cs" />

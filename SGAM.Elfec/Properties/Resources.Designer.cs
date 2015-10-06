@@ -340,6 +340,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autorizando dispositivo….
+        /// </summary>
+        public static string MsgAuthorizingDevice {
+            get {
+                return ResourceManager.GetString("MsgAuthorizingDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El dispositivo {0} fue autorizado correctamente.
+        /// </summary>
+        public static string MsgDeviceSuccessfullyAuthorized {
+            get {
+                return ResourceManager.GetString("MsgDeviceSuccessfullyAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obteniendo información de dispositivos….
         /// </summary>
         public static string MsgLoadingDevices {
@@ -354,6 +372,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgLoginUser {
             get {
                 return ResourceManager.GetString("MsgLoginUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exito!.
+        /// </summary>
+        public static string TitleSuccess {
+            get {
+                return ResourceManager.GetString("TitleSuccess", resourceCulture);
             }
         }
     }

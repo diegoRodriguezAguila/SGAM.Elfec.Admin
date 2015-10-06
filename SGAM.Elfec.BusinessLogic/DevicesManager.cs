@@ -32,8 +32,6 @@ namespace SGAM.Elfec.BusinessLogic
             var restInvoker = new RestInvoker<Device>();
             restInvoker.InvokeWebService(callback, () =>
             {
-                var parameters = new Dictionary<string, string>();
-                parameters["order"] = "status:desc";
                 return RestEndpointFactory
                     .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken)
                     .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth));

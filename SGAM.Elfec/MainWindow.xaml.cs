@@ -79,21 +79,21 @@ namespace SGAM.Elfec
             Title = (title != null ? (title + " - ") : "") + MAIN_TITLE;
         }
 
-        public void ChangeToAllAppsView()
+        public void ChangeToAllAppsView(bool force = false)
         {
-            if ((string)BtnShowApps.Tag != SELECTED_TAG)
+            if ((string)BtnShowApps.Tag != SELECTED_TAG || force)
                 ChangePrincipalView(SELECTED_TAG, null, null, new ShowAllApps());
         }
 
-        public void ChangeToDevicesView()
+        public void ChangeToDevicesView(bool force = false)
         {
-            if ((string)BtnShowDevices.Tag != SELECTED_TAG)
+            if ((string)BtnShowDevices.Tag != SELECTED_TAG || force)
                 ChangePrincipalView(null, SELECTED_TAG, null, new ShowDevices());
         }
 
-        public void ChangeToAllDeviceGroupsView()
+        public void ChangeToAllDeviceGroupsView(bool force = false)
         {
-            if ((string)BtnShowGroups.Tag != SELECTED_TAG)
+            if ((string)BtnShowGroups.Tag != SELECTED_TAG || force)
                 ChangePrincipalView(null, null, SELECTED_TAG, new ShowAllDeviceGroups());
         }
 
@@ -125,11 +125,19 @@ namespace SGAM.Elfec
             TxtStatus.Text = Properties.Resources.LblStatusbarDefault;
         }
 
+        public void NotifyUser(string title, string message)
+        {
+            Toast.Title = title;
+            Toast.Message = message;
+        }
+
         #endregion
 
         private void buttonGreen_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
     }
 }

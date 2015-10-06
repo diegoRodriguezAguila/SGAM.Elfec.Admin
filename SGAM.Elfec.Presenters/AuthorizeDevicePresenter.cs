@@ -19,14 +19,15 @@ namespace SGAM.Elfec.Presenters
         {
             new Thread(() =>
             {
+                View.ShowProcesingAuthorization();
                 var callback = new ResultCallback<Device>();
                 callback.Success += (s, device) =>
                 {
-                    //View.ShowContentData(devices);
+                    View.ShowDeviceAuthorizedSuccessfuly(device);
                 };
                 callback.Failure += (s, errors) =>
                 {
-                    // View.ShowErrors(false, errors);
+                    View.ShowAuthorizationErrors(errors);
                 };
                 DevicesManager.AuthorizeDevice(AuthPendingDevice, callback);
             }).Start();

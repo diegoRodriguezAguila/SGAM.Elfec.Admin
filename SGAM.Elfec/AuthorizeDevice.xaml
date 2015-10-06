@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SGAM.Elfec"
              mc:Ignorable="d" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              Background="White"
              d:DesignHeight="1050" d:DesignWidth="500">
@@ -113,6 +114,8 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
+                <Controls:TransitioningContentControl  Grid.Row="20" Grid.Column="2"
+                    Name="Transitioning" VerticalContentAlignment="Center" Transition="Left" />
             </Grid>
         </ScrollViewer>
     </Grid>

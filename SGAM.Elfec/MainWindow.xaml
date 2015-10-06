@@ -4,6 +4,7 @@
         xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+        xmlns:toastinet="clr-namespace:ToastinetWPF;assembly=ToastinetWPF"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
         Title="SGAM Elfec" Height="480" Width="720">
@@ -63,8 +64,10 @@
             </Fluent:Ribbon.ToolBarItems>
         </Fluent:Ribbon>
         <Controls:TransitioningContentControl Grid.Row="1" Name="InnerContent" Transition="Left" />
-
-            <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
+        <toastinet:Toastinet Name="Toast" Grid.Row="0" Foreground="White" TextWrapping="Wrap" Margin="0,106,0,0"
+                             Background="#EF15386F" Width="500" Canvas.ZIndex="1" AnimationType="RightToRight"
+                             HorizontalAlignment="Right" VerticalAlignment="Top" />
+        <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
             <TextBlock Name="TxtStatus" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="White" Text="{x:Static Res:Resources.LblStatusbarDefault}" />
             <Separator />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >

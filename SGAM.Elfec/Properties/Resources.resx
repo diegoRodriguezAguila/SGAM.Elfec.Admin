@@ -216,4 +216,13 @@
   <data name="LblStatusbarDefault" xml:space="preserve">
     <value>Listo</value>
   </data>
+  <data name="MsgAuthorizingDevice" xml:space="preserve">
+    <value>Autorizando dispositivo…</value>
+  </data>
+  <data name="MsgDeviceSuccessfullyAuthorized" xml:space="preserve">
+    <value>El dispositivo {0} fue autorizado correctamente</value>
+  </data>
+  <data name="TitleSuccess" xml:space="preserve">
+    <value>Exito!</value>
+  </data>
 </root>

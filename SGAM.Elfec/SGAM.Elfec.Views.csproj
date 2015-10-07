@@ -117,6 +117,8 @@
     <Compile Include="AuthorizeDevice.xaml.cs">
       <DependentUpon>AuthorizeDevice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\Masking.cs" />
+    <Compile Include="Behaviors\TextBoxInputBehavior.cs" />
     <Compile Include="Commands\ListItemCommand.cs" />
     <Compile Include="Converters\DeviceModelToImageSourceConverter.cs" />
     <Compile Include="Converters\DeviceStatusToBackgroundConverter.cs" />

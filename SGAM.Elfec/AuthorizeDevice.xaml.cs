@@ -67,7 +67,7 @@ namespace SGAM.Elfec
                 var mainWindow = MainWindowService.Instance.MainWindowView;
                 mainWindow.SetStatusBarDefault();
                 mainWindow.ChangeToDevicesView(true);
-                mainWindow.NotifyUser(Properties.Resources.TitleSuccess, 
+                mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
                     String.Format(Properties.Resources.MsgDeviceSuccessfullyAuthorized, device.Name));
             }));
         }

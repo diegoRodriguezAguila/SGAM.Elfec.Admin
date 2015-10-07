@@ -124,6 +124,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MP.
+        /// </summary>
+        public static string LblCameraUnit {
+            get {
+                return ResourceManager.GetString("LblCameraUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Versión banda base:.
         /// </summary>
         public static string LblDeviceBasebandVersion {
@@ -304,11 +313,29 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GB.
+        /// </summary>
+        public static string LblMemoryUnit {
+            get {
+                return ResourceManager.GetString("LblMemoryUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contraseña.
         /// </summary>
         public static string LblPassword {
             get {
                 return ResourceManager.GetString("LblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pulg..
+        /// </summary>
+        public static string LblSizeUnit {
+            get {
+                return ResourceManager.GetString("LblSizeUnit", resourceCulture);
             }
         }
         

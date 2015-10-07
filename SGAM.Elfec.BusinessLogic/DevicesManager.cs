@@ -20,7 +20,7 @@ namespace SGAM.Elfec.BusinessLogic
             restInvoker.InvokeWebService(callback, () =>
             {
                 var parameters = new Dictionary<string, string>();
-                parameters["order"] = "status:desc";
+                parameters["order"] = "status:desc,name";
                 return RestEndpointFactory
                     .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken).GetAllDevices(parameters);
             });

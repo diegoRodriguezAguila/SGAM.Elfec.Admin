@@ -225,4 +225,13 @@
   <data name="TitleSuccess" xml:space="preserve">
     <value>Exito!</value>
   </data>
+  <data name="LblCameraUnit" xml:space="preserve">
+    <value>MP</value>
+  </data>
+  <data name="LblMemoryUnit" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="LblSizeUnit" xml:space="preserve">
+    <value>Pulg.</value>
+  </data>
 </root>

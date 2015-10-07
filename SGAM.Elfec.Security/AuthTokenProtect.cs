@@ -1,6 +1,7 @@
 ﻿using SGAM.Elfec.Model;
 using System;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace SGAM.Elfec.Security
 {
@@ -49,7 +50,7 @@ namespace SGAM.Elfec.Security
             try
             {
                 return Convert.ToBase64String(
-                    ProtectedData.Protect(Convert.FromBase64String(authToken),
+                    ProtectedData.Protect(Encoding.UTF8.GetBytes(authToken),
                     _aditionalEntropy, DataProtectionScope.CurrentUser));
             }
             catch (CryptographicException)
@@ -67,7 +68,7 @@ namespace SGAM.Elfec.Security
         {
             try
             {
-                return Convert.ToBase64String(
+                return Encoding.UTF8.GetString(
                     ProtectedData.Unprotect(Convert.FromBase64String(protectedAuthToken),
                     _aditionalEntropy, DataProtectionScope.CurrentUser));
             }

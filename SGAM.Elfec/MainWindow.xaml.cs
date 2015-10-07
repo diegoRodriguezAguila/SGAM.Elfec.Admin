@@ -62,6 +62,7 @@ namespace SGAM.Elfec
                 var loginDialog = new LoginDialogWindow();
                 loginDialog.Owner = this;
                 loginDialog.LoginCanceled += (s, e) => { Close(); };
+                loginDialog.UserLoggedIn += (s, u) => { ChangeToDevicesView(); };
                 loginDialog.ShowDialog();
             }
         }

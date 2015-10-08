@@ -1,8 +1,4 @@
 ﻿using SGAM.Elfec.Presenters.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -10,7 +6,7 @@ namespace SGAM.Elfec.Presenters
     /// Base Presenter Interface
     /// </summary>
     /// <typeparam name="TView"></typeparam>
-    public abstract class BasePresenter<TView> where TView : IBaseView
+    public abstract class BasePresenter<TView> : ObservableObject where TView : IBaseView
     {
         /// <summary>
         /// The View abstraction
@@ -24,6 +20,6 @@ namespace SGAM.Elfec.Presenters
         {
             View = view;
         }
-        
+
     }
 }

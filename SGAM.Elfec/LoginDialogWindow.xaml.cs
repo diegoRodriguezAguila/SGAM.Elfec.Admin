@@ -4,11 +4,10 @@ using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
+using SGAM.Elfec.Utils;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace SGAM.Elfec
 {
@@ -25,7 +24,6 @@ namespace SGAM.Elfec
         public event LoginCanceledEventHandler LoginCanceled;
         #endregion
 
-        private LoginPresenter _presenter;
         private IndeterminateLoading _indeterminateLoading;
         private ErrorMessage _errorMessage;
         private bool _manualClosing;
@@ -34,11 +32,13 @@ namespace SGAM.Elfec
         public LoginDialogWindow()
         {
             InitializeComponent();
-            _presenter = new LoginPresenter(this);
+            DataContext = new LoginPresenter(this);
             _indeterminateLoading = new IndeterminateLoading();
             _indeterminateLoading.Margin = new Thickness(0, 20, 0, 0);
             _errorMessage = new ErrorMessage();
+            var varRes = new ValidationResult(true, null);
             _errorMessage.BtnOk.Click += BtnOk_Click;
+            Loaded += (s, e) => { ClearErrors(); };
             Closed += (s, e) =>
             {
                 if (!_manualClosing && LoginCanceled != null)
@@ -50,58 +50,10 @@ namespace SGAM.Elfec
         {
             Transitioning.Content = LoginPanel;
             TxtPassword.Clear();
-        }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            bool validUsername = IsUsernameValid();
-            bool validPassword = IsPasswordValid();
-            if (validUsername && validPassword)
-                _presenter.LogIn();
-        }
-
-        private bool IsFieldValid(Control txtField, Label lblError)
-        {
-            IList<ValidationError> errors = Validation.GetErrors(txtField);
-            bool hasErrors = errors.Count > 0;
-            lblError.Visibility = hasErrors ? Visibility.Visible : Visibility.Collapsed;
-            if (hasErrors)
-                lblError.Content = MessageListFormatter
-                    .FormatFromObjectList(errors, (e) => { return e.ErrorContent.ToString(); });
-            return !hasErrors;
-        }
-
-
-        private bool IsUsernameValid()
-        {
-            BindingExpression be = TxtUsername.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty);
-            be.UpdateSource();
-            bool res = IsFieldValid(TxtUsername, LblUsernameError);
-            Validation.ClearInvalid(be);
-            return res;
-        }
-
-        private bool IsPasswordValid()
-        {
-            TxtDummyPassword.Text = TxtPassword.Password;
-            BindingExpression be = TxtDummyPassword.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty);
-            be.UpdateSource();
-            bool res = IsFieldValid(TxtDummyPassword, LblPasswordError);
-            TxtDummyPassword.Text = null;
-            return res;
+            ClearErrors();
         }
 
         #region Interface Methods
-
-        public string Username
-        {
-            get { return TxtUsername.Text.Trim().ToLower(); }
-        }
-
-        public string Password
-        {
-            get { return TxtPassword.Password; }
-        }
 
         public void ShowLoginErrors(params Exception[] validationErrors)
         {
@@ -153,5 +105,15 @@ namespace SGAM.Elfec
         }
 
         #endregion
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            ValidationErrorsAssistant.UpdateSources(LoginPanel);
+        }
+
+        private void ClearErrors()
+        {
+            ValidationErrorsAssistant.ClearErrors(LoginPanel);
+        }
     }
 }

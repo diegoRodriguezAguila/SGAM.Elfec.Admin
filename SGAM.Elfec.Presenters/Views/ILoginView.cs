@@ -8,8 +8,6 @@ namespace SGAM.Elfec.Presenters.Views
     /// </summary>
     public interface ILoginView : IBaseView, IWaitingView
     {
-        string Username { get; }
-        string Password { get; }
         /// <summary>
         /// Muestra los errores ocurridos durante el intento de login
         /// </summary>

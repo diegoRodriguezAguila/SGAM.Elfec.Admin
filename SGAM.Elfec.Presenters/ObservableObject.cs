@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace SGAM.Elfec.Presenters
 {
     public class ObservableObject : INotifyPropertyChanged
     {
         #region Implementation of INotifyPropertyChanged
- 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void RaisePropertyChanged(string propertyName)
@@ -22,7 +18,7 @@ namespace SGAM.Elfec.Presenters
             if (handler != null)
                 handler(this, args);
         }
- 
+
         #endregion
     }
 }

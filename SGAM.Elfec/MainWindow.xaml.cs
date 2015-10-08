@@ -14,9 +14,9 @@ namespace SGAM.Elfec
         {
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
-            ChangeToDevicesView();
+            //ChangeToDevicesView();
             _isFirstActivated = true;
-            //Activated += (s, e) => { ShowLoginDialog(); };
+            Activated += (s, e) => { ShowLoginDialog(); };
         }
 
         #region Private Variables

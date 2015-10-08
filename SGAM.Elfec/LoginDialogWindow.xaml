@@ -4,8 +4,8 @@
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         xmlns:Local="clr-namespace:SGAM.Elfec.UserControls"
+        xmlns:Utils="clr-namespace:SGAM.Elfec.Utils"
         xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
-        xmlns:Rules="clr-namespace:SGAM.Elfec.ValidationRules"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
@@ -18,34 +18,26 @@
                Foreground="{StaticResource BlackTextBrush}"
                FontFamily="Segoe UI Light"/>
         <Controls:TransitioningContentControl DockPanel.Dock="Top" Name="Transitioning"
-               VerticalContentAlignment="Top" Margin="0,20,0,0"  Transition="Left" >
+               VerticalContentAlignment="Top" Margin="0,15,0,0"  Transition="Left" >
             <StackPanel Name="LoginPanel" Orientation="Vertical"   >
-                <Label Name="LblUsernameError" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
+                <Label Name="LblUsernameError"  Content="{Binding ElementName=TxtUsername,
+                    Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
                 <Label Content="{x:Static Res:Resources.LblUsername}"/>
-                <TextBox Name="TxtUsername" >
-                    <TextBox.Text>
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" UpdateSourceTrigger="Explicit">
-                            <Binding.ValidationRules>
-                                <Rules:NotNullOrEmptyRule FieldName="usuario" IsMale="True" />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Label Name="LblPasswordError" Margin="0,5,0,0" Visibility="Collapsed" Foreground="{StaticResource TextErrorColorBrush}" />
-                <Label Content="{x:Static Res:Resources.LblPassword}" Margin="0,5,0,0" />
-                <PasswordBox  Name="TxtPassword"  Height="32" PasswordChar="●" VerticalContentAlignment="Center" />
-                <TextBox Name="TxtDummyPassword" VerticalContentAlignment="Center" Visibility="Collapsed" >
-                    <TextBox.Text>
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" UpdateSourceTrigger="Explicit">
-                            <Binding.ValidationRules>
-                                <Rules:NotNullOrEmptyRule FieldName="contraseña" IsMale="False" />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                <TextBox Name="TxtUsername" Text="{Binding Path=RemoteSession.Username, ValidatesOnDataErrors=True, 
+                    ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label Name="LblPasswordError" Margin="0,5,0,0" Foreground="{StaticResource TextErrorColorBrush}" 
+                       Content="{Binding ElementName=TxtPassword,
+                    Path=(Validation.Errors)[0].ErrorContent}" />
+                <Label Content="{x:Static Res:Resources.LblPassword}"  />
+                <PasswordBox Name="TxtPassword" PasswordChar="●"
+                             Utils:PasswordBoxAssistant.BindPassword="True"  
+                             Utils:PasswordBoxAssistant.BoundPassword="{Binding Path=RemoteSession.Password, Mode=TwoWay, ValidatesOnDataErrors=True, 
+                    ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalContentAlignment="Center" />
                 <Button Name="BtnLogin" Style="{StaticResource BlueButtonStyle}" IsDefault="True"
                 Content="{x:Static Res:Resources.BtnLogin}" Margin="0,20,0,0" HorizontalAlignment="Left" 
-                        Click="BtnLogin_Click" />
+                        Command="{Binding LogInCommand}" Click="BtnLogin_Click" />
             </StackPanel>
         </Controls:TransitioningContentControl>
     </DockPanel>

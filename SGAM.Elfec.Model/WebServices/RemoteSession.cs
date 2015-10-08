@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation.Results;
+using SGAM.Elfec.Model.Validations;
+using SGAM.Elfec.Model.Validations.Validators;
+using System;
 
 namespace SGAM.Elfec.Model.WebServices
 {
-    public class RemoteSession
+    public class RemoteSession : BaseEntity
     {
         public String Username { get; set; }
         public String Password { get; set; }
@@ -17,6 +16,11 @@ namespace SGAM.Elfec.Model.WebServices
         {
             this.Username = username;
             this.Password = password;
+        }
+
+        public override ValidationResult SelfValidate()
+        {
+            return ValidationHelper.Validate<RemoteSessionValidator, RemoteSession>(this);
         }
     }
 }

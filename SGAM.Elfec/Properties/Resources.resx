@@ -234,4 +234,7 @@
   <data name="LblSizeUnit" xml:space="preserve">
     <value>Pulg.</value>
   </data>
+  <data name="MsgErrorsInFields" xml:space="preserve">
+    <value>Los campos tienen errores, corrigalos para poder continuar.</value>
+  </data>
 </root>

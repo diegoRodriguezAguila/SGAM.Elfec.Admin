@@ -22,5 +22,9 @@ namespace SGAM.Elfec.Presenters.Views
         /// </summary>
         /// <param name="device"></param>
         void ShowDeviceAuthorizedSuccessfuly(Device device);
+        /// <summary>
+        /// Notifica al usuario que los campos tienen errores y que debe corregir para proceder
+        /// </summary>
+        void NotifyErrorsInFields();
     }
 }

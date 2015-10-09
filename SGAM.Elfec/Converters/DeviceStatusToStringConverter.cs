@@ -24,6 +24,13 @@ namespace SGAM.Elfec.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            String status = (String)value;
+            if (status == Properties.Resources.DeviceStatusUnauthorized)
+                return DeviceStatus.Unauthorized;
+            if (status == Properties.Resources.DeviceStatusAuthorized)
+                return DeviceStatus.Authorized;
+            if (status == Properties.Resources.DeviceStatusAuthPending)
+                return DeviceStatus.AuthPending;
             return null;
         }
     }

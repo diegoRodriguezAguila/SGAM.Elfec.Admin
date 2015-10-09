@@ -385,6 +385,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Los campos tienen errores, corrigalos para poder continuar..
+        /// </summary>
+        public static string MsgErrorsInFields {
+            get {
+                return ResourceManager.GetString("MsgErrorsInFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obteniendo información de dispositivos….
         /// </summary>
         public static string MsgLoadingDevices {

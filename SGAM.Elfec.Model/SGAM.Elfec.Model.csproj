@@ -101,6 +101,7 @@
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Validations\ValidationHelper.cs" />
+    <Compile Include="Validations\Validators\DeviceValidator.cs" />
     <Compile Include="Validations\Validators\RemoteSessionValidator.cs" />
     <Compile Include="WebServices\RemoteSession.cs" />
     <Compile Include="WebServices\RestErrorResponse.cs" />

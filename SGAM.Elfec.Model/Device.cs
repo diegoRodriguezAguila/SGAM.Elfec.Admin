@@ -1,4 +1,8 @@
-﻿namespace SGAM.Elfec.Model
+﻿using FluentValidation.Results;
+using SGAM.Elfec.Model.Validations;
+using SGAM.Elfec.Model.Validations.Validators;
+
+namespace SGAM.Elfec.Model
 {
     /// <summary>
     /// Enum de los estados de un dispositivo
@@ -21,7 +25,7 @@
     /// <summary>
     /// Modelo de Dispositivos
     /// </summary>
-    public class Device
+    public class Device : BaseEntity
     {
         public string Name { get; set; }
         public string Imei { get; set; }
@@ -43,5 +47,10 @@
         public string Comments { get; set; }
         private short _status;
         public DeviceStatus Status { get { return (DeviceStatus)_status; } set { _status = (short)value; } }
+
+        public override ValidationResult SelfValidate()
+        {
+            return ValidationHelper.Validate<DeviceValidator, Device>(this);
+        }
     }
 }

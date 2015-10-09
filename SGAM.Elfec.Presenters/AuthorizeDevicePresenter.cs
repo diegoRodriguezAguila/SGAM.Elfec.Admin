@@ -3,34 +3,54 @@ using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
 using System.Threading;
+using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
 {
     public class AuthorizeDevicePresenter : BasePresenter<IAuthorizeDeviceView>
     {
-        public Device AuthPendingDevice { get; set; }
-
         public AuthorizeDevicePresenter(IAuthorizeDeviceView view, Device authPendingDevice) : base(view)
         {
             AuthPendingDevice = authPendingDevice;
         }
 
-        public void AuthorizeDevice()
+        #region Private Attributes
+        private Device _authPendingDevice;
+        #endregion
+
+        #region Properties
+        public Device AuthPendingDevice
         {
-            new Thread(() =>
+            get { return _authPendingDevice; }
+            set
             {
-                View.ShowProcesingAuthorization();
-                var callback = new ResultCallback<Device>();
-                callback.Success += (s, device) =>
+                _authPendingDevice = value;
+                RaisePropertyChanged("AuthPendingDevice");
+            }
+        }
+
+        public ICommand AuthorizeDeviceCommand { get { return new DelegateCommand(AuthorizeDevice); } }
+
+        #endregion
+
+        private void AuthorizeDevice()
+        {
+            if (AuthPendingDevice.IsValid)
+                new Thread(() =>
                 {
-                    View.ShowDeviceAuthorizedSuccessfuly(device);
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.ShowAuthorizationErrors(errors);
-                };
-                DevicesManager.AuthorizeDevice(AuthPendingDevice, callback);
-            }).Start();
+                    View.ShowProcesingAuthorization();
+                    var callback = new ResultCallback<Device>();
+                    callback.Success += (s, device) =>
+                    {
+                        View.ShowDeviceAuthorizedSuccessfuly(device);
+                    };
+                    callback.Failure += (s, errors) =>
+                    {
+                        View.ShowAuthorizationErrors(errors);
+                    };
+                    DevicesManager.AuthorizeDevice(AuthPendingDevice, callback);
+                }).Start();
+            else View.NotifyErrorsInFields();
         }
     }
 }

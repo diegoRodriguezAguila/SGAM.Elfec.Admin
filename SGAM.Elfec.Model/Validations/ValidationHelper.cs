@@ -17,13 +17,17 @@ namespace SGAM.Elfec.Model.Validations
 
         public static string GetError(ValidationResult result)
         {
-            var __ValidationErrors = new StringBuilder();
+            var __validationErrors = new StringBuilder();
+            if (result.Errors.Count == 1)
+                return __validationErrors.Append(result.Errors[0]).ToString();
             foreach (var validationFailure in result.Errors)
             {
-                __ValidationErrors.Append(validationFailure.ErrorMessage);
-                __ValidationErrors.Append(Environment.NewLine);
+                __validationErrors.Append('\u25CF');
+                __validationErrors.Append(' ');
+                __validationErrors.Append(validationFailure.ErrorMessage);
+                __validationErrors.Append(Environment.NewLine);
             }
-            return __ValidationErrors.ToString();
+            return __validationErrors.ToString();
         }
     }
 }

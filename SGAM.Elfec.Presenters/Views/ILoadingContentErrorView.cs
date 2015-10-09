@@ -6,26 +6,25 @@ namespace SGAM.Elfec.Presenters.Views
     /// Interfáz que representa las vistas que tienen 3 partes la de carga de datos
     /// muestra de datos o muestra de errores
     /// </summary>
-    public interface ILoadingContentErrorView<TContent> : IBaseView
+    public interface ILoadingContentErrorView : IBaseView
     {
         /// <summary>
-        /// Muestra la vista de espera de carga de datos, o de refresh
+        /// Se ejecuta cuando se inicia la carga de datos, o refresh
         /// </summary>
         /// <param name="isRefresh">true si es que es refresh</param>
-        void ShowLoading(bool isRefresh = false);
+        void OnLoadingData(bool isRefresh = false);
 
         /// <summary>
-        /// Muestra los errores de la carga de datos o el refresh
+        /// Se ejecuta cuando hubo errores en la carga de datos o refresh
         /// </summary>
         /// <param name="isRefresh">si era carga nueva o refresh</param>
         /// <param name="errors">errores</param>
-        void ShowErrors(bool isRefresh = false, params Exception[] errors);
+        void OnLoadingErrors(bool isRefresh = false, params Exception[] errors);
 
         /// <summary>
-        /// La información que debe mostrarse al finalizar la carga de datos
+        /// Se ejecuta cuando finalizó la carga de datos exitosamente
         /// </summary>
-        /// <param name="data">información que debe mostrarse</param>
-        void ShowContentData(TContent data);
+        void OnDataLoaded();
 
     }
 }

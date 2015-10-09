@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="{x:Static Fluent:MetroColors.ThemeColorKey}">#18468D</Color>
-            
+
             <DataTemplate x:Key="AppItemTemplate" >
                 <StackPanel Height="80"  Width="180" Orientation="Horizontal">
                     <Image Margin="5,0" VerticalAlignment="Center" Width="64" Height="64" RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True" />
@@ -18,7 +18,7 @@
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
-            
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />

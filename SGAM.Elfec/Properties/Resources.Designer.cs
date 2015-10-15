@@ -419,5 +419,32 @@ namespace SGAM.Elfec.Properties {
                 return ResourceManager.GetString("TitleSuccess", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver aplicaciones.
+        /// </summary>
+        public static string TooltipShowApps {
+            get {
+                return ResourceManager.GetString("TooltipShowApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver dispositivos.
+        /// </summary>
+        public static string TooltipShowDevices {
+            get {
+                return ResourceManager.GetString("TooltipShowDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver usuarios.
+        /// </summary>
+        public static string TooltipShowUsers {
+            get {
+                return ResourceManager.GetString("TooltipShowUsers", resourceCulture);
+            }
+        }
     }
 }

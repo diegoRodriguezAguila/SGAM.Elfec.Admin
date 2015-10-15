@@ -71,14 +71,14 @@
             <TextBlock Name="TxtStatus" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="White" Text="{x:Static Res:Resources.LblStatusbarDefault}" />
             <Separator />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowDevices" ToolTip="Ver dispositivos" Click="BtnShowMobiles_Click" Width="30">
-                    <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/Phone.png" />
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowDevices" ToolTip="{x:Static Res:Resources.TooltipShowDevices}" Click="BtnShowMobiles_Click" Width="30">
+                    <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/Resources/Phone.png" />
                 </Button>
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowApps" ToolTip="Ver aplicaciones" Click="BtnShowApps_Click" Width="30">
-                    <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/App.png" />
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowApps" ToolTip="{x:Static Res:Resources.TooltipShowApps}" Click="BtnShowApps_Click" Width="30">
+                    <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/Resources/App.png" />
                 </Button>
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowGroups" ToolTip="Ver grupos de dispositivos" Click="BtnShowGroups_Click" Width="30">
-                    <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="pack://application:,,,/Resources/PhoneGroup.png" />
+                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowUsers" ToolTip="{x:Static Res:Resources.TooltipShowUsers}" Click="BtnShowGroups_Click" Width="30">
+                    <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="Resources/User.png" />
                 </Button>
             </StackPanel>
         </StatusBar>

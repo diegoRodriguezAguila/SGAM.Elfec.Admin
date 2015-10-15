@@ -11,10 +11,10 @@ namespace SGAM.Elfec.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new Uri("http://192.168.50.56:3000/assets/" + value + ".png");
+            return new Uri(String.Format(Properties.Settings.Default.AssetsURL, value));
         }
 
-        public object ConvertBack(object value, Type targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }

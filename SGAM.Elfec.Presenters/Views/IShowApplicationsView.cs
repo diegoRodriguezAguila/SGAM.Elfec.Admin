@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SGAM.Elfec.Presenters.Views
 {
-    public interface IShowAllAppsView
+    public interface IShowApplicationsView : ILoadingContentErrorView
     {
         void ViewAppDetail(int appId);
     }

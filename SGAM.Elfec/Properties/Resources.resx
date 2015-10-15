@@ -237,4 +237,13 @@
   <data name="MsgErrorsInFields" xml:space="preserve">
     <value>Los campos tienen errores, corrigalos para poder continuar.</value>
   </data>
+  <data name="TooltipShowApps" xml:space="preserve">
+    <value>Ver aplicaciones</value>
+  </data>
+  <data name="TooltipShowDevices" xml:space="preserve">
+    <value>Ver dispositivos</value>
+  </data>
+  <data name="TooltipShowUsers" xml:space="preserve">
+    <value>Ver usuarios</value>
+  </data>
 </root>

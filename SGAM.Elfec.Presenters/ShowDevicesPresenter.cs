@@ -41,7 +41,7 @@ namespace SGAM.Elfec.Presenters
             {
                 return new ListItemCommand<Device>((device) =>
                 {
-                    View.ShowAuthorizeDevice(device);
+                    View.ViewDeviceAuthorization(device);
                 });
             }
         }

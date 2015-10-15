@@ -34,7 +34,7 @@ namespace SGAM.Elfec
         {
             BtnShowApps.Tag = btnShowAppsTag;
             BtnShowDevices.Tag = btnShowMobilesTag;
-            BtnShowGroups.Tag = btnShowGroupsTag;
+            BtnShowUsers.Tag = btnShowGroupsTag;
             MainWindowService.Instance.Navigation.Clear();
             ChangeToView(view);
         }
@@ -83,7 +83,7 @@ namespace SGAM.Elfec
         public void ChangeToAllAppsView(bool force = false)
         {
             if ((string)BtnShowApps.Tag != SELECTED_TAG || force)
-                ChangePrincipalView(SELECTED_TAG, null, null, new ShowAllApps());
+                ChangePrincipalView(SELECTED_TAG, null, null, new ShowApplications());
         }
 
         public void ChangeToDevicesView(bool force = false)
@@ -94,7 +94,7 @@ namespace SGAM.Elfec
 
         public void ChangeToAllDeviceGroupsView(bool force = false)
         {
-            if ((string)BtnShowGroups.Tag != SELECTED_TAG || force)
+            if ((string)BtnShowUsers.Tag != SELECTED_TAG || force)
                 ChangePrincipalView(null, null, SELECTED_TAG, new ShowAllDeviceGroups());
         }
 

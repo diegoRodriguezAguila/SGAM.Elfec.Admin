@@ -22,5 +22,14 @@ namespace SGAM.Elfec.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.50.56:3000/assets/devices/{0}.png")]
+        public string AssetsURL {
+            get {
+                return ((string)(this["AssetsURL"]));
+            }
+        }
     }
 }

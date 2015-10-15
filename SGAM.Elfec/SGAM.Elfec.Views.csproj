@@ -87,6 +87,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Fluent.Ribbon.3.5.1.198\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -132,8 +133,8 @@
     <Compile Include="RegisterApp.xaml.cs">
       <DependentUpon>RegisterApp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowAllApps.xaml.cs">
-      <DependentUpon>ShowAllApps.xaml</DependentUpon>
+    <Compile Include="ShowApplications.xaml.cs">
+      <DependentUpon>ShowApplications.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowAllDeviceGroups.xaml.cs">
       <DependentUpon>ShowAllDeviceGroups.xaml</DependentUpon>
@@ -177,7 +178,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShowAllApps.xaml">
+    <Page Include="ShowApplications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -291,7 +292,9 @@
   <ItemGroup>
     <Resource Include="Resources\NewApp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\User.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

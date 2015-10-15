@@ -10,10 +10,10 @@ using System.Threading;
 
 namespace SGAM.Elfec.Presenters
 {
-    public class ShowAllAppsPresenter : ObservableObject
+    public class ShowApplicationsPresenter : ObservableObject
     {
-        public IShowAllAppsView View { get; set; }
-        public ShowAllAppsPresenter(IShowAllAppsView view)
+        public IShowApplicationsView View { get; set; }
+        public ShowApplicationsPresenter(IShowApplicationsView view)
         {
             this.View = view;
             LoadAllApplications();

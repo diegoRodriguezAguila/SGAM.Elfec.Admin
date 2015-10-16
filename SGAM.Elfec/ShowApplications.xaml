@@ -3,59 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              mc:Ignorable="d" 
              Background="White"
              Tag="Aplicaciones"
-             d:DesignHeight="350" d:DesignWidth="700">
-    <UserControl.Resources>
-        <ContextMenu x:Key="ApplicationContextMenu">
-            <MenuItem SnapsToDevicePixels="True" UseLayoutRounding="True" Name="AppContextMenu_Edit" Click="AppContextMenu_Edit_Click" >
-                <MenuItem.Header>
-                    <Grid Height="25" Background="Transparent" >
-                        <TextBlock Text="Modificar" VerticalAlignment="Center" />
-                    </Grid>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Grid Height="25" Width="25" Background="Transparent" >
-                        <Image Source="pack://application:,,,/Resources/Edit.png" VerticalAlignment="Center" Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                    </Grid>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem SnapsToDevicePixels="True" UseLayoutRounding="True" Name="AppContextMenu_Delete" Click="AppContextMenu_Delete_Click" >
-                <MenuItem.Header>
-                    <Grid Height="25" Background="Transparent" >
-                        <TextBlock Text="Eliminar" VerticalAlignment="Center"  />
-                    </Grid>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Grid Height="25" Width="25" Background="Transparent" >
-                        <Image Source="pack://application:,,,/Resources/Delete.png" VerticalAlignment="Center"  RenderOptions.EdgeMode="Aliased" Height="14" Width="14"/>
-                    </Grid>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem SnapsToDevicePixels="True" UseLayoutRounding="True" Name="AppContextMenu_Delete3"  Click="AppContextMenu_Delete_Click" >
-                <MenuItem.Header>
-                    <Grid Height="25" Background="Transparent" >
-                        <TextBlock Text="Eliminar" VerticalAlignment="Center"  />
-                    </Grid>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Grid Height="25" Width="25" Background="Transparent" >
-                        <Image Source="pack://application:,,,/Resources/Delete.png" VerticalAlignment="Center"  RenderOptions.EdgeMode="Aliased" Height="14" Width="14"/>
-                    </Grid>
-                </MenuItem.Icon>
-            </MenuItem>
-        </ContextMenu>
-    </UserControl.Resources>
-    <Grid>
-        <ListView Name="ListViewApplications" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding AllApps}" 
-                  ItemTemplate="{StaticResource AppItemTemplate}" >
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemOptionStyle}" >
-                    <Setter Property="ContextMenu" Value="{StaticResource ApplicationContextMenu}" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-
-    </Grid>
+             d:DesignHeight="300" d:DesignWidth="500">
+    <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
+        <ListView Name="ListViewApplications" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Applications}"
+                    ItemContainerStyle="{StaticResource ApplicationItemOptionStyle}" ItemTemplate="{StaticResource ApplicationItemTemplate}" />
+    </Controls:TransitioningContentControl>
 </UserControl>

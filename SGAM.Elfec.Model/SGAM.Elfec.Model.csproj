@@ -87,15 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppVersion.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Callbacks\Callback.cs" />
     <Compile Include="Callbacks\ResultCallback.cs" />
     <Compile Include="Callbacks\VoidCallback.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="Enums\ApiStatus.cs" />
+    <Compile Include="Enums\DeviceStatus.cs" />
     <Compile Include="Exceptions\PermissionException.cs" />
     <Compile Include="Exceptions\ServerConnectException.cs" />
     <Compile Include="Exceptions\ServerSideException.cs" />
-    <Compile Include="MobileApplication.cs" />
+    <Compile Include="Application.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />

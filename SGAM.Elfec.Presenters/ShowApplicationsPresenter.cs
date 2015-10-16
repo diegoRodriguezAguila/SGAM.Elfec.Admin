@@ -1,11 +1,9 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Model;
+using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace SGAM.Elfec.Presenters
@@ -18,50 +16,44 @@ namespace SGAM.Elfec.Presenters
             this.View = view;
             LoadAllApplications();
         }
-        #region Observable Properties
-        #region Property : AllApps
-        /// <summary>
-        /// The <see cref="AllApps" /> property's name.
-        /// </summary>
-        public const string AllAppsPropertyName = "AllApps";
+        #region Private Attributes
+        private ObservableCollection<Application> _applications;
+        #endregion
 
-        private ObservableCollection<MobileApplication> _allApps;
-
-        /// <summary>
-        /// Sets and gets the AllApps property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public ObservableCollection<MobileApplication> AllApps
+        #region Properties
+        public ObservableCollection<Application> Applications
         {
-            get
-            {
-                return _allApps;
-            }
-
+            get { return _applications; }
             set
             {
-                if (_allApps == value)
-                {
-                    return;
-                }
-
-                _allApps = value;
-                RaisePropertyChanged(AllAppsPropertyName);
+                _applications = value;
+                RaisePropertyChanged("Applications");
             }
         }
         #endregion
-        #endregion
 
         #region Public Methods
-        public void LoadAllApplications()
+        /// <summary>
+        /// Realiza la carga de todas las aplicaciones, ya sea por webservices o de la caché
+        /// </summary>
+        /// <param name="isRefresh"></param>
+        public void LoadAllApplications(bool isRefresh = false)
         {
-            Thread loadInThread = new Thread(new ThreadStart(
-                () => 
+            new Thread(() =>
+            {
+                View.OnLoadingData(isRefresh);
+                var callback = new ResultCallback<IList<Application>>();
+                callback.Success += (s, apps) =>
                 {
-                    AllApps = new ObservableCollection<MobileApplication>(MobileApplicationManager.GetAllApplications());
-                }
-                ));
-            loadInThread.Start();
+                    Applications = new ObservableCollection<Application>(apps);
+                    View.OnDataLoaded();
+                };
+                callback.Failure += (s, errors) =>
+                {
+                    View.OnLoadingErrors(isRefresh, errors);
+                };
+                ApplicationsManager.GetAllApplications(callback);
+            }).Start();
         }
         #endregion
     }

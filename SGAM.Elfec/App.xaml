@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="/Resources/SVG/IconsResourceDictionary.xaml" />
+                <ResourceDictionary Source="/Styles/Application.xaml" />
                 <ResourceDictionary Source="/Styles/Device.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

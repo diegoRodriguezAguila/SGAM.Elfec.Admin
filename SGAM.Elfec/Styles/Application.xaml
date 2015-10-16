@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:res="clr-namespace:SGAM.Elfec.Properties"
+                    xmlns:local="clr-namespace:SGAM.Elfec">
+
+    <!--Application Context Menu-->
+
+    <ContextMenu x:Key="ApplicationItemContextMenu" >
+        <MenuItem >
+            <MenuItem.Header>
+                <Grid Height="25" Background="Transparent" >
+                    <TextBlock Text="{x:Static res:Resources.MenuItemAuthorizeDevice}" VerticalAlignment="Center" />
+                </Grid>
+            </MenuItem.Header>
+            <MenuItem.Icon>
+                <Grid Height="25" Width="25" Background="Transparent" >
+                    <Viewbox Height="18" Child="{StaticResource AuthDevice}" />
+                </Grid>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+
+    <!--Application ListItem Style-->
+    <Style x:Key="ApplicationItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
+           TargetType="ListViewItem">
+        
+    </Style>
+
+    <!--Application ItemTemplate-->
+
+    <DataTemplate x:Key="ApplicationItemTemplate" >
+        <StackPanel Height="84" Width="210" Orientation="Horizontal" >
+            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64" Source="{Binding IconUrl}"
+                  SnapsToDevicePixels="True" />
+            <StackPanel  Width="116" VerticalAlignment="Center" Margin="5,10,10,10">
+                <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}"
+                           LineStackingStrategy="BlockLineHeight" LineHeight="15"/>
+                <TextBlock FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Text="{Binding Package}" />
+                <TextBlock FontSize="11" TextWrapping="Wrap" Text="{Binding LatestVersion, StringFormat='v. {0}'}" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+</ResourceDictionary>

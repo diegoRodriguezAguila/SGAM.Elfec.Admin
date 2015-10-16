@@ -394,6 +394,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obteniendo información de aplicaciones….
+        /// </summary>
+        public static string MsgLoadingApps {
+            get {
+                return ResourceManager.GetString("MsgLoadingApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obteniendo información de dispositivos….
         /// </summary>
         public static string MsgLoadingDevices {

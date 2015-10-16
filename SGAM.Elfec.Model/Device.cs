@@ -1,27 +1,10 @@
 ﻿using FluentValidation.Results;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Model.Validations;
 using SGAM.Elfec.Model.Validations.Validators;
 
 namespace SGAM.Elfec.Model
 {
-    /// <summary>
-    /// Enum de los estados de un dispositivo
-    /// </summary>
-    public enum DeviceStatus
-    {
-        /// <summary>
-        /// Estado de dispositivo inhabilitado para el uso del sistema
-        /// </summary>
-        Unauthorized,
-        /// <summary>
-        /// Estado de dispositivo habilitado para el uso del sistema
-        /// </summary>
-        Authorized,
-        /// <summary>
-        /// Estado de dispositvo pendiente de autorización
-        /// </summary>
-        AuthPending
-    }
     /// <summary>
     /// Modelo de Dispositivos
     /// </summary>
@@ -45,8 +28,7 @@ namespace SGAM.Elfec.Model
         public double? SdMemoryCard { get; set; }
         public string GmailAccount { get; set; }
         public string Comments { get; set; }
-        private short _status;
-        public DeviceStatus Status { get { return (DeviceStatus)_status; } set { _status = (short)value; } }
+        public DeviceStatus Status { get; set; }
 
         public override ValidationResult SelfValidate()
         {

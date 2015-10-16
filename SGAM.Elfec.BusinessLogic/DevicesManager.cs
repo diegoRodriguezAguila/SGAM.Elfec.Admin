@@ -2,6 +2,7 @@
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
 using System.Collections.Generic;
 

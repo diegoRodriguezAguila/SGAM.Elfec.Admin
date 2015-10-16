@@ -1,4 +1,4 @@
-﻿using SGAM.Elfec.Model;
+﻿using SGAM.Elfec.Model.Enums;
 using System;
 using System.Globalization;
 using System.Windows.Data;

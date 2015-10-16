@@ -40,19 +40,19 @@
     <!--Device ItemTemplate-->
     
     <DataTemplate x:Key="DeviceItemTemplate" >
-        <StackPanel Height="80"  Width="190" Background="{Binding Status, 
+        <StackPanel Height="84"  Width="200" Background="{Binding Status, 
                     Converter={StaticResource DeviceStatusConverter}}" Opacity="{Binding Status, 
                     Converter={StaticResource DeviceStatusOpacityConverter}}" Orientation="Horizontal" >
-            <Image Margin="10,0,0,0" VerticalAlignment="Center" Width="64" Height="64" 
+            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64" 
                    RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True"
                    Source="{Binding Model, Converter={StaticResource DeviceImageConverter}}" />
-            <StackPanel  Width="96" VerticalAlignment="Center" Margin="10,0">
+            <StackPanel  Width="106" VerticalAlignment="Center" Margin="5,10,10,10">
                 <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}" />
                 <TextBlock FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" >
                                 <Run Text="{Binding Brand}" />    
                                 <Run Text="{Binding Model}" />
                 </TextBlock>
-                <TextBlock FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Name="PhoneNumber" 
+                <TextBlock FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource AlmostBlackTextBrush}" Name="PhoneNumber" 
                                        Text="{Binding PhoneNumber}" >
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
@@ -64,7 +64,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock FontSize="11" TextWrapping="Wrap" Text="{Binding PackageName}" >
+                <TextBlock FontSize="11" TextWrapping="Wrap" >
                                 <Run Text="{Binding Platform}" />
                                 <Run Text="{Binding OsVersion}" />
                 </TextBlock>

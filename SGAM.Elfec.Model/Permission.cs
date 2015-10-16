@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGAM.Elfec.Model.Enums;
+using System;
 
 namespace SGAM.Elfec.Model
 {
@@ -8,11 +9,11 @@ namespace SGAM.Elfec.Model
         {
             Name = "admin_app_access",
             Description = "Acceso al sistema de gestión de aplicaciones móviles",
-            Status = 1
+            Status = ApiStatus.Enabled
         };
 
         public String Name { get; set; }
         public String Description { get; set; }
-        public short Status { get; set; }
+        public ApiStatus Status { get; set; }
     }
 }

@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalStorage\UserDAL.cs" />
+    <Compile Include="WebServices\ApiEndpoints\IApplicationsEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\IDevicesEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISgamApiEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISessionsEndpoint.cs" />

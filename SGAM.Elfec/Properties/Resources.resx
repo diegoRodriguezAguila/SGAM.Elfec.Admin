@@ -246,4 +246,7 @@
   <data name="TooltipShowUsers" xml:space="preserve">
     <value>Ver usuarios</value>
   </data>
+  <data name="MsgLoadingApps" xml:space="preserve">
+    <value>Obteniendo información de aplicaciones…</value>
+  </data>
 </root>

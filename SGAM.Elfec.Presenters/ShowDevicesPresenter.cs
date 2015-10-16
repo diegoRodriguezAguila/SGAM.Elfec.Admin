@@ -48,6 +48,7 @@ namespace SGAM.Elfec.Presenters
 
         #endregion
 
+        #region Public Methods
 
         /// <summary>
         /// Realiza la carga de todos los dipositivos, ya sea por webservices o de la caché
@@ -70,5 +71,7 @@ namespace SGAM.Elfec.Presenters
                 DevicesManager.GetAllDevices(callback);
             }).Start();
         }
+
+        #endregion Public Methods
     }
 }

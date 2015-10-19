@@ -134,11 +134,12 @@ namespace SGAM.Elfec
 
         #endregion
 
-        private void buttonGreen_Click(object sender, RoutedEventArgs e)
+        private void BtnAddApp_Click(object sender, RoutedEventArgs e)
         {
-
+            var addNewApp = new AddNewApplication();
+            addNewApp.Tag = Properties.Resources.LblAddNewApp;
+            MainWindowService.Instance.MainWindowView.ChangeToView(addNewApp);
+            //var app = ApkManager.GetApplication("/Lecturas.Elfec.GD.apk");
         }
-
-
     }
 }

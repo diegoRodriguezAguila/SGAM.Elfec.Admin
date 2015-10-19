@@ -249,4 +249,25 @@
   <data name="MsgLoadingApps" xml:space="preserve">
     <value>Obteniendo información de aplicaciones…</value>
   </data>
+  <data name="BtnAddApp" xml:space="preserve">
+    <value>Agregar nueva aplicación</value>
+  </data>
+  <data name="LblAddNewApp" xml:space="preserve">
+    <value>Agregar nueva aplicación</value>
+  </data>
+  <data name="LblApplicationApkFilename" xml:space="preserve">
+    <value>Archivo APK:</value>
+  </data>
+  <data name="LblApplicationName" xml:space="preserve">
+    <value>Nombre aplicación:</value>
+  </data>
+  <data name="LblApplicationPackage" xml:space="preserve">
+    <value>Nombre paquete:</value>
+  </data>
+  <data name="LblApplicationVersion" xml:space="preserve">
+    <value>Versión:</value>
+  </data>
+  <data name="TooltipApplicationIcon" xml:space="preserve">
+    <value>Icono aplicación</value>
+  </data>
 </root>

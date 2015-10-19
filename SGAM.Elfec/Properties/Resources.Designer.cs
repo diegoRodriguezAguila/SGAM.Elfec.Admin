@@ -61,6 +61,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar nueva aplicación.
+        /// </summary>
+        public static string BtnAddApp {
+            get {
+                return ResourceManager.GetString("BtnAddApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autorizar.
         /// </summary>
         public static string BtnAuthorize {
@@ -111,6 +120,51 @@ namespace SGAM.Elfec.Properties {
         public static string DeviceStatusUnauthorized {
             get {
                 return ResourceManager.GetString("DeviceStatusUnauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar nueva aplicación.
+        /// </summary>
+        public static string LblAddNewApp {
+            get {
+                return ResourceManager.GetString("LblAddNewApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivo APK:.
+        /// </summary>
+        public static string LblApplicationApkFilename {
+            get {
+                return ResourceManager.GetString("LblApplicationApkFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre aplicación:.
+        /// </summary>
+        public static string LblApplicationName {
+            get {
+                return ResourceManager.GetString("LblApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre paquete:.
+        /// </summary>
+        public static string LblApplicationPackage {
+            get {
+                return ResourceManager.GetString("LblApplicationPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Versión:.
+        /// </summary>
+        public static string LblApplicationVersion {
+            get {
+                return ResourceManager.GetString("LblApplicationVersion", resourceCulture);
             }
         }
         
@@ -426,6 +480,15 @@ namespace SGAM.Elfec.Properties {
         public static string TitleSuccess {
             get {
                 return ResourceManager.GetString("TitleSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Icono aplicación.
+        /// </summary>
+        public static string TooltipApplicationIcon {
+            get {
+                return ResourceManager.GetString("TooltipApplicationIcon", resourceCulture);
             }
         }
         

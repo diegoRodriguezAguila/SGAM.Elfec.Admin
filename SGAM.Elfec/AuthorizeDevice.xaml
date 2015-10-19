@@ -29,7 +29,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Button Name="BtnBack" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
                 <Button.Content>
-                    <Viewbox Height="18" Child="{StaticResource Back}" />
+                    <Viewbox Height="18" Child="{StaticResource Back}"  />
                 </Button.Content>
             </Button>
             <Viewbox Height="32" Margin="20,0,5,0" Child="{StaticResource AuthDevice}" />

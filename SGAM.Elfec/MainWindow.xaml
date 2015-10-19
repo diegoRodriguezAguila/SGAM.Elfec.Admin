@@ -37,13 +37,12 @@
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="APLICACIONES">
                 <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button Name="buttonGreen" ToolTip="Agregar nueva aplicación" Header="Agregar nueva aplicación"                        
-                           Click="buttonGreen_Click" >
+                    <Fluent:Button Name="BtnAddApp" ToolTip="{x:Static Res:Resources.BtnAddApp}" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddApp}" >
                         <Fluent:Button.LargeIcon>
-                            <Viewbox Child="{StaticResource ContactPictureMenu}" />
+                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
                         </Fluent:Button.LargeIcon>
                         <Fluent:Button.Icon>
-                            <Viewbox Child="{StaticResource ContactPictureMenu}" />
+                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
                         </Fluent:Button.Icon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>

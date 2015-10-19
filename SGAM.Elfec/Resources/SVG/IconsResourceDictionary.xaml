@@ -86,5 +86,58 @@
             </Canvas>
         </Canvas>
     </Canvas>
+    
+    
+    <!-- Add App -->
+
+    <Canvas x:Key="AddApp" x:Shared="False"  Name="AddApp" Width="30" Height="30">
+        <Canvas.RenderTransform>
+            <TranslateTransform X="0" Y="0"/>
+        </Canvas.RenderTransform>
+        <Canvas.Resources/>
+        <!--Unknown tag: metadata-->
+        <!--Unknown tag: sodipodi:namedview-->
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="0.93242815 0 0 0.93242815 0.04055747 0.11870845"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Canvas.RenderTransform>
+                    <MatrixTransform Matrix="1.0615324 0 0 1.0615324 -1.1075833 -1.1383494"/>
+                </Canvas.RenderTransform>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  Fill="#FF4C82B8" StrokeThickness="0" Stroke="#FF4C82B8">
+                    <Path.Data>
+                        <PathGeometry Figures="m 4 6 c 9.3 0 18.7 0 28 0 0 1.7 0 3.3 0 5 l -1 0 C 22.3 11 13.7 11 5 11 L 4 11 C 4 9.3 4 7.7 4 6 z" FillRule="NonZero"/>
+                    </Path.Data>
+                </Path>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FF808080" StrokeThickness="0" Stroke="#FF808080">
+                    <Path.Data>
+                        <PathGeometry Figures="m 4 11 1 0 c 0 6.3 0 12.7 0 19 8.7 0 17.3 0 26 0 0 -6.3 0 -12.7 0 -19 l 1 0 c 0 6.7 0 13.3 0 20 -9.3 0 -18.7 0 -28 0 0 -6.7 0 -13.3 0 -20 z" FillRule="NonZero"/>
+                    </Path.Data>
+                </Path>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FFFFFFFF" StrokeThickness="0" Stroke="#FFFFFFFF">
+                    <Path.Data>
+                        <PathGeometry Figures="m 5 11 c 8.7 0 17.3 0 26 0 0 6.3 0 12.7 0 19 -8.7 0 -17.3 0 -26 0 0 -6.3 0 -12.7 0 -19 z" FillRule="NonZero"/>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </Canvas>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="0.50253885 0 0 0.50253885 21.659709 20.718747"/>
+            </Canvas.RenderTransform>
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3014" Fill="#FFFFFFFF" StrokeThickness="0" Stroke="#FFFFFFFF">
+                <Path.Data>
+                    <PathGeometry Figures="m 8 0 12 0 c 0 2.7 0 5.3 0 8 2.7 0 5.3 0 8 0 l 0 12 c -2.7 0 -5.3 0 -8 0 0 2.7 0 5.3 0 8 L 8 28 C 8 25.3 8 22.7 8 20 5.3 20 2.7 20 0 20 L 0 8 C 2.7 8 5.3 8 8 8 8 5.3 8 2.7 8 0 m 2 2 c 0 2.7 0 5.3 0 8 -2.7 0 -5.3 0 -8 0 0 2.7 0 5.3 0 8 2.7 0 5.3 0 8 0 0 2.7 0 5.3 0 8 2.7 0 5.3 0 8 0 0 -2.7 0 -5.3 0 -8 2.7 0 5.3 0 8 0 0 -2.7 0 -5.3 0 -8 -2.7 0 -5.3 0 -8 0 0 -2.7 0 -5.3 0 -8 -2.7 0 -5.3 0 -8 0 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3016" Fill="#FF75A797" StrokeThickness="0" Stroke="#FF75A797">
+                <Path.Data>
+                    <PathGeometry Figures="m 10 2 c 2.7 0 5.3 0 8 0 0 2.7 0 5.3 0 8 2.7 0 5.3 0 8 0 0 2.7 0 5.3 0 8 -2.7 0 -5.3 0 -8 0 0 2.7 0 5.3 0 8 -2.7 0 -5.3 0 -8 0 0 -2.7 0 -5.3 0 -8 -2.7 0 -5.3 0 -8 0 0 -2.7 0 -5.3 0 -8 2.7 0 5.3 0 8 0 0 -2.7 0 -5.3 0 -8 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Canvas>
+
 
 </ResourceDictionary>

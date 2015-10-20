@@ -1,8 +1,5 @@
-﻿using SGAM.Elfec.BusinessLogic;
-using SGAM.Elfec.Presenters;
+﻿using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
-using System;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -31,16 +28,10 @@ namespace SGAM.Elfec
 
         private void BtnBrowseApk_Click(object sender, RoutedEventArgs e)
         {
-            var ofd = new Microsoft.Win32.OpenFileDialog() { Filter = "Archivos APK (*.apk)|*.apk" };
+            var ofd = new Microsoft.Win32.OpenFileDialog() { Filter = Properties.Resources.FileAPKFilter };
             var result = ofd.ShowDialog();
             if (result == false) return;
             TxtApkFilename.Text = ofd.FileName;
-            new Thread(() => { SetApp(ApkManager.GetApplication(ofd.FileName)); }).Start();
-        }
-
-        private void SetApp(Model.Application app)
-        {
-            Dispatcher.BeginInvoke((Action)(() => { ((AddNewApplicationPresenter)DataContext).NewApplication = app; }));
         }
     }
 }

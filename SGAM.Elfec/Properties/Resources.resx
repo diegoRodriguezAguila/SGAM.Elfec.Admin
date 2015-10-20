@@ -268,6 +268,18 @@
     <value>Versión:</value>
   </data>
   <data name="TooltipApplicationIcon" xml:space="preserve">
-    <value>Icono aplicación</value>
+    <value>Icono de la aplicación</value>
+  </data>
+  <data name="FileAPKFilter" xml:space="preserve">
+    <value>Archivos APK (*.apk)|*.apk</value>
+  </data>
+  <data name="TooltipBack" xml:space="preserve">
+    <value>Ir atrás</value>
+  </data>
+  <data name="BtnBrowse" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <data name="BtnUploadApp" xml:space="preserve">
+    <value>Subir aplicación</value>
   </data>
 </root>

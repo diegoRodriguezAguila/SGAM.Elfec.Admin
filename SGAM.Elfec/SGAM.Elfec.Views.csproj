@@ -129,6 +129,8 @@
     <Compile Include="Converters\DeviceStatusToMenuItemVisibilityConverter.cs" />
     <Compile Include="Converters\DeviceStatusToOpacityConverter.cs" />
     <Compile Include="Converters\DeviceStatusToStringConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\UriToCachedImageConverter.cs" />
     <Compile Include="Interfaces\IMainWindowView.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
@@ -237,10 +239,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SGAM.Elfec.BusinessLogic\SGAM.Elfec.BusinessLogic.csproj">
-      <Project>{9dad2247-7b21-4702-a7a8-46a51842e84d}</Project>
-      <Name>SGAM.Elfec.BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.CustomUI\SGAM.Elfec.CustomUI.csproj">
       <Project>{1c40feb7-e7e6-427d-a533-8b5242bf07dc}</Project>
       <Name>SGAM.Elfec.CustomUI</Name>
@@ -299,10 +297,16 @@
     <Resource Include="Resources\Edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\NewApp.png" />
+    <Resource Include="Resources\User.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\User.png" />
+    <Resource Include="Resources\DefaultAppIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\FileOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UploadApp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

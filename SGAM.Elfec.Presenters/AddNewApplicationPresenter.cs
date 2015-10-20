@@ -1,5 +1,7 @@
-﻿using SGAM.Elfec.Model;
+﻿using SGAM.Elfec.BusinessLogic;
+using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters.Views;
+using System.Threading;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
@@ -12,10 +14,22 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Private Attributes
+        private string _apkPath;
         private Application _newApplication;
         #endregion
 
         #region Properties
+        public string ApkPath
+        {
+            get { return _apkPath; }
+            set
+            {
+                _apkPath = value;
+                RaisePropertyChanged("ApkPath");
+                LoadApkInfo();
+            }
+        }
+
         public Application NewApplication
         {
             get { return _newApplication; }
@@ -31,6 +45,18 @@ namespace SGAM.Elfec.Presenters
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Carga la información del apk seleccionado en ApkPath
+        /// </summary>
+        private void LoadApkInfo()
+        {
+            new Thread(() =>
+                {
+                    NewApplication = ApkManager.GetApplication(ApkPath);
+                }
+            ).Start();
+        }
+
         private void AddNewApplication()
         {
 

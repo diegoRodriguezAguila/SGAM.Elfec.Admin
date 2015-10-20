@@ -79,6 +79,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Examinar.
+        /// </summary>
+        public static string BtnBrowse {
+            get {
+                return ResourceManager.GetString("BtnBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iniciar sesión.
         /// </summary>
         public static string BtnLogin {
@@ -93,6 +102,15 @@ namespace SGAM.Elfec.Properties {
         public static string BtnOk {
             get {
                 return ResourceManager.GetString("BtnOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subir aplicación.
+        /// </summary>
+        public static string BtnUploadApp {
+            get {
+                return ResourceManager.GetString("BtnUploadApp", resourceCulture);
             }
         }
         
@@ -120,6 +138,15 @@ namespace SGAM.Elfec.Properties {
         public static string DeviceStatusUnauthorized {
             get {
                 return ResourceManager.GetString("DeviceStatusUnauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivos APK (*.apk)|*.apk.
+        /// </summary>
+        public static string FileAPKFilter {
+            get {
+                return ResourceManager.GetString("FileAPKFilter", resourceCulture);
             }
         }
         
@@ -484,11 +511,20 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Icono aplicación.
+        ///   Looks up a localized string similar to Icono de la aplicación.
         /// </summary>
         public static string TooltipApplicationIcon {
             get {
                 return ResourceManager.GetString("TooltipApplicationIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ir atrás.
+        /// </summary>
+        public static string TooltipBack {
+            get {
+                return ResourceManager.GetString("TooltipBack", resourceCulture);
             }
         }
         

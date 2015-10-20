@@ -139,7 +139,6 @@ namespace SGAM.Elfec
             var addNewApp = new AddNewApplication();
             addNewApp.Tag = Properties.Resources.LblAddNewApp;
             MainWindowService.Instance.MainWindowView.ChangeToView(addNewApp);
-            //var app = ApkManager.GetApplication("/Lecturas.Elfec.GD.apk");
         }
     }
 }

@@ -27,7 +27,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Button Name="BtnBack" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
+            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
                 <Button.Content>
                     <Viewbox Height="18" Child="{StaticResource Back}"  />
                 </Button.Content>

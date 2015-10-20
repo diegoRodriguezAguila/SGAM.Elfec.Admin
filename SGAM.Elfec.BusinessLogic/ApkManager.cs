@@ -54,23 +54,30 @@ namespace SGAM.Elfec.BusinessLogic
             return new ApkReader().extractInfo(manifestData, resourcesData);
         }
 
+        /// <summary>
+        /// Obtiene el Model de Aplicación a partir del análisis de un apk
+        /// </summary>
+        /// <param name="APKFilePath"></param>
+        /// <returns></returns>
         public static Application GetApplication(string APKFilePath)
         {
             ApkInfo apkInfo = GetApkInfo(APKFilePath);
-            var icons = apkInfo.iconFileName;
-            ExtractFileAndSave(APKFilePath, icons[2], new FileInfo(APKFilePath).Name + @"\icons\");
+            string iconPath = ExtractFileAndSave(APKFilePath, apkInfo.iconFileName[2],
+                BuildTempFilePath(apkInfo.packageName, apkInfo.versionName) + @"/icons");
             return new Application()
             {
                 Name = apkInfo.label,
                 Package = apkInfo.packageName,
                 Status = ApiStatus.Enabled,
                 LatestVersion = apkInfo.versionName,
+                IconUrl = new Uri(iconPath),
                 AppVersions = new List<AppVersion>()
                 {
                     new AppVersion()
                     {
                         Version = apkInfo.versionName,
                         VersionCode = Convert.ToInt32(apkInfo.versionCode),
+                        IconUrl = new Uri(iconPath),
                         Status = ApiStatus.Enabled
                     }
                 }
@@ -84,7 +91,8 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="fileResourceLocation"></param>
         /// <param name="FilePathToSave"></param>
         /// <param name="index"></param>
-        public static void ExtractFileAndSave(string APKFilePath, string fileResourceLocation, string FilePathToSave)
+        /// <returns>el path del archivo guardado</returns>
+        public static string ExtractFileAndSave(string APKFilePath, string fileResourceLocation, string FilePathToSave)
         {
             using (ZipInputStream zip = new ZipInputStream(File.OpenRead(APKFilePath)))
             {
@@ -110,11 +118,24 @@ namespace SGAM.Elfec.BusinessLogic
                                     throw ex;
                                 }
                             }
+                            return fileLocation;
 
                         }
                     }
                 }
             }
+            return null;
+        }
+
+        /// <summary>
+        /// Construye la carpeta temporal de archivos para el apk 
+        /// </summary>
+        /// <param name="APKFilePath"></param>
+        /// <param name="APKVersion"></param>
+        /// <returns></returns>
+        private static string BuildTempFilePath(string packageName, string version)
+        {
+            return Path.GetTempPath() + @"\SGAM.Elfec\" + packageName + @"-v." + version;
         }
     }
 }

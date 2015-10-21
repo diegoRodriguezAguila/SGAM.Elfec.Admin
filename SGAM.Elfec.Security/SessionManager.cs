@@ -5,8 +5,6 @@ using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Exceptions;
 using SGAM.Elfec.WebServices.LocalStorage;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 
 namespace SGAM.Elfec.Security
@@ -48,7 +46,6 @@ namespace SGAM.Elfec.Security
         /// <param name="callback">callback para eventos de errores y exito</param>
         public async void LogIn(string username, string password, ResultCallback<User> callback = null)
         {
-            IList<Exception> errors = new List<Exception>();
             if (callback == null)
                 callback = new ResultCallback<User>();
             try
@@ -60,20 +57,20 @@ namespace SGAM.Elfec.Security
                     {
                         UserDAL.CurrentUser = AuthTokenProtect.ProtectToken(user);
                         callback.OnSuccess(this, user);
+                        return;
                     }
-                    else errors.Add(new PermissionException(user, Permission.ADMIN_ACCESS));
+                    else callback.AddErrors(new PermissionException(user, Permission.ADMIN_ACCESS));
                 }
             }
             catch (ApiException e)
             {
-                errors.Add(RestErrorInterpreter.InterpretError(e));
+                callback.AddErrors(RestErrorInterpreter.InterpretError(e));
             }
             catch (HttpRequestException)
             {
-                errors.Add(new ServerConnectException());
+                callback.AddErrors(new ServerConnectException());
             }
-            if (errors.Count > 0)
-                callback.OnFailure(this, errors.ToArray());
+            callback.OnFailure(this);
         }
 
         /// <summary>

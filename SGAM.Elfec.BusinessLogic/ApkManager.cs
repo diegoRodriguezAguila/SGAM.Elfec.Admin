@@ -14,9 +14,20 @@ namespace SGAM.Elfec.BusinessLogic
     /// </summary>
     public class ApkManager
     {
+        private const string ICON_DEFAULT = "res/mipmap-xhdpi-v4/ic_launcher.png";
         private const string MANIFEST_NAME = "androidmanifest.xml";
         private const string RESOURCES_NAME = "resources.arsc";
-        public static ApkInfo GetApkInfo(string APKFilePath)
+        private string _apkFilePath;
+
+        public string APKFilePath { get { return _apkFilePath; } }
+
+        public ApkManager(string APKFilePath)
+        {
+            _apkFilePath = APKFilePath;
+        }
+
+
+        public ApkInfo GetApkInfo()
         {
             byte[] manifestData = null;
             byte[] resourcesData = null;
@@ -30,10 +41,16 @@ namespace SGAM.Elfec.BusinessLogic
                     {
                         if (item.Name.ToLower() == MANIFEST_NAME)
                         {
-                            manifestData = new byte[50 * 1024];
+                            //manifestData = new byte[50 * 1024];
+                            int size = item.Size == -1 ? (50 * 1024) : (int)item.Size;
                             using (Stream strm = zipfile.GetInputStream(item))
                             {
-                                strm.Read(manifestData, 0, manifestData.Length);
+                                using (BinaryReader s = new BinaryReader(strm))
+                                {
+                                    manifestData = s.ReadBytes(size);
+
+                                }
+                                //strm.Read(manifestData, 0, manifestData.Length);
                             }
 
                         }
@@ -59,10 +76,10 @@ namespace SGAM.Elfec.BusinessLogic
         /// </summary>
         /// <param name="APKFilePath"></param>
         /// <returns></returns>
-        public static Application GetApplication(string APKFilePath)
+        public Application GetApplication()
         {
-            ApkInfo apkInfo = GetApkInfo(APKFilePath);
-            string iconPath = ExtractFileAndSave(APKFilePath, apkInfo.iconFileName[2],
+            ApkInfo apkInfo = GetApkInfo();
+            string iconPath = ExtractFileAndSave(BuildApkIconFilename(apkInfo),
                 BuildTempFilePath(apkInfo.packageName, apkInfo.versionName) + @"/icons");
             return new Application()
             {
@@ -89,10 +106,10 @@ namespace SGAM.Elfec.BusinessLogic
         /// </summary>
         /// <param name="APKFilePath"></param>
         /// <param name="fileResourceLocation"></param>
-        /// <param name="FilePathToSave"></param>
+        /// <param name="filePathToSave"></param>
         /// <param name="index"></param>
         /// <returns>el path del archivo guardado</returns>
-        public static string ExtractFileAndSave(string APKFilePath, string fileResourceLocation, string FilePathToSave)
+        public string ExtractFileAndSave(string fileResourceLocation, string filePathToSave)
         {
             using (ZipInputStream zip = new ZipInputStream(File.OpenRead(APKFilePath)))
             {
@@ -104,7 +121,7 @@ namespace SGAM.Elfec.BusinessLogic
                     {
                         if (item.Name.ToLower() == fileResourceLocation)
                         {
-                            string fileLocation = Path.Combine(FilePathToSave, fileResourceLocation.Split(Convert.ToChar(@"/")).Last());
+                            string fileLocation = Path.Combine(filePathToSave, fileResourceLocation.Split(Convert.ToChar(@"/")).Last());
                             new FileInfo(fileLocation).Directory.Create();
                             using (Stream strm = zipfile.GetInputStream(item))
                             using (FileStream output = File.Create(fileLocation))
@@ -113,9 +130,9 @@ namespace SGAM.Elfec.BusinessLogic
                                 {
                                     strm.CopyTo(output);
                                 }
-                                catch (Exception ex)
+                                catch (Exception)
                                 {
-                                    throw ex;
+                                    return null;
                                 }
                             }
                             return fileLocation;
@@ -127,13 +144,23 @@ namespace SGAM.Elfec.BusinessLogic
             return null;
         }
 
+        private string BuildApkIconFilename(ApkInfo apkInfo)
+        {
+            int iconsCount = apkInfo.iconFileName.Count;
+            if (iconsCount == 0)
+                return ICON_DEFAULT;
+            if (iconsCount < 3)
+                return apkInfo.iconFileName[iconsCount - 1];
+            return apkInfo.iconFileName[2];
+        }
+
         /// <summary>
         /// Construye la carpeta temporal de archivos para el apk 
         /// </summary>
         /// <param name="APKFilePath"></param>
         /// <param name="APKVersion"></param>
         /// <returns></returns>
-        private static string BuildTempFilePath(string packageName, string version)
+        private string BuildTempFilePath(string packageName, string version)
         {
             return Path.GetTempPath() + @"\SGAM.Elfec\" + packageName + @"-v." + version;
         }

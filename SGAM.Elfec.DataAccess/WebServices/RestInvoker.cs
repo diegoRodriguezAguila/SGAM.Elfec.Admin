@@ -2,8 +2,6 @@
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -43,28 +41,27 @@ namespace SGAM.Elfec.DataAccess.WebServices
         public async void InvokeWebService(ResultCallback<T> callback,
             WebServiceAsyncCallDelegate<T> wsAsyncCall)
         {
-            IList<Exception> errors = new List<Exception>();
             try
             {
                 T wsResult = await wsAsyncCall();
                 if (PostCall != null)
                     PostCall(wsResult);
                 callback.OnSuccess(null, wsResult);
+                return;
             }
             catch (ApiException e)
             {
-                errors.Add(RestErrorInterpreter.InterpretError(e));
+                callback.AddErrors(RestErrorInterpreter.InterpretError(e));
             }
             catch (HttpRequestException)
             {
-                errors.Add(new ServerConnectException());
+                callback.AddErrors(new ServerConnectException());
             }
-           catch (Exception e)
+            catch (Exception e)
             {
-                errors.Add(e);
+                callback.AddErrors(e);
             }
-            if (errors.Count > 0)
-                callback.OnFailure(null, errors.ToArray());
+            callback.OnFailure(this);
         }
     }
 }

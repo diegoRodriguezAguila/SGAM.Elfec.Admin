@@ -52,7 +52,7 @@ namespace SGAM.Elfec.Presenters
         {
             new Thread(() =>
                 {
-                    NewApplication = ApkManager.GetApplication(ApkPath);
+                    NewApplication = new ApkManager(ApkPath).GetApplication();
                 }
             ).Start();
         }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SGAM.Elfec.Model.Callbacks
 {
@@ -6,11 +8,21 @@ namespace SGAM.Elfec.Model.Callbacks
     public class Callback
     {
         public event FailureEventHandler Failure;
+        public IList<Exception> Errors { get; set; } = new List<Exception>();
         // Invoke the Failure event; called whenever list changes
-        public virtual void OnFailure(object sender, params Exception[] errors)
+        public void OnFailure(object sender)
         {
             if (Failure != null)
-                Failure(sender, errors);
+                Failure(sender, Errors.ToArray());
+        }
+
+        /// <summary>
+        /// Adds An error
+        /// </summary>
+        /// <param name="errors"></param>
+        public void AddErrors(params Exception[] errors)
+        {
+            ((List<Exception>)Errors).AddRange(errors);
         }
     }
 }

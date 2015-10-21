@@ -5,7 +5,7 @@
     {
         public event SuccessEventHandler Success;
         // Invoke the Success event; called whenever list changes
-        public virtual void OnSuccess(object sender)
+        public void OnSuccess(object sender)
         {
             if (Success != null)
                 Success(sender);

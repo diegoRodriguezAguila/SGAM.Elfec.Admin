@@ -1,5 +1,6 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Model;
+using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
 using System.Threading;
 using System.Windows.Input;
@@ -8,10 +9,7 @@ namespace SGAM.Elfec.Presenters
 {
     public class AddNewApplicationPresenter : BasePresenter<IAddNewApplicationView>
     {
-        public AddNewApplicationPresenter(IAddNewApplicationView view) : base(view)
-        {
-            NewApplication = new Application();
-        }
+        public AddNewApplicationPresenter(IAddNewApplicationView view) : base(view) { }
 
         #region Private Attributes
         private string _apkPath;
@@ -52,7 +50,19 @@ namespace SGAM.Elfec.Presenters
         {
             new Thread(() =>
                 {
-                    NewApplication = new ApkManager(ApkPath).GetApplication();
+                    View.ShowLoadingAPK();
+                    NewApplication = null;
+                    var callback = new ResultCallback<Application>();
+                    callback.Success += (s, app) =>
+                    {
+                        NewApplication = app;
+                        View.OnAPKLoadFinished();
+                    };
+                    callback.Failure += (s, errors) =>
+                    {
+                        View.ShowAPKLoadErrors(errors);
+                    };
+                    new ApkManager(ApkPath).GetApplication(callback);
                 }
             ).Start();
         }

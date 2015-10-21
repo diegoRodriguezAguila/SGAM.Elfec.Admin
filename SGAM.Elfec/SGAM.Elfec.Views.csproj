@@ -129,6 +129,7 @@
     <Compile Include="Converters\DeviceStatusToMenuItemVisibilityConverter.cs" />
     <Compile Include="Converters\DeviceStatusToOpacityConverter.cs" />
     <Compile Include="Converters\DeviceStatusToStringConverter.cs" />
+    <Compile Include="Converters\NullToIsEnabledConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\UriToCachedImageConverter.cs" />
     <Compile Include="Interfaces\IMainWindowView.cs" />
@@ -307,6 +308,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\UploadApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UploadAppDisabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

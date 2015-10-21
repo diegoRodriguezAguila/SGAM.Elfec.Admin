@@ -4,15 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:local="clr-namespace:SGAM.Elfec"
              mc:Ignorable="d" 
              Background="White"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="700">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:UriToCachedImageConverter x:Key="UriCachedConverter" />
+            <converters:NullToIsEnabledConverter x:Key="NullToIsEnabledConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -38,12 +40,9 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="235" />
+                    <ColumnDefinition Width="260" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -53,22 +52,25 @@
                 <Border BorderThickness="1" Width="98" Height="98" BorderBrush="{StaticResource BlueButtonBorderBrush}" ToolTip="{x:Static Res:Resources.TooltipApplicationIcon}" >
                     <Image Width="96" Height="96" Source="{Binding NewApplication.IconUrl, 
                            TargetNullValue='pack://application:,,,/SGAM.Elfec;component/Resources/DefaultAppIcon.png',
+                           FallbackValue='pack://application:,,,/SGAM.Elfec;component/Resources/DefaultAppIcon.png',
                            Converter={StaticResource UriCachedConverter}}"
                            ToolTip="{x:Static Res:Resources.TooltipApplicationIcon}" />
                 </Border>
                 <Label Grid.Column="1" VerticalContentAlignment="Top" Margin="0,0,0,10" Content="{x:Static Res:Resources.LblApplicationApkFilename}" />
                 <TextBox Name="TxtApkFilename" Grid.Column="1" Text="{Binding Path=ApkPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Margin="0,0,0,10" />
-                <Button Name="BtnBrowseApk" Grid.Column="2" HorizontalAlignment="Left" 
-                        Margin="10,0,0,10" Height="32" Width="106" Click="BtnBrowseApk_Click" >
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image VerticalAlignment="Center" Height="32" Source="/Resources/FileOpen.png" SnapsToDevicePixels="True" />
-                            <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="8,0,0,0" TextWrapping="Wrap"
-                                       VerticalAlignment="Center" Text="{x:Static Res:Resources.BtnBrowse}"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                
+                <Controls:TransitioningContentControl Grid.Column="2" Margin="10,0,0,0"
+                                                      Name="TransitioningLoadApk" VerticalContentAlignment="Center" Transition="Left">
+                    <Button Name="BtnBrowseApk" Grid.Column="2" HorizontalAlignment="Left" 
+                            Margin="0,0,0,10" Height="32" Width="106" Click="BtnBrowseApk_Click" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image VerticalAlignment="Center" Height="32" Source="/Resources/FileOpen.png" SnapsToDevicePixels="True" />
+                                <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="8,0,0,0" TextWrapping="Wrap"
+                                           VerticalAlignment="Center" Text="{x:Static Res:Resources.BtnBrowse}"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Controls:TransitioningContentControl>
                 <Label Grid.Row="1" VerticalContentAlignment="Center" Margin="0,0,0,10" Content="{x:Static Res:Resources.LblApplicationName}" />
                 <TextBox IsReadOnly="True" Name="TxtName" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Text="{Binding NewApplication.Name}" MaxLength="255" />
 
@@ -77,22 +79,35 @@
                 
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblApplicationVersion}"  />
                 <TextBox Grid.Row="3" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.LatestVersion}" Margin="0,0,0,10" />
-                
-                <Button Grid.Row="20" Name="BtnAddApp" IsDefault="True" Command="{Binding AuthorizeDeviceCommand}"
-                        MaxWidth="95"
+
+                <Button Grid.Row="4" Name="BtnAddApp" IsDefault="True" Command="{Binding AddNewApplicationCommand}"
+                        MaxWidth="95" IsEnabled="{Binding Path=NewApplication, Converter={StaticResource NullToIsEnabledConverter}}"
                         Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                         FontWeight="SemiBold" HorizontalAlignment="Left" Click="BtnAddApp_Click"  >
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
-                            <Image Width="32" Height="32" Source="/Resources/UploadApp.png" />
+                            <Image Width="32" Height="32" >
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Value="True">
+                                                <Setter Property="Source" Value="/Resources/UploadApp.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Value="False">
+                                                <Setter Property="Source" Value="/Resources/UploadAppDisabled.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
                             <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" TextAlignment="Center"
                                        Margin="0,8,0,0" LineStackingStrategy="BlockLineHeight" LineHeight="15" TextWrapping="Wrap"
                                        Text="{x:Static Res:Resources.BtnUploadApp}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Controls:TransitioningContentControl  Grid.Row="20" Grid.Column="1"
-                                                       Name="Transitioning" VerticalContentAlignment="Center" Transition="Left" />
+                <Controls:TransitioningContentControl  Grid.Row="4" Grid.Column="1"
+                                                       Name="TransitioningUpload" VerticalContentAlignment="Center" Transition="Left" />
             </Grid>
         </ScrollViewer>
     </Grid>

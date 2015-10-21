@@ -282,4 +282,10 @@
   <data name="BtnUploadApp" xml:space="preserve">
     <value>Subir aplicación</value>
   </data>
+  <data name="MsgLoadingApk" xml:space="preserve">
+    <value>Obteniendo información del APK, este proceso puede tardar dependiendo del tamaño del archivo, espere por favor…</value>
+  </data>
+  <data name="MsgLoadingApkShort" xml:space="preserve">
+    <value>Obteniendo información del APK…</value>
+  </data>
 </root>

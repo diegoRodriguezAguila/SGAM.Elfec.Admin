@@ -1,6 +1,7 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
 using Iteedee.ApkReader;
 using SGAM.Elfec.Model;
+using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace SGAM.Elfec.BusinessLogic
         private const string ICON_DEFAULT = "res/mipmap-xhdpi-v4/ic_launcher.png";
         private const string MANIFEST_NAME = "androidmanifest.xml";
         private const string RESOURCES_NAME = "resources.arsc";
+        private const string ICONS_PATH = @"/icons";
         private string _apkFilePath;
 
         public string APKFilePath { get { return _apkFilePath; } }
@@ -76,19 +78,21 @@ namespace SGAM.Elfec.BusinessLogic
         /// </summary>
         /// <param name="APKFilePath"></param>
         /// <returns></returns>
-        public Application GetApplication()
+        public void GetApplication(ResultCallback<Application> callback)
         {
-            ApkInfo apkInfo = GetApkInfo();
-            string iconPath = ExtractFileAndSave(BuildApkIconFilename(apkInfo),
-                BuildTempFilePath(apkInfo.packageName, apkInfo.versionName) + @"/icons");
-            return new Application()
+            try
             {
-                Name = apkInfo.label,
-                Package = apkInfo.packageName,
-                Status = ApiStatus.Enabled,
-                LatestVersion = apkInfo.versionName,
-                IconUrl = new Uri(iconPath),
-                AppVersions = new List<AppVersion>()
+                ApkInfo apkInfo = GetApkInfo();
+                string iconPath = ExtractFileAndSave(BuildApkIconFilename(apkInfo),
+                    BuildTempFilePath(apkInfo.packageName, apkInfo.versionName) + ICONS_PATH);
+                var app = new Application()
+                {
+                    Name = apkInfo.label,
+                    Package = apkInfo.packageName,
+                    Status = ApiStatus.Enabled,
+                    LatestVersion = apkInfo.versionName,
+                    IconUrl = new Uri(iconPath),
+                    AppVersions = new List<AppVersion>()
                 {
                     new AppVersion()
                     {
@@ -98,7 +102,16 @@ namespace SGAM.Elfec.BusinessLogic
                         Status = ApiStatus.Enabled
                     }
                 }
-            };
+                };
+                callback.OnSuccess(null, app);
+                return;
+            }
+            catch (Exception e)
+            {
+                callback.AddErrors(e);
+            }
+            callback.OnFailure(this);
+
         }
 
         /// <summary>

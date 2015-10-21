@@ -475,6 +475,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obteniendo información del APK, este proceso puede tardar dependiendo del tamaño del archivo, espere por favor….
+        /// </summary>
+        public static string MsgLoadingApk {
+            get {
+                return ResourceManager.GetString("MsgLoadingApk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obteniendo información del APK….
+        /// </summary>
+        public static string MsgLoadingApkShort {
+            get {
+                return ResourceManager.GetString("MsgLoadingApkShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obteniendo información de aplicaciones….
         /// </summary>
         public static string MsgLoadingApps {

@@ -8,27 +8,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SGAM.Elfec.Properties {
-    
-    
+namespace SGAM.Elfec.Settings.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+    public sealed partial class SGAM : global::System.Configuration.ApplicationSettingsBase
+    {
+
+        private static SGAM defaultInstance = ((SGAM)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new SGAM())));
+
+        public static SGAM Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.50.56:3000/assets/devices/{0}.png")]
-        public string AssetsURL {
-            get {
-                return ((string)(this["AssetsURL"]));
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.50.56:3000")]
+        public string BaseURL
+        {
+            get
+            {
+                return ((string)(this["BaseURL"]));
             }
         }
     }

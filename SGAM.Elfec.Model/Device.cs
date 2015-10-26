@@ -2,6 +2,7 @@
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Model.Validations;
 using SGAM.Elfec.Model.Validations.Validators;
+using System;
 
 namespace SGAM.Elfec.Model
 {
@@ -29,6 +30,7 @@ namespace SGAM.Elfec.Model
         public string GmailAccount { get; set; }
         public string Comments { get; set; }
         public DeviceStatus Status { get; set; }
+        public Uri IconUrl { get; set; }
 
         public override ValidationResult SelfValidate()
         {

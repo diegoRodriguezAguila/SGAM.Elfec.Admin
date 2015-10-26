@@ -22,9 +22,12 @@ namespace SGAM.Elfec.Presenters
             get { return _apkPath; }
             set
             {
-                _apkPath = value;
-                RaisePropertyChanged("ApkPath");
-                LoadApkInfo();
+                if (value != _apkPath)
+                {
+                    _apkPath = value;
+                    RaisePropertyChanged("ApkPath");
+                    LoadApkInfo();
+                }
             }
         }
 

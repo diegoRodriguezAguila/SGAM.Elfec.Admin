@@ -5,13 +5,15 @@ using System.Windows.Data;
 namespace SGAM.Elfec.Converters
 {
     /// <summary>
-    /// Converter para el modelo de los devices a un url de imagen
+    /// Converter para url relativa a url completa
     /// </summary>
-    public class DeviceModelToImageSourceConverter : IValueConverter
+    public class RelativeToAbsoluteUrlConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new Uri(String.Format(Properties.Settings.Default.AssetsURL, value));
+            if (value is Uri)
+                return new Uri(new Uri(Settings.Properties.SGAM.Default.BaseURL), (value as Uri));
+            return new Uri(Settings.Properties.SGAM.Default.BaseURL);
         }
 
         public object ConvertBack(object value, Type targetTypes, object parameter, CultureInfo culture)

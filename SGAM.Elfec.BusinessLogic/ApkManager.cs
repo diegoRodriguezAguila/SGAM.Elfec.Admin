@@ -117,10 +117,8 @@ namespace SGAM.Elfec.BusinessLogic
         /// <summary>
         /// Extrae y guarda un recurso de un apk
         /// </summary>
-        /// <param name="APKFilePath"></param>
         /// <param name="fileResourceLocation"></param>
         /// <param name="filePathToSave"></param>
-        /// <param name="index"></param>
         /// <returns>el path del archivo guardado</returns>
         public string ExtractFileAndSave(string fileResourceLocation, string filePathToSave)
         {

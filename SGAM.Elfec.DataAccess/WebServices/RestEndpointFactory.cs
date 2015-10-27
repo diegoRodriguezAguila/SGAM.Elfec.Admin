@@ -28,23 +28,8 @@ namespace SGAM.Elfec.DataAccess.WebServices
                 ContractResolver = new SnakeCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
             };
-            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, PutHeaders, settings);
+            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, settings);
         }
-
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        /// <summary>
-        /// Se encarga de modificar el request poniendo los headers adecuados
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        private static async Task PutHeaders(HttpRequestMessage request, CancellationToken cancellationToken)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-        {
-            if (request.Content != null)
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        }
-
         /// <summary>
         /// Crea un endpoint Rest  con la url por defecto <see cref="BASE_URL"/>
         /// </summary>

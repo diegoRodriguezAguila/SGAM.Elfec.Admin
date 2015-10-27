@@ -41,7 +41,7 @@ namespace SGAM.Elfec
 
         private void BtnShowApps_Click(object sender, RoutedEventArgs e)
         {
-            ChangeToAllAppsView();
+            ChangeToApplicationsView();
         }
 
         private void BtnShowMobiles_Click(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace SGAM.Elfec
             Title = (title != null ? (title + " - ") : "") + MAIN_TITLE;
         }
 
-        public void ChangeToAllAppsView(bool force = false)
+        public void ChangeToApplicationsView(bool force = false)
         {
             if ((string)BtnShowApps.Tag != SELECTED_TAG || force)
                 ChangePrincipalView(SELECTED_TAG, null, null, new ShowApplications());

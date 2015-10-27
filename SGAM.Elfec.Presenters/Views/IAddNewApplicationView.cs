@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGAM.Elfec.Model;
+using System;
 
 namespace SGAM.Elfec.Presenters.Views
 {
@@ -17,5 +18,20 @@ namespace SGAM.Elfec.Presenters.Views
         /// Muestra al usuario que se finalizó la carga del apk
         /// </summary>
         void OnAPKLoadFinished();
+
+        /// <summary>
+        /// Indica al usuario que debe esperar, se esta subiendo la aplicación
+        /// </summary>
+        void ShowUploadingAplication();
+        /// <summary>
+        /// Muestra los errores de subida de la aplicación
+        /// </summary>
+        /// <param name="errors">errores</param>
+        void ShowAplicationUploadErrors(params Exception[] errors);
+        /// <summary>
+        /// Muestra al usuario que se finalizó la subida de la aplicación exitosamente
+        /// </summary>
+        /// <param name="application"></param>
+        void ShowAplicationUploadedSuccessfully(Application application);
     }
 }

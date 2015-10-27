@@ -8,6 +8,7 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:local="clr-namespace:SGAM.Elfec"
+             xmlns:UserControls="clr-namespace:SGAM.Elfec.UserControls"
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="400" d:DesignWidth="700">
@@ -80,10 +81,10 @@
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblApplicationVersion}"  />
                 <TextBox Grid.Row="3" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.LatestVersion}" Margin="0,0,0,10" />
 
-                <Button Grid.Row="4" Name="BtnAddApp" IsDefault="True" Command="{Binding AddNewApplicationCommand}"
+                <Button Grid.Row="4" Name="BtnUploadApp" IsDefault="True" Command="{Binding UploadApplicationCommand}"
                         MaxWidth="95" IsEnabled="{Binding Path=NewApplication, Converter={StaticResource NullToIsEnabledConverter}}"
                         Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-                        FontWeight="SemiBold" HorizontalAlignment="Left" Click="BtnAddApp_Click"  >
+                        FontWeight="SemiBold" HorizontalAlignment="Left" >
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <Image Width="32" Height="32" >

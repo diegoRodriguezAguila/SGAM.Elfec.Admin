@@ -14,9 +14,9 @@ namespace SGAM.Elfec.Commands
             this._executeDel = executeDel;
             this._canExecDel = canExecDel;
         }
-
+#pragma warning disable 67
         public event EventHandler CanExecuteChanged;
-
+#pragma warning restore 67
         public bool CanExecute(object parameter)
         {
             if (_canExecDel == null)

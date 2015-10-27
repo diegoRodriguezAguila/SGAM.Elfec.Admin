@@ -14,6 +14,7 @@ namespace SGAM.Elfec.Presenters
         #region Private Attributes
         private string _apkPath;
         private Application _newApplication;
+        private int _uploadProgressPercentage;
         #endregion
 
         #region Properties
@@ -41,7 +42,20 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
-        public ICommand AddNewApplicationCommand { get { return new DelegateCommand(AddNewApplication); } }
+        public int UploadProgressPercentage
+        {
+            get { return _uploadProgressPercentage; }
+            set
+            {
+                if (value != _uploadProgressPercentage)
+                {
+                    _uploadProgressPercentage = value;
+                    RaisePropertyChanged("UploadProgressPercentage");
+                }
+            }
+        }
+
+        public ICommand UploadApplicationCommand { get { return new DelegateCommand(UploadApplication); } }
 
         #endregion
 
@@ -70,9 +84,30 @@ namespace SGAM.Elfec.Presenters
             ).Start();
         }
 
-        private void AddNewApplication()
+        /// <summary>
+        /// Sube el apk seleccionado
+        /// </summary>
+        private void UploadApplication()
         {
-
+            new Thread(() =>
+            {
+                View.ShowUploadingAplication();
+                var callback = new UploadResultCallback<Application>();
+                callback.UploadProgressChanged += (s, ev) =>
+                {
+                    UploadProgressPercentage = (int)(ev.ProgressPercentage*1.8);
+                };
+                callback.Success += (s, app) =>
+                {
+                    View.ShowAplicationUploadedSuccessfully(app);
+                };
+                callback.Failure += (s, errors) =>
+                {
+                    View.ShowAplicationUploadErrors(errors);
+                };
+                ApplicationsManager.RegisterApplication(ApkPath, callback);
+            }
+            ).Start();
         }
         #endregion
     }

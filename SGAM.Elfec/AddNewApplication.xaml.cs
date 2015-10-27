@@ -3,9 +3,9 @@ using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
 using System;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SGAM.Elfec
 {
@@ -25,26 +25,15 @@ namespace SGAM.Elfec
             _errorMessage = new ErrorMessage();
             _progressLoading = new ProgressLoading();
             DataContext = new AddNewApplicationPresenter(this);
+            var binding = new Binding("UploadProgressPercentage");
+            binding.Source = DataContext;
+            BindingOperations.SetBinding(_progressLoading.ProgressBarLoading, ProgressBar.ValueProperty, binding);
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
             MainWindowService.Instance.MainWindowView.GoBack();
-        }
-
-        private void BtnAddApp_Click(object sender, RoutedEventArgs e)
-        {
-            WebClient webClient = new WebClient();
-            webClient.Headers.Add("X-Api-Token", "iYxx6xuQY_DDxornWgbA");
-            webClient.Headers.Add("X-Api-Username", "drodriguezd");
-            webClient.UploadFileAsync(new Uri("http://192.168.50.56:3000/api/applications"), TxtApkFilename.Text);
-            webClient.UploadProgressChanged += (s, ev) =>
-            {
-                _progressLoading.ProgressBarLoading.Value = ev.ProgressPercentage;
-            };
-            _progressLoading.TxtLoadingMessage.Text = Properties.Resources.MsgUploadingApk;
-            TransitioningUpload.Content = _progressLoading;
         }
 
         private void BtnBrowseApk_Click(object sender, RoutedEventArgs e)
@@ -83,6 +72,42 @@ namespace SGAM.Elfec
             {
                 MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                 TransitioningLoadApk.Content = BtnBrowseApk;
+            }));
+        }
+
+        public void ShowUploadingAplication()
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _progressLoading.TxtLoadingMessage.Text = Properties.Resources.MsgUploadingApk;
+                MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgUploadingApk);
+                TransitioningUpload.Content = _progressLoading;
+            }));
+        }
+
+        public void ShowAplicationUploadErrors(params Exception[] errors)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.BtnOk.Click += (s, o) =>
+                {
+                    MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                    TransitioningUpload.Content = null;
+                };
+                TransitioningUpload.Content = _errorMessage;
+            }));
+        }
+
+        public void ShowAplicationUploadedSuccessfully(Model.Application application)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                var mainWindow = MainWindowService.Instance.MainWindowView;
+                mainWindow.SetStatusBarDefault();
+                mainWindow.ChangeToApplicationsView(true);
+                mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
+                    String.Format(Properties.Resources.MsgApplicationUploadedSuccessfully, application.Name));
             }));
         }
 

@@ -6,7 +6,7 @@ namespace SGAM.Elfec.Interfaces
     {
         void CloseWindow();
         void ChangeTitle(string title);
-        void ChangeToAllAppsView(bool force = false);
+        void ChangeToApplicationsView(bool force = false);
         void ChangeToDevicesView(bool force = false);
         void ChangeToAllDeviceGroupsView(bool force = false);
         void ChangeToView<T>(T view) where T : Control;

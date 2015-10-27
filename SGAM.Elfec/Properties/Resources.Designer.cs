@@ -448,6 +448,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La aplicación {0} fue registrada exitosamente.
+        /// </summary>
+        public static string MsgApplicationUploadedSuccessfully {
+            get {
+                return ResourceManager.GetString("MsgApplicationUploadedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autorizando dispositivo….
         /// </summary>
         public static string MsgAuthorizingDevice {

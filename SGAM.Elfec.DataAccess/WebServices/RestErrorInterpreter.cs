@@ -24,5 +24,18 @@ namespace SGAM.Elfec.DataAccess.WebServices
             RestErrorResponse error = JsonConvert.DeserializeObject<RestErrorResponse>(apiException.Content);
             return new Exception(error.Errors);
         }
+
+        /// <summary>
+        /// interpreta el error correcto según su código y tipo de excepción
+        /// </summary>
+        /// <param name="apiException"></param>
+        /// <returns>el error interpretado</returns>
+        public static Exception InterpretError(ApiMultipartException apiException)
+        {
+            if (apiException.StatusCode == HttpStatusCode.InternalServerError)
+                return new ServerSideException();
+            RestErrorResponse error = JsonConvert.DeserializeObject<RestErrorResponse>(apiException.Content);
+            return new Exception(error.Errors);
+        }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using SGAM.Elfec.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -17,15 +13,25 @@ namespace SGAM.Elfec
         private static MainWindowService _instance;
         public static MainWindowService Instance
         {
-            get 
+            get
             {
                 if (_instance == null)
                     _instance = new MainWindowService();
-                return _instance; 
+                return _instance;
             }
         }
 
         public IMainWindowView MainWindowView { get; set; }
+
+        public Control CurrentView
+        {
+            get
+            {
+                if (Navigation.Count > 0)
+                    return Navigation.Peek();
+                return null;
+            }
+        }
 
         public Stack<Control> Navigation { get; set; }
     }

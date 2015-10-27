@@ -124,6 +124,7 @@
     <Compile Include="Behaviors\Masking.cs" />
     <Compile Include="Behaviors\TextBoxInputBehavior.cs" />
     <Compile Include="Converters\ApiStatusToStringConverter.cs" />
+    <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\RelativeToAbsoluteUrlConverter.cs" />
     <Compile Include="Converters\DeviceStatusToBackgroundConverter.cs" />
     <Compile Include="Converters\DeviceStatusToMenuItemVisibilityConverter.cs" />

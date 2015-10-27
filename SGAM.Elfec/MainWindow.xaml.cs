@@ -24,33 +24,35 @@ namespace SGAM.Elfec
         #endregion
 
         #region Constants
-        public const string SELECTED_TAG = "Selected";
         public const string MAIN_TITLE = "SGAM Elfec";
 
         #endregion
 
         #region Private Methods
-        private void ChangePrincipalView(string btnShowAppsTag, string btnShowMobilesTag, string btnShowGroupsTag, Control view)
+        private void ChangePrincipalView(Control view)
         {
-            BtnShowApps.Tag = btnShowAppsTag;
-            BtnShowDevices.Tag = btnShowMobilesTag;
-            BtnShowUsers.Tag = btnShowGroupsTag;
             MainWindowService.Instance.Navigation.Clear();
             ChangeToView(view);
         }
 
         private void BtnShowApps_Click(object sender, RoutedEventArgs e)
         {
+            BtnShowDevices.IsSelected = false;
+            BtnShowUsers.IsSelected = false;
             ChangeToApplicationsView();
         }
 
-        private void BtnShowMobiles_Click(object sender, RoutedEventArgs e)
+        private void BtnShowDevices_Click(object sender, RoutedEventArgs e)
         {
+            BtnShowApps.IsSelected = false;
+            BtnShowUsers.IsSelected = false;
             ChangeToDevicesView();
         }
 
-        private void BtnShowGroups_Click(object sender, RoutedEventArgs e)
+        private void BtnShowUsers_Click(object sender, RoutedEventArgs e)
         {
+            BtnShowApps.IsSelected = false;
+            BtnShowDevices.IsSelected = false;
             ChangeToAllDeviceGroupsView();
         }
 
@@ -82,20 +84,23 @@ namespace SGAM.Elfec
 
         public void ChangeToApplicationsView(bool force = false)
         {
-            if ((string)BtnShowApps.Tag != SELECTED_TAG || force)
-                ChangePrincipalView(SELECTED_TAG, null, null, new ShowApplications());
+            bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowApplications);
+            if (shouldChange || force)
+                ChangePrincipalView(new ShowApplications());
         }
 
         public void ChangeToDevicesView(bool force = false)
         {
-            if ((string)BtnShowDevices.Tag != SELECTED_TAG || force)
-                ChangePrincipalView(null, SELECTED_TAG, null, new ShowDevices());
+            bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowDevices);
+            if (shouldChange || force)
+                ChangePrincipalView(new ShowDevices());
         }
 
         public void ChangeToAllDeviceGroupsView(bool force = false)
         {
-            if ((string)BtnShowUsers.Tag != SELECTED_TAG || force)
-                ChangePrincipalView(null, null, SELECTED_TAG, new ShowAllDeviceGroups());
+            bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowAllDeviceGroups);
+            if (shouldChange || force)
+                ChangePrincipalView(new ShowAllDeviceGroups());
         }
 
         public void ChangeToView<T>(T view) where T : Control

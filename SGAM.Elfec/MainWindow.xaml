@@ -7,7 +7,13 @@
         xmlns:toastinet="clr-namespace:ToastinetWPF;assembly=ToastinetWPF"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
+        xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
         Title="SGAM Elfec" Height="480" Width="720">
+    <Fluent:RibbonWindow.Resources>
+        <ResourceDictionary>
+            <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
+        </ResourceDictionary>
+    </Fluent:RibbonWindow.Resources>
     <Grid Margin="-1" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +23,7 @@
         <Fluent:Ribbon Grid.Row="0" >
             <!--Backstage-->
             <Fluent:Ribbon.Menu>
-                <Fluent:Backstage Header="INICIO" >
+                <Fluent:Backstage Header="{x:Static Res:Resources.TabStart}" >
                     <Fluent:BackstageTabControl>
                         <Fluent:BackstageTabItem Header="New"/>
                         <Fluent:BackstageTabItem Header="Print"/>
@@ -26,7 +32,7 @@
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
             <!--Tabs-->
-            <Fluent:RibbonTabItem Header="DISPOSITIVOS MÓVILES">
+            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabDevices}">
                 <Fluent:RibbonGroupBox Header="Group">
                     <Fluent:Button  Header="Green"
                            Icon="Images\Green.png"
@@ -35,9 +41,21 @@
                            LargeIcon="Images\GrayLarge.png" />
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="APLICACIONES">
+            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabApplications}">
                 <Fluent:RibbonGroupBox Header="Group">
                     <Fluent:Button Name="BtnAddApp" ToolTip="{x:Static Res:Resources.BtnAddApp}" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddApp}" >
+                        <Fluent:Button.LargeIcon>
+                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
+                        </Fluent:Button.LargeIcon>
+                        <Fluent:Button.Icon>
+                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
+                        </Fluent:Button.Icon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabUsers}">
+                <Fluent:RibbonGroupBox Header="Group">
+                    <Fluent:Button Name="BtnAddUser" ToolTip="{x:Static Res:Resources.BtnAddApp}" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddApp}" >
                         <Fluent:Button.LargeIcon>
                             <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
                         </Fluent:Button.LargeIcon>
@@ -70,15 +88,15 @@
             <TextBlock Name="TxtStatus" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="White" Text="{x:Static Res:Resources.LblStatusbarDefault}" />
             <Separator />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowDevices" ToolTip="{x:Static Res:Resources.TooltipShowDevices}" Click="BtnShowMobiles_Click" Width="30">
+                <sgam:StatusBarButton Name="BtnShowDevices" IsSelected="True" Click="BtnShowDevices_Click" Width="30">
                     <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/Resources/Phone.png" />
-                </Button>
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowApps" ToolTip="{x:Static Res:Resources.TooltipShowApps}" Click="BtnShowApps_Click" Width="30">
+                </sgam:StatusBarButton>
+                <sgam:StatusBarButton Name="BtnShowApps" ToolTip="{x:Static Res:Resources.TooltipShowApps}" Click="BtnShowApps_Click" Width="30">
                     <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/Resources/App.png" />
-                </Button>
-                <Button Style="{StaticResource BottomBarButton}" Name="BtnShowUsers" ToolTip="{x:Static Res:Resources.TooltipShowUsers}" Click="BtnShowGroups_Click" Width="30">
+                </sgam:StatusBarButton>
+                <sgam:StatusBarButton  Name="BtnShowUsers" ToolTip="{x:Static Res:Resources.TooltipShowUsers}" Click="BtnShowUsers_Click" Width="30">
                     <Image Width="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="Resources/User.png" />
-                </Button>
+                </sgam:StatusBarButton>
             </StackPanel>
         </StatusBar>
     </Grid>

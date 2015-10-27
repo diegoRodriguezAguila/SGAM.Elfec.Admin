@@ -294,4 +294,16 @@
   <data name="MsgApplicationUploadedSuccessfully" xml:space="preserve">
     <value>La aplicación {0} fue registrada exitosamente</value>
   </data>
+  <data name="TabApplications" xml:space="preserve">
+    <value>APLICACIONES</value>
+  </data>
+  <data name="TabDevices" xml:space="preserve">
+    <value>DISPOSITIVOS MÓVILES</value>
+  </data>
+  <data name="TabUsers" xml:space="preserve">
+    <value>USUARIOS</value>
+  </data>
+  <data name="TabStart" xml:space="preserve">
+    <value>INICIO</value>
+  </data>
 </root>

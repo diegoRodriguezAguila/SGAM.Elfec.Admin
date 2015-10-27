@@ -538,6 +538,42 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to APLICACIONES.
+        /// </summary>
+        public static string TabApplications {
+            get {
+                return ResourceManager.GetString("TabApplications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DISPOSITIVOS MÓVILES.
+        /// </summary>
+        public static string TabDevices {
+            get {
+                return ResourceManager.GetString("TabDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INICIO.
+        /// </summary>
+        public static string TabStart {
+            get {
+                return ResourceManager.GetString("TabStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USUARIOS.
+        /// </summary>
+        public static string TabUsers {
+            get {
+                return ResourceManager.GetString("TabUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exito!.
         /// </summary>
         public static string TitleSuccess {

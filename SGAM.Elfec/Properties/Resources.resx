@@ -306,4 +306,13 @@
   <data name="TabStart" xml:space="preserve">
     <value>INICIO</value>
   </data>
+  <data name="TitleApplications" xml:space="preserve">
+    <value>Aplicaciones</value>
+  </data>
+  <data name="TitleDevices" xml:space="preserve">
+    <value>Dispositivos Móviles</value>
+  </data>
+  <data name="TitleUsers" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
 </root>

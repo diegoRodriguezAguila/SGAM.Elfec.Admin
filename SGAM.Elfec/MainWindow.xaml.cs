@@ -98,9 +98,9 @@ namespace SGAM.Elfec
 
         public void ChangeToAllDeviceGroupsView(bool force = false)
         {
-            bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowAllDeviceGroups);
+            bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowUsers);
             if (shouldChange || force)
-                ChangePrincipalView(new ShowAllDeviceGroups());
+                ChangePrincipalView(new ShowUsers());
         }
 
         public void ChangeToView<T>(T view) where T : Control
@@ -142,7 +142,6 @@ namespace SGAM.Elfec
         private void BtnAddApp_Click(object sender, RoutedEventArgs e)
         {
             var addNewApp = new AddNewApplication();
-            addNewApp.Tag = Properties.Resources.LblAddNewApp;
             MainWindowService.Instance.MainWindowView.ChangeToView(addNewApp);
         }
     }

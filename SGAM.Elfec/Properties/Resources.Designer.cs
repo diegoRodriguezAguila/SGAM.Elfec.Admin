@@ -574,11 +574,38 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aplicaciones.
+        /// </summary>
+        public static string TitleApplications {
+            get {
+                return ResourceManager.GetString("TitleApplications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dispositivos Móviles.
+        /// </summary>
+        public static string TitleDevices {
+            get {
+                return ResourceManager.GetString("TitleDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exito!.
         /// </summary>
         public static string TitleSuccess {
             get {
                 return ResourceManager.GetString("TitleSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuarios.
+        /// </summary>
+        public static string TitleUsers {
+            get {
+                return ResourceManager.GetString("TitleUsers", resourceCulture);
             }
         }
         

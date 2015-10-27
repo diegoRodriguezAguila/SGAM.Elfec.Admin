@@ -11,6 +11,7 @@
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
              Background="White"
+             Tag="{x:Static Res:Resources.LblAuthorizeDevice}"
              d:DesignHeight="1050" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -71,7 +72,7 @@
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" />
                 <TextBlock Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtName,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="1" Content="{x:Static Res:Resources.LblDeviceIMEI}"  />
                 <TextBox MaxLength="17" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Text="{Binding AuthPendingDevice.Imei}"  Margin="0,0,0,10" />
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="2" Content="{x:Static Res:Resources.LblDeviceSerial}"  />
@@ -98,7 +99,7 @@
                 </TextBox>
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="11" Content="{x:Static Res:Resources.LblDeviceIdCiscoASA}"  />
                 <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding AuthPendingDevice.IdCiscoAsa}" MaxLength="50" Margin="0,0,0,10" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="12" Content="{x:Static Res:Resources.LblDeviceScreenSize}"  />
                 <TextBox Name="TxtScreeenSize" Grid.Row="12" Grid.Column="1" MaxLength="8" Text="{Binding AuthPendingDevice.ScreenSize, ValidatesOnDataErrors=True, 
                    TargetNullValue='', ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}" Margin="0,0,0,10" >
@@ -109,13 +110,13 @@
                 <Label Grid.Row="12" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblSizeUnit}" HorizontalAlignment="Right" />
                 <TextBlock Grid.Row="12" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtScreeenSize,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="13" Content="{x:Static Res:Resources.LblDeviceScreenRes}"  />
                 <TextBox Name="TxtScreenResolution" Grid.Row="13" Grid.Column="1" Text="{Binding AuthPendingDevice.ScreenResolution, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" behaviors:Masking.Mask="^\d*$|^\d+[x]$|^\d+[x]\d+$" Margin="0,0,0,10" />
                 <TextBlock Grid.Row="13" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtScreenResolution,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="14" Content="{x:Static Res:Resources.LblDeviceCamera}"  />
                 <TextBox Name="TxtCamera"  Grid.Row="14" Grid.Column="1"  MaxLength="8"  Text="{Binding AuthPendingDevice.Camera, ValidatesOnDataErrors=True, 
                     TargetNullValue='', ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}" Margin="0,0,0,10" >
@@ -126,7 +127,7 @@
                 <Label Grid.Row="14" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblCameraUnit}" HorizontalAlignment="Right" />
                 <TextBlock Grid.Row="14" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtCamera,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="15" Content="{x:Static Res:Resources.LblDeviceSDMemoryCard}"  />
                 <TextBox Name="TxtSDMemoryCard" Grid.Row="15" Grid.Column="1" MaxLength="10" Text="{Binding AuthPendingDevice.SdMemoryCard, ValidatesOnDataErrors=True, 
                     TargetNullValue='', ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}" Margin="0,0,0,10" >
@@ -137,13 +138,13 @@
                 <Label Grid.Row="15" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblMemoryUnit}" HorizontalAlignment="Right" />
                 <TextBlock Grid.Row="15" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtSDMemoryCard,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="16" Content="{x:Static Res:Resources.LblDeviceGmailAccount}"  />
                 <TextBox Name="TxtGmailAccount" Grid.Row="16" Grid.Column="1" Text="{Binding AuthPendingDevice.GmailAccount, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
                 <TextBlock Grid.Row="16" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtGmailAccount,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
-                
+
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="17" Content="{x:Static Res:Resources.LblDeviceStatus}"  />
                 <TextBox Grid.Row="17" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Status, Converter={StaticResource DeviceStatusToStringConverter}}" Margin="0,0,0,10" />
                 <Label VerticalContentAlignment="Center" Grid.Row="18" Content="{x:Static Res:Resources.LblDeviceComments}"  />

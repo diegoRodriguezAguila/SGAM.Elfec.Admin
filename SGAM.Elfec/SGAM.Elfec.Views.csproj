@@ -141,8 +141,8 @@
     <Compile Include="ShowApplications.xaml.cs">
       <DependentUpon>ShowApplications.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowAllDeviceGroups.xaml.cs">
-      <DependentUpon>ShowAllDeviceGroups.xaml</DependentUpon>
+    <Compile Include="ShowUsers.xaml.cs">
+      <DependentUpon>ShowUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowDevices.xaml.cs">
       <DependentUpon>ShowDevices.xaml</DependentUpon>
@@ -190,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShowAllDeviceGroups.xaml">
+    <Page Include="ShowUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

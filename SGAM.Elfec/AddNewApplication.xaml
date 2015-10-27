@@ -10,6 +10,7 @@
              xmlns:local="clr-namespace:SGAM.Elfec"
              xmlns:UserControls="clr-namespace:SGAM.Elfec.UserControls"
              mc:Ignorable="d" 
+             Tag="{x:Static Res:Resources.LblAddNewApp}"
              Background="White"
              d:DesignHeight="400" d:DesignWidth="700">
     <UserControl.Resources>

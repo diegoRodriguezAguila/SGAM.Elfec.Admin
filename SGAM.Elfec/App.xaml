@@ -8,17 +8,6 @@
         <ResourceDictionary>
             <Color x:Key="{x:Static Fluent:MetroColors.ThemeColorKey}">#18468D</Color>
 
-            <DataTemplate x:Key="AppItemTemplate" >
-                <StackPanel Height="80"  Width="180" Orientation="Horizontal">
-                    <Image Margin="5,0" VerticalAlignment="Center" Width="64" Height="64" RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True" />
-                    <StackPanel  Width="100" VerticalAlignment="Center" Margin="5,0">
-                        <TextBlock FontSize="12" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}" />
-                        <TextBlock FontSize="10" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Name="Version" Text="{Binding Version, StringFormat=v. {0}}" />
-                        <TextBlock FontSize="10" TextWrapping="Wrap" Name="PackageName" Text="{Binding PackageName}" />
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />

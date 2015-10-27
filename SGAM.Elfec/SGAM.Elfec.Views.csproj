@@ -152,6 +152,9 @@
     <Compile Include="UserControls\IndeterminateLoading.xaml.cs">
       <DependentUpon>IndeterminateLoading.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ProgressLoading.xaml.cs">
+      <DependentUpon>ProgressLoading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\PasswordBoxAssistant.cs" />
     <Compile Include="Utils\ValidationErrorsAssistant.cs" />
     <Page Include="AddNewApplication.xaml">
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\IndeterminateLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ProgressLoading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

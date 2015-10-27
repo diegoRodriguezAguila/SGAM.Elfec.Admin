@@ -147,6 +147,10 @@
       <Project>{57df609e-1c63-49d4-a290-345781183faa}</Project>
       <Name>SGAM.Elfec.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SGAM.Elfec.Settings\SGAM.Elfec.Settings.csproj">
+      <Project>{9b2cc177-53e8-4ec6-ab5a-45fef33f0099}</Project>
+      <Name>SGAM.Elfec.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

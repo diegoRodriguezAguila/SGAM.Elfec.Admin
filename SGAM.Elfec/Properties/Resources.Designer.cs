@@ -520,6 +520,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subiendo archivo APK.....
+        /// </summary>
+        public static string MsgUploadingApk {
+            get {
+                return ResourceManager.GetString("MsgUploadingApk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exito!.
         /// </summary>
         public static string TitleSuccess {

@@ -2,7 +2,6 @@
 using RestEase;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
-using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -16,14 +15,9 @@ namespace SGAM.Elfec.DataAccess.WebServices
     /// </summary>
     public class RestEndpointFactory
     {
-        /// <summary>
-        /// La URL de los web services de SGAM, si fuera necesario conectar a otro webservice
-        ///  se puede pasar otra URL
-        /// </summary>
-        public const String BASE_URL = "http://192.168.50.56:3000/api/";
 
         /// <summary>
-        /// Crea un endpoint Rest  con la url por defecto <see cref="BASE_URL"/>
+        /// Crea un endpoint Rest  con la url por defecto <see cref="Settings.Properties.SGAM.Default.BaseApiURL"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>Punto de acceso al webservice rest</returns>
@@ -34,7 +28,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
                 ContractResolver = new SnakeCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
             };
-            return RestClient.For<T>(BASE_URL, PutHeaders, settings);
+            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, PutHeaders, settings);
         }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously

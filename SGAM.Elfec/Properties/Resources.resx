@@ -288,4 +288,7 @@
   <data name="MsgLoadingApkShort" xml:space="preserve">
     <value>Obteniendo información del APK…</value>
   </data>
+  <data name="MsgUploadingApk" xml:space="preserve">
+    <value>Subiendo archivo APK....</value>
+  </data>
 </root>

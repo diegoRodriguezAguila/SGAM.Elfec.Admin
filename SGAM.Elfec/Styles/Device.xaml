@@ -43,8 +43,7 @@
         <StackPanel Height="84"  Width="200" Background="{Binding Status, 
                     Converter={StaticResource DeviceStatusConverter}}" Opacity="{Binding Status, 
                     Converter={StaticResource DeviceStatusOpacityConverter}}" Orientation="Horizontal" >
-            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64" 
-                   RenderOptions.EdgeMode="Aliased" SnapsToDevicePixels="True" UseLayoutRounding="True"
+            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64"  SnapsToDevicePixels="True"
                    Source="{Binding IconUrl, Converter={StaticResource RelativeToAbsoluteUrlConverter}}" />
             <StackPanel  Width="106" VerticalAlignment="Center" Margin="5,10,10,10">
                 <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}" />

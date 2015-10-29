@@ -9,11 +9,6 @@
         Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
         xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
         Title="SGAM Elfec" Height="480" Width="720">
-    <Fluent:RibbonWindow.Resources>
-        <ResourceDictionary>
-            <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
-        </ResourceDictionary>
-    </Fluent:RibbonWindow.Resources>
     <Grid Margin="-1" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -86,7 +81,6 @@
                              HorizontalAlignment="Right" VerticalAlignment="Top" />
         <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
             <TextBlock Name="TxtStatus" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="White" Text="{x:Static Res:Resources.LblStatusbarDefault}" />
-            <Separator />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                 <sgam:StatusBarButton Name="BtnShowDevices" IsSelected="True" Click="BtnShowDevices_Click" Width="30">
                     <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/Resources/Phone.png" />

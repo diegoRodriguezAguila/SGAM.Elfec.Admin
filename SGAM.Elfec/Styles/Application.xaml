@@ -3,7 +3,6 @@
                     xmlns:res="clr-namespace:SGAM.Elfec.Properties"
                     xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
                     xmlns:local="clr-namespace:SGAM.Elfec">
-    <converters:RelativeToAbsoluteUrlConverter x:Key="RelativeToAbsoluteUrlConverter" />
     <!--Application Context Menu-->
 
     <ContextMenu x:Key="ApplicationItemContextMenu" >
@@ -31,7 +30,7 @@
 
     <DataTemplate x:Key="ApplicationItemTemplate" >
         <StackPanel Height="84" Width="210" Orientation="Horizontal" >
-            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64" Source="{Binding IconUrl, Converter={StaticResource RelativeToAbsoluteUrlConverter}}"
+            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64" Source="{Binding IconUrl}"
                   SnapsToDevicePixels="True" />
             <StackPanel  Width="116" VerticalAlignment="Center" Margin="5,10,10,10">
                 <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" Name="Name" Text="{Binding Name}"

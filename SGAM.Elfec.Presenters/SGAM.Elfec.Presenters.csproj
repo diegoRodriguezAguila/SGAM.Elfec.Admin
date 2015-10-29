@@ -74,10 +74,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowApplicationsPresenter.cs" />
     <Compile Include="ShowDevicesPresenter.cs" />
+    <Compile Include="ShowUsersPresenter.cs" />
     <Compile Include="Views\IAddNewApplicationView.cs" />
     <Compile Include="Views\IAuthorizeDeviceView.cs" />
     <Compile Include="Views\ILoadingContentErrorView.cs" />
     <Compile Include="Views\IShowDevicesView.cs" />
+    <Compile Include="Views\IShowUsersView.cs" />
     <Compile Include="Views\IWaitingView.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\IShowApplicationsView.cs" />

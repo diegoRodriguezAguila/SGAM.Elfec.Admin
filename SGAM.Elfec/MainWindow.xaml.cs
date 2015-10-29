@@ -37,22 +37,16 @@ namespace SGAM.Elfec
 
         private void BtnShowApps_Click(object sender, RoutedEventArgs e)
         {
-            BtnShowDevices.IsSelected = false;
-            BtnShowUsers.IsSelected = false;
             ChangeToApplicationsView();
         }
 
         private void BtnShowDevices_Click(object sender, RoutedEventArgs e)
         {
-            BtnShowApps.IsSelected = false;
-            BtnShowUsers.IsSelected = false;
             ChangeToDevicesView();
         }
 
         private void BtnShowUsers_Click(object sender, RoutedEventArgs e)
         {
-            BtnShowApps.IsSelected = false;
-            BtnShowDevices.IsSelected = false;
             ChangeToAllDeviceGroupsView();
         }
 
@@ -84,6 +78,9 @@ namespace SGAM.Elfec
 
         public void ChangeToApplicationsView(bool force = false)
         {
+            BtnShowApps.IsSelected = true;
+            BtnShowDevices.IsSelected = false;
+            BtnShowUsers.IsSelected = false;
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowApplications);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowApplications());
@@ -91,6 +88,10 @@ namespace SGAM.Elfec
 
         public void ChangeToDevicesView(bool force = false)
         {
+
+            BtnShowApps.IsSelected = false;
+            BtnShowDevices.IsSelected = true;
+            BtnShowUsers.IsSelected = false;
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowDevices);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowDevices());
@@ -98,6 +99,9 @@ namespace SGAM.Elfec
 
         public void ChangeToAllDeviceGroupsView(bool force = false)
         {
+            BtnShowApps.IsSelected = false;
+            BtnShowDevices.IsSelected = false;
+            BtnShowUsers.IsSelected = true;
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowUsers);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowUsers());

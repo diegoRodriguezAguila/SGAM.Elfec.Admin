@@ -8,12 +8,10 @@ using System.Threading;
 
 namespace SGAM.Elfec.Presenters
 {
-    public class ShowApplicationsPresenter : ObservableObject
+    public class ShowApplicationsPresenter : BasePresenter<IShowApplicationsView>
     {
-        public IShowApplicationsView View { get; set; }
-        public ShowApplicationsPresenter(IShowApplicationsView view)
+        public ShowApplicationsPresenter(IShowApplicationsView view) : base(view)
         {
-            this.View = view;
             LoadAllApplications();
         }
         #region Private Attributes

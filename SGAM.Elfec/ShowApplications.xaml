@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
              mc:Ignorable="d" 
              Background="White"
              Tag="{x:Static Res:Resources.TitleApplications}"
              d:DesignHeight="300" d:DesignWidth="500">
     <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
         <ListView Name="ListViewApplications" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Applications}"
-                    ItemContainerStyle="{StaticResource ApplicationItemOptionStyle}" ItemTemplate="{StaticResource ApplicationItemTemplate}" />
+                 behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"   ItemContainerStyle="{StaticResource ApplicationItemOptionStyle}" ItemTemplate="{StaticResource ApplicationItemTemplate}" />
     </Controls:TransitioningContentControl>
 </UserControl>

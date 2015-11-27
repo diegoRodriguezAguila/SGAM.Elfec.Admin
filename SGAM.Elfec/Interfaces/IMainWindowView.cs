@@ -2,7 +2,7 @@
 
 namespace SGAM.Elfec.Interfaces
 {
-    public interface IMainWindowView
+    public interface IMainWindowService
     {
         void CloseWindow();
         void ChangeTitle(string title);

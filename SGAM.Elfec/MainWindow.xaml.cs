@@ -2,21 +2,22 @@
 using SGAM.Elfec.Interfaces;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SGAM.Elfec
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : RibbonWindow, IMainWindowView
+    public partial class MainWindow : RibbonWindow, IMainWindowService
     {
         public MainWindow()
         {
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
+            _isFirstActivated = true;        
             ChangeToDevicesView();
-            _isFirstActivated = true;
-            //Activated += (s, e) => { ShowLoginDialog(); };
+            // Activated += (s, e) => { ShowLoginDialog(); };
         }
 
         #region Private Variables
@@ -61,6 +62,22 @@ namespace SGAM.Elfec
                 loginDialog.UserLoggedIn += (s, u) => { ChangeToDevicesView(); };
                 loginDialog.ShowDialog();
             }
+        }
+
+        /// <summary>
+        /// Realiza un binding del tag de un control de UI al titulo de la ventana principal
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="view"></param>
+        private void BindTitle<T>(T view) where T : Control
+        {
+            BindingOperations.ClearBinding(this, Window.TitleProperty);
+            Binding binding = new Binding();
+            binding.StringFormat = "{0} - " + MAIN_TITLE;
+            binding.TargetNullValue = MAIN_TITLE;
+            binding.Path = new PropertyPath(Control.TagProperty);
+            binding.Source = view;
+            BindingOperations.SetBinding(this, Window.TitleProperty, binding);
         }
 
         #endregion
@@ -111,7 +128,7 @@ namespace SGAM.Elfec
         {
             MainWindowService.Instance.Navigation.Push(view);
             InnerContent.Content = view;
-            ChangeTitle(view.Tag as string);
+            BindTitle(view);
         }
 
         public void GoBack()
@@ -121,7 +138,7 @@ namespace SGAM.Elfec
                 MainWindowService.Instance.Navigation.Pop();
                 var view = MainWindowService.Instance.Navigation.Peek();
                 InnerContent.Content = view;
-                ChangeTitle(view.Tag as string);
+                BindTitle(view);
             }
         }
 

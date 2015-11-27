@@ -21,7 +21,7 @@ namespace SGAM.Elfec
             }
         }
 
-        public IMainWindowView MainWindowView { get; set; }
+        public IMainWindowService MainWindowView { get; set; }
 
         public Control CurrentView
         {

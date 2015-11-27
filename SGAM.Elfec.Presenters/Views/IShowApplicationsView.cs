@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SGAM.Elfec.Model;
 
 namespace SGAM.Elfec.Presenters.Views
 {
     public interface IShowApplicationsView : ILoadingContentErrorView
     {
-        void ViewAppDetail(int appId);
+        void ShowApplicationDetails(Application application);
     }
 }

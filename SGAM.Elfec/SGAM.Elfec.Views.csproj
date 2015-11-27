@@ -121,6 +121,7 @@
     <Compile Include="AuthorizeDevice.xaml.cs">
       <DependentUpon>AuthorizeDevice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\DoubleClickSelectorItem.cs" />
     <Compile Include="Behaviors\Masking.cs" />
     <Compile Include="Behaviors\TextBoxInputBehavior.cs" />
     <Compile Include="Converters\ApiStatusToStringConverter.cs" />
@@ -138,6 +139,9 @@
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowService.cs" />
+    <Compile Include="ShowApplicationDetails.xaml.cs">
+      <DependentUpon>ShowApplicationDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShowApplications.xaml.cs">
       <DependentUpon>ShowApplications.xaml</DependentUpon>
     </Compile>
@@ -183,6 +187,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\SVG\IconsResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowApplicationDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

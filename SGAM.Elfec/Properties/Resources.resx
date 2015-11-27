@@ -315,4 +315,7 @@
   <data name="TitleUsers" xml:space="preserve">
     <value>Usuarios</value>
   </data>
+  <data name="BtnAddUser" xml:space="preserve">
+    <value>Agregar nuevo usuario</value>
+  </data>
 </root>

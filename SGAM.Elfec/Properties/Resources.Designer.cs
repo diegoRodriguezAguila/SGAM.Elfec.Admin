@@ -70,6 +70,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar nuevo usuario.
+        /// </summary>
+        public static string BtnAddUser {
+            get {
+                return ResourceManager.GetString("BtnAddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autorizar.
         /// </summary>
         public static string BtnAuthorize {

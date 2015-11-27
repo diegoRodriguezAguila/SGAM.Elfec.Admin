@@ -1,10 +1,12 @@
 ﻿using SGAM.Elfec.BusinessLogic;
+using SGAM.Elfec.Commands;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -26,6 +28,16 @@ namespace SGAM.Elfec.Presenters
             {
                 _applications = value;
                 RaisePropertyChanged("Applications");
+            }
+        }
+        public ICommand ShowApplicationDetailsCommand
+        {
+            get
+            {
+                return new ListItemCommand<Application>((app) =>
+                {
+                    View.ShowApplicationDetails(app);
+                });
             }
         }
         #endregion

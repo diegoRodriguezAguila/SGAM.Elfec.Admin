@@ -210,7 +210,7 @@
     </Canvas>
     
     <!-- UploadApp -->
-        <Canvas x:Key="UploadApp" Width="32" Height="32">
+    <Canvas x:Key="UploadApp"  x:Shared="False" Width="32" Height="32">
             <Canvas.Resources/>
             <!--Unknown tag: sodipodi:namedview-->
             <!--Unknown tag: metadata-->
@@ -361,5 +361,17 @@
             </Canvas>
         </Canvas>
 
-
+    
+    <!-- AddUser -->
+    <Canvas Name="AddUser" x:Key="AddUser"  x:Shared="False" Width="32" Height="32">
+            <Canvas.RenderTransform>
+                <TranslateTransform X="0" Y="0"/>
+            </Canvas.RenderTransform>
+            <Canvas.Resources/>
+            <!--Unknown tag: metadata-->
+            <!--Unknown tag: sodipodi:namedview-->
+            <Path Fill="#FF808080" Data=" M 11.3 2.4 C 15.4 0.7 20.5 4.6 19.9 9.1 C 19.7 14.0 13.0 17.0 9.4 13.5 C 5.4 10.6 6.7 3.8 11.3 2.4 Z" />
+            <Path Fill="#FF808080" Data="m 3.2 19.1 c 1.1 -2.5 4.1 -2.5 6.4 -3.2 1.2 2.3 2.5 4.6 3.8 6.8 1.5 -2.1 2.9 -4.4 4 -6.8 2.1 0.4 5.763596 1.731779 7.354237 3.235593 -0.42972 -0.0027 -1.517442 -0.03824 -1.802761 -0.04364 0 0 -0.0077 0.07637 -0.008 0.111 C 22.931653 20.265339 22.925887 20.800086 22.9 23 c -1.3 0 -2.6 0 -3.9 0 0 1.9 0 3.9 0 5.8 C 13.535355 29.201256 8.5298097 29.134315 3.5 27.5 0.8 25.6 2.2 21.6 3.2 19.1 z" />
+            <Path Fill="#FF76A797" Data=" M 24.0 20.0 C 25.3 20.0 26.7 20.0 28.0 20.0 C 28.0 21.3 28.0 22.7 28.0 24.0 C 29.3 24.0 30.7 24.0 32.0 24.0 L 32.0 28.0 C 30.7 28.0 29.3 28.0 28.0 28.0 C 28.0 29.3 28.0 30.7 28.0 32.0 L 24.0 32.0 C 24.0 30.7 24.0 29.3 24.0 28.0 C 22.7 28.0 21.3 28.0 20.0 28.0 C 20.0 26.7 20.0 25.3 20.0 24.0 C 21.3 24.0 22.7 24.0 24.0 24.0 C 24.0 22.7 24.0 21.3 24.0 20.0 Z" />
+        </Canvas>
 </ResourceDictionary>

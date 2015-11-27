@@ -26,12 +26,15 @@ namespace SGAM.Elfec
             DataContext = new ShowApplicationsPresenter(this);
         }
 
-        public void ViewAppDetail(int appId)
-        {
-            throw new NotImplementedException();
-        }
+
 
         #region Interface Methods
+
+        public void ShowApplicationDetails(Model.Application application)
+        {
+            var showAppDetails = new ShowApplicationDetails(application);
+            MainWindowService.Instance.MainWindowView.ChangeToView(showAppDetails);
+        }
 
         public void OnLoadingData(bool isRefresh = false)
         {

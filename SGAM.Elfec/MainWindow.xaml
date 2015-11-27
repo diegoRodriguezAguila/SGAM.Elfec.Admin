@@ -50,12 +50,12 @@
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabUsers}">
                 <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button Name="BtnAddUser" ToolTip="{x:Static Res:Resources.BtnAddApp}" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddApp}" >
+                    <Fluent:Button Name="BtnAddUser" ToolTip="{x:Static Res:Resources.BtnAddUser}" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddUser}" >
                         <Fluent:Button.LargeIcon>
-                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
+                            <Viewbox Child="{StaticResource AddUser}" />
                         </Fluent:Button.LargeIcon>
                         <Fluent:Button.Icon>
-                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
+                            <Viewbox Child="{StaticResource AddUser}" />
                         </Fluent:Button.Icon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>

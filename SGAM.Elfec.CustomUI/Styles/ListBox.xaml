@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+    </Style>
+    <Style TargetType="{x:Type ListBoxItem}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueButtonBorderBrush}" />
+        <Setter Property="Padding" Value="4,2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- Trun off default selection-->
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="Border" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"                          
+                            Margin="{TemplateBinding Margin}"
+                            Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
+                        </ContentPresenter>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="Border"
+                                    Value="0.5"/>
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Background" Value="{StaticResource BlueButtonSelectedBrush}" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True" >
+                            <Setter Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

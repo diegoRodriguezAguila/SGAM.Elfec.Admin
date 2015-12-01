@@ -262,10 +262,10 @@
     <value>Nombre aplicación:</value>
   </data>
   <data name="LblApplicationPackage" xml:space="preserve">
-    <value>Nombre paquete:</value>
+    <value>Nombre paquete</value>
   </data>
   <data name="LblApplicationVersion" xml:space="preserve">
-    <value>Versión:</value>
+    <value>Versión</value>
   </data>
   <data name="TooltipApplicationIcon" xml:space="preserve">
     <value>Icono de la aplicación</value>
@@ -317,5 +317,14 @@
   </data>
   <data name="BtnAddUser" xml:space="preserve">
     <value>Agregar nuevo usuario</value>
+  </data>
+  <data name="LblApplicationLatestVersion" xml:space="preserve">
+    <value>Última versión</value>
+  </data>
+  <data name="LblApplicationVersions" xml:space="preserve">
+    <value>Versiones</value>
+  </data>
+  <data name="LblApplicationVersionCode" xml:space="preserve">
+    <value>Código de versión</value>
   </data>
 </root>

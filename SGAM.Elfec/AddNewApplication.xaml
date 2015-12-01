@@ -76,10 +76,12 @@
                 <Label Grid.Row="1" VerticalContentAlignment="Center" Margin="0,0,0,10" Content="{x:Static Res:Resources.LblApplicationName}" />
                 <TextBox IsReadOnly="True" Name="TxtName" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Text="{Binding NewApplication.Name}" MaxLength="255" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="2" Content="{x:Static Res:Resources.LblApplicationPackage}"  />
-                <TextBox Grid.Row="2" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.Package}"  Margin="0,0,0,10" />
+                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="2" Content="{x:Static Res:Resources.LblApplicationPackage}"
+                        ContentStringFormat='{}{0}:'/>
+                <TextBox Grid.Row="2" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.Package}" Margin="0,0,0,10" />
                 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblApplicationVersion}"  />
+                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblApplicationVersion}" 
+                        ContentStringFormat='{}{0}:'/>
                 <TextBox Grid.Row="3" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.LatestVersion}" Margin="0,0,0,10" />
 
                 <Button Grid.Row="4" Name="BtnUploadApp" IsDefault="True" Command="{Binding UploadApplicationCommand}"

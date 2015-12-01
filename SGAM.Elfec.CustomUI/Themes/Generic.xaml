@@ -13,6 +13,7 @@
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/BottomBar.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ScrollBar.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListView.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
     </ResourceDictionary.MergedDictionaries>

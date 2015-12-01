@@ -5,10 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SGAM.Elfec"
              mc:Ignorable="d" 
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              Background="White"
              Tag="{Binding Application.Name}"
              d:DesignHeight="350" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <TextBlock Text="{Binding Application.Name}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
+                <Button.Content>
+                    <Viewbox Height="18" Child="{StaticResource Back}"  />
+                </Button.Content>
+            </Button>
+            <Image Height="64" Margin="20,5,5,5"  VerticalAlignment="Center" Source="{Binding Application.IconUrl}"
+                  SnapsToDevicePixels="True" />
+            <sgam:SelectableTextBlock Text="{Binding Application.Name}" FontSize="26" VerticalContentAlignment="Center"
+               FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
+        </StackPanel>
+        <ScrollViewer Margin="20,0,0,0" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+            <StackPanel Orientation="Vertical" Name="AuthPanel" Margin="0,0,0,40" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblApplicationPackage}" />
+                <sgam:SelectableTextBlock Text="{Binding Application.Package}" />
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblApplicationLatestVersion}" />
+                <sgam:SelectableTextBlock Text="{Binding Application.LatestVersion}" />
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblApplicationVersionCode}" />
+                <sgam:SelectableTextBlock Text="{Binding Application.LatestVersionCode}" />
+                <TextBlock FontSize="11" Margin="0,10,0,2" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblApplicationVersions}" />
+                <ListBox Name="ListBoxVersions" BorderBrush="{StaticResource BlueButtonBorderBrush}" ItemsSource="{Binding Application.AppVersions}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Version}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

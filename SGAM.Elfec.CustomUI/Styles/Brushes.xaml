@@ -29,6 +29,7 @@
     <SolidColorBrush x:Key="BlueButtonOverBrush" Color="{StaticResource MainColor}" Opacity="0.12" />
     <SolidColorBrush x:Key="BlueButtonPressedBrush" Color="{StaticResource MainColor}" Opacity="0.3" />
     <SolidColorBrush x:Key="BlueButtonSelectedBrush" Color="{StaticResource MainColor}" Opacity="0.22" />
+    <SolidColorBrush x:Key="TextFormGrayBrush" Color="#646464" />
     <SolidColorBrush x:Key="IconBrush" Color="#777777" />
     <SolidColorBrush x:Key="IconOverBrush" Color="#3E6DB5" />
     <SolidColorBrush x:Key="IconPressedBrush" Color="#19478A" />

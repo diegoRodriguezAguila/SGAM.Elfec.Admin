@@ -1,6 +1,7 @@
 ﻿using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -32,5 +33,12 @@ namespace SGAM.Elfec
             throw new NotImplementedException();
         }
         #endregion
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+            MainWindowService.Instance.MainWindowView.GoBack();
+        }
+
     }
 }

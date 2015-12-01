@@ -9,15 +9,18 @@
         <Setter Property="Background" Value="White" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="BorderBrush" Value="DimGray" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Height" Value="32" />
+        <Setter Property="Padding" Value="5,0,5,0" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border x:Name="Border" SnapsToDevicePixels="True" Background="White"
-                        Padding="5,0,5,0" BorderBrush="{StaticResource TextBoxBorderBrush}" BorderThickness="1" CornerRadius="0">
+                    <Border x:Name="Border" SnapsToDevicePixels="True" Background="{TemplateBinding Background}"
+                       BorderBrush="{StaticResource TextBoxBorderBrush}" 
+                            Padding="{TemplateBinding Padding}"
+                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
                         <ScrollViewer x:Name="PART_ContentHost" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -36,5 +39,14 @@
         </Setter>
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
 
+    </Style>
+
+    <Style TargetType="{x:Type sgam:SelectableTextBlock}" >
+        <Setter Property="Padding" Value="-1,0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontFamily" Value="Segoe UI Semilight" />
+        <Setter Property="FontSize" Value="22" />
     </Style>
 </ResourceDictionary>

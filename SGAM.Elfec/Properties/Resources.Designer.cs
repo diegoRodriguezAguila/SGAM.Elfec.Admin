@@ -178,6 +178,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Última versión.
+        /// </summary>
+        public static string LblApplicationLatestVersion {
+            get {
+                return ResourceManager.GetString("LblApplicationLatestVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre aplicación:.
         /// </summary>
         public static string LblApplicationName {
@@ -187,7 +196,7 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre paquete:.
+        ///   Looks up a localized string similar to Nombre paquete.
         /// </summary>
         public static string LblApplicationPackage {
             get {
@@ -196,11 +205,29 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Versión:.
+        ///   Looks up a localized string similar to Versión.
         /// </summary>
         public static string LblApplicationVersion {
             get {
                 return ResourceManager.GetString("LblApplicationVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Código de versión.
+        /// </summary>
+        public static string LblApplicationVersionCode {
+            get {
+                return ResourceManager.GetString("LblApplicationVersionCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Versiones.
+        /// </summary>
+        public static string LblApplicationVersions {
+            get {
+                return ResourceManager.GetString("LblApplicationVersions", resourceCulture);
             }
         }
         

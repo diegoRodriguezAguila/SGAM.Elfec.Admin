@@ -77,6 +77,18 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Assisticant, Version=2.3.0.0, Culture=neutral, PublicKeyToken=19e83a8289e31a8f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Assisticant.1.1.4\lib\net45\Assisticant.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Assisticant.Facades, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8693a7693e4d4e55, processorArchitecture=MSIL">
+      <HintPath>..\packages\Assisticant.Facades.1.1.0.0\lib\net45\Assisticant.Facades.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Assisticant.XAML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=19e83a8289e31a8f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Assisticant.1.1.4\lib\net45\Assisticant.XAML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fluent, Version=3.5.1.198, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
       <HintPath>..\packages\Fluent.Ribbon.3.5.1.198\lib\net45\Fluent.dll</HintPath>
       <Private>True</Private>
@@ -88,6 +100,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Fluent.Ribbon.3.5.1.198\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>

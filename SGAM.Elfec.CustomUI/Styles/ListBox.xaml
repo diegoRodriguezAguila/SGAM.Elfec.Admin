@@ -34,19 +34,85 @@
                             <Setter Property="Opacity" TargetName="Border"
                                     Value="0.5"/>
                         </Trigger>
-
                         <Trigger Property="IsSelected" Value="True" >
                             <Setter Property="Background" Value="{StaticResource BlueButtonSelectedBrush}" />
                         </Trigger>
-
                         <Trigger Property="IsMouseOver" Value="True" >
                             <Setter Property="Background" Value="{StaticResource BlueButtonOverBrush}" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 
+    </Style>
+    
+    <!-- Blue ListBox -->
+
+
+    <Style x:Key="BlueListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="{StaticResource BackgroundGrayBrush}" />
+        <Setter Property="Padding" Value="4,2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- Trun off default selection-->
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="Border" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"        
+                            Margin="{TemplateBinding Margin}"
+                            Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
+                        </ContentPresenter>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="Border"
+                                    Value="0.5"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Background" Value="{StaticResource MainColorBrush}" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True" >
+                            <Setter Property="Background" Value="{StaticResource BlueButtonPressedBrush}" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="{StaticResource MainColorBrush}" />
+                            <Setter Property="Foreground" Value="White" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    <Style x:Key="BlueListBox" TargetType="{x:Type ListBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource BlueListBoxItem}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundBorderGrayBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="{StaticResource BackgroundGrayBrush}" />
     </Style>
 
 </ResourceDictionary>

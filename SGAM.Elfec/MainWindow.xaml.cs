@@ -17,7 +17,7 @@ namespace SGAM.Elfec
             MainWindowService.Instance.MainWindowView = this;
             _isFirstActivated = true;
             ChangeToDevicesView();
-            //Activated += (s, e) => { ShowLoginDialog(); };
+            // Activated += (s, e) => { ShowLoginDialog(); };
         }
 
         #region Private Variables
@@ -126,9 +126,13 @@ namespace SGAM.Elfec
 
         public void ChangeToView<T>(T view) where T : Control
         {
-            MainWindowService.Instance.Navigation.Push(view);
-            InnerContent.Content = view;
-            BindTitle(view);
+            if (MainWindowService.Instance.Navigation.Count == 0
+                || !(MainWindowService.Instance.Navigation.Peek() is T))
+            {
+                MainWindowService.Instance.Navigation.Push(view);
+                InnerContent.Content = view;
+                BindTitle(view);
+            }
         }
 
         public void GoBack()

@@ -44,4 +44,6 @@
     <SolidColorBrush x:Key="TextBoxBorderBrush" Color="#BABABA" />
     <SolidColorBrush x:Key="TextBoxBorderOverBrush" Color="#8F8F8F" />
     <SolidColorBrush x:Key="TextBoxBorderFocusedBrush" Color="#5C5C5C" />
+    <SolidColorBrush x:Key="BackgroundGrayBrush" Color="#F1F1F1" />
+    <SolidColorBrush x:Key="BackgroundBorderGrayBrush" Color="#D6D6D6" />
 </sgam:SharedResourceDictionary>

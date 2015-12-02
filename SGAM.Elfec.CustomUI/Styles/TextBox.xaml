@@ -42,11 +42,12 @@
     </Style>
 
     <Style TargetType="{x:Type sgam:SelectableTextBlock}" >
-        <Setter Property="Padding" Value="-1,0" />
+        <Setter Property="Padding" Value="-2,0" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontFamily" Value="Segoe UI Semilight" />
         <Setter Property="FontSize" Value="22" />
+        <Setter Property="IsTabStop" Value="False" />
     </Style>
 </ResourceDictionary>

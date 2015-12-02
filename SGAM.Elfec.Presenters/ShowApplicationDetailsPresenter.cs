@@ -1,5 +1,6 @@
 ﻿using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters.Views;
+using System.Linq;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -13,6 +14,7 @@ namespace SGAM.Elfec.Presenters
 
         #region Private Attributes
         private Application _application;
+        private AppVersion _selectedVersion;
         #endregion
 
         #region Properties
@@ -22,7 +24,19 @@ namespace SGAM.Elfec.Presenters
             set
             {
                 _application = value;
+                if (_application != null && _application.AppVersions.Count > 0)
+                    SelectedVersion = _application.AppVersions.FirstOrDefault();
                 RaisePropertyChanged("Application");
+            }
+        }
+
+        public AppVersion SelectedVersion
+        {
+            get { return _selectedVersion; }
+            set
+            {
+                _selectedVersion = value;
+                RaisePropertyChanged("SelectedVersion");
             }
         }
 

@@ -40,5 +40,17 @@
             </StackPanel>
         </StackPanel>
     </DataTemplate>
+    
+    <!-- Application Version ItemTemplate-->
+    <DataTemplate x:Key="AppVersionItemTemplate" >
+        <TextBlock Padding="7,5" FontFamily="Segoe UI Semilight" FontSize="15" >
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} ({1})">
+                    <Binding Path="Version" />
+                    <Binding Path="VersionCode" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </DataTemplate>
 
 </ResourceDictionary>

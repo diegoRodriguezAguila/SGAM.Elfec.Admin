@@ -327,4 +327,16 @@
   <data name="LblApplicationVersionCode" xml:space="preserve">
     <value>Código de versión</value>
   </data>
+  <data name="MsgLoadingUsers" xml:space="preserve">
+    <value>Obteniendo información de usuarios…</value>
+  </data>
+  <data name="ApiStatusDisabled" xml:space="preserve">
+    <value>Deshabilitado</value>
+  </data>
+  <data name="ApiStatusEnabled" xml:space="preserve">
+    <value>Habilitado</value>
+  </data>
+  <data name="LblApplicationStatus" xml:space="preserve">
+    <value>Estado</value>
+  </data>
 </root>

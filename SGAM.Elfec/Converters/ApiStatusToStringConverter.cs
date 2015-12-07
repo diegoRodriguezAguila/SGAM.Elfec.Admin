@@ -13,9 +13,9 @@ namespace SGAM.Elfec.Converters
             switch (status)
             {
                 case ApiStatus.Disabled:
-                    return Properties.Resources.DeviceStatusUnauthorized;
+                    return Properties.Resources.ApiStatusDisabled;
                 case ApiStatus.Enabled:
-                    return Properties.Resources.DeviceStatusAuthorized;
+                    return Properties.Resources.ApiStatusEnabled;
             }
             return null;
         }

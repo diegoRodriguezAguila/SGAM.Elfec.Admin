@@ -37,14 +37,15 @@
             <Label Content="{x:Static Res:Resources.LblAddNewApp}" FontSize="26" VerticalContentAlignment="Center"
                    FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
         </StackPanel>
-        <ScrollViewer Margin="20,0,0,0" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
-            <Grid Name="AuthPanel" Margin="0,0,0,40" VerticalAlignment="Top" HorizontalAlignment="Left" >
+        <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+            <Grid Name="AuthPanel" Margin="20,0,0,20" VerticalAlignment="Top" HorizontalAlignment="Left" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="260" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -83,8 +84,10 @@
                 <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblApplicationVersion}" 
                         ContentStringFormat='{}{0}:'/>
                 <TextBox Grid.Row="3" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.LatestVersion}" Margin="0,0,0,10" />
-
-                <Button Grid.Row="4" Name="BtnUploadApp" IsDefault="True" Command="{Binding UploadApplicationCommand}"
+                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="4" Content="{x:Static Res:Resources.LblApplicationVersionCode}" 
+                        ContentStringFormat='{}{0}:'/>
+                <TextBox Grid.Row="4" IsReadOnly="True" Grid.Column="1" Text="{Binding NewApplication.LatestVersionCode}" Margin="0,0,0,10" />
+                <Button Grid.Row="5" Name="BtnUploadApp" IsDefault="True" Command="{Binding UploadApplicationCommand}"
                         MaxWidth="95" IsEnabled="{Binding Path=NewApplication, Converter={StaticResource NullToIsEnabledConverter}}"
                         Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                         FontWeight="SemiBold" HorizontalAlignment="Left" >
@@ -110,7 +113,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Controls:TransitioningContentControl  Grid.Row="4" Grid.Column="1"
+                <Controls:TransitioningContentControl  Grid.Row="5" Grid.Column="1"
                                                        Name="TransitioningUpload" VerticalContentAlignment="Center" Transition="Left" />
             </Grid>
         </ScrollViewer>

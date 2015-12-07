@@ -7,12 +7,14 @@
              mc:Ignorable="d" 
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              Background="White"
              Tag="{Binding Application.Name}"
              d:DesignHeight="350" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
+            <converters:ApiStatusToStringConverter x:Key="AppStatusConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -68,6 +70,9 @@
                     <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
                                Text="{x:Static Res:Resources.LblApplicationVersionCode}" />
                     <sgam:SelectableTextBlock Text="{Binding SelectedVersion.VersionCode}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblApplicationStatus}" />
+                    <sgam:SelectableTextBlock  Text="{Binding SelectedVersion.Status, Converter={StaticResource AppStatusConverter}}" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>

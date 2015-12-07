@@ -147,6 +147,8 @@
     <Compile Include="Converters\NullToIsEnabledConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\UriToCachedImageConverter.cs" />
+    <Compile Include="Converters\UserStatusToBackgroundConverter.cs" />
+    <Compile Include="Converters\UserStatusToOpacityConverter.cs" />
     <Compile Include="Interfaces\IMainWindowView.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
@@ -224,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Device.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -101,6 +101,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="Enums\ApiStatus.cs" />
     <Compile Include="Enums\DeviceStatus.cs" />
+    <Compile Include="Enums\UserStatus.cs" />
     <Compile Include="Exceptions\ApiMultipartException.cs" />
     <Compile Include="Exceptions\PermissionException.cs" />
     <Compile Include="Exceptions\ServerConnectException.cs" />

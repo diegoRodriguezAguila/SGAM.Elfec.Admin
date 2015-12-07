@@ -91,6 +91,7 @@ namespace SGAM.Elfec.BusinessLogic
                     Package = apkInfo.packageName,
                     Status = ApiStatus.Enabled,
                     LatestVersion = apkInfo.versionName,
+                    LatestVersionCode = Convert.ToInt32(apkInfo.versionCode),
                     IconUrl = new Uri(iconPath),
                     AppVersions = new List<AppVersion>()
                 {

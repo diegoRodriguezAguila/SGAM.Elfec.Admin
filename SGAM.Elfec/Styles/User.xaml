@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+                    xmlns:res="clr-namespace:SGAM.Elfec.Properties"
+                    xmlns:local="clr-namespace:SGAM.Elfec">
+    <converters:UserStatusToOpacityConverter x:Key="UserStatusToOpacityConverter" />
+    <converters:UserStatusToBackgroundConverter x:Key="UserStatusToBackgroundConverter" />
+
+    <!--UserItemOptionStyle ListItem Style-->
+    <Style x:Key="UserItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
+           TargetType="ListViewItem">
+    </Style>
+
+    <!--Device ItemTemplate-->
+
+    <DataTemplate x:Key="UserItemTemplate" >
+        <StackPanel Height="84"  Width="210" Background="{Binding Status, 
+                    Converter={StaticResource UserStatusToBackgroundConverter}}" Opacity="{Binding Status, 
+                    Converter={StaticResource UserStatusToOpacityConverter}}" Orientation="Horizontal" >
+            <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64"  SnapsToDevicePixels="True"
+                   Source="{Binding PhotoUrl}" />
+            <StackPanel  Width="116" VerticalAlignment="Center" Margin="5,10,10,10">
+                <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
+                     <Run Text="{Binding FirstName}" />    
+                     <Run Text="{Binding LastName}" />
+                </TextBlock>
+                <TextBlock FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Text="{Binding Username}" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

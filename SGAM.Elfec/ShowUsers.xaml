@@ -2,13 +2,17 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              Tag="{x:Static Res:Resources.TitleUsers}"
              Background="White"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
              d:DesignHeight="300" d:DesignWidth="500">
-    <Grid>
-            
-    </Grid>
+    <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
+        <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Users}"
+                 behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"   
+                  ItemContainerStyle="{StaticResource UserItemOptionStyle}" ItemTemplate="{StaticResource UserItemTemplate}" />
+    </Controls:TransitioningContentControl>
 </UserControl>

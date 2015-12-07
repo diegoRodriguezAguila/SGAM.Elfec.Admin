@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="SGAM.Elfec.ShowDevices"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             mc:Ignorable="d" 
+             Tag="{x:Static Res:Resources.TitleDevices}"
+             Background="White"
+             d:DesignHeight="300" d:DesignWidth="500">
+    <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
+        <ListView Name="ListViewDevices" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Devices}"
+                    ItemContainerStyle="{StaticResource DeviceItemOptionStyle}" ItemTemplate="{StaticResource DeviceItemTemplate}" />
+    </Controls:TransitioningContentControl>
+</UserControl>

@@ -61,6 +61,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deshabilitado.
+        /// </summary>
+        public static string ApiStatusDisabled {
+            get {
+                return ResourceManager.GetString("ApiStatusDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Habilitado.
+        /// </summary>
+        public static string ApiStatusEnabled {
+            get {
+                return ResourceManager.GetString("ApiStatusEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar nueva aplicación.
         /// </summary>
         public static string BtnAddApp {
@@ -201,6 +219,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblApplicationPackage {
             get {
                 return ResourceManager.GetString("LblApplicationPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string LblApplicationStatus {
+            get {
+                return ResourceManager.GetString("LblApplicationStatus", resourceCulture);
             }
         }
         
@@ -552,6 +579,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgLoadingDevices {
             get {
                 return ResourceManager.GetString("MsgLoadingDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obteniendo información de usuarios….
+        /// </summary>
+        public static string MsgLoadingUsers {
+            get {
+                return ResourceManager.GetString("MsgLoadingUsers", resourceCulture);
             }
         }
         

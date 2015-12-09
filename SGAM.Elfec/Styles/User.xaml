@@ -28,4 +28,20 @@
             </StackPanel>
         </StackPanel>
     </DataTemplate>
+
+    <!--Device UserBlueItemTemplate-->
+
+    <DataTemplate x:Key="UserBlueItemTemplate" >
+        <StackPanel Orientation="Horizontal" >
+            <Image Margin="5" VerticalAlignment="Center"  Width="32" Height="32"  SnapsToDevicePixels="True"
+                   Source="{Binding PhotoUrl}" />
+            <StackPanel  Width="125" VerticalAlignment="Center" Margin="5" >
+                <TextBlock FontSize="12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
+                     <Run Text="{Binding FirstName}" />    
+                     <Run Text="{Binding LastName}" />
+                </TextBlock>
+                <TextBlock FontSize="11" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Username}" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

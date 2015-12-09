@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddNewApplicationPresenter.cs" />
+    <Compile Include="AddNewUserPresenter.cs" />
     <Compile Include="AuthorizeDevicePresenter.cs" />
     <Compile Include="BasePresenter.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="ShowDevicesPresenter.cs" />
     <Compile Include="ShowUsersPresenter.cs" />
     <Compile Include="Views\IAddNewApplicationView.cs" />
+    <Compile Include="Views\IAddNewUserView.cs" />
     <Compile Include="Views\IAuthorizeDeviceView.cs" />
     <Compile Include="Views\ILoadingContentErrorView.cs" />
     <Compile Include="Views\IShowApplicationDetailsView.cs" />

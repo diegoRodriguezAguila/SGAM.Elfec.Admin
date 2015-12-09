@@ -187,6 +187,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar nuevo usuario.
+        /// </summary>
+        public static string LblAddNewUser {
+            get {
+                return ResourceManager.GetString("LblAddNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo APK:.
         /// </summary>
         public static string LblApplicationApkFilename {
@@ -493,11 +502,65 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Área.
+        /// </summary>
+        public static string LblUserCompanyArea {
+            get {
+                return ResourceManager.GetString("LblUserCompanyArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string LblUserEmail {
+            get {
+                return ResourceManager.GetString("LblUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre completo.
+        /// </summary>
+        public static string LblUserFullName {
+            get {
+                return ResourceManager.GetString("LblUserFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario.
         /// </summary>
         public static string LblUsername {
             get {
                 return ResourceManager.GetString("LblUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cargo.
+        /// </summary>
+        public static string LblUserPosition {
+            get {
+                return ResourceManager.GetString("LblUserPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuarios.
+        /// </summary>
+        public static string LblUsers {
+            get {
+                return ResourceManager.GetString("LblUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario.
+        /// </summary>
+        public static string LblUserUsername {
+            get {
+                return ResourceManager.GetString("LblUserUsername", resourceCulture);
             }
         }
         
@@ -723,6 +786,15 @@ namespace SGAM.Elfec.Properties {
         public static string TooltipShowUsers {
             get {
                 return ResourceManager.GetString("TooltipShowUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No registrado.
+        /// </summary>
+        public static string UserStatusNonRegistered {
+            get {
+                return ResourceManager.GetString("UserStatusNonRegistered", resourceCulture);
             }
         }
     }

@@ -339,4 +339,28 @@
   <data name="LblApplicationStatus" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="LblAddNewUser" xml:space="preserve">
+    <value>Agregar nuevo usuario</value>
+  </data>
+  <data name="LblUsers" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="UserStatusNonRegistered" xml:space="preserve">
+    <value>No registrado</value>
+  </data>
+  <data name="LblUserCompanyArea" xml:space="preserve">
+    <value>Área</value>
+  </data>
+  <data name="LblUserEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LblUserFullName" xml:space="preserve">
+    <value>Nombre completo</value>
+  </data>
+  <data name="LblUserPosition" xml:space="preserve">
+    <value>Cargo</value>
+  </data>
+  <data name="LblUserUsername" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
 </root>

@@ -131,6 +131,9 @@
     <Compile Include="AddNewApplication.xaml.cs">
       <DependentUpon>AddNewApplication.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewUser.xaml.cs">
+      <DependentUpon>AddNewUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AuthorizeDevice.xaml.cs">
       <DependentUpon>AuthorizeDevice.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,7 @@
     <Compile Include="Converters\UriToCachedImageConverter.cs" />
     <Compile Include="Converters\UserStatusToBackgroundConverter.cs" />
     <Compile Include="Converters\UserStatusToOpacityConverter.cs" />
+    <Compile Include="Converters\UserStatusToStringConverter.cs" />
     <Compile Include="Interfaces\IMainWindowView.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
@@ -178,6 +182,10 @@
     <Compile Include="Utils\PasswordBoxAssistant.cs" />
     <Compile Include="Utils\ValidationErrorsAssistant.cs" />
     <Page Include="AddNewApplication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

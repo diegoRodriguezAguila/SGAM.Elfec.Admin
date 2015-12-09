@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="SGAM.Elfec.AddNewUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+             xmlns:local="clr-namespace:SGAM.Elfec"
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             mc:Ignorable="d"  
+             Tag="{x:Static Res:Resources.LblAddNewUser}"
+             Background="White"
+             d:DesignHeight="400" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
+                <Button.Content>
+                    <Viewbox Height="18" Child="{StaticResource Back}"  />
+                </Button.Content>
+            </Button>
+            <Viewbox Height="32" Margin="20,0,10,5" Child="{StaticResource AddUser}" />
+            <Label Content="{x:Static Res:Resources.LblAddNewUser}" FontSize="26" VerticalContentAlignment="Center"
+                   FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
+        </StackPanel>
+        <Grid Grid.Row="1"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0,0,45,0" VerticalAlignment="Stretch"  HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0,1,1,0" BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
+                    <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
+                               Background="{StaticResource BackgroundGrayBrush}"
+                               Padding="10,5,0,5"
+                               Text="{x:Static Res:Resources.LblUsers}" />
+                </Border>
+                <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
+                             MinWidth="205" ItemsSource="{Binding Users}" 
+                             SelectedValue="{Binding SelectedUser}"
+                             BorderThickness="0,0,1,0"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.CanContentScroll="False"
+                             ItemTemplate="{StaticResource UserBlueItemTemplate}" />
+            </Grid>
+            <Controls:TransitioningContentControl Grid.Column="1" Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
+                <StackPanel Name="UserInfoPanel" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                        <Image Height="64" VerticalAlignment="Center" Source="{Binding SelectedUser.PhotoUrl}"
+                   SnapsToDevicePixels="True" />
+                        <sgam:SelectableTextBlock FontSize="24" VerticalContentAlignment="Center" Margin="10,0,0,0">
+                            <sgam:SelectableTextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="SelectedUser.FirstName" />
+                                    <Binding Path="SelectedUser.LastName" />
+                                </MultiBinding>
+                            </sgam:SelectableTextBlock.Text>
+                        </sgam:SelectableTextBlock>
+                    </StackPanel>
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblUserUsername}" />
+                    <sgam:SelectableTextBlock Text="{Binding SelectedUser.Username}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblUserEmail}"
+                           Visibility="{Binding SelectedUser.Email, 
+                    Converter={StaticResource NullToVisibilityConverter}}"/>
+                    <sgam:SelectableTextBlock Text="{Binding SelectedUser.Email}"
+                                          Visibility="{Binding SelectedUser.Email, 
+                    Converter={StaticResource NullToVisibilityConverter}}"/>
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Visibility="{Binding SelectedUser.Position, Converter={StaticResource NullToVisibilityConverter}}"
+                               Text="{x:Static Res:Resources.LblUserPosition}" />
+                    <sgam:SelectableTextBlock  Text="{Binding SelectedUser.Position}"
+                           Visibility="{Binding SelectedUser.Position, 
+                    Converter={StaticResource NullToVisibilityConverter}}"/>
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Visibility="{Binding SelectedUser.CompanyArea, 
+                    Converter={StaticResource NullToVisibilityConverter}}"
+                               Text="{x:Static Res:Resources.LblUserCompanyArea}" />
+                    <sgam:SelectableTextBlock  Text="{Binding SelectedUser.CompanyArea}"
+                           Visibility="{Binding SelectedUser.CompanyArea, 
+                    Converter={StaticResource NullToVisibilityConverter}}"/>
+                </StackPanel>
+            </Controls:TransitioningContentControl >
+        </Grid>
+    </Grid>
+</UserControl>

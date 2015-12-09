@@ -169,5 +169,11 @@ namespace SGAM.Elfec
             var addNewApp = new AddNewApplication();
             MainWindowService.Instance.MainWindowView.ChangeToView(addNewApp);
         }
+
+        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            var addNewUser = new AddNewUser();
+            MainWindowService.Instance.MainWindowView.ChangeToView(addNewUser);
+        }
     }
 }

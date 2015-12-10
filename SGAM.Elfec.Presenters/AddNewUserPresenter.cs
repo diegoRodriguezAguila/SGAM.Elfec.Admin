@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
+using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -43,6 +44,8 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        public ICommand RegisterUserCommand { get { return new DelegateCommand(RegisterUser); } }
+
         #endregion
 
         #region Private Methods
@@ -66,6 +69,27 @@ namespace SGAM.Elfec.Presenters
                     View.OnLoadingErrors(isRefresh, errors);
                 };
                 UsersManager.GetAllUsers(callback, true);
+            }).Start();
+        }
+
+        /// <summary>
+        /// Realiza el proceso de registro de usuario
+        /// </summary>
+        private void RegisterUser()
+        {
+            new Thread(() =>
+            {
+                View.ShowRegisteringUser();
+                var callback = new ResultCallback<User>();
+                callback.Success += (s, user) =>
+                {
+                    View.ShowUserRegisteredSuccessfully(user);
+                };
+                callback.Failure += (s, errors) =>
+                {
+                    View.ShowRegistrationErrors(errors);
+                };
+                UsersManager.RegisterUser(SelectedUser, callback);
             }).Start();
         }
         #endregion

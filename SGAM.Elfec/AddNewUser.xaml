@@ -12,7 +12,7 @@
              mc:Ignorable="d"  
              Tag="{x:Static Res:Resources.LblAddNewUser}"
              Background="White"
-             d:DesignHeight="400" d:DesignWidth="700">
+             d:DesignHeight="450" d:DesignWidth="700">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
@@ -97,6 +97,21 @@
                     <sgam:SelectableTextBlock  Text="{Binding SelectedUser.CompanyArea}"
                            Visibility="{Binding SelectedUser.CompanyArea, 
                     Converter={StaticResource NullToVisibilityConverter}}"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                        <Button Name="BtnRegister" IsDefault="True" Command="{Binding RegisterUserCommand}"
+                Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                         FontWeight="SemiBold" HorizontalAlignment="Left" >
+                            <Button.Content>
+                                <StackPanel Orientation="Vertical">
+                                    <Image Height="32" Width="32" Source="/Resources/RegisterUser.png"/>
+                                    <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap"
+                                       Text="{x:Static Res:Resources.BtnRegister}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Controls:TransitioningContentControl Width="300" Name="TransitioningRegister" Margin="15,0,0,0"
+                                                              VerticalContentAlignment="Center" Transition="Left" />
+                    </StackPanel>
                 </StackPanel>
             </Controls:TransitioningContentControl >
         </Grid>

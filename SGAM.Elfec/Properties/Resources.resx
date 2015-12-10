@@ -316,7 +316,7 @@
     <value>Usuarios</value>
   </data>
   <data name="BtnAddUser" xml:space="preserve">
-    <value>Agregar nuevo usuario</value>
+    <value>Registrar nuevo usuario</value>
   </data>
   <data name="LblApplicationLatestVersion" xml:space="preserve">
     <value>Última versión</value>
@@ -340,7 +340,7 @@
     <value>Estado</value>
   </data>
   <data name="LblAddNewUser" xml:space="preserve">
-    <value>Agregar nuevo usuario</value>
+    <value>Registrar nuevo usuario</value>
   </data>
   <data name="LblUsers" xml:space="preserve">
     <value>Usuarios</value>
@@ -362,5 +362,14 @@
   </data>
   <data name="LblUserUsername" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="BtnRegister" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="MsgRegisteringUser" xml:space="preserve">
+    <value>Registrando usuario para su uso de la aplicación…</value>
+  </data>
+  <data name="MsgUserRegisteredSuccessfully" xml:space="preserve">
+    <value>El usuario: {0} {1}, fue registrado exitosamente</value>
   </data>
 </root>

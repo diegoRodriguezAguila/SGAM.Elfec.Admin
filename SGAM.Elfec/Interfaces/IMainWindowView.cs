@@ -8,7 +8,7 @@ namespace SGAM.Elfec.Interfaces
         void ChangeTitle(string title);
         void ChangeToApplicationsView(bool force = false);
         void ChangeToDevicesView(bool force = false);
-        void ChangeToAllDeviceGroupsView(bool force = false);
+        void ChangeToUsersView(bool force = false);
         void ChangeToView<T>(T view) where T : Control;
         void GoBack();
         void SetStatusBar(string status);

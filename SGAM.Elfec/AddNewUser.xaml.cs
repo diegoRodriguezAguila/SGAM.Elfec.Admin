@@ -1,4 +1,5 @@
 ﻿using SGAM.Elfec.Helpers.Text;
+using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
@@ -29,6 +30,7 @@ namespace SGAM.Elfec
             MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
             MainWindowService.Instance.MainWindowView.GoBack();
         }
+
 
         #region Interface Methods
 
@@ -66,6 +68,43 @@ namespace SGAM.Elfec
             }
         }
 
+        public void ShowRegisteringUser()
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUser;
+                MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgRegisteringUser);
+                TransitioningRegister.Content = _indeterminateLoading;
+            }));
+        }
+
+        public void ShowRegistrationErrors(params Exception[] errors)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.BtnOk.Click += (s, o) =>
+                {
+                    MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                    TransitioningRegister.Content = null;
+                };
+                TransitioningRegister.Content = _errorMessage;
+            }));
+        }
+
+        public void ShowUserRegisteredSuccessfully(User user)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                var mainWindow = MainWindowService.Instance.MainWindowView;
+                mainWindow.SetStatusBarDefault();
+                mainWindow.ChangeToUsersView(true);
+                mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
+                    String.Format(Properties.Resources.MsgUserRegisteredSuccessfully, user.FirstName, user.LastName));
+            }));
+        }
+
         #endregion
+
     }
 }

@@ -48,7 +48,7 @@ namespace SGAM.Elfec
 
         private void BtnShowUsers_Click(object sender, RoutedEventArgs e)
         {
-            ChangeToAllDeviceGroupsView();
+            ChangeToUsersView();
         }
 
         private void ShowLoginDialog()
@@ -114,7 +114,7 @@ namespace SGAM.Elfec
                 ChangePrincipalView(new ShowDevices());
         }
 
-        public void ChangeToAllDeviceGroupsView(bool force = false)
+        public void ChangeToUsersView(bool force = false)
         {
             BtnShowApps.IsSelected = false;
             BtnShowDevices.IsSelected = false;

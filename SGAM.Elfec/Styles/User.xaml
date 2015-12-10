@@ -21,8 +21,8 @@
                    Source="{Binding PhotoUrl}" />
             <StackPanel  Width="116" VerticalAlignment="Center" Margin="5,10,10,10">
                 <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
-                     <Run Text="{Binding FirstName}" />    
-                     <Run Text="{Binding LastName}" />
+                    <Run Text="{Binding FirstName}" />    
+                    <Run Text="{Binding LastName}" />
                 </TextBlock>
                 <TextBlock FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource MainColorBrush}" Text="{Binding Username}" />
             </StackPanel>
@@ -33,12 +33,16 @@
 
     <DataTemplate x:Key="UserBlueItemTemplate" >
         <StackPanel Orientation="Horizontal" >
-            <Image Margin="5" VerticalAlignment="Center"  Width="32" Height="32"  SnapsToDevicePixels="True"
-                   Source="{Binding PhotoUrl}" />
+            <Image Margin="5" VerticalAlignment="Center"  Width="32" Height="32"  SnapsToDevicePixels="True">
+                <Image.Source>
+                    <BitmapImage UriCachePolicy="CacheIfAvailable" 
+                                 UriSource="{Binding PhotoUrl}"/>
+                </Image.Source>
+            </Image>
             <StackPanel  Width="125" VerticalAlignment="Center" Margin="5" >
                 <TextBlock FontSize="12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
-                     <Run Text="{Binding FirstName}" />    
-                     <Run Text="{Binding LastName}" />
+                    <Run Text="{Binding FirstName}" />    
+                    <Run Text="{Binding LastName}" />
                 </TextBlock>
                 <TextBlock FontSize="11" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Username}" />
             </StackPanel>

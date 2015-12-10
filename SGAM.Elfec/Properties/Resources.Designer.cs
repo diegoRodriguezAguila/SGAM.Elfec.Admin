@@ -88,7 +88,7 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar nuevo usuario.
+        ///   Looks up a localized string similar to Registrar nuevo usuario.
         /// </summary>
         public static string BtnAddUser {
             get {
@@ -129,6 +129,15 @@ namespace SGAM.Elfec.Properties {
         public static string BtnOk {
             get {
                 return ResourceManager.GetString("BtnOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrar.
+        /// </summary>
+        public static string BtnRegister {
+            get {
+                return ResourceManager.GetString("BtnRegister", resourceCulture);
             }
         }
         
@@ -187,7 +196,7 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar nuevo usuario.
+        ///   Looks up a localized string similar to Registrar nuevo usuario.
         /// </summary>
         public static string LblAddNewUser {
             get {
@@ -664,11 +673,29 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registrando usuario para su uso de la aplicación….
+        /// </summary>
+        public static string MsgRegisteringUser {
+            get {
+                return ResourceManager.GetString("MsgRegisteringUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subiendo archivo APK.....
         /// </summary>
         public static string MsgUploadingApk {
             get {
                 return ResourceManager.GetString("MsgUploadingApk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario: {0} {1}, fue registrado exitosamente.
+        /// </summary>
+        public static string MsgUserRegisteredSuccessfully {
+            get {
+                return ResourceManager.GetString("MsgUserRegisteredSuccessfully", resourceCulture);
             }
         }
         

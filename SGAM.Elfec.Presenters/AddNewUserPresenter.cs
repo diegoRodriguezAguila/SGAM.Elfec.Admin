@@ -1,9 +1,11 @@
 ﻿using SGAM.Elfec.BusinessLogic;
+using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Input;
@@ -14,13 +16,21 @@ namespace SGAM.Elfec.Presenters
     {
         public AddNewUserPresenter(IAddNewUserView view) : base(view)
         {
+            _worker = new BackgroundWorker
+            {
+                WorkerSupportsCancellation = true
+            };
+            _worker.DoWork += Filter;
+            _worker.RunWorkerCompleted += FilterComplete;
             LoadNonRegisteredUsers();
         }
 
         #region Private Attributes
+        private IList<User> _allUsers;
         private ObservableCollection<User> _users;
         private User _selectedUser;
         private string _searchQuery;
+        private readonly BackgroundWorker _worker;
         #endregion
 
         #region Properties
@@ -76,6 +86,7 @@ namespace SGAM.Elfec.Presenters
                 {
                     //TODO find better way to bind this, without
                     //blocking UI thread
+                    _allUsers = users;
                     Users = new ObservableCollection<User>(users);
                     View.OnDataLoaded();
                 };
@@ -113,8 +124,48 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         private void SearchUser()
         {
-            System.Console.WriteLine("SE LLAMO A SEARCH CHE: " + SearchQuery);
+            if (_worker.IsBusy)
+            {
+                if (!_worker.CancellationPending)
+                {
+                    _worker.RunWorkerCompleted += RefilterOnCompletion;
+                    _worker.CancelAsync();
+                }
+            }
+            else
+            {
+                _worker.RunWorkerAsync(SearchQuery);
+            }
         }
+
+        private void RefilterOnCompletion(object sender, RunWorkerCompletedEventArgs e)
+        {
+            _worker.RunWorkerCompleted -= RefilterOnCompletion;
+            _worker.RunWorkerAsync(SearchQuery);
+        }
+
+        private void Filter(object sender, DoWorkEventArgs e)
+        {
+            var query = ((string)e.Argument).Replace("  ", " ").Trim().ToLowerInvariant();
+            e.Result = string.IsNullOrWhiteSpace(query) ? _allUsers : _allUsers.Where((u) =>
+            {
+                return UserMatchHelper.MatchesSearchQuery(u, query);
+            }).ToList();
+        }
+
+        private void FilterComplete(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                return;
+
+            var filtered = (IList<User>)e.Result;
+            Users.Clear();
+
+            foreach (var f in filtered)
+                Users.Add(f);
+            SelectedUser = Users.FirstOrDefault();
+        }
+
         #endregion
     }
 }

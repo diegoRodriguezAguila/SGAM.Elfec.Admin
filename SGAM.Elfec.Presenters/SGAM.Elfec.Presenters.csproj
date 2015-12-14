@@ -94,6 +94,10 @@
       <Project>{9dad2247-7b21-4702-a7a8-46a51842e84d}</Project>
       <Name>SGAM.Elfec.BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SGAM.Elfec.Helpers\SGAM.Elfec.Helpers.csproj">
+      <Project>{b96cf4d8-cd3c-413f-8ddc-ec57586a7f6a}</Project>
+      <Name>SGAM.Elfec.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.Model\SGAM.Elfec.Model.csproj">
       <Project>{57df609e-1c63-49d4-a290-345781183faa}</Project>
       <Name>SGAM.Elfec.Model</Name>

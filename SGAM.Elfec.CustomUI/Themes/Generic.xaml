@@ -16,5 +16,6 @@
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/ListBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/SearchBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -372,4 +372,7 @@
   <data name="MsgUserRegisteredSuccessfully" xml:space="preserve">
     <value>El usuario: {0} {1}, fue registrado exitosamente</value>
   </data>
+  <data name="HintSearch" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
 </root>

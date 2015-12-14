@@ -39,7 +39,7 @@
                                  UriSource="{Binding PhotoUrl}"/>
                 </Image.Source>
             </Image>
-            <StackPanel  Width="125" VerticalAlignment="Center" Margin="5" >
+            <StackPanel  Width="165" VerticalAlignment="Center" Margin="5" >
                 <TextBlock FontSize="12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
                     <Run Text="{Binding FirstName}" />    
                     <Run Text="{Binding LastName}" />

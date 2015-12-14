@@ -8,6 +8,7 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:local="clr-namespace:SGAM.Elfec"
+             xmlns:utils="clr-namespace:SGAM.Elfec.Utils"
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              mc:Ignorable="d"  
              Tag="{x:Static Res:Resources.LblAddNewUser}"
@@ -46,14 +47,23 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Border BorderThickness="0,1,1,0" BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
+                <Border BorderThickness="0,1,1,0" Background="{StaticResource BackgroundGrayBrush}" 
+                        BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
+                    <StackPanel Orientation="Horizontal" >
                     <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
-                               Background="{StaticResource BackgroundGrayBrush}"
+                               VerticalAlignment="Center"
                                Padding="10,5,0,5"
                                Text="{x:Static Res:Resources.LblUsers}" />
+
+                        <sgam:SearchBox Margin="15,0,0,0" Name="TxtSearch" Search="TxtSearch_Search" Width="129" Height="26" >
+                            <utils:WatermarkService.Watermark>
+                                <TextBlock Style="{StaticResource HintStyle}" Text="{x:Static Res:Resources.HintSearch}" />
+                            </utils:WatermarkService.Watermark>
+                        </sgam:SearchBox>
+                    </StackPanel>
                 </Border>
                 <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
-                             MinWidth="205" ItemsSource="{Binding Users}" 
+                             MinWidth="240" ItemsSource="{Binding Users}" 
                              SelectedValue="{Binding SelectedUser}"
                              BorderThickness="0,0,1,0"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"

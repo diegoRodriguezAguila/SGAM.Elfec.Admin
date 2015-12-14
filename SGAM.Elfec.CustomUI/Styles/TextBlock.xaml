@@ -12,4 +12,10 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="TextBlock" x:Key="HintStyle">
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Margin" Value="-10,5,0,0" />
+    </Style>
 </ResourceDictionary>

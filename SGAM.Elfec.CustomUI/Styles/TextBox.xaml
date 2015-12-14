@@ -4,7 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style TargetType="{x:Type TextBox}">
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}" >
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Background" Value="White" />
         <Setter Property="SnapsToDevicePixels" Value="True" />

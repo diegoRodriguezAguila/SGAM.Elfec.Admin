@@ -106,5 +106,9 @@ namespace SGAM.Elfec
 
         #endregion
 
+        private void TxtSearch_Search(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Searcheando", "SEARCHED");
+        }
     }
 }

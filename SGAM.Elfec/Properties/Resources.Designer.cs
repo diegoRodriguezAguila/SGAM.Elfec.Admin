@@ -187,6 +187,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buscar.
+        /// </summary>
+        public static string HintSearch {
+            get {
+                return ResourceManager.GetString("HintSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar nueva aplicación.
         /// </summary>
         public static string LblAddNewApp {

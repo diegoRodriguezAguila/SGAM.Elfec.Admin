@@ -18,6 +18,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -115,7 +116,8 @@
                                                Visibility="{Binding SelectedUser.CompanyArea, 
                                                Converter={StaticResource NullToVisibilityConverter}}"/>
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                        <Button Name="BtnRegister" IsDefault="True" Command="{Binding RegisterUserCommand}"
+                        <Button Name="BtnRegister" IsDefault="{Binding ElementName=TxtSearch,
+                                               Path=IsKeyboardFocused, Converter={StaticResource InvertBoolConverter}}" Command="{Binding RegisterUserCommand}"
                                 Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                                 FontWeight="SemiBold" HorizontalAlignment="Left" >
                             <Button.Content>

@@ -20,6 +20,7 @@ namespace SGAM.Elfec.Presenters
         #region Private Attributes
         private ObservableCollection<User> _users;
         private User _selectedUser;
+        private string _searchQuery;
         #endregion
 
         #region Properties
@@ -44,7 +45,19 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        public string SearchQuery
+        {
+            get { return _searchQuery; }
+            set
+            {
+                _searchQuery = value;
+                RaisePropertyChanged("SearchQuery");
+            }
+        }
+
         public ICommand RegisterUserCommand { get { return new DelegateCommand(RegisterUser); } }
+
+        public ICommand SearchUserCommand { get { return new DelegateCommand(SearchUser); } }
 
         #endregion
 
@@ -61,6 +74,8 @@ namespace SGAM.Elfec.Presenters
                 var callback = new ResultCallback<IList<User>>();
                 callback.Success += (s, users) =>
                 {
+                    //TODO find better way to bind this, without
+                    //blocking UI thread
                     Users = new ObservableCollection<User>(users);
                     View.OnDataLoaded();
                 };
@@ -91,6 +106,14 @@ namespace SGAM.Elfec.Presenters
                 };
                 UsersManager.RegisterUser(SelectedUser, callback);
             }).Start();
+        }
+
+        /// <summary>
+        /// Inicia el filtro/búsuqeda de usuarios que coincidan con criterios
+        /// </summary>
+        private void SearchUser()
+        {
+            System.Console.WriteLine("SE LLAMO A SEARCH CHE: " + SearchQuery);
         }
         #endregion
     }

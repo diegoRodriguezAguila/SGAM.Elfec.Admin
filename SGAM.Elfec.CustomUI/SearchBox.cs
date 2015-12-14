@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -108,6 +109,7 @@ namespace SGAM.Elfec.CustomUI
             searchEventDelayTimer = new DispatcherTimer();
             searchEventDelayTimer.Interval = SearchTimeDelay.TimeSpan;
             searchEventDelayTimer.Tick += new EventHandler(OnSearchEventDelayTimerTick);
+
         }
 
 
@@ -122,6 +124,9 @@ namespace SGAM.Elfec.CustomUI
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(SearchBox),
                 new FrameworkPropertyMetadata(typeof(SearchBox)));
+            TextProperty.OverrideMetadata(typeof(SearchBox),
+            new FrameworkPropertyMetadata(typeof(SearchBox))
+            {DefaultValue=null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
         }
 
         protected override void OnTextChanged(TextChangedEventArgs e)
@@ -145,36 +150,31 @@ namespace SGAM.Elfec.CustomUI
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-
+            base.OnKeyDown(e);
             if (e.Key == Key.Escape && SearchMode == SearchMode.Delayed)
-            {
-                Text = null;
-            }
-            else if ((e.Key == Key.Return || e.Key == Key.Enter) && SearchMode == SearchMode.Delayed)
-            {
+                ClearText();
+            else if (e.Key == Key.Return || e.Key == Key.Enter)
                 RaiseSearchEvent();
-            }
-            else
-            {
-                base.OnKeyDown(e);
-            }
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            if (HasText)
-            {
-                Text = null;
-                Focus();
-            }
-            else if (SearchMode == SearchMode.Delayed) RaiseSearchEvent();
+            if (HasText && SearchMode == SearchMode.Delayed)
+                ClearText();
+            if (HasText && SearchMode == SearchMode.Manual) RaiseSearchEvent();
         }
 
         private void RaiseSearchEvent()
         {
-            HasText = Text.Length != 0;
-            RoutedEventArgs args = new RoutedEventArgs(SearchEvent);
-            RaiseEvent(args);
+            if (SearchMode == SearchMode.Manual)
+                HasText = Text.Length != 0;
+            RaiseEvent(new RoutedEventArgs(SearchEvent));
+        }
+
+        private void ClearText()
+        {
+            Text = "";
+            Focus();
         }
     }
 }

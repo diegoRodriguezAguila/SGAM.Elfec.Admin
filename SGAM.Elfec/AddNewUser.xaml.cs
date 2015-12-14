@@ -83,9 +83,9 @@ namespace SGAM.Elfec
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
-                    MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                     TransitioningRegister.Content = null;
                 };
                 TransitioningRegister.Content = _errorMessage;
@@ -105,10 +105,5 @@ namespace SGAM.Elfec
         }
 
         #endregion
-
-        private void TxtSearch_Search(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Searcheando", "SEARCHED");
-        }
     }
 }

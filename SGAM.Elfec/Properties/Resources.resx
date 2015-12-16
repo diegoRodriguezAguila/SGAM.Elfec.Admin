@@ -375,4 +375,7 @@
   <data name="HintSearch" xml:space="preserve">
     <value>Buscar</value>
   </data>
+  <data name="MsgEmptyUserList" xml:space="preserve">
+    <value>La lista de usuarios está vacía. Pruebe otros filtros de búsqueda.</value>
+  </data>
 </root>

@@ -619,6 +619,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La lista de usuarios está vacía. Pruebe otros filtros de búsqueda..
+        /// </summary>
+        public static string MsgEmptyUserList {
+            get {
+                return ResourceManager.GetString("MsgEmptyUserList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Los campos tienen errores, corrigalos para poder continuar..
         /// </summary>
         public static string MsgErrorsInFields {

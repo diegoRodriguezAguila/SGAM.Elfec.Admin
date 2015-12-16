@@ -18,6 +18,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:NullToIsEnabledConverter x:Key="NullToIsEnabledConverter"/>
             <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
@@ -58,6 +59,7 @@
                                    Text="{x:Static Res:Resources.LblUsers}" />
 
                         <sgam:SearchBox Margin="15,0,0,0" Name="TxtSearch" Width="129" 
+                                        IsEnabled="{Binding Users, Converter={StaticResource NullToIsEnabledConverter}}"
                                         Text="{Binding SearchQuery}" >
                             <utils:WatermarkService.Watermark>
                                 <TextBlock Style="{StaticResource HintStyle}" Text="{x:Static Res:Resources.HintSearch}" />
@@ -79,7 +81,13 @@
                          ItemTemplate="{StaticResource UserBlueItemTemplate}" />
             </Grid>
             <Controls:TransitioningContentControl Grid.Column="1" Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
-                <StackPanel Name="UserInfoPanel" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <StackPanel Name="UserInfoPanel" Grid.Column="1"
+                            Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextFormGrayBrush}"
+                                    Visibility="{Binding SelectedUser, 
+                    Converter={StaticResource NullToVisibilityConverter}, 
+                            ConverterParameter={x:Static converters:NullToVisibility.Invert}}" 
+                                   Text="{x:Static Res:Resources.MsgEmptyUserList}"  />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
                         <Image Height="64" VerticalAlignment="Center" Source="{Binding SelectedUser.PhotoUrl}"
                                SnapsToDevicePixels="True" />
@@ -92,44 +100,48 @@
                             </sgam:SelectableTextBlock.Text>
                         </sgam:SelectableTextBlock>
                     </StackPanel>
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Visibility="{Binding SelectedUser, 
+                    Converter={StaticResource NullToVisibilityConverter}}" >
+                        <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
                                Text="{x:Static Res:Resources.LblUserUsername}" />
-                    <sgam:SelectableTextBlock Text="{Binding SelectedUser.Username}" />
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                        <sgam:SelectableTextBlock Text="{Binding SelectedUser.Username}" />
+                        <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
                                Text="{x:Static Res:Resources.LblUserEmail}"
                                Visibility="{Binding SelectedUser.Email, 
                                Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <sgam:SelectableTextBlock Text="{Binding SelectedUser.Email}"
+                        <sgam:SelectableTextBlock Text="{Binding SelectedUser.Email}"
                                               Visibility="{Binding SelectedUser.Email, 
                                               Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                        <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
                                Visibility="{Binding SelectedUser.Position, Converter={StaticResource NullToVisibilityConverter}}"
                                Text="{x:Static Res:Resources.LblUserPosition}" />
-                    <sgam:SelectableTextBlock  Text="{Binding SelectedUser.Position}"
+                        <sgam:SelectableTextBlock  Text="{Binding SelectedUser.Position}"
                                                Visibility="{Binding SelectedUser.Position, 
                                                Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                        <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
                                Visibility="{Binding SelectedUser.CompanyArea, 
                                Converter={StaticResource NullToVisibilityConverter}}"
                                Text="{x:Static Res:Resources.LblUserCompanyArea}" />
-                    <sgam:SelectableTextBlock  Text="{Binding SelectedUser.CompanyArea}"
+                        <sgam:SelectableTextBlock  Text="{Binding SelectedUser.CompanyArea}"
                                                Visibility="{Binding SelectedUser.CompanyArea, 
                                                Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                        <Button Name="BtnRegister" IsDefault="{Binding ElementName=TxtSearch,
+                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                            <Button Name="BtnRegister" IsDefault="{Binding ElementName=TxtSearch,
                                                Path=IsKeyboardFocused, Converter={StaticResource InvertBoolConverter}}" Command="{Binding RegisterUserCommand}"
                                 Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                                 FontWeight="SemiBold" HorizontalAlignment="Left" >
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Height="32" Width="32" Source="/Resources/RegisterUser.png"/>
-                                    <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap"
+                                <Button.Content>
+                                    <StackPanel Orientation="Vertical">
+                                        <Image Height="32" Width="32" Source="/Resources/RegisterUser.png"/>
+                                        <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap"
                                                Text="{x:Static Res:Resources.BtnRegister}"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Controls:TransitioningContentControl Width="300" Name="TransitioningRegister" Margin="15,0,0,0"
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Controls:TransitioningContentControl Width="300" Name="TransitioningRegister" Margin="15,0,0,0"
                                                               VerticalContentAlignment="Center" Transition="Left" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </Controls:TransitioningContentControl >

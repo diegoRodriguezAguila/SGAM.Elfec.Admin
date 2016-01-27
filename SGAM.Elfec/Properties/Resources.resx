@@ -250,7 +250,7 @@
     <value>Obteniendo información de aplicaciones…</value>
   </data>
   <data name="BtnAddApp" xml:space="preserve">
-    <value>Agregar nueva aplicación</value>
+    <value>Agregar aplicación</value>
   </data>
   <data name="LblAddNewApp" xml:space="preserve">
     <value>Agregar nueva aplicación</value>
@@ -316,7 +316,7 @@
     <value>Usuarios</value>
   </data>
   <data name="BtnAddUser" xml:space="preserve">
-    <value>Registrar nuevo usuario</value>
+    <value>Registrar usuario</value>
   </data>
   <data name="LblApplicationLatestVersion" xml:space="preserve">
     <value>Última versión</value>
@@ -377,5 +377,23 @@
   </data>
   <data name="MsgEmptyUserList" xml:space="preserve">
     <value>La lista de usuarios está vacía. Pruebe otros filtros de búsqueda.</value>
+  </data>
+  <data name="BtnAddUserGroup" xml:space="preserve">
+    <value>Agregar grupo de usuarios</value>
+  </data>
+  <data name="LblUserGroup" xml:space="preserve">
+    <value>Grupo de usuarios</value>
+  </data>
+  <data name="LblAddUserGroup" xml:space="preserve">
+    <value>Agregar nuevo grupo de usuarios</value>
+  </data>
+  <data name="LblUserGroupDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="LblUserGroupName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LblAddUserGroupMembers" xml:space="preserve">
+    <value>Agregar miembros al grupo</value>
   </data>
 </root>

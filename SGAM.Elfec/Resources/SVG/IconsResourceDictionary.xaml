@@ -423,4 +423,39 @@
                 </Path.Data>
             </Path>
         </Canvas>
+    
+    <!-- AddUserGroup-->
+    <Canvas Name="AddUserGroup" x:Key="AddUserGroup" x:Shared="False" Width="32" Height="32">
+        <Canvas.RenderTransform>
+                <TranslateTransform X="281.5" Y="-436.5"/>
+            </Canvas.RenderTransform>
+            <Canvas.Resources/>
+            <!--Unknown tag: metadata-->
+            <!--Unknown tag: sodipodi:namedview-->
+            <Path Fill="#FF808080">
+                <Path.Data>
+                    <PathGeometry Figures="m -261.02798 438.70904 c 4 -1.8 8.5 3.3 6 7 -1.5 3.1 -6.301 3.4 -8.201 0.6 -2.2 -2.5 -0.799 -6.6 2.201 -7.6 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF4D82B8">
+                <Path.Data>
+                    <PathGeometry Figures="m -274.02898 443.70904 c 4 -1.8 8.5 3.3 6 7 -1.5 3.099 -6.3 3.4 -8.2 0.6 -2.2 -2.5 -0.8 -6.6 2.2 -7.6 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+            <Path  Fill="#FF808080">
+                <Path.Data>
+                    <PathGeometry Figures="m -265.02098 450.14404 c 0.726 -0.51 1.992 -0.735 2.492 -0.937 0.899 2 2.101 3.8 3.199 5.601 1.1 -1.799 2.2 -3.601 3.1 -5.399 1.701 0.3 3.896 0.204 4.896 1.804 1.02 1.802 1.61 4.464 0.469 6.204 -0.313 0.479 -1.416 1.466 -1.416 1.466 0 0 -0.049 -3.061 -0.049 -4.061 -2 0 -4.51 0 -6.51 0 0 1 0 3 0 4 -1 0 -1.59 0 -2.29 0 -0.2 -3 -2.7 -6.355 -5.9 -6.057 0.701 -1 1.163 -2.026 2.009 -2.621 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+            <Path  Fill="#FF4D82B8">
+                <Path.Data>
+                    <PathGeometry Figures="m -279.80598 456.06004 c 1.001 -1.188 2.577 -1.452 4.276 -1.852 0.9 1.899 2.1 3.699 3.2 5.6 1.1 -1.801 2.2 -3.601 3.1 -5.4 1.5 0.301 3.2 0.301 4.4 1.4 1.601 1.8 1.5 4.3 1.5 6.5 -5.5 2.8 -12.5 2.8 -18 0 -0.099 -2.099 0.142 -4.609 1.524 -6.248 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF76A797">
+                <Path.Data>
+                    <PathGeometry Figures="m -257.5 456.16102 c 1 0 3 0 4 0 0 1 0 3 0 4 1 0 3 0 4 0 v 4 c -1 0 -3 0 -4 0 0 1 0 3 0 4 h -4 c 0 -1 0 -3 0 -4 -1 0 -3 0 -4 0 0 -1 0 -3 0 -4 1 0 3 0 4 0 0 -1 0 -3 0 -4 z" FillRule="NonZero"/>
+                </Path.Data>
+            </Path>
+        </Canvas>
 </ResourceDictionary>

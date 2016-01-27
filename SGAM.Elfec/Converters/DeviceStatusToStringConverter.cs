@@ -5,6 +5,7 @@ using System.Windows.Data;
 
 namespace SGAM.Elfec.Converters
 {
+    [ValueConversion(typeof(DeviceStatus), typeof(string))]
     public class DeviceStatusToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -24,7 +25,7 @@ namespace SGAM.Elfec.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            String status = (String)value;
+            string status = value.ToString();
             if (status == Properties.Resources.DeviceStatusUnauthorized)
                 return DeviceStatus.Unauthorized;
             if (status == Properties.Resources.DeviceStatusAuthorized)

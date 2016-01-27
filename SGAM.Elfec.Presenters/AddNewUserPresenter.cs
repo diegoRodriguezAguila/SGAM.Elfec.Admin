@@ -2,6 +2,7 @@
 using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -94,7 +95,7 @@ namespace SGAM.Elfec.Presenters
                 {
                     View.OnLoadingErrors(isRefresh, errors);
                 };
-                UsersManager.GetAllUsers(callback, true);
+                UsersManager.GetAllUsers(callback, UserStatus.NonRegistered);
             }).Start();
         }
 

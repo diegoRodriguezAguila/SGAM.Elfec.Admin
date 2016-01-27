@@ -30,8 +30,10 @@ namespace SGAM.Elfec.BusinessLogic
         /// <summary>
         /// Obtiene todos los usuarios registrados en el sistema, ya sea por medio de la caché o de webservices
         /// </summary>
-        /// <param name="callback"></param>
-        public static void GetAllUsers(ResultCallback<IList<User>> callback, bool nonRegistered = false)
+        /// <param name="callback">callback para el proceso asincrono</param>
+        /// <param name="userStatus">Opcional, estado para filtrar usuarios, si no se especifica se obtienen todos
+        /// los usuarios registrados en la aplicación</param>
+        public static void GetAllUsers(ResultCallback<IList<User>> callback, UserStatus? userStatus = null)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
             var restInvoker = new RestInvoker<IList<User>>();
@@ -39,8 +41,8 @@ namespace SGAM.Elfec.BusinessLogic
             {
                 var parameters = new Dictionary<string, string>();
                 parameters["sort"] = "-status,username";
-                if (nonRegistered)
-                    parameters["status"] = ((int)UserStatus.NonRegistered).ToString();
+                if (userStatus != null)
+                    parameters["status"] = ((int)userStatus).ToString();
                 return RestEndpointFactory
                     .Create<IUsersEndpoint>(user.Username, user.AuthenticationToken)
                     .GetAllUsers(parameters);

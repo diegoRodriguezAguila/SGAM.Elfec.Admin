@@ -175,5 +175,11 @@ namespace SGAM.Elfec
             var addNewUser = new AddNewUser();
             MainWindowService.Instance.MainWindowView.ChangeToView(addNewUser);
         }
+
+        private void BtnAddUserGroup_Click(object sender, RoutedEventArgs e)
+        {
+            var addNewUserGroup = new AddNewUserGroup();
+            MainWindowService.Instance.MainWindowView.ChangeToView(addNewUserGroup);
+        }
     }
 }

@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SGAM.Elfec.AddNewUserGroup"
+             xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:SGAM.Elfec"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             xmlns:utils="clr-namespace:SGAM.Elfec.Utils"      
+             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             xmlns:Extensions="clr-namespace:Extensions.Wpf.Behaviors;assembly=Extensions.Wpf"
+             mc:Ignorable="d"  
+             Tag="{x:Static Res:Resources.LblAddUserGroup}"
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
+                <Button.Content>
+                    <Viewbox Height="18" Child="{StaticResource Back}"  />
+                </Button.Content>
+            </Button>
+            <Image Margin="20,0,10,5" Source="/Resources/AddUserGroup.png"/>
+            <Label Content="{x:Static Res:Resources.LblAddUserGroup}" FontSize="26" VerticalContentAlignment="Center"
+                   FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
+        </StackPanel>
+        <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel  Name="UserInfoPanel" Margin="20,0,0,20"
+                         Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupName}" />
+                <TextBox Text="{Binding MemberToAdd.Username}" />
+                <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupDescription}"/>
+                <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding AuthPendingDevice.Comments}" VerticalScrollBarVisibility="Auto" 
+                         Grid.ColumnSpan="2" Grid.Row="19" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
+                         Margin="0,0,0,10" />
+                <Expander IsExpanded="{Binding ElementName=ChkAddMembers, Path=IsChecked}" Style="{StaticResource NoButtonExpanderStyle}" >
+                    <Expander.Header>
+                        <Fluent:CheckBox Name="ChkAddMembers" Header="{x:Static Res:Resources.LblAddUserGroupMembers}" />
+                    </Expander.Header>
+                    <i:Interaction.Behaviors>
+                        <Extensions:AnimatedExpanderBehavior Duration="0:0:0.35" />
+                    </i:Interaction.Behaviors>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUsername}" />
+                        <Toolkit:AutoCompleteBox Name="UserSelector" TextBoxStyle="{StaticResource DefaultTextBoxStyle}"
+                                                 ItemsSource="{Binding ElegibleUsers}"
+                                                 Text="{Binding UserFullName}"
+                                                 FilterMode="Custom"
+                                                 ValueMemberPath="FullName"
+                                                 SelectedItem="{Binding Path=MemberToAdd, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
+                                                 ItemTemplate="{StaticResource UserBlueItemTemplate}" >
+                            
+                        </Toolkit:AutoCompleteBox>
+                        <ListView Name="ListViewMembers" Style="{StaticResource WrapPanelListView}"
+                                  ItemsSource="{Binding Members}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ItemContainerStyle="{StaticResource ApplicationItemOptionStyle}" 
+                                  ItemTemplate="{StaticResource UserBlueItemTemplate}" />
+                    </StackPanel>
+                </Expander>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Name="BtnRegister" IsDefault="{Binding ElementName=TxtSearch,
+                            Path=IsKeyboardFocused}" Command="{Binding AddMemberCommand}"
+                            Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                            FontWeight="SemiBold" HorizontalAlignment="Left" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical">
+                                <Image Height="32" Width="32" Source="/Resources/UserGroupSave.png"/>
+                                <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap"
+                                           Text="{x:Static Res:Resources.BtnRegister}"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Controls:TransitioningContentControl Width="300" Name="TransitioningRegister" Margin="15,0,0,0"
+                                                          VerticalContentAlignment="Center" Transition="Left" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

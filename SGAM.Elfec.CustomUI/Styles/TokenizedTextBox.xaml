@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+					xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+	<Style TargetType="{x:Type sgam:TokenItem}">
+		<Setter Property="Background" Value="#F3F7FD" />
+		<Setter Property="BorderBrush" Value="#BBD8FB" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Cursor" Value="Arrow" />
+		<Setter Property="Padding" Value="5,1,5,1" />
+		<Setter Property="Margin" Value="1,0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type sgam:TokenItem}">
+					<Border Background="{TemplateBinding Background}"
+					   BorderBrush="{TemplateBinding BorderBrush}"
+					   BorderThickness="{TemplateBinding BorderThickness}"
+					   Padding="{TemplateBinding Padding}"
+					   Margin="{TemplateBinding Margin}">
+						<StackPanel Orientation="Horizontal" Margin="1">
+							<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" />
+							<Button Margin="3,0,0,0" Cursor="Hand" Command="sgam:TokenizedTextBoxCommands.Delete" CommandParameter="{TemplateBinding TokenKey}">
+								<Button.Template>
+									<ControlTemplate TargetType="Button">
+										<ContentPresenter />
+									</ControlTemplate>
+								</Button.Template>
+								<Image Source="/WPFToolkit.Extended;component/TokenizedTextBox/Images/delete8.png" Width="8" Height="8" />
+							</Button>
+						</StackPanel>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <Style TargetType="{x:Type sgam:TokenizedTextBox}">
+        <Setter Property="Template">
+			<Setter.Value>
+                <ControlTemplate TargetType="{x:Type sgam:TokenizedTextBox}">
+                    <RichTextBox x:Name="PART_ContentHost" AcceptsReturn="False"
+										ScrollViewer.VerticalScrollBarVisibility="Auto" IsDocumentEnabled="True" Padding="-3,0,0,0" />
+                    <!--<Popup x:Name="PART_Popup" >
+                        <Grid Background="White">
+                            <ItemsPresenter />
+                        </Grid>
+                    </Popup>-->
+
+                </ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

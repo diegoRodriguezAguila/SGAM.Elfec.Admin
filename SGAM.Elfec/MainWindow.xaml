@@ -6,7 +6,8 @@
         xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
         xmlns:toastinet="clr-namespace:ToastinetWPF;assembly=ToastinetWPF"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
-        Icon="pack://application:,,,/Resources/Logo icon SGAM.ico"
+        Icon="pack://application:,,,/Resources/MainIcon.ico"
+        UseLayoutRounding="True"
         xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
         Title="SGAM Elfec" Height="480" Width="720">
     <Grid Margin="-1" >
@@ -49,13 +50,23 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabUsers}">
-                <Fluent:RibbonGroupBox Header="Group">
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblUsers}">
                     <Fluent:Button Name="BtnAddUser" ToolTip="{x:Static Res:Resources.BtnAddUser}" Click="BtnAddUser_Click" Header="{x:Static Res:Resources.BtnAddUser}" >
                         <Fluent:Button.LargeIcon>
                             <Viewbox Child="{StaticResource AddUser}" />
                         </Fluent:Button.LargeIcon>
                         <Fluent:Button.Icon>
                             <Viewbox Child="{StaticResource AddUser}" />
+                        </Fluent:Button.Icon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblUserGroup}">
+                    <Fluent:Button Name="BtnAddUserGroup" ToolTip="{x:Static Res:Resources.BtnAddUserGroup}" Click="BtnAddUserGroup_Click" Header="{x:Static Res:Resources.BtnAddUserGroup}" >
+                        <Fluent:Button.LargeIcon>
+                            <Image Height="32" Width="32" Source="/Resources/AddUserGroup.png"/>
+                        </Fluent:Button.LargeIcon>
+                        <Fluent:Button.Icon>
+                            <Image Height="32" Width="32" Source="/Resources/AddUserGroup.png"/>
                         </Fluent:Button.Icon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>

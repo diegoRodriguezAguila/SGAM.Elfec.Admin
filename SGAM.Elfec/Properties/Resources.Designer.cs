@@ -79,7 +79,7 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar nueva aplicación.
+        ///   Looks up a localized string similar to Agregar aplicación.
         /// </summary>
         public static string BtnAddApp {
             get {
@@ -88,11 +88,20 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrar nuevo usuario.
+        ///   Looks up a localized string similar to Registrar usuario.
         /// </summary>
         public static string BtnAddUser {
             get {
                 return ResourceManager.GetString("BtnAddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar grupo de usuarios.
+        /// </summary>
+        public static string BtnAddUserGroup {
+            get {
+                return ResourceManager.GetString("BtnAddUserGroup", resourceCulture);
             }
         }
         
@@ -210,6 +219,24 @@ namespace SGAM.Elfec.Properties {
         public static string LblAddNewUser {
             get {
                 return ResourceManager.GetString("LblAddNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar nuevo grupo de usuarios.
+        /// </summary>
+        public static string LblAddUserGroup {
+            get {
+                return ResourceManager.GetString("LblAddUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar miembros al grupo.
+        /// </summary>
+        public static string LblAddUserGroupMembers {
+            get {
+                return ResourceManager.GetString("LblAddUserGroupMembers", resourceCulture);
             }
         }
         
@@ -543,6 +570,33 @@ namespace SGAM.Elfec.Properties {
         public static string LblUserFullName {
             get {
                 return ResourceManager.GetString("LblUserFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grupo de usuarios.
+        /// </summary>
+        public static string LblUserGroup {
+            get {
+                return ResourceManager.GetString("LblUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string LblUserGroupDescription {
+            get {
+                return ResourceManager.GetString("LblUserGroupDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string LblUserGroupName {
+            get {
+                return ResourceManager.GetString("LblUserGroupName", resourceCulture);
             }
         }
         

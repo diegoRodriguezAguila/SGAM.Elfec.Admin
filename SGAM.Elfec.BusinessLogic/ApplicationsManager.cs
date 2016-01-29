@@ -2,7 +2,6 @@
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
-using SGAM.Elfec.Model.Exceptions;
 using SGAM.Elfec.Security;
 using System;
 using System.Collections.Generic;
@@ -24,14 +23,10 @@ namespace SGAM.Elfec.BusinessLogic
         public static void GetAllApplications(ResultCallback<IList<Application>> callback)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
-            var restInvoker = new RestInvoker<IList<Application>>();
-            restInvoker.InvokeWebService(callback, () =>
-            {
-                var parameters = new Dictionary<string, string>();
-                parameters["sort"] = "-status,name";
-                return RestEndpointFactory
-                    .Create<IApplicationsEndpoint>(user.Username, user.AuthenticationToken).GetAllApplications(parameters);
-            });
+            var parameters = new Dictionary<string, string>();
+            parameters["sort"] = "-status,name";
+            RestInvoker.InvokeWebService(callback, RestEndpointFactory
+                    .Create<IApplicationsEndpoint>(user.Username, user.AuthenticationToken).GetAllApplications(parameters));
         }
 
 
@@ -54,15 +49,11 @@ namespace SGAM.Elfec.BusinessLogic
                 var app = await uploader.UploadAsync<Application>();
                 callback.OnSuccess(uploader, app);
             }
-            catch (ApiMultipartException e)
-            {
-                callback.AddErrors(RestErrorInterpreter.InterpretError(e));
-            }
             catch (Exception e)
             {
-                callback.AddErrors(e);
+                callback.AddErrors(RestErrorInterpreter.InterpretWebServiceError(e));
+                callback.OnFailure(null);
             }
-            callback.OnFailure(null);
         }
     }
 }

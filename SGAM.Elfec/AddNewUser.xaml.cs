@@ -100,7 +100,7 @@ namespace SGAM.Elfec
                 mainWindow.SetStatusBarDefault();
                 mainWindow.ChangeToUsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
-                    String.Format(Properties.Resources.MsgUserRegisteredSuccessfully, user.FirstName, user.LastName));
+                    String.Format(Properties.Resources.MsgUserRegisteredSuccessfully, user.FullName));
             }));
         }
 

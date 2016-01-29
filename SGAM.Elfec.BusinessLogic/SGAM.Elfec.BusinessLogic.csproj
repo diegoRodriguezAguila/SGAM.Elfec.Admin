@@ -85,12 +85,17 @@
     <Compile Include="DevicesManager.cs" />
     <Compile Include="ApplicationsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserGroupManager.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGAM.Elfec.DataAccess\SGAM.Elfec.DataAccess.csproj">
       <Project>{76a3eba4-65b4-4bc8-8f6e-f63b1cee91e3}</Project>
       <Name>SGAM.Elfec.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGAM.Elfec.Helpers\SGAM.Elfec.Helpers.csproj">
+      <Project>{b96cf4d8-cd3c-413f-8ddc-ec57586a7f6a}</Project>
+      <Name>SGAM.Elfec.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.Model\SGAM.Elfec.Model.csproj">
       <Project>{57df609e-1c63-49d4-a290-345781183faa}</Project>

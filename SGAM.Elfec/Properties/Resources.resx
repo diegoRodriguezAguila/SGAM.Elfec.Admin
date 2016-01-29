@@ -370,7 +370,7 @@
     <value>Registrando usuario para su uso de la aplicación…</value>
   </data>
   <data name="MsgUserRegisteredSuccessfully" xml:space="preserve">
-    <value>El usuario: {0} {1}, fue registrado exitosamente</value>
+    <value>El usuario: {0}, fue registrado exitosamente</value>
   </data>
   <data name="HintSearch" xml:space="preserve">
     <value>Buscar</value>
@@ -407,5 +407,11 @@
   </data>
   <data name="LblDelete" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="MsgRegisteringUserGroup" xml:space="preserve">
+    <value>Registrando el grupo de usuario y sus miembros…</value>
+  </data>
+  <data name="MsgUserGroupRegisteredSuccessfully" xml:space="preserve">
+    <value>El grupo de usuarios: {0}, fue registrado exitosamente</value>
   </data>
 </root>

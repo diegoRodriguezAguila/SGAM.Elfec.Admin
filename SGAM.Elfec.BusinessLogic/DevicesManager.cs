@@ -17,26 +17,19 @@ namespace SGAM.Elfec.BusinessLogic
         public static void GetAllDevices(ResultCallback<IList<Device>> callback)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
-            var restInvoker = new RestInvoker<IList<Device>>();
-            restInvoker.InvokeWebService(callback, () =>
-            {
-                var parameters = new Dictionary<string, string>();
-                parameters["sort"] = "-status,name";
-                return RestEndpointFactory
-                    .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken).GetAllDevices(parameters);
-            });
+            var parameters = new Dictionary<string, string>();
+            parameters["sort"] = "-status,name";
+            RestInvoker.InvokeWebService(callback, RestEndpointFactory
+                    .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken)
+                    .GetAllDevices(parameters));
         }
 
         public static void AuthorizeDevice(Device deviceToAuth, ResultCallback<Device> callback)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
-            var restInvoker = new RestInvoker<Device>();
-            restInvoker.InvokeWebService(callback, () =>
-            {
-                return RestEndpointFactory
+            RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken)
-                    .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth));
-            });
+                    .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth)));
         }
 
         /// <summary>

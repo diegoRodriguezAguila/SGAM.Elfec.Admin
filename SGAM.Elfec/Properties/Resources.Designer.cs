@@ -790,6 +790,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registrando el grupo de usuario y sus miembros….
+        /// </summary>
+        public static string MsgRegisteringUserGroup {
+            get {
+                return ResourceManager.GetString("MsgRegisteringUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subiendo archivo APK.....
         /// </summary>
         public static string MsgUploadingApk {
@@ -799,7 +808,16 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario: {0} {1}, fue registrado exitosamente.
+        ///   Looks up a localized string similar to El grupo de usuarios: {0}, fue registrado exitosamente.
+        /// </summary>
+        public static string MsgUserGroupRegisteredSuccessfully {
+            get {
+                return ResourceManager.GetString("MsgUserGroupRegisteredSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario: {0}, fue registrado exitosamente.
         /// </summary>
         public static string MsgUserRegisteredSuccessfully {
             get {

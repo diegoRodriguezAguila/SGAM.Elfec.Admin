@@ -44,12 +44,12 @@
             <StackPanel  Name="UserInfoPanel" Margin="20,0,0,20" MaxWidth="482"
                          Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupName}" />
-                <TextBox />
+                <TextBox Text="{Binding UserGroup.Name}" />
                 <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupDescription}"/>
-                <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding AuthPendingDevice.Comments}" VerticalScrollBarVisibility="Auto" 
-                         Grid.ColumnSpan="2" Grid.Row="19" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
-                         Margin="0,0,0,10" />
-                <Expander IsExpanded="{Binding ElementName=ChkAddMembers, Path=IsChecked}" Style="{StaticResource NoButtonExpanderStyle}" >
+                <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding UserGroup.Description}" 
+                         VerticalScrollBarVisibility="Auto" 
+                         Grid.ColumnSpan="2" Grid.Row="19" Height="80" TextWrapping="Wrap" AcceptsReturn="True" />
+                <Expander Margin="0,10,0,0" IsExpanded="{Binding ElementName=ChkAddMembers, Path=IsChecked}" Style="{StaticResource NoButtonExpanderStyle}" >
                     <Expander.Header>
                         <Fluent:CheckBox Name="ChkAddMembers" Header="{x:Static Res:Resources.LblAddUserGroupMembers}" />
                     </Expander.Header>
@@ -83,7 +83,7 @@
                         <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupMembers}" />
                         <Border BorderBrush="{StaticResource TextBoxBorderBrush}" BorderThickness="1" >
                             <ListView Name="ListViewMembers" Style="{StaticResource WrapPanelListView}"
-                                      ItemsSource="{Binding Members}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      ItemsSource="{Binding UserGroup.Members}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       ItemContainerStyle="{StaticResource MemberItemOptionStyle}" 
                                       Tag="{x:Static Res:Resources.LblNoCurrentMembers}"
                                       ItemTemplate="{StaticResource UserBlueItemTemplate}" >
@@ -96,7 +96,7 @@
                     </StackPanel>
                 </Expander>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Button Name="BtnRegister" Command="{Binding AddMemberCommand}"
+                    <Button Name="BtnRegister" Command="{Binding RegisterUserGroupCommand}"
                             Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                             FontWeight="SemiBold" HorizontalAlignment="Left" >
                         <Button.Content>

@@ -18,13 +18,9 @@ namespace SGAM.Elfec.BusinessLogic
         public static void RegisterUser(User userToRegister, ResultCallback<User> callback)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
-            var restInvoker = new RestInvoker<User>();
-            restInvoker.InvokeWebService(callback, () =>
-            {
-                return RestEndpointFactory
+            RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IUsersEndpoint>(user.Username, user.AuthenticationToken)
-                    .RegisterUser(userToRegister);
-            });
+                    .RegisterUser(userToRegister));
         }
 
         /// <summary>
@@ -36,17 +32,13 @@ namespace SGAM.Elfec.BusinessLogic
         public static void GetAllUsers(ResultCallback<IList<User>> callback, UserStatus? userStatus = null)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
-            var restInvoker = new RestInvoker<IList<User>>();
-            restInvoker.InvokeWebService(callback, () =>
-            {
-                var parameters = new Dictionary<string, string>();
-                parameters["sort"] = "-status,username";
-                if (userStatus != null)
-                    parameters["status"] = ((int)userStatus).ToString();
-                return RestEndpointFactory
+            var parameters = new Dictionary<string, string>();
+            parameters["sort"] = "-status,username";
+            if (userStatus != null)
+                parameters["status"] = ((int)userStatus).ToString();
+            RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IUsersEndpoint>(user.Username, user.AuthenticationToken)
-                    .GetAllUsers(parameters);
-            });
+                    .GetAllUsers(parameters));
         }
     }
 }

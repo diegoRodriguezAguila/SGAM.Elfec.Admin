@@ -118,6 +118,7 @@
     <Compile Include="WebServices\ApiEndpoints\ISgamApiEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISessionsEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISgamAuthenticatedEndpoint.cs" />
+    <Compile Include="WebServices\ApiEndpoints\IUserGroupsEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\IUsersEndpoint.cs" />
     <Compile Include="WebServices\JsonContractResolver\DeliminatorSeparatedPropertyNamesContractResolver .cs" />
     <Compile Include="WebServices\JsonContractResolver\SnakeCasePropertyNamesContractResolver.cs" />

@@ -19,7 +19,7 @@ namespace SGAM.Elfec.Presenters
         public AddNewUserGroupPresenter(IAddNewUserGroupView view)
             : base(view)
         {
-            Members = new ObservableCollection<User>();
+            UserGroup = new UserGroup { Members = new ObservableCollection<User>() };
             LoadElegibleUsers();
         }
 
@@ -28,7 +28,7 @@ namespace SGAM.Elfec.Presenters
         #region Private Attributes
         private ObservableCollection<User> _elegibleUsers;
         private User _memberToAdd;
-        private ObservableCollection<User> _members;
+        private UserGroup _userGroup;
         private string _userFullName;
         #endregion
 
@@ -53,13 +53,13 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
-        public ObservableCollection<User> Members
+        public UserGroup UserGroup
         {
-            get { return _members; }
+            get { return _userGroup; }
             set
             {
-                _members = value;
-                RaisePropertyChanged("Members");
+                _userGroup = value;
+                RaisePropertyChanged("UserGroup");
             }
         }
 
@@ -78,6 +78,7 @@ namespace SGAM.Elfec.Presenters
         #region Commands
         public ICommand AddMemberCommand { get { return new DelegateCommand(AddMember); } }
         public ICommand DeleteMemberCommand { get { return new ListItemCommand<IList>(DeleteMember); } }
+        public ICommand RegisterUserGroupCommand { get { return new DelegateCommand(RegisterUserGroup); } }
         #endregion
 
         public bool FilterUsers(string search, object item)
@@ -112,27 +113,76 @@ namespace SGAM.Elfec.Presenters
             }).Start();
         }
 
+        /// <summary>
+        /// Adds a member to the user group
+        /// </summary>
         private void AddMember()
         {
-            if (MemberToAdd != null && !Members.Contains(MemberToAdd))
+            if (MemberToAdd != null && !UserGroup.Members.Contains(MemberToAdd))
             {
-                Members.Add(MemberToAdd);
+                UserGroup.Members.Add(MemberToAdd);
                 ElegibleUsers.Remove(MemberToAdd);
                 MemberToAdd = null;
                 UserFullName = null;
             }
         }
 
+        /// <summary>
+        /// Deletes the selected members from the user group
+        /// </summary>
+        /// <param name="selectedMembers"></param>
         private void DeleteMember(IList selectedMembers)
         {
             var membersToDel = selectedMembers.Cast<User>().ToList();
             if (membersToDel != null && membersToDel.Count > 0)
             {
-                Members.RemoveRange(membersToDel);
+                UserGroup.Members.RemoveRange(membersToDel);
                 ElegibleUsers.AddRange(membersToDel);
                 MemberToAdd = null;
                 UserFullName = null;
             }
+        }
+
+        /// <summary>
+        /// Registra el grupo de usuarios
+        /// </summary>
+        private void RegisterUserGroup()
+        {
+            new Thread(() =>
+            {
+                View.ShowRegisteringUserGroup();
+                var callback = new ResultCallback<UserGroup>();
+                callback.Success += (s, userGroup) =>
+                {
+                    RegisterMembers(userGroup);
+                };
+                callback.Failure += (s, errors) =>
+                {
+                    View.ShowRegistrationErrors(errors);
+                };
+                UserGroupManager.RegisterUserGroup(UserGroup, callback);
+            }).Start();
+        }
+
+        /// <summary>
+        /// Registra los miembros del grupo de usuarios
+        /// </summary>
+        /// <param name="userGroup">El grupo de usuarios</param>
+        private void RegisterMembers(UserGroup userGroup)
+        {
+            new Thread(() =>
+            {
+                var callback = new VoidCallback();
+                callback.Success += (s) =>
+                {
+                    View.ShowUserGroupRegistered(userGroup);
+                };
+                callback.Failure += (s, errors) =>
+                {
+                    View.ShowRegistrationErrors(errors);
+                };
+                UserGroupManager.AddMembers(userGroup.Id, UserGroup.Members, callback);
+            }).Start();
         }
 
     }

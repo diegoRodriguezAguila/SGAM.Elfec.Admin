@@ -4,6 +4,7 @@ using SGAM.Elfec.Model.Exceptions;
 using SGAM.Elfec.Model.WebServices;
 using System;
 using System.Net;
+using System.Net.Http;
 
 namespace SGAM.Elfec.DataAccess.WebServices
 {
@@ -12,6 +13,22 @@ namespace SGAM.Elfec.DataAccess.WebServices
     /// </summary>
     public class RestErrorInterpreter
     {
+        /// <summary>
+        /// interpreta el error correcto de la llamada al web service
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns>el error interpretado</returns>
+        public static Exception InterpretWebServiceError(Exception exception)
+        {
+            if (exception is ApiException)
+                return InterpretError(exception as ApiException);
+            if (exception is ApiMultipartException)
+                return InterpretError(exception as ApiException);
+            if (exception is HttpRequestException)
+                return new ServerConnectException();
+            return exception;
+        }
+
         /// <summary>
         /// interpreta el error correcto según su código y tipo de excepción
         /// </summary>

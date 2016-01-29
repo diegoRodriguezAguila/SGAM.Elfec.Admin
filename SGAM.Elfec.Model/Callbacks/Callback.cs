@@ -9,6 +9,7 @@ namespace SGAM.Elfec.Model.Callbacks
     {
         public event FailureEventHandler Failure;
         public IList<Exception> Errors { get; set; } = new List<Exception>();
+        public bool HasErrors { get { return Errors.Count > 0; } }
         // Invoke the Failure event; called whenever list changes
         public void OnFailure(object sender)
         {

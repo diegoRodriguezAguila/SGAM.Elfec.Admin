@@ -25,7 +25,7 @@
             </MenuItem.Header>
             <MenuItem.Icon>
                 <Grid Height="25" Width="25" Background="Transparent" >
-                    <Viewbox Height="18" Child="{StaticResource AuthDevice}" />
+                    <Viewbox Height="16" Child="{StaticResource AuthDevice}" />
                 </Grid>
             </MenuItem.Icon>
         </MenuItem>

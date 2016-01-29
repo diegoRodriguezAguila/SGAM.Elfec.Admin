@@ -331,6 +331,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eliminar.
+        /// </summary>
+        public static string LblDelete {
+            get {
+                return ResourceManager.GetString("LblDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Versión banda base:.
         /// </summary>
         public static string LblDeviceBasebandVersion {
@@ -520,6 +529,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nuevo miembro.
+        /// </summary>
+        public static string LblNewMember {
+            get {
+                return ResourceManager.GetString("LblNewMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aun no se agregó ningún miembro al grupo….
+        /// </summary>
+        public static string LblNoCurrentMembers {
+            get {
+                return ResourceManager.GetString("LblNoCurrentMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contraseña.
         /// </summary>
         public static string LblPassword {
@@ -588,6 +615,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblUserGroupDescription {
             get {
                 return ResourceManager.GetString("LblUserGroupDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miembros de grupo.
+        /// </summary>
+        public static string LblUserGroupMembers {
+            get {
+                return ResourceManager.GetString("LblUserGroupMembers", resourceCulture);
             }
         }
         

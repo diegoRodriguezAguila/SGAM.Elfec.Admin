@@ -396,4 +396,16 @@
   <data name="LblAddUserGroupMembers" xml:space="preserve">
     <value>Agregar miembros al grupo</value>
   </data>
+  <data name="LblUserGroupMembers" xml:space="preserve">
+    <value>Miembros de grupo</value>
+  </data>
+  <data name="LblNoCurrentMembers" xml:space="preserve">
+    <value>Aun no se agregó ningún miembro al grupo…</value>
+  </data>
+  <data name="LblNewMember" xml:space="preserve">
+    <value>Nuevo miembro</value>
+  </data>
+  <data name="LblDelete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
 </root>

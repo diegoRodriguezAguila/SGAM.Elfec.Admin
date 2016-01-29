@@ -8,7 +8,7 @@
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="Padding" Value="15"/>
+        <Setter Property="Padding" Value="10"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -16,6 +16,21 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="HasItems" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListView">
+                            <TextBlock FontStyle="Italic" FontSize="12" 
+                                       Padding="10"
+                                       TextWrapping="Wrap"
+                                       Foreground="{StaticResource TextFormGrayBrush}" 
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Tag}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style x:Key="ListViewItemOptionStyle" TargetType="{x:Type ListViewItem}">
         <Setter Property="Margin" Value="5" />

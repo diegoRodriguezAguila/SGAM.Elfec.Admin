@@ -18,7 +18,12 @@
              Background="White"
              d:DesignHeight="450" d:DesignWidth="700">
     <UserControl.Resources>
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -36,10 +41,10 @@
                    FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
         </StackPanel>
         <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel  Name="UserInfoPanel" Margin="20,0,0,20"
+            <StackPanel  Name="UserInfoPanel" Margin="20,0,0,20" MaxWidth="482"
                          Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupName}" />
-                <TextBox Text="{Binding MemberToAdd.Username}" />
+                <TextBox />
                 <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupDescription}"/>
                 <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding AuthPendingDevice.Comments}" VerticalScrollBarVisibility="Auto" 
                          Grid.ColumnSpan="2" Grid.Row="19" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
@@ -52,25 +57,46 @@
                         <Extensions:AnimatedExpanderBehavior Duration="0:0:0.35" />
                     </i:Interaction.Behaviors>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                        <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUsername}" />
-                        <Toolkit:AutoCompleteBox Name="UserSelector" TextBoxStyle="{StaticResource DefaultTextBoxStyle}"
-                                                 ItemsSource="{Binding ElegibleUsers}"
-                                                 Text="{Binding UserFullName}"
-                                                 FilterMode="Custom"
-                                                 ValueMemberPath="FullName"
-                                                 SelectedItem="{Binding Path=MemberToAdd, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
-                                                 ItemTemplate="{StaticResource UserBlueItemTemplate}" >
-                            
-                        </Toolkit:AutoCompleteBox>
-                        <ListView Name="ListViewMembers" Style="{StaticResource WrapPanelListView}"
-                                  ItemsSource="{Binding Members}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                  ItemContainerStyle="{StaticResource ApplicationItemOptionStyle}" 
-                                  ItemTemplate="{StaticResource UserBlueItemTemplate}" />
+                        <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblNewMember}" />
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="32"/>
+                            </Grid.ColumnDefinitions>
+                            <Toolkit:AutoCompleteBox Name="UserSelector"
+                                                     Margin="0,0,2,0" 
+                                                     TextBoxStyle="{StaticResource DefaultTextBoxStyle}"
+                                                     ItemsSource="{Binding ElegibleUsers}"
+                                                     Text="{Binding UserFullName, Mode=TwoWay}"
+                                                     FilterMode="Custom"
+                                                     ValueMemberPath="FullName"
+                                                     SelectedItem="{Binding Path=MemberToAdd, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
+                                                     ItemTemplate="{StaticResource UserBlueItemTemplate}" />
+                            <Button Grid.Column="1" Height="32" Width="32" IsDefault="True" Command="{Binding AddMemberCommand}" >
+                                <Button.Content>
+                                    <Image Height="24" UseLayoutRounding="True" Width="24" Source="/Resources/AddMedium.png"/>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+
+
+                        <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblUserGroupMembers}" />
+                        <Border BorderBrush="{StaticResource TextBoxBorderBrush}" BorderThickness="1" >
+                            <ListView Name="ListViewMembers" Style="{StaticResource WrapPanelListView}"
+                                      ItemsSource="{Binding Members}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      ItemContainerStyle="{StaticResource MemberItemOptionStyle}" 
+                                      Tag="{x:Static Res:Resources.LblNoCurrentMembers}"
+                                      ItemTemplate="{StaticResource UserBlueItemTemplate}" >
+                                <ListView.InputBindings>
+                                    <KeyBinding Key="Delete" Command="{Binding Path=DeleteMemberCommand}"
+                                                CommandParameter="{Binding ElementName=ListViewMembers,Path=SelectedItems}"></KeyBinding>
+                                </ListView.InputBindings>
+                            </ListView>
+                        </Border>
                     </StackPanel>
                 </Expander>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Button Name="BtnRegister" IsDefault="{Binding ElementName=TxtSearch,
-                            Path=IsKeyboardFocused}" Command="{Binding AddMemberCommand}"
+                    <Button Name="BtnRegister" Command="{Binding AddMemberCommand}"
                             Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                             FontWeight="SemiBold" HorizontalAlignment="Left" >
                         <Button.Content>

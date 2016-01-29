@@ -5,10 +5,39 @@
                     xmlns:local="clr-namespace:SGAM.Elfec">
     <converters:UserStatusToOpacityConverter x:Key="UserStatusToOpacityConverter" />
     <converters:UserStatusToBackgroundConverter x:Key="UserStatusToBackgroundConverter" />
+    <!--User Context Menu-->
+
+    <ContextMenu x:Key="MemberItemContextMenu" >
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListView}}, 
+                  Path=DataContext.DeleteMemberCommand}"
+                  CommandParameter="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListView}}, 
+                  Path=SelectedItems}" >
+            <MenuItem.Header>
+                <Grid Height="25" Background="Transparent" >
+                    <TextBlock Text="{x:Static res:Resources.LblDelete}" VerticalAlignment="Center" />
+                </Grid>
+            </MenuItem.Header>
+            <MenuItem.Icon>
+                <Grid Height="25" Width="25" Background="Transparent" >
+                    <Image Width="16" Height="16" Source="/Resources/DeleteSmall.png" />
+                </Grid>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
 
     <!--UserItemOptionStyle ListItem Style-->
     <Style x:Key="UserItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
            TargetType="ListViewItem">
+    </Style>
+
+    <!--MemberItemOptionStyle ListItem Style-->
+    <Style x:Key="MemberItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
+           TargetType="ListViewItem">
+        <Setter Property="ContextMenu" Value="{StaticResource MemberItemContextMenu}" />
     </Style>
 
     <!--Device ItemTemplate-->

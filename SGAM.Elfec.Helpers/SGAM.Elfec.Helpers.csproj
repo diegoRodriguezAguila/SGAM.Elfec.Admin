@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\MessageListFormatter.cs" />
+    <Compile Include="Utils\CollectionHelper.cs" />
     <Compile Include="Utils\ObjectCloner.cs" />
     <Compile Include="Utils\UserMatchHelper.cs" />
   </ItemGroup>

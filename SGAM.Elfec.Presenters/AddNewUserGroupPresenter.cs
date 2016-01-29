@@ -1,11 +1,14 @@
 ﻿using SGAM.Elfec.BusinessLogic;
+using SGAM.Elfec.Commands;
+using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Views;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -26,6 +29,7 @@ namespace SGAM.Elfec.Presenters
         private ObservableCollection<User> _elegibleUsers;
         private User _memberToAdd;
         private ObservableCollection<User> _members;
+        private string _userFullName;
         #endregion
 
         #region Properties
@@ -59,11 +63,21 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        public string UserFullName
+        {
+            get { return _userFullName; }
+            set
+            {
+                _userFullName = value;
+                RaisePropertyChanged("UserFullName");
+            }
+        }
 
         #endregion
 
         #region Commands
         public ICommand AddMemberCommand { get { return new DelegateCommand(AddMember); } }
+        public ICommand DeleteMemberCommand { get { return new ListItemCommand<IList>(DeleteMember); } }
         #endregion
 
         public bool FilterUsers(string search, object item)
@@ -104,8 +118,21 @@ namespace SGAM.Elfec.Presenters
             {
                 Members.Add(MemberToAdd);
                 ElegibleUsers.Remove(MemberToAdd);
+                MemberToAdd = null;
+                UserFullName = null;
             }
-            MemberToAdd = null;
+        }
+
+        private void DeleteMember(IList selectedMembers)
+        {
+            var membersToDel = selectedMembers.Cast<User>().ToList();
+            if (membersToDel != null && membersToDel.Count > 0)
+            {
+                Members.RemoveRange(membersToDel);
+                ElegibleUsers.AddRange(membersToDel);
+                MemberToAdd = null;
+                UserFullName = null;
+            }
         }
 
     }

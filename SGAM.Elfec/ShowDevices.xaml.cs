@@ -32,36 +32,36 @@ namespace SGAM.Elfec
 
         public void OnDataLoaded()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                 if (Transitioning.Content != ListViewDevices)
                     Transitioning.Content = ListViewDevices;
-            }));
+            });
         }
 
         public void OnLoadingErrors(bool isRefresh = false, params Exception[] errors)
         {
             if (errors.Length > 0)
             {
-                Dispatcher.BeginInvoke(new Action(() =>
+                Dispatcher.InvokeAsync(() =>
                 {
                     MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                     _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;
-                }));
+                });
             }
         }
 
         public void OnLoadingData(bool isRefresh = false)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingDevices;
                 MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgLoadingDevices);
                 Transitioning.Content = _indeterminateLoading;
-            }));
+            });
         }
 
         public void ViewDeviceAuthorization(Device device)

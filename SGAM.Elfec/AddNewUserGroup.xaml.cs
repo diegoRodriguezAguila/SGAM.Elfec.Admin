@@ -37,17 +37,17 @@ namespace SGAM.Elfec
 
         public void ShowRegisteringUserGroup()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUserGroup;
-                MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgRegisteringUserGroup);
-                TransitioningRegister.Content = _indeterminateLoading;
-            }));
+            Dispatcher.InvokeAsync(() =>
+           {
+               _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUserGroup;
+               MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgRegisteringUserGroup);
+               TransitioningRegister.Content = _indeterminateLoading;
+           });
         }
 
         public void ShowRegistrationErrors(params Exception[] errors)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                 MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
@@ -56,19 +56,19 @@ namespace SGAM.Elfec
                     TransitioningRegister.Content = null;
                 };
                 TransitioningRegister.Content = _errorMessage;
-            }));
+            });
         }
 
         public void ShowUserGroupRegistered(UserGroup userGroup)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 var mainWindow = MainWindowService.Instance.MainWindowView;
                 mainWindow.SetStatusBarDefault();
                 mainWindow.ChangeToUsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
-                    String.Format(Properties.Resources.MsgUserRegisteredSuccessfully, userGroup.Name));
-            }));
+                    string.Format(Properties.Resources.MsgUserRegisteredSuccessfully, userGroup.Name));
+            });
         }
 
     }

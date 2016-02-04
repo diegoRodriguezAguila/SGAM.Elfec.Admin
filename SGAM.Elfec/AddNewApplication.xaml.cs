@@ -48,46 +48,46 @@ namespace SGAM.Elfec
 
         public void ShowLoadingAPK()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingApk;
                 MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgLoadingApkShort);
                 TransitioningLoadApk.Content = _indeterminateLoading;
-            }));
+            });
         }
 
         public void ShowAPKLoadErrors(params Exception[] errors)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                 _errorMessage.BtnOk.Click += (s, o) => { OnAPKLoadFinished(); };
                 TransitioningLoadApk.Content = _errorMessage;
-            }));
+            });
         }
 
         public void OnAPKLoadFinished()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                 TransitioningLoadApk.Content = BtnBrowseApk;
-            }));
+            });
         }
 
         public void ShowUploadingAplication()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _progressLoading.TxtLoadingMessage.Text = Properties.Resources.MsgUploadingApk;
                 MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgUploadingApk);
                 TransitioningUpload.Content = _progressLoading;
-            }));
+            });
         }
 
         public void ShowAplicationUploadErrors(params Exception[] errors)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                 _errorMessage.BtnOk.Click += (s, o) =>
@@ -96,19 +96,19 @@ namespace SGAM.Elfec
                     TransitioningUpload.Content = null;
                 };
                 TransitioningUpload.Content = _errorMessage;
-            }));
+            });
         }
 
         public void ShowAplicationUploadedSuccessfully(Model.Application application)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 var mainWindow = MainWindowService.Instance.MainWindowView;
                 mainWindow.SetStatusBarDefault();
                 mainWindow.ChangeToApplicationsView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
                     String.Format(Properties.Resources.MsgApplicationUploadedSuccessfully, application.Name));
-            }));
+            });
         }
 
         #endregion

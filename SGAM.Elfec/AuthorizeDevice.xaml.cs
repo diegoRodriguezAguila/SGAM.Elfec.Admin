@@ -43,34 +43,34 @@ namespace SGAM.Elfec
 
         public void ShowProcesingAuthorization()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgAuthorizingDevice;
                 MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgAuthorizingDevice);
                 Transitioning.Content = _indeterminateLoading;
-            }));
+            });
         }
 
         public void ShowAuthorizationErrors(params Exception[] errors)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                 Transitioning.Content = _errorMessage;
-            }));
+            });
         }
 
         public void ShowDeviceAuthorizedSuccessfuly(Device device)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 var mainWindow = MainWindowService.Instance.MainWindowView;
                 mainWindow.SetStatusBarDefault();
                 mainWindow.ChangeToDevicesView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
                     String.Format(Properties.Resources.MsgDeviceSuccessfullyAuthorized, device.Name));
-            }));
+            });
         }
 
         public void NotifyErrorsInFields()

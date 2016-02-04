@@ -59,49 +59,49 @@ namespace SGAM.Elfec
         {
             if (validationErrors.Length > 0)
             {
-                Dispatcher.BeginInvoke(new Action(() =>
+                Dispatcher.InvokeAsync(() =>
                 {
                     _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(validationErrors);
                     Transitioning.Content = _errorMessage;
-                }));
+                });
             }
         }
 
         public void ShowWaiting()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoginUser;
                 Transitioning.Content = _indeterminateLoading;
-            }));
+            });
         }
 
         public void UpdateWaiting(string waitingMessage)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = waitingMessage;
-            }));
+            });
         }
 
         public void HideWaiting()
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 Transitioning.Content = null;
-            }));
+            });
         }
 
         public void NotifySuccessfulLogin(User loggedUser)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 _manualClosing = true;
                 Close();
                 _manualClosing = false;
                 if (UserLoggedIn != null)
                     UserLoggedIn(this, loggedUser);
-            }));
+            });
         }
 
         #endregion

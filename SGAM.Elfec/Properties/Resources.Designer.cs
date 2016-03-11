@@ -79,29 +79,20 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar aplicación.
+        ///   Looks up a localized string similar to Agregar Lista de Aplicaciones Permitidas.
         /// </summary>
-        public static string BtnAddApp {
+        public static string BtnAddWhitelist {
             get {
-                return ResourceManager.GetString("BtnAddApp", resourceCulture);
+                return ResourceManager.GetString("BtnAddWhitelist", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registrar usuario.
+        ///   Looks up a localized string similar to Aplicación.
         /// </summary>
-        public static string BtnAddUser {
+        public static string BtnApplication {
             get {
-                return ResourceManager.GetString("BtnAddUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Agregar grupo de usuarios.
-        /// </summary>
-        public static string BtnAddUserGroup {
-            get {
-                return ResourceManager.GetString("BtnAddUserGroup", resourceCulture);
+                return ResourceManager.GetString("BtnApplication", resourceCulture);
             }
         }
         
@@ -156,6 +147,33 @@ namespace SGAM.Elfec.Properties {
         public static string BtnUploadApp {
             get {
                 return ResourceManager.GetString("BtnUploadApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario.
+        /// </summary>
+        public static string BtnUser {
+            get {
+                return ResourceManager.GetString("BtnUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grupo de usuarios.
+        /// </summary>
+        public static string BtnUserGroup {
+            get {
+                return ResourceManager.GetString("BtnUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lista de aplicaciones permitidas.
+        /// </summary>
+        public static string BtnWhitelist {
+            get {
+                return ResourceManager.GetString("BtnWhitelist", resourceCulture);
             }
         }
         
@@ -844,6 +862,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERTAR.
+        /// </summary>
+        public static string TabInsert {
+            get {
+                return ResourceManager.GetString("TabInsert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to INICIO.
         /// </summary>
         public static string TabStart {
@@ -894,6 +921,96 @@ namespace SGAM.Elfec.Properties {
         public static string TitleUsers {
             get {
                 return ResourceManager.GetString("TitleUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aplicaciones.
+        /// </summary>
+        public static string ToolsApplication {
+            get {
+                return ResourceManager.GetString("ToolsApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuarios.
+        /// </summary>
+        public static string ToolsUser {
+            get {
+                return ResourceManager.GetString("ToolsUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar aplicación.
+        /// </summary>
+        public static string TooltipAddApp {
+            get {
+                return ResourceManager.GetString("TooltipAddApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregue una aplicación simplemente seleccionando su apk.
+        /// </summary>
+        public static string TooltipAddAppDesc {
+            get {
+                return ResourceManager.GetString("TooltipAddAppDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrar usuario.
+        /// </summary>
+        public static string TooltipAddUser {
+            get {
+                return ResourceManager.GetString("TooltipAddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilize esta opción para registrar un nuevo usuario, seleccionando un usuario válido de Active Directory®.
+        /// </summary>
+        public static string TooltipAddUserDesc {
+            get {
+                return ResourceManager.GetString("TooltipAddUserDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar grupo de usuarios.
+        /// </summary>
+        public static string TooltipAddUserGroup {
+            get {
+                return ResourceManager.GetString("TooltipAddUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregue grupos de usuarios, para poder asignarles aplicaciones.
+        /// </summary>
+        public static string TooltipAddUserGroupDesc {
+            get {
+                return ResourceManager.GetString("TooltipAddUserGroupDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar lista de aplicaciones permitidas.
+        /// </summary>
+        public static string TooltipAddWhitelist {
+            get {
+                return ResourceManager.GetString("TooltipAddWhitelist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Una lista de aplicaciones permitidas limita qué aplicaciones puede utilizar un usuario o un grupo de usuarios.
+        /// </summary>
+        public static string TooltipAddWhitelistDesc {
+            get {
+                return ResourceManager.GetString("TooltipAddWhitelistDesc", resourceCulture);
             }
         }
         

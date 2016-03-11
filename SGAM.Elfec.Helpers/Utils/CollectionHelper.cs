@@ -44,12 +44,15 @@ namespace SGAM.Elfec.Helpers.Utils
         public static string ToStringRepresentation<T>(this IList<T> list,
             MessageListFormatter.AttributePickerDelegate<T> attributePicker)
         {
+            if (list == null || list.Count == 0)
+                return "";
             StringBuilder str = new StringBuilder();
             foreach (var item in list)
             {
                 str.Append(attributePicker(item)).Append(",");
             }
-            str.Remove(str.Length-1, 1);
+            str.Append("$%&");
+            str.Replace(",$%&", "");
             return str.ToString();
         }
     }

@@ -249,7 +249,7 @@
   <data name="MsgLoadingApps" xml:space="preserve">
     <value>Obteniendo información de aplicaciones…</value>
   </data>
-  <data name="BtnAddApp" xml:space="preserve">
+  <data name="TooltipAddApp" xml:space="preserve">
     <value>Agregar aplicación</value>
   </data>
   <data name="LblAddNewApp" xml:space="preserve">
@@ -315,7 +315,7 @@
   <data name="TitleUsers" xml:space="preserve">
     <value>Usuarios</value>
   </data>
-  <data name="BtnAddUser" xml:space="preserve">
+  <data name="TooltipAddUser" xml:space="preserve">
     <value>Registrar usuario</value>
   </data>
   <data name="LblApplicationLatestVersion" xml:space="preserve">
@@ -378,7 +378,7 @@
   <data name="MsgEmptyUserList" xml:space="preserve">
     <value>La lista de usuarios está vacía. Pruebe otros filtros de búsqueda.</value>
   </data>
-  <data name="BtnAddUserGroup" xml:space="preserve">
+  <data name="TooltipAddUserGroup" xml:space="preserve">
     <value>Agregar grupo de usuarios</value>
   </data>
   <data name="LblUserGroup" xml:space="preserve">
@@ -413,5 +413,44 @@
   </data>
   <data name="MsgUserGroupRegisteredSuccessfully" xml:space="preserve">
     <value>El grupo de usuarios: {0}, fue registrado exitosamente</value>
+  </data>
+  <data name="BtnAddWhitelist" xml:space="preserve">
+    <value>Agregar Lista de Aplicaciones Permitidas</value>
+  </data>
+  <data name="TabInsert" xml:space="preserve">
+    <value>INSERTAR</value>
+  </data>
+  <data name="ToolsUser" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="BtnUser" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="ToolsApplication" xml:space="preserve">
+    <value>Aplicaciones</value>
+  </data>
+  <data name="BtnApplication" xml:space="preserve">
+    <value>Aplicación</value>
+  </data>
+  <data name="BtnUserGroup" xml:space="preserve">
+    <value>Grupo de usuarios</value>
+  </data>
+  <data name="TooltipAddUserDesc" xml:space="preserve">
+    <value>Utilize esta opción para registrar un nuevo usuario, seleccionando un usuario válido de Active Directory®</value>
+  </data>
+  <data name="TooltipAddUserGroupDesc" xml:space="preserve">
+    <value>Agregue grupos de usuarios, para poder asignarles aplicaciones</value>
+  </data>
+  <data name="BtnWhitelist" xml:space="preserve">
+    <value>Lista de aplicaciones permitidas</value>
+  </data>
+  <data name="TooltipAddAppDesc" xml:space="preserve">
+    <value>Agregue una aplicación simplemente seleccionando su apk</value>
+  </data>
+  <data name="TooltipAddWhitelist" xml:space="preserve">
+    <value>Agregar lista de aplicaciones permitidas</value>
+  </data>
+  <data name="TooltipAddWhitelistDesc" xml:space="preserve">
+    <value>Una lista de aplicaciones permitidas limita qué aplicaciones puede utilizar un usuario o un grupo de usuarios</value>
   </data>
 </root>

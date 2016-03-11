@@ -394,6 +394,21 @@
   <ItemGroup>
     <Resource Include="Resources\DeleteSmall.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddWhitelist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Application\Application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\User\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\User\UserGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Application\Whitelist.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

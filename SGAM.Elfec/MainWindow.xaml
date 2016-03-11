@@ -28,6 +28,49 @@
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
             <!--Tabs-->
+            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabInsert}">
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.ToolsUser}">
+                    <Fluent:Button Name="BtnAddUser" Click="BtnAddUser_Click" Margin="5,0,0,0"
+                                   Header="{x:Static Res:Resources.BtnUser}" 
+                                   LargeIcon="/Resources/User/User.png"
+                                   Icon="/Resources/User/User.png">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddUser}"
+                                Text="{x:Static Res:Resources.TooltipAddUserDesc}"/>         
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
+                    <Fluent:Button Name="BtnAddUserGroup" Margin="2,0,0,0"
+                                   Click="BtnAddUserGroup_Click" Header="{x:Static Res:Resources.BtnUserGroup}"
+                                   LargeIcon="/Resources/User/UserGroup.png"
+                                   Icon="/Resources/User/UserGroup.png">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddUserGroup}"
+                                Text="{x:Static Res:Resources.TooltipAddUserGroupDesc}"/>
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.ToolsApplication}">
+                    <Fluent:Button Name="BtnAddApp" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnApplication}"
+                                   LargeIcon="/Resources/Application/Application.png"
+                                   Icon="/Resources/Application/Application.png">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddApp}"
+                                Text="{x:Static Res:Resources.TooltipAddAppDesc}"/>
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
+                    <Fluent:Button Name="BtnAddWhitelist" Click="BtnAddApp_Click" 
+                                   Margin="2,0,0,0"
+                                   Header="{x:Static Res:Resources.BtnWhitelist}"
+                                   LargeIcon="/Resources/Application/Whitelist.png"
+                                   Icon="/Resources/Application/Whitelist.png">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddWhitelist}"
+                                Text="{x:Static Res:Resources.TooltipAddWhitelistDesc}"/>
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
+
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabDevices}">
                 <Fluent:RibbonGroupBox Header="Group">
                     <Fluent:Button  Header="Green"
@@ -38,30 +81,23 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabApplications}">
-                <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button Name="BtnAddApp" ToolTip="{x:Static Res:Resources.BtnAddApp}" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddApp}" >
-                        <Fluent:Button.LargeIcon>
-                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
-                        </Fluent:Button.LargeIcon>
-                        <Fluent:Button.Icon>
-                            <Viewbox Child="{StaticResource AddApp}" RenderOptions.EdgeMode="Aliased" />
-                        </Fluent:Button.Icon>
-                    </Fluent:Button>
+                <Fluent:RibbonGroupBox Header="Aplicaciones">
+                    
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Aplicaciones Permitidas">
+                    <Fluent:Button Name="BtnAddWhitelist2" ToolTip="{x:Static Res:Resources.BtnAddWhitelist}" 
+                                   Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddWhitelist}"
+                                   LargeIcon="/Resources/AddWhitelist.png"
+                                   Icon="/Resources/AddWhitelist.png"/>
+
+
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabUsers}">
-                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblUsers}">
-                    <Fluent:Button Name="BtnAddUser" ToolTip="{x:Static Res:Resources.BtnAddUser}" Click="BtnAddUser_Click" Header="{x:Static Res:Resources.BtnAddUser}" >
-                        <Fluent:Button.LargeIcon>
-                            <Viewbox Child="{StaticResource AddUser}" />
-                        </Fluent:Button.LargeIcon>
-                        <Fluent:Button.Icon>
-                            <Viewbox Child="{StaticResource AddUser}" />
-                        </Fluent:Button.Icon>
-                    </Fluent:Button>
-                </Fluent:RibbonGroupBox>
+                
                 <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblUserGroup}">
-                    <Fluent:Button Name="BtnAddUserGroup" ToolTip="{x:Static Res:Resources.BtnAddUserGroup}" Click="BtnAddUserGroup_Click" Header="{x:Static Res:Resources.BtnAddUserGroup}" >
+                    <Fluent:Button Name="BtnAddUserGroup2" ToolTip="{x:Static Res:Resources.BtnUserGroup}" 
+                                   Click="BtnAddUserGroup_Click" Header="{x:Static Res:Resources.BtnUserGroup}" >
                         <Fluent:Button.LargeIcon>
                             <Image Height="32" Width="32" Source="/Resources/AddUserGroup.png"/>
                         </Fluent:Button.LargeIcon>

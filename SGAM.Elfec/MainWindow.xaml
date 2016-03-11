@@ -107,6 +107,43 @@
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabView}">
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblViews}">
+                    <Fluent:ToggleButton Name="BtnViewDevices" Margin="5,0,0,0"
+                                   GroupName="ShowGroup" IsChecked="True"
+                                   Click="BtnShowDevices_Click"
+                                   Header="{x:Static Res:Resources.LblShowDevices}" 
+                                   LargeIcon="/Resources/Device/ShowDevices.png"
+                                   Icon="/Resources/Device/ShowDevices.png">
+                        <Fluent:ToggleButton.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipShowDevices}"
+                                Text="{x:Static Res:Resources.TooltipShowDevicesDesc}"/>
+                        </Fluent:ToggleButton.ToolTip>
+                    </Fluent:ToggleButton>
+                    <Fluent:ToggleButton Name="BtnViewApps" Margin="5,0,0,0"
+                                   GroupName="ShowGroup"
+                                   Click="BtnShowApps_Click"
+                                   Header="{x:Static Res:Resources.LblShowApps}" 
+                                   LargeIcon="/Resources/Application/ShowApps.png"
+                                   Icon="/Resources/Application/ShowApps.png">
+                        <Fluent:ToggleButton.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipShowApps}"
+                                Text="{x:Static Res:Resources.TooltipShowAppsDesc}"/>
+                        </Fluent:ToggleButton.ToolTip>
+                    </Fluent:ToggleButton>
+                    <Fluent:ToggleButton Name="BtnViewUsers" Margin="5,0,0,0"
+                                   GroupName="ShowGroup"
+                                   Click="BtnShowUsers_Click"
+                                   Header="{x:Static Res:Resources.LblShowUsers}" 
+                                   LargeIcon="/Resources/User/ShowUsers.png"
+                                   Icon="/Resources/User/ShowUsers.png">
+                        <Fluent:ToggleButton.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipShowUsers}"
+                                Text="{x:Static Res:Resources.TooltipShowUsersDesc}"/>
+                        </Fluent:ToggleButton.ToolTip>
+                    </Fluent:ToggleButton>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
             <Fluent:Ribbon.ToolBarItems>
                 <Fluent:DropDownButton SizeDefinition="Middle" Margin="5,0,5,0" Header="drodriguezd" >
                     <Fluent:DropDownButton.Icon> 
@@ -129,7 +166,8 @@
         <StatusBar Style="{StaticResource BottomBar}" Grid.Row="2" BorderThickness="0" >
             <TextBlock Name="TxtStatus" VerticalAlignment="Center" Margin="4,0,0,0" Foreground="White" Text="{x:Static Res:Resources.LblStatusbarDefault}" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                <sgam:StatusBarButton Name="BtnShowDevices" IsSelected="True" Click="BtnShowDevices_Click" Width="30">
+                <sgam:StatusBarButton Name="BtnShowDevices" ToolTip="{x:Static Res:Resources.TooltipShowDevices}"
+                                      IsSelected="True" Click="BtnShowDevices_Click" Width="30">
                     <Image Height="13" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/Resources/Phone.png" />
                 </sgam:StatusBarButton>
                 <sgam:StatusBarButton Name="BtnShowApps" ToolTip="{x:Static Res:Resources.TooltipShowApps}" Click="BtnShowApps_Click" Width="30">

@@ -96,6 +96,7 @@ namespace SGAM.Elfec
         public void ChangeToApplicationsView(bool force = false)
         {
             BtnShowApps.IsSelected = true;
+            BtnViewApps.IsChecked = true;
             BtnShowDevices.IsSelected = false;
             BtnShowUsers.IsSelected = false;
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowApplications);
@@ -108,6 +109,7 @@ namespace SGAM.Elfec
 
             BtnShowApps.IsSelected = false;
             BtnShowDevices.IsSelected = true;
+            BtnViewDevices.IsChecked = true;
             BtnShowUsers.IsSelected = false;
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowDevices);
             if (shouldChange || force)
@@ -119,6 +121,7 @@ namespace SGAM.Elfec
             BtnShowApps.IsSelected = false;
             BtnShowDevices.IsSelected = false;
             BtnShowUsers.IsSelected = true;
+            BtnViewUsers.IsChecked = true;
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowUsers);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowUsers());

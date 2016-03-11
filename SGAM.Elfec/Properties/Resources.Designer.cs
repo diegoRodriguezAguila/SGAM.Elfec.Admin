@@ -574,6 +574,33 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ver aplicaciones.
+        /// </summary>
+        public static string LblShowApps {
+            get {
+                return ResourceManager.GetString("LblShowApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver dispositivos.
+        /// </summary>
+        public static string LblShowDevices {
+            get {
+                return ResourceManager.GetString("LblShowDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ver usuarios.
+        /// </summary>
+        public static string LblShowUsers {
+            get {
+                return ResourceManager.GetString("LblShowUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pulg..
         /// </summary>
         public static string LblSizeUnit {
@@ -687,6 +714,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblUserUsername {
             get {
                 return ResourceManager.GetString("LblUserUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vistas.
+        /// </summary>
+        public static string LblViews {
+            get {
+                return ResourceManager.GetString("LblViews", resourceCulture);
             }
         }
         
@@ -889,6 +925,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to VISTA.
+        /// </summary>
+        public static string TabView {
+            get {
+                return ResourceManager.GetString("TabView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aplicaciones.
         /// </summary>
         public static string TitleApplications {
@@ -1042,6 +1087,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Muestra todas las aplicaciones registradas.
+        /// </summary>
+        public static string TooltipShowAppsDesc {
+            get {
+                return ResourceManager.GetString("TooltipShowAppsDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ver dispositivos.
         /// </summary>
         public static string TooltipShowDevices {
@@ -1051,11 +1105,29 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Muestra todos los dispositivos registrados, los authorizados y dados de baja.
+        /// </summary>
+        public static string TooltipShowDevicesDesc {
+            get {
+                return ResourceManager.GetString("TooltipShowDevicesDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ver usuarios.
         /// </summary>
         public static string TooltipShowUsers {
             get {
                 return ResourceManager.GetString("TooltipShowUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Muestra todos los usuarios registrados en la aplicación.
+        /// </summary>
+        public static string TooltipShowUsersDesc {
+            get {
+                return ResourceManager.GetString("TooltipShowUsersDesc", resourceCulture);
             }
         }
         

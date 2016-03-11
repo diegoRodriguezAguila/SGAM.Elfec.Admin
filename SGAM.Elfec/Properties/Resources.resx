@@ -453,4 +453,28 @@
   <data name="TooltipAddWhitelistDesc" xml:space="preserve">
     <value>Una lista de aplicaciones permitidas limita qué aplicaciones puede utilizar un usuario o un grupo de usuarios</value>
   </data>
+  <data name="TabView" xml:space="preserve">
+    <value>VISTA</value>
+  </data>
+  <data name="LblViews" xml:space="preserve">
+    <value>Vistas</value>
+  </data>
+  <data name="LblShowApps" xml:space="preserve">
+    <value>Ver aplicaciones</value>
+  </data>
+  <data name="LblShowDevices" xml:space="preserve">
+    <value>Ver dispositivos</value>
+  </data>
+  <data name="LblShowUsers" xml:space="preserve">
+    <value>Ver usuarios</value>
+  </data>
+  <data name="TooltipShowAppsDesc" xml:space="preserve">
+    <value>Muestra todas las aplicaciones registradas</value>
+  </data>
+  <data name="TooltipShowDevicesDesc" xml:space="preserve">
+    <value>Muestra todos los dispositivos registrados, los authorizados y dados de baja</value>
+  </data>
+  <data name="TooltipShowUsersDesc" xml:space="preserve">
+    <value>Muestra todos los usuarios registrados en la aplicación</value>
+  </data>
 </root>

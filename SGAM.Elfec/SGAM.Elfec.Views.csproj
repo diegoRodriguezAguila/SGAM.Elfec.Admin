@@ -169,6 +169,9 @@
     <Compile Include="AddNewUserGroup.xaml.cs">
       <DependentUpon>AddNewUserGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\TreeViewHelper.cs" />
+    <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
+    <Compile Include="Converters\RuleActionToImageConverter.cs" />
     <Compile Include="PolicyRules.xaml.cs">
       <DependentUpon>PolicyRules.xaml</DependentUpon>
     </Compile>
@@ -282,6 +285,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Device.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Policy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -448,6 +455,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Device\DevicePolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rule\Deny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rule\Permit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rule\Rule.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

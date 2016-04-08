@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Model="clr-namespace:SGAM.Elfec.Model;assembly=SGAM.Elfec.Model"                  
+                    xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+                    xmlns:local="clr-namespace:SGAM.Elfec">
+
+    <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" />
+    <converters:RuleActionToImageConverter x:Key="RuleActionToImageConverter" />
+    <!-- Item Template for Policy Rules-->
+    <HierarchicalDataTemplate  x:Key="RuleTreeTemplate"
+                               DataType="{x:Type Model:Rule}" ItemsSource="{Binding}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" >
+            <Image Width="16" Height="16" VerticalAlignment="Center"
+                   SnapsToDevicePixels="True"
+                   Source="{Binding Action, Converter={StaticResource RuleActionToImageConverter}}" />
+            <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Path = Name}"></TextBlock>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+
+    <!-- Item Template for Policy -->
+    <HierarchicalDataTemplate
+        x:Key="PolicyTreeTemplate"
+        DataType="{x:Type Model:Policy}" ItemsSource="{Binding Rules}"
+        ItemTemplate="{StaticResource RuleTreeTemplate}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" >
+            <Image Width="16" Height="16"  VerticalAlignment="Center"
+                   SnapsToDevicePixels="True"
+                   Source="{Binding Type, Converter={StaticResource PolicyTypeToImageConverter}}" />
+            <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Path = Name}"></TextBlock>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+</ResourceDictionary>

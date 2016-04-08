@@ -7,13 +7,15 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="{x:Static Fluent:MetroColors.ThemeColorKey}">#18468D</Color>
-
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource MainColor}" Opacity="0.22" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource {x:Static SystemColors.ControlTextColorKey}}" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="/Resources/SVG/IconsResourceDictionary.xaml" />
                 <ResourceDictionary Source="/Styles/Application.xaml" />
                 <ResourceDictionary Source="/Styles/Device.xaml" />
+                <ResourceDictionary Source="/Styles/Policy.xaml" />
                 <ResourceDictionary Source="/Styles/User.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

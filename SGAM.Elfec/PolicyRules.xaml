@@ -13,7 +13,7 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:Extensions="clr-namespace:Extensions.Wpf.Behaviors;assembly=Extensions.Wpf"
-             xmlns:Model="clr-namespace:SGAM.Elfec.Model;assembly=SGAM.Elfec.Model"
+             xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
              mc:Ignorable="d"  
              Tag="{x:Static Res:Resources.LblPolicies}"
              Background="White"
@@ -46,24 +46,18 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TreeView Grid.Column="0" Name="TrvPolicies" 
-                          ItemsSource="{Binding Policies}" >
-                    <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type Model:Policy}" ItemsSource="{Binding}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Path = Name}"></TextBlock>
-                        </StackPanel>
-                    </HierarchicalDataTemplate><!--
-                    <HierarchicalDataTemplate DataType="{x:Type Model:Rule}" ItemsSource="{Binding}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Path = Name}"></TextBlock>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>-->
-                    </TreeView.ItemTemplate>
-                </TreeView>
-                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                <TreeView Grid.Column="0" Name="TrvPolicies" Padding="0,5,5,5" 
+                          BorderBrush="{StaticResource TabBorderBrush}" Margin="0,0,-5,0"
+                          behaviors:TreeViewHelper.SelectedItem="{Binding Path=Selected, Mode=TwoWay}"
+                          ItemsSource="{Binding Policies}" ItemTemplate="{StaticResource PolicyTreeTemplate}" />
+                <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
+                              HorizontalAlignment="Stretch" />
+                <Border Grid.Column="2"
+                        BorderBrush="{StaticResource TabBorderBrush}" BorderThickness="0,1,0,1" >
+                    <Grid />
+                </Border>
             </Grid>
         </ScrollViewer>
     </Grid>

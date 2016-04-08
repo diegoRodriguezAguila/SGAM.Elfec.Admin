@@ -20,6 +20,7 @@ namespace SGAM.Elfec.Presenters
         #region Private Attributes
         private ObservableCollection<Policy> _policies;
         private Policy _selectedPolicy;
+        private Rule _selectedRule;
         #endregion
         #region Properties
         public ObservableCollection<Policy> Policies
@@ -28,18 +29,19 @@ namespace SGAM.Elfec.Presenters
             set
             {
                 _policies = value;
-                SelectedPolicy = _policies.FirstOrDefault();
+                Selected = _policies.FirstOrDefault();
                 RaisePropertyChanged("Policies");
             }
         }
 
-        public Policy SelectedPolicy
+        public object Selected
         {
-            get { return _selectedPolicy; }
+            get { return _selectedPolicy != null ? (object)_selectedPolicy : (object)_selectedRule; }
             set
             {
-                _selectedPolicy = value;
-                RaisePropertyChanged("SelectedPolicy");
+                _selectedPolicy = value as Policy;
+                _selectedRule = value as Rule;
+                RaisePropertyChanged("Selected");
             }
         }
 

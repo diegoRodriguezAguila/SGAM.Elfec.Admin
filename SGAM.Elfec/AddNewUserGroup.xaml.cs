@@ -67,7 +67,7 @@ namespace SGAM.Elfec
                 mainWindow.SetStatusBarDefault();
                 mainWindow.ChangeToUsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
-                    string.Format(Properties.Resources.MsgUserRegisteredSuccessfully, userGroup.Name));
+                    string.Format(Properties.Resources.MsgUserGroupRegisteredSuccessfully, userGroup.Name));
             });
         }
 

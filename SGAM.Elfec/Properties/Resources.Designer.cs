@@ -79,11 +79,11 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agregar Lista de Aplicaciones Permitidas.
+        ///   Looks up a localized string similar to Agregar reglas de directivas de usuario.
         /// </summary>
-        public static string BtnAddWhitelist {
+        public static string BtnAddPolicyRule {
             get {
-                return ResourceManager.GetString("BtnAddWhitelist", resourceCulture);
+                return ResourceManager.GetString("BtnAddPolicyRule", resourceCulture);
             }
         }
         
@@ -133,6 +133,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reglas de directivas de usuario.
+        /// </summary>
+        public static string BtnPolicyRule {
+            get {
+                return ResourceManager.GetString("BtnPolicyRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registrar.
         /// </summary>
         public static string BtnRegister {
@@ -165,15 +174,6 @@ namespace SGAM.Elfec.Properties {
         public static string BtnUserGroup {
             get {
                 return ResourceManager.GetString("BtnUserGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lista de aplicaciones permitidas.
-        /// </summary>
-        public static string BtnWhitelist {
-            get {
-                return ResourceManager.GetString("BtnWhitelist", resourceCulture);
             }
         }
         
@@ -237,6 +237,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblAddNewUser {
             get {
                 return ResourceManager.GetString("LblAddNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar reglas de directivas de usuario.
+        /// </summary>
+        public static string LblAddPolicyRule {
+            get {
+                return ResourceManager.GetString("LblAddPolicyRule", resourceCulture);
             }
         }
         
@@ -570,6 +579,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblPassword {
             get {
                 return ResourceManager.GetString("LblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directivas de usuario.
+        /// </summary>
+        public static string LblPolicies {
+            get {
+                return ResourceManager.GetString("LblPolicies", resourceCulture);
             }
         }
         
@@ -1006,6 +1024,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar reglas de directivas de usuario.
+        /// </summary>
+        public static string TooltipAddPolicyRule {
+            get {
+                return ResourceManager.GetString("TooltipAddPolicyRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Las reglas de directivas de usuarios permiten definir el acceso de los usuarios a diversos recursos, como aplicaciones, dispositivos, etc.
+        /// </summary>
+        public static string TooltipAddPolicyRuleDesc {
+            get {
+                return ResourceManager.GetString("TooltipAddPolicyRuleDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registrar usuario.
         /// </summary>
         public static string TooltipAddUser {
@@ -1038,24 +1074,6 @@ namespace SGAM.Elfec.Properties {
         public static string TooltipAddUserGroupDesc {
             get {
                 return ResourceManager.GetString("TooltipAddUserGroupDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Agregar lista de aplicaciones permitidas.
-        /// </summary>
-        public static string TooltipAddWhitelist {
-            get {
-                return ResourceManager.GetString("TooltipAddWhitelist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Una lista de aplicaciones permitidas limita qué aplicaciones puede utilizar un usuario o un grupo de usuarios.
-        /// </summary>
-        public static string TooltipAddWhitelistDesc {
-            get {
-                return ResourceManager.GetString("TooltipAddWhitelistDesc", resourceCulture);
             }
         }
         

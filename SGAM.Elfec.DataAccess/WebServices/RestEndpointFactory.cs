@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using RestEase;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
+using SGAM.Elfec.DataAccess.WebServices.Converters;
 using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SGAM.Elfec.DataAccess.WebServices
 {
@@ -28,6 +25,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
                 ContractResolver = new SnakeCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
             };
+            settings.Converters.Add(new SnakeCaseEnumConverter { AllowIntegerValues = true });
             return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, settings);
         }
         /// <summary>

@@ -48,6 +48,16 @@
                                 Text="{x:Static Res:Resources.TooltipAddUserGroupDesc}"/>
                         </Fluent:Button.ToolTip>
                     </Fluent:Button>
+                    <Fluent:Button Name="BtnAddPolicyRule" Click="BtnAddPolicyRule_Click" 
+                                   Margin="2,0,0,0"
+                                   Header="{x:Static Res:Resources.BtnPolicyRule}"
+                                   LargeIcon="/Resources/User/Policy.png"
+                                   Icon="/Resources/User/Policy.png">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddPolicyRule}"
+                                Text="{x:Static Res:Resources.TooltipAddPolicyRuleDesc}"/>
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.ToolsApplication}">
                     <Fluent:Button Name="BtnAddApp" Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnApplication}"
@@ -56,16 +66,6 @@
                         <Fluent:Button.ToolTip>
                             <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddApp}"
                                 Text="{x:Static Res:Resources.TooltipAddAppDesc}"/>
-                        </Fluent:Button.ToolTip>
-                    </Fluent:Button>
-                    <Fluent:Button Name="BtnAddWhitelist" Click="BtnAddApp_Click" 
-                                   Margin="2,0,0,0"
-                                   Header="{x:Static Res:Resources.BtnWhitelist}"
-                                   LargeIcon="/Resources/Application/Whitelist.png"
-                                   Icon="/Resources/Application/Whitelist.png">
-                        <Fluent:Button.ToolTip>
-                            <Fluent:ScreenTip Title="{x:Static Res:Resources.TooltipAddWhitelist}"
-                                Text="{x:Static Res:Resources.TooltipAddWhitelistDesc}"/>
                         </Fluent:Button.ToolTip>
                     </Fluent:Button>
 
@@ -85,10 +85,10 @@
                     
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Aplicaciones Permitidas">
-                    <Fluent:Button Name="BtnAddWhitelist2" ToolTip="{x:Static Res:Resources.BtnAddWhitelist}" 
-                                   Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddWhitelist}"
-                                   LargeIcon="/Resources/AddWhitelist.png"
-                                   Icon="/Resources/AddWhitelist.png"/>
+                    <Fluent:Button Name="BtnAddPolicyRule2" ToolTip="{x:Static Res:Resources.BtnAddPolicyRule}" 
+                                   Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddPolicyRule}"
+                                   LargeIcon="/Resources/AddPolicyRule.png"
+                                   Icon="/Resources/AddPolicyRule.png"/>
 
 
                 </Fluent:RibbonGroupBox>
@@ -107,7 +107,7 @@
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabView}">
+            <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabView}" Margin="0,0,3,0">
                 <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblViews}">
                     <Fluent:ToggleButton Name="BtnViewDevices" Margin="5,0,0,0"
                                    GroupName="ShowGroup" IsChecked="True"

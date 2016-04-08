@@ -414,8 +414,8 @@
   <data name="MsgUserGroupRegisteredSuccessfully" xml:space="preserve">
     <value>El grupo de usuarios: {0}, fue registrado exitosamente</value>
   </data>
-  <data name="BtnAddWhitelist" xml:space="preserve">
-    <value>Agregar Lista de Aplicaciones Permitidas</value>
+  <data name="BtnAddPolicyRule" xml:space="preserve">
+    <value>Agregar reglas de directivas de usuario</value>
   </data>
   <data name="TabInsert" xml:space="preserve">
     <value>INSERTAR</value>
@@ -441,17 +441,17 @@
   <data name="TooltipAddUserGroupDesc" xml:space="preserve">
     <value>Agregue grupos de usuarios, para poder asignarles aplicaciones</value>
   </data>
-  <data name="BtnWhitelist" xml:space="preserve">
-    <value>Lista de aplicaciones permitidas</value>
+  <data name="BtnPolicyRule" xml:space="preserve">
+    <value>Reglas de directivas de usuario</value>
   </data>
   <data name="TooltipAddAppDesc" xml:space="preserve">
     <value>Agregue una aplicación simplemente seleccionando su apk</value>
   </data>
-  <data name="TooltipAddWhitelist" xml:space="preserve">
-    <value>Agregar lista de aplicaciones permitidas</value>
+  <data name="TooltipAddPolicyRule" xml:space="preserve">
+    <value>Agregar reglas de directivas de usuario</value>
   </data>
-  <data name="TooltipAddWhitelistDesc" xml:space="preserve">
-    <value>Una lista de aplicaciones permitidas limita qué aplicaciones puede utilizar un usuario o un grupo de usuarios</value>
+  <data name="TooltipAddPolicyRuleDesc" xml:space="preserve">
+    <value>Las reglas de directivas de usuarios permiten definir el acceso de los usuarios a diversos recursos, como aplicaciones, dispositivos, etc</value>
   </data>
   <data name="TabView" xml:space="preserve">
     <value>VISTA</value>
@@ -476,5 +476,11 @@
   </data>
   <data name="TooltipShowUsersDesc" xml:space="preserve">
     <value>Muestra todos los usuarios registrados en la aplicación</value>
+  </data>
+  <data name="LblAddPolicyRule" xml:space="preserve">
+    <value>Agregar reglas de directivas de usuario</value>
+  </data>
+  <data name="LblPolicies" xml:space="preserve">
+    <value>Directivas de usuario</value>
   </data>
 </root>

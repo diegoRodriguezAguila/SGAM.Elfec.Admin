@@ -14,8 +14,17 @@ namespace SGAM.Elfec.Services
             _current = 0;
         }
 
-        public ObservableStack<Control> NavigationStack { get; set; }
         private int _current;
+
+        public ObservableStack<Control> NavigationStack { get; set; }
+        public int CurrentIndex
+        {
+            get { return _current; }
+            set
+            {
+                NavigateTo(value);
+            }
+        }
 
 
         public Control Current
@@ -36,8 +45,7 @@ namespace SGAM.Elfec.Services
         /// <param name="control"></param>
         public void Add(Control control)
         {
-            if (NavigationStack.Count > 0 && _current > 0 &&
-                control.GetType() == NavigationStack.Peek().GetType())
+            if (NavigationStack.Count > 0 && _current > 0)
             {
                 for (int i = 0; i < _current; i++)
                 {
@@ -45,8 +53,15 @@ namespace SGAM.Elfec.Services
                 }
                 _current = 0;
             }
-            NavigationStack.Push(control);
+            if (NavigationStack.Count == 0 || (NavigationStack.Count > 0 &&
+                control.GetType() != NavigationStack.Peek().GetType()))
+            {
+
+                NavigationStack.Push(control);
+                _current = 0;
+            }
             RaisePropertyChanged("Current");
+            RaisePropertyChanged("CurrentIndex");
         }
 
         /// <summary>
@@ -58,6 +73,7 @@ namespace SGAM.Elfec.Services
             {
                 _current++;
                 RaisePropertyChanged("Current");
+                RaisePropertyChanged("CurrentIndex");
             }
         }
 
@@ -70,6 +86,7 @@ namespace SGAM.Elfec.Services
             {
                 _current--;
                 RaisePropertyChanged("Current");
+                RaisePropertyChanged("CurrentIndex");
             }
         }
 
@@ -83,6 +100,7 @@ namespace SGAM.Elfec.Services
                 throw new ArgumentOutOfRangeException("index is invalid");
             _current = index;
             RaisePropertyChanged("Current");
+            RaisePropertyChanged("CurrentIndex");
         }
 
         /// <summary>
@@ -93,6 +111,7 @@ namespace SGAM.Elfec.Services
             _current = 0;
             NavigationStack.Clear();
             RaisePropertyChanged("Current");
+            RaisePropertyChanged("CurrentIndex");
         }
 
     }

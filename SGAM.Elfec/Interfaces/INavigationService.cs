@@ -8,7 +8,7 @@ namespace SGAM.Elfec.Interfaces
         ObservableStack<Control> NavigationStack { get; set; }
 
         Control Current { get; }
-
+        int CurrentIndex { get; set; }
         /// <summary>
         /// Adds an element to the navigation stack. It deletes
         /// any forwarding element if the control type is different from 

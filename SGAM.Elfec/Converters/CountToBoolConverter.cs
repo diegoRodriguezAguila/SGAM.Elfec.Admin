@@ -13,8 +13,7 @@ namespace SGAM.Elfec.Converters
                 valueInt = (int)value;
             if (parameter != null)
                 minCount = System.Convert.ToInt32(parameter);
-
-            return (valueInt > minCount);
+            return minCount < valueInt;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

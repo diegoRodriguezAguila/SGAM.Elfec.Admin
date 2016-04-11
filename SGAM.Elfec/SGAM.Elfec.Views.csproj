@@ -170,6 +170,7 @@
       <DependentUpon>AddNewUserGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\TreeViewHelper.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\CountToBoolConverter.cs" />
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
     <Compile Include="Converters\RootTreeViewConverter.cs" />
@@ -482,6 +483,9 @@
   <ItemGroup>
     <Resource Include="Resources\Navigation\Back.png" />
     <Resource Include="Resources\Navigation\Forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Navigation\Current.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

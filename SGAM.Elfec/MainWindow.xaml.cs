@@ -16,7 +16,7 @@ namespace SGAM.Elfec
             InitializeComponent();
             MainWindowService.Instance.MainWindowView = this;
             _isFirstActivated = true;
-            ChangeToDevicesView();
+            DevicesView();
             // Activated += (s, e) => { ShowLoginDialog(); };
         }
 
@@ -33,22 +33,22 @@ namespace SGAM.Elfec
         private void ChangePrincipalView(Control view)
         {
             MainWindowService.Instance.Navigation.Clear();
-            ChangeToView(view);
+            CurrentView(view);
         }
 
         private void BtnShowApps_Click(object sender, RoutedEventArgs e)
         {
-            ChangeToApplicationsView();
+            ApplicationsView();
         }
 
         private void BtnShowDevices_Click(object sender, RoutedEventArgs e)
         {
-            ChangeToDevicesView();
+            DevicesView();
         }
 
         private void BtnShowUsers_Click(object sender, RoutedEventArgs e)
         {
-            ChangeToUsersView();
+            UsersView();
         }
 
         private void ShowLoginDialog()
@@ -59,7 +59,7 @@ namespace SGAM.Elfec
                 var loginDialog = new LoginDialogWindow();
                 loginDialog.Owner = this;
                 loginDialog.LoginCanceled += (s, e) => { Close(); };
-                loginDialog.UserLoggedIn += (s, u) => { ChangeToDevicesView(); };
+                loginDialog.UserLoggedIn += (s, u) => { DevicesView(); };
                 loginDialog.ShowDialog();
             }
         }
@@ -88,12 +88,13 @@ namespace SGAM.Elfec
             this.Close();
         }
 
-        public void ChangeTitle(string title = null)
+        public IMainWindowService WindowTitle(string title = null)
         {
-            Title = (title != null ? (title + " - ") : "") + MAIN_TITLE;
+            base.Title = (title != null ? (title + " - ") : "") + MAIN_TITLE;
+            return this;
         }
 
-        public void ChangeToApplicationsView(bool force = false)
+        public IMainWindowService ApplicationsView(bool force = false)
         {
             BtnShowApps.IsSelected = true;
             BtnViewApps.IsChecked = true;
@@ -102,9 +103,10 @@ namespace SGAM.Elfec
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowApplications);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowApplications());
+            return this;
         }
 
-        public void ChangeToDevicesView(bool force = false)
+        public IMainWindowService DevicesView(bool force = false)
         {
 
             BtnShowApps.IsSelected = false;
@@ -114,9 +116,10 @@ namespace SGAM.Elfec
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowDevices);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowDevices());
+            return this;
         }
 
-        public void ChangeToUsersView(bool force = false)
+        public IMainWindowService UsersView(bool force = false)
         {
             BtnShowApps.IsSelected = false;
             BtnShowDevices.IsSelected = false;
@@ -125,9 +128,10 @@ namespace SGAM.Elfec
             bool shouldChange = !(MainWindowService.Instance.CurrentView is ShowUsers);
             if (shouldChange || force)
                 ChangePrincipalView(new ShowUsers());
+            return this;
         }
 
-        public void ChangeToView<T>(T view) where T : Control
+        public IMainWindowService CurrentView<T>(T view) where T : Control
         {
             if (MainWindowService.Instance.Navigation.Count == 0
                 || !(MainWindowService.Instance.Navigation.Peek() is T))
@@ -136,9 +140,10 @@ namespace SGAM.Elfec
                 InnerContent.Content = view;
                 BindTitle(view);
             }
+            return this;
         }
 
-        public void GoBack()
+        public IMainWindowService Back()
         {
             if (MainWindowService.Instance.Navigation.Count > 1)
             {
@@ -147,22 +152,26 @@ namespace SGAM.Elfec
                 InnerContent.Content = view;
                 BindTitle(view);
             }
+            return this;
         }
 
-        public void SetStatusBar(string status)
+        public IMainWindowService StatusBar(string status)
         {
             TxtStatus.Text = status;
+            return this;
         }
 
-        public void SetStatusBarDefault()
+        public IMainWindowService StatusBarDefault()
         {
             TxtStatus.Text = Properties.Resources.LblStatusbarDefault;
+            return this;
         }
 
-        public void NotifyUser(string title, string message)
+        public IMainWindowService NotifyUser(string title, string message)
         {
             Toast.Title = title;
             Toast.Message = message;
+            return this;
         }
 
         #endregion
@@ -170,25 +179,25 @@ namespace SGAM.Elfec
         private void BtnAddApp_Click(object sender, RoutedEventArgs e)
         {
             var addNewApp = new AddNewApplication();
-            MainWindowService.Instance.MainWindowView.ChangeToView(addNewApp);
+            MainWindowService.Instance.MainWindowView.CurrentView(addNewApp);
         }
 
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
             var addNewUser = new AddNewUser();
-            MainWindowService.Instance.MainWindowView.ChangeToView(addNewUser);
+            MainWindowService.Instance.MainWindowView.CurrentView(addNewUser);
         }
 
         private void BtnAddUserGroup_Click(object sender, RoutedEventArgs e)
         {
             var addNewUserGroup = new AddNewUserGroup();
-            MainWindowService.Instance.MainWindowView.ChangeToView(addNewUserGroup);
+            MainWindowService.Instance.MainWindowView.CurrentView(addNewUserGroup);
         }
 
         private void BtnAddPolicyRule_Click(object sender, RoutedEventArgs e)
         {
             var policyRule = new PolicyRules();
-            MainWindowService.Instance.MainWindowView.ChangeToView(policyRule);
+            MainWindowService.Instance.MainWindowView.CurrentView(policyRule);
         }
     }
 }

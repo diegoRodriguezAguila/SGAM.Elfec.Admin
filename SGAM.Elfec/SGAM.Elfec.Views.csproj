@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="Behaviors\TreeViewHelper.cs" />
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
+    <Compile Include="Converters\RootTreeViewConverter.cs" />
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
     <Compile Include="PolicyRules.xaml.cs">
       <DependentUpon>PolicyRules.xaml</DependentUpon>
@@ -464,6 +465,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Rule\Rule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\User\PolicyMini.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

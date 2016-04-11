@@ -14,13 +14,14 @@
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:Extensions="clr-namespace:Extensions.Wpf.Behaviors;assembly=Extensions.Wpf"
              xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
+             xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              mc:Ignorable="d"  
              Tag="{x:Static Res:Resources.LblPolicies}"
              Background="White"
              d:DesignHeight="450" d:DesignWidth="700">
     <UserControl.Resources>
         <ResourceDictionary>
-            <BooleanToVisibilityConverter x:Key="BoolToVis" />
+            <converters:RootTreeviewConverter x:Key="RootTreeviewConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -51,7 +52,7 @@
                 <TreeView Grid.Column="0" Name="TrvPolicies" Padding="0,5,5,5" 
                           BorderBrush="{StaticResource TabBorderBrush}" Margin="0,0,-5,0"
                           behaviors:TreeViewHelper.SelectedItem="{Binding Path=Selected, Mode=TwoWay}"
-                          ItemsSource="{Binding Policies}" ItemTemplate="{StaticResource PolicyTreeTemplate}" />
+                          ItemsSource="{Binding PoliciesRoot, Converter={StaticResource RootTreeviewConverter}}" ItemTemplate="{StaticResource PoliciesRootTreeTemplate}" />
                 <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                               HorizontalAlignment="Stretch" />
                 <Border Grid.Column="2"

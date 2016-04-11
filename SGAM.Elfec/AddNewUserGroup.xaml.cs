@@ -29,8 +29,8 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
-            MainWindowService.Instance.MainWindowView.GoBack();
+            MainWindowService.Instance.MainWindowView.StatusBarDefault();
+            MainWindowService.Instance.MainWindowView.Back();
         }
 
         #region Interface methods
@@ -40,7 +40,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
            {
                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUserGroup;
-               MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgRegisteringUserGroup);
+               MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgRegisteringUserGroup);
                TransitioningRegister.Content = _indeterminateLoading;
            });
         }
@@ -50,7 +50,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
-                MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                MainWindowService.Instance.MainWindowView.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
                     TransitioningRegister.Content = null;
@@ -64,8 +64,8 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 var mainWindow = MainWindowService.Instance.MainWindowView;
-                mainWindow.SetStatusBarDefault();
-                mainWindow.ChangeToUsersView(true);
+                mainWindow.StatusBarDefault();
+                mainWindow.UsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
                     string.Format(Properties.Resources.MsgUserGroupRegisteredSuccessfully, userGroup.Name));
             });

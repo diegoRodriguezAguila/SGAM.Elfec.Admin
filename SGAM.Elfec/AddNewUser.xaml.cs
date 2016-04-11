@@ -27,8 +27,8 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
-            MainWindowService.Instance.MainWindowView.GoBack();
+            MainWindowService.Instance.MainWindowView.StatusBarDefault();
+            MainWindowService.Instance.MainWindowView.Back();
         }
 
 
@@ -38,7 +38,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                MainWindowService.Instance.MainWindowView.StatusBarDefault();
                 if (Transitioning.Content != UserInfoPanel)
                     Transitioning.Content = UserInfoPanel;
             });
@@ -49,7 +49,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingUsers;
-                MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgLoadingUsers);
+                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgLoadingUsers);
                 Transitioning.Content = _indeterminateLoading;
             });
         }
@@ -60,7 +60,7 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                    MainWindowService.Instance.MainWindowView.StatusBarDefault();
                     _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;
@@ -73,7 +73,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUser;
-                MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgRegisteringUser);
+                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgRegisteringUser);
                 TransitioningRegister.Content = _indeterminateLoading;
             });
         }
@@ -83,7 +83,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
-                MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                MainWindowService.Instance.MainWindowView.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
                     TransitioningRegister.Content = null;
@@ -97,8 +97,8 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 var mainWindow = MainWindowService.Instance.MainWindowView;
-                mainWindow.SetStatusBarDefault();
-                mainWindow.ChangeToUsersView(true);
+                mainWindow.StatusBarDefault();
+                mainWindow.UsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
                     string.Format(Properties.Resources.MsgUserGroupRegisteredSuccessfully, user.FullName));
             });

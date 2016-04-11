@@ -33,7 +33,7 @@ namespace SGAM.Elfec
         public void ShowApplicationDetails(Model.Application application)
         {
             var showAppDetails = new ShowApplicationDetails(application);
-            MainWindowService.Instance.MainWindowView.ChangeToView(showAppDetails);
+            MainWindowService.Instance.MainWindowView.CurrentView(showAppDetails);
         }
 
         public void OnLoadingData(bool isRefresh = false)
@@ -41,7 +41,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingApps;
-                MainWindowService.Instance.MainWindowView.SetStatusBar(Properties.Resources.MsgLoadingApps);
+                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgLoadingApps);
                 Transitioning.Content = _indeterminateLoading;
             });
         }
@@ -52,7 +52,7 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                    MainWindowService.Instance.MainWindowView.StatusBarDefault();
                     _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;
@@ -64,7 +64,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.SetStatusBarDefault();
+                MainWindowService.Instance.MainWindowView.StatusBarDefault();
                 if (Transitioning.Content != ListViewApplications)
                     Transitioning.Content = ListViewApplications;
             });

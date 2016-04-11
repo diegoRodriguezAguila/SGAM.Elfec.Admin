@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Model="clr-namespace:SGAM.Elfec.Model;assembly=SGAM.Elfec.Model"                  
+                    xmlns:Model="clr-namespace:SGAM.Elfec.Model;assembly=SGAM.Elfec.Model"  
+                    xmlns:Presentation="clr-namespace:SGAM.Elfec.Model.Presentation;assembly=SGAM.Elfec.Presenters"
                     xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+                    xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
                     xmlns:local="clr-namespace:SGAM.Elfec">
 
     <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" />
@@ -27,6 +29,18 @@
                    SnapsToDevicePixels="True"
                    Source="{Binding Type, Converter={StaticResource PolicyTypeToImageConverter}}" />
             <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Path = Name}"></TextBlock>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+    <!-- Item Template for Policies Root -->
+    <HierarchicalDataTemplate
+        x:Key="PoliciesRootTreeTemplate"
+        DataType="{x:Type Presentation:PoliciesThreeViewRoot}" ItemsSource="{Binding Policies}"
+        ItemTemplate="{StaticResource PolicyTreeTemplate}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" >
+            <Image Width="16" Height="16"  VerticalAlignment="Center"
+                   SnapsToDevicePixels="True"
+                   Source="/Resources/User/PolicyMini.png" />
+            <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{x:Static Res:Resources.LblPolicies}"></TextBlock>
         </StackPanel>
     </HierarchicalDataTemplate>
 </ResourceDictionary>

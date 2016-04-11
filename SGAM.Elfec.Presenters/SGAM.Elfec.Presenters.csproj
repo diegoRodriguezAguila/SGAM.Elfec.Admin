@@ -90,6 +90,7 @@
     <Compile Include="LoginPresenter.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PolicyRulesPresenter.cs" />
+    <Compile Include="Presentation\PoliciesThreeViewRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowApplicationDetailsPresenter.cs" />
     <Compile Include="ShowApplicationsPresenter.cs" />

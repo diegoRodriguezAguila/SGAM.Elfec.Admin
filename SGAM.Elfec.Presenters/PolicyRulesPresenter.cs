@@ -1,9 +1,9 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Presentation;
 using SGAM.Elfec.Presenters.Views;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 
@@ -18,19 +18,20 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Private Attributes
-        private ObservableCollection<Policy> _policies;
+        private PoliciesThreeViewRoot _policiesRoot;
         private Policy _selectedPolicy;
         private Rule _selectedRule;
         #endregion
         #region Properties
-        public ObservableCollection<Policy> Policies
+
+        public PoliciesThreeViewRoot PoliciesRoot
         {
-            get { return _policies; }
+            get { return _policiesRoot; }
             set
             {
-                _policies = value;
-                Selected = _policies.FirstOrDefault();
-                RaisePropertyChanged("Policies");
+                _policiesRoot = value;
+                Selected = _policiesRoot.Policies.FirstOrDefault();
+                RaisePropertyChanged("PoliciesRoot");
             }
         }
 
@@ -56,16 +57,16 @@ namespace SGAM.Elfec.Presenters
         {
             new Thread(() =>
             {
-                //View.OnLoadingData(isRefresh);
+                View.OnLoadingData(isRefresh);
                 var callback = new ResultCallback<IList<Policy>>();
                 callback.Success += (s, policies) =>
                 {
-                    Policies = new ObservableCollection<Policy>(policies);
-                    //View.OnDataLoaded();
+                    PoliciesRoot = new PoliciesThreeViewRoot(policies);
+                    View.OnDataLoaded();
                 };
                 callback.Failure += (s, errors) =>
                 {
-                    //View.OnLoadingErrors(isRefresh, errors);
+                    View.OnLoadingErrors(isRefresh, errors);
                 };
                 PolicyManager.GetAllPolicies(callback);
             }).Start();

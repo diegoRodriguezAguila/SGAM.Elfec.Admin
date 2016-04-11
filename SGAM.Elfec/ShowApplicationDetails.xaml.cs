@@ -36,8 +36,8 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView.StatusBarDefault();
-            MainWindowService.Instance.MainWindowView.Back();
+            MainWindowService.Instance.MainWindow.StatusBarDefault();
+            MainWindowService.Instance.MainWindow.Back();
         }
 
     }

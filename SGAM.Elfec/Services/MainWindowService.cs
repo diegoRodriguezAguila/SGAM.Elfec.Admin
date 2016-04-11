@@ -1,6 +1,5 @@
 ﻿using SGAM.Elfec.Interfaces;
-using System.Collections.Generic;
-using System.Windows.Controls;
+using SGAM.Elfec.Services;
 
 namespace SGAM.Elfec
 {
@@ -8,7 +7,7 @@ namespace SGAM.Elfec
     {
         private MainWindowService()
         {
-            Navigation = new Stack<Control>();
+            Navigation = new NavigationService();
         }
         private static MainWindowService _instance;
         public static MainWindowService Instance
@@ -21,18 +20,8 @@ namespace SGAM.Elfec
             }
         }
 
-        public IMainWindowService MainWindowView { get; set; }
+        public IMainWindow MainWindow { get; set; }
 
-        public Control CurrentView
-        {
-            get
-            {
-                if (Navigation.Count > 0)
-                    return Navigation.Peek();
-                return null;
-            }
-        }
-
-        public Stack<Control> Navigation { get; set; }
+        public INavigationService Navigation { get; set; }
     }
 }

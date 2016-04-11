@@ -91,6 +91,7 @@
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PolicyDetailsPresenter.cs" />
     <Compile Include="PolicyRulesPresenter.cs" />
+    <Compile Include="Presentation\Collections\ObservableStack.cs" />
     <Compile Include="Presentation\PoliciesThreeViewRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowApplicationDetailsPresenter.cs" />

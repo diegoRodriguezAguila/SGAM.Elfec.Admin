@@ -170,9 +170,11 @@
       <DependentUpon>AddNewUserGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\TreeViewHelper.cs" />
+    <Compile Include="Converters\CountToBoolConverter.cs" />
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
     <Compile Include="Converters\RootTreeViewConverter.cs" />
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
+    <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="PolicyDetails.xaml.cs">
       <DependentUpon>PolicyDetails.xaml</DependentUpon>
     </Compile>
@@ -198,11 +200,12 @@
     <Compile Include="Converters\UserStatusToBackgroundConverter.cs" />
     <Compile Include="Converters\UserStatusToOpacityConverter.cs" />
     <Compile Include="Converters\UserStatusToStringConverter.cs" />
-    <Compile Include="Interfaces\IMainWindowService.cs" />
+    <Compile Include="Interfaces\IMainWindow.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\MainWindowService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ShowApplicationDetails.xaml.cs">
       <DependentUpon>ShowApplicationDetails.xaml</DependentUpon>
     </Compile>

@@ -35,7 +35,7 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView.Back();
+            MainWindowService.Instance.MainWindow.Back();
         }
 
 
@@ -46,7 +46,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgAuthorizingDevice;
-                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgAuthorizingDevice);
+                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgAuthorizingDevice);
                 Transitioning.Content = _indeterminateLoading;
             });
         }
@@ -55,7 +55,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                 Transitioning.Content = _errorMessage;
             });
@@ -65,7 +65,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                var mainWindow = MainWindowService.Instance.MainWindowView;
+                var mainWindow = MainWindowService.Instance.MainWindow;
                 mainWindow.StatusBarDefault();
                 mainWindow.DevicesView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,

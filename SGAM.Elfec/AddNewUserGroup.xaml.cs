@@ -29,8 +29,8 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView.StatusBarDefault();
-            MainWindowService.Instance.MainWindowView.Back();
+            MainWindowService.Instance.MainWindow.StatusBarDefault();
+            MainWindowService.Instance.MainWindow.Back();
         }
 
         #region Interface methods
@@ -40,7 +40,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
            {
                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUserGroup;
-               MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgRegisteringUserGroup);
+               MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgRegisteringUserGroup);
                TransitioningRegister.Content = _indeterminateLoading;
            });
         }
@@ -50,7 +50,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
-                MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
                     TransitioningRegister.Content = null;
@@ -63,7 +63,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                var mainWindow = MainWindowService.Instance.MainWindowView;
+                var mainWindow = MainWindowService.Instance.MainWindow;
                 mainWindow.StatusBarDefault();
                 mainWindow.UsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,

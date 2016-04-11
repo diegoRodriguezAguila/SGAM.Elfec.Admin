@@ -22,7 +22,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
                 Mouse.OverrideCursor = Cursors.Arrow;
             });
         }
@@ -31,7 +31,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView
+                MainWindowService.Instance.MainWindow
                 .StatusBar(Properties.Resources.MsgLoadingUsers);
                 Mouse.OverrideCursor = Cursors.AppStarting;
             });
@@ -43,7 +43,7 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                    MainWindowService.Instance.MainWindow.StatusBarDefault();
                     Mouse.OverrideCursor = Cursors.Arrow;
                 });
             }
@@ -51,7 +51,7 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView
+            MainWindowService.Instance.MainWindow
                 .StatusBarDefault().Back();
         }
     }

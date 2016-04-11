@@ -32,8 +32,8 @@ namespace SGAM.Elfec
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowService.Instance.MainWindowView.StatusBarDefault();
-            MainWindowService.Instance.MainWindowView.Back();
+            MainWindowService.Instance.MainWindow.StatusBarDefault();
+            MainWindowService.Instance.MainWindow.Back();
         }
 
         private void BtnBrowseApk_Click(object sender, RoutedEventArgs e)
@@ -51,7 +51,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingApk;
-                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgLoadingApkShort);
+                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgLoadingApkShort);
                 TransitioningLoadApk.Content = _indeterminateLoading;
             });
         }
@@ -70,7 +70,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
                 TransitioningLoadApk.Content = BtnBrowseApk;
             });
         }
@@ -80,7 +80,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _progressLoading.TxtLoadingMessage.Text = Properties.Resources.MsgUploadingApk;
-                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgUploadingApk);
+                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgUploadingApk);
                 TransitioningUpload.Content = _progressLoading;
             });
         }
@@ -92,7 +92,7 @@ namespace SGAM.Elfec
                 _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
-                    MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                    MainWindowService.Instance.MainWindow.StatusBarDefault();
                     TransitioningUpload.Content = null;
                 };
                 TransitioningUpload.Content = _errorMessage;
@@ -103,7 +103,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                var mainWindow = MainWindowService.Instance.MainWindowView;
+                var mainWindow = MainWindowService.Instance.MainWindow;
                 mainWindow.StatusBarDefault();
                 mainWindow.ApplicationsView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,

@@ -32,7 +32,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
                 if (Transitioning.Content != ListViewUsers)
                     Transitioning.Content = ListViewUsers;
             });
@@ -43,7 +43,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingUsers;
-                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgLoadingUsers);
+                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgLoadingUsers);
                 Transitioning.Content = _indeterminateLoading;
             });
         }
@@ -54,7 +54,7 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                    MainWindowService.Instance.MainWindow.StatusBarDefault();
                     _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;

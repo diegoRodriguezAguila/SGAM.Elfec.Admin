@@ -34,7 +34,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
                 if (Transitioning.Content != ListViewDevices)
                     Transitioning.Content = ListViewDevices;
             });
@@ -46,7 +46,7 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    MainWindowService.Instance.MainWindowView.StatusBarDefault();
+                    MainWindowService.Instance.MainWindow.StatusBarDefault();
                     _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;
@@ -59,7 +59,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingDevices;
-                MainWindowService.Instance.MainWindowView.StatusBar(Properties.Resources.MsgLoadingDevices);
+                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgLoadingDevices);
                 Transitioning.Content = _indeterminateLoading;
             });
         }
@@ -67,7 +67,7 @@ namespace SGAM.Elfec
         public void ViewDeviceAuthorization(Device device)
         {
             var authDeviceView = new AuthorizeDevice(ObjectCloner.Clone(device));
-            MainWindowService.Instance.MainWindowView.CurrentView(authDeviceView);
+            MainWindowService.Instance.MainWindow.CurrentView(authDeviceView);
         }
 
         #endregion

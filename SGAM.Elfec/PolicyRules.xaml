@@ -27,40 +27,22 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
-                <Button.Content>
-                    <Viewbox Height="18" Child="{StaticResource Back}"  />
-                </Button.Content>
-            </Button>
-            <Image Margin="20,0,10,0" Source="/Resources/User/Policy.png"/>
-            <Label Content="{x:Static Res:Resources.LblPolicies}" FontSize="26" VerticalContentAlignment="Center"
-                   FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
-        </StackPanel>
-        <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" MinWidth="100" MaxWidth="800" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="*" MinWidth="100" />
-                </Grid.ColumnDefinitions>
-                <TreeView Grid.Column="0" Name="TrvPolicies" Padding="0,5,5,5" 
-                          BorderBrush="{StaticResource TabBorderBrush}" Margin="0,0,-5,0"
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="100" MaxWidth="800" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" MinWidth="100" />
+            </Grid.ColumnDefinitions>
+            <TreeView Grid.Column="0" Name="TrvPolicies" Padding="0,5,5,5" BorderThickness="0,0,1,0"
+                          BorderBrush="{StaticResource TabBorderBrush}"
                           behaviors:TreeViewHelper.SelectedItem="{Binding Path=Selected, Mode=TwoWay}"
                           ItemsSource="{Binding PoliciesRoot, Converter={StaticResource RootTreeviewConverter}}" ItemTemplate="{StaticResource PoliciesRootTreeTemplate}" />
-                <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
+            <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                               HorizontalAlignment="Stretch" />
-                <Border Grid.Column="2"
-                        BorderBrush="{StaticResource TabBorderBrush}" BorderThickness="0,1,0,1" >
-                    <Controls:TransitioningContentControl Name="TransitioningDetails" Transition="Left" />
-                </Border>
-            </Grid>
-        </ScrollViewer>
-    </Grid>
+            <Controls:TransitioningContentControl Grid.Column="2" 
+                                                  Name="TransitioningDetails" Transition="Left" />
+        </Grid>
+    </ScrollViewer>
 </UserControl>
 

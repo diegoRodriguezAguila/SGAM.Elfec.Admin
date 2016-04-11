@@ -26,73 +26,58 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
-                <Button.Content>
-                    <Viewbox Height="18" Child="{StaticResource Back}"  />
-                </Button.Content>
-            </Button>
-            <Viewbox Height="32" Margin="20,0,10,5" Child="{StaticResource AddUser}" />
-            <Label Content="{x:Static Res:Resources.LblAddNewUser}" FontSize="26" VerticalContentAlignment="Center"
-                   FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
-        </StackPanel>
-        <Grid Grid.Row="1"  >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="243" MaxWidth="800" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="*" MinWidth="100" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Border BorderThickness="0,1,1,0" Padding="0,0,5,0" Background="{StaticResource BackgroundGrayBrush}" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="243" MaxWidth="800" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,1,0" Padding="0,0,5,0" Background="{StaticResource BackgroundGrayBrush}" 
                         BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
-                                   VerticalAlignment="Center"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
+                                   VerticalAlignment="Center" Foreground="{StaticResource MainColorBrush}"
                                    Padding="10,5,0,5"
                                    Text="{x:Static Res:Resources.LblUsers}" />
 
-                        <sgam:SearchBox Grid.Column="1" Margin="15,0,0,0" Name="TxtSearch" 
+                    <sgam:SearchBox Grid.Column="1" Margin="15,0,0,0" Name="TxtSearch" 
                                         VerticalAlignment="Center" HorizontalAlignment="Stretch"
                                         IsEnabled="{Binding Users, Converter={StaticResource NullToIsEnabledConverter}}"
                                         Text="{Binding SearchQuery}" >
-                            <utils:WatermarkService.Watermark>
-                                <TextBlock Style="{StaticResource HintStyle}" Text="{x:Static Res:Resources.HintSearch}" />
-                            </utils:WatermarkService.Watermark>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Search">
-                                    <i:InvokeCommandAction Command="{Binding Path=SearchUserCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </sgam:SearchBox>
-                    </Grid>
-                </Border>
-                <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
+                        <utils:WatermarkService.Watermark>
+                            <TextBlock Style="{StaticResource HintStyle}" Text="{x:Static Res:Resources.HintSearch}" />
+                        </utils:WatermarkService.Watermark>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Search">
+                                <i:InvokeCommandAction Command="{Binding Path=SearchUserCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </sgam:SearchBox>
+                </Grid>
+            </Border>
+            <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
                          ItemsSource="{Binding Users}" 
                          SelectedValue="{Binding SelectedUser}"
                          BorderThickness="0,0,1,0"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          ScrollViewer.CanContentScroll="False"
                          ItemTemplate="{StaticResource UserBlueItemTemplate}" />
-            </Grid>
-            <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
+        </Grid>
+        <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                               HorizontalAlignment="Stretch" />
-            <ScrollViewer Grid.Column="2"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" >
-            <Controls:TransitioningContentControl Margin="40,0,0,40"
+        <ScrollViewer Grid.Column="2"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" >
+            <Controls:TransitioningContentControl Margin="20"
                                                   Name="Transitioning" 
                                                   VerticalContentAlignment="Top" Transition="Left" >
-                <StackPanel Name="UserInfoPanel" Grid.Column="1" 
+                <StackPanel Name="UserInfoPanel"
                             Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <TextBlock FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextFormGrayBrush}"
                                     Visibility="{Binding SelectedUser, 
@@ -101,15 +86,11 @@
                                    Text="{x:Static Res:Resources.MsgEmptyUserList}"  />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
                         <Image Height="64" VerticalAlignment="Center" Source="{Binding SelectedUser.PhotoUrl}"
+                               Margin="0,0,10,0"
                                SnapsToDevicePixels="True" />
-                        <sgam:SelectableTextBlock FontSize="24" VerticalContentAlignment="Center" Margin="10,0,0,0">
-                            <sgam:SelectableTextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="SelectedUser.FirstName" />
-                                    <Binding Path="SelectedUser.LastName" />
-                                </MultiBinding>
-                            </sgam:SelectableTextBlock.Text>
-                        </sgam:SelectableTextBlock>
+                        <sgam:SelectableTextBlock FontSize="24" VerticalContentAlignment="Center"
+                                                  Text="{Binding SelectedUser.FullName, Mode=OneWay}" />
+
                     </StackPanel>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Visibility="{Binding SelectedUser, 
@@ -156,7 +137,6 @@
                     </StackPanel>
                 </StackPanel>
             </Controls:TransitioningContentControl >
-            </ScrollViewer>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

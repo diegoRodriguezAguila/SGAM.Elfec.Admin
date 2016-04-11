@@ -22,149 +22,133 @@
 
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
-                <Button.Content>
-                    <Viewbox Height="18" Child="{StaticResource Back}"  />
-                </Button.Content>
-            </Button>
-            <Viewbox Height="32" Margin="20,0,5,0" Child="{StaticResource AuthDevice}" />
-            <Label Content="{x:Static Res:Resources.LblAuthorizeDevice}" FontSize="26" VerticalContentAlignment="Center"
-               FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
-        </StackPanel>
-        <ScrollViewer Margin="20,0,0,0" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
-            <Grid Name="AuthPanel" Margin="0,0,0,40" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="235" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Content="{x:Static Res:Resources.LblDeviceName}" />
-                <TextBox Name="TxtName" Grid.Column="1" Margin="0,0,0,10" Text="{Binding AuthPendingDevice.Name, ValidatesOnDataErrors=True, 
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+        <Grid Name="AuthPanel" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" MinWidth="300" MaxWidth="600" />
+                <ColumnDefinition Width="*" MinWidth="235" MaxWidth="350" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Content="{x:Static Res:Resources.LblDeviceName}" />
+            <TextBox Name="TxtName" Grid.Column="1" Margin="0,0,0,10" Text="{Binding AuthPendingDevice.Name, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" />
-                <TextBlock Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtName,
+            <TextBlock Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtName,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="1" Content="{x:Static Res:Resources.LblDeviceIMEI}"  />
-                <TextBox MaxLength="17" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Text="{Binding AuthPendingDevice.Imei}"  Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="2" Content="{x:Static Res:Resources.LblDeviceSerial}"  />
-                <TextBox Grid.Row="2" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Serial}"  Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblDeviceWifiMac}"  />
-                <TextBox Grid.Row="3" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.WifiMacAddress}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="4" Content="{x:Static Res:Resources.LblDeviceBluetoothMac}"  />
-                <TextBox Grid.Row="4" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.BluetoothMacAddress}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="5" Content="{x:Static Res:Resources.LblDevicePlatform}"  />
-                <TextBox Grid.Row="5" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Platform}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="6" Content="{x:Static Res:Resources.LblDeviceOSVersion}"  />
-                <TextBox Grid.Row="6" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.OsVersion}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="7" Content="{x:Static Res:Resources.LblDeviceBasebandVersion}"  />
-                <TextBox Grid.Row="7" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.BasebandVersion}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="8" Content="{x:Static Res:Resources.LblDeviceBrand}"  />
-                <TextBox Grid.Row="8" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Brand}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="9" Content="{x:Static Res:Resources.LblDeviceModel}"  />
-                <TextBox Grid.Row="9" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Model}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="10" Content="{x:Static Res:Resources.LblDevicePhoneNumber}"  />
-                <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding AuthPendingDevice.PhoneNumber}" MaxLength="20" Margin="0,0,0,10" >
-                    <i:Interaction.Behaviors>
-                        <behaviors:TextBoxInputBehavior InputMode="DigitInput" JustPositivDecimalInput="true" />
-                    </i:Interaction.Behaviors>
-                </TextBox>
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="11" Content="{x:Static Res:Resources.LblDeviceIdCiscoASA}"  />
-                <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding AuthPendingDevice.IdCiscoAsa}" MaxLength="50" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="1" Content="{x:Static Res:Resources.LblDeviceIMEI}"  />
+            <TextBox MaxLength="17" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Text="{Binding AuthPendingDevice.Imei}"  Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="2" Content="{x:Static Res:Resources.LblDeviceSerial}"  />
+            <TextBox Grid.Row="2" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Serial}"  Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="3" Content="{x:Static Res:Resources.LblDeviceWifiMac}"  />
+            <TextBox Grid.Row="3" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.WifiMacAddress}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="4" Content="{x:Static Res:Resources.LblDeviceBluetoothMac}"  />
+            <TextBox Grid.Row="4" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.BluetoothMacAddress}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="5" Content="{x:Static Res:Resources.LblDevicePlatform}"  />
+            <TextBox Grid.Row="5" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Platform}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="6" Content="{x:Static Res:Resources.LblDeviceOSVersion}"  />
+            <TextBox Grid.Row="6" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.OsVersion}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="7" Content="{x:Static Res:Resources.LblDeviceBasebandVersion}"  />
+            <TextBox Grid.Row="7" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.BasebandVersion}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="8" Content="{x:Static Res:Resources.LblDeviceBrand}"  />
+            <TextBox Grid.Row="8" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Brand}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="9" Content="{x:Static Res:Resources.LblDeviceModel}"  />
+            <TextBox Grid.Row="9" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Model}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="10" Content="{x:Static Res:Resources.LblDevicePhoneNumber}"  />
+            <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding AuthPendingDevice.PhoneNumber}" MaxLength="20" Margin="0,0,0,10" >
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxInputBehavior InputMode="DigitInput" JustPositivDecimalInput="true" />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="11" Content="{x:Static Res:Resources.LblDeviceIdCiscoASA}"  />
+            <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding AuthPendingDevice.IdCiscoAsa}" MaxLength="50" Margin="0,0,0,10" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="12" Content="{x:Static Res:Resources.LblDeviceScreenSize}"  />
-                <TextBox Name="TxtScreeenSize" Grid.Row="12" Grid.Column="1" MaxLength="8" Text="{Binding AuthPendingDevice.ScreenSize, ValidatesOnDataErrors=True, 
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="12" Content="{x:Static Res:Resources.LblDeviceScreenSize}"  />
+            <TextBox Name="TxtScreeenSize" Grid.Row="12" Grid.Column="1" MaxLength="8" Text="{Binding AuthPendingDevice.ScreenSize, ValidatesOnDataErrors=True, 
                    TargetNullValue='', ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}" Margin="0,0,0,10" >
-                    <i:Interaction.Behaviors>
-                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" JustPositivDecimalInput="true" />
-                    </i:Interaction.Behaviors>
-                </TextBox>
-                <Label Grid.Row="12" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblSizeUnit}" HorizontalAlignment="Right" />
-                <TextBlock Grid.Row="12" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtScreeenSize,
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" JustPositivDecimalInput="true" />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            <Label Grid.Row="12" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblSizeUnit}" HorizontalAlignment="Right" />
+            <TextBlock Grid.Row="12" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtScreeenSize,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="13" Content="{x:Static Res:Resources.LblDeviceScreenRes}"  />
-                <TextBox Name="TxtScreenResolution" Grid.Row="13" Grid.Column="1" Text="{Binding AuthPendingDevice.ScreenResolution, ValidatesOnDataErrors=True, 
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="13" Content="{x:Static Res:Resources.LblDeviceScreenRes}"  />
+            <TextBox Name="TxtScreenResolution" Grid.Row="13" Grid.Column="1" Text="{Binding AuthPendingDevice.ScreenResolution, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" behaviors:Masking.Mask="^\d*$|^\d+[x]$|^\d+[x]\d+$" Margin="0,0,0,10" />
-                <TextBlock Grid.Row="13" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtScreenResolution,
+            <TextBlock Grid.Row="13" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtScreenResolution,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="14" Content="{x:Static Res:Resources.LblDeviceCamera}"  />
-                <TextBox Name="TxtCamera"  Grid.Row="14" Grid.Column="1"  MaxLength="8"  Text="{Binding AuthPendingDevice.Camera, ValidatesOnDataErrors=True, 
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="14" Content="{x:Static Res:Resources.LblDeviceCamera}"  />
+            <TextBox Name="TxtCamera"  Grid.Row="14" Grid.Column="1"  MaxLength="8"  Text="{Binding AuthPendingDevice.Camera, ValidatesOnDataErrors=True, 
                     TargetNullValue='', ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}" Margin="0,0,0,10" >
-                    <i:Interaction.Behaviors>
-                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" JustPositivDecimalInput="true" />
-                    </i:Interaction.Behaviors>
-                </TextBox>
-                <Label Grid.Row="14" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblCameraUnit}" HorizontalAlignment="Right" />
-                <TextBlock Grid.Row="14" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtCamera,
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" JustPositivDecimalInput="true" />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            <Label Grid.Row="14" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblCameraUnit}" HorizontalAlignment="Right" />
+            <TextBlock Grid.Row="14" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtCamera,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="15" Content="{x:Static Res:Resources.LblDeviceSDMemoryCard}"  />
-                <TextBox Name="TxtSDMemoryCard" Grid.Row="15" Grid.Column="1" MaxLength="10" Text="{Binding AuthPendingDevice.SdMemoryCard, ValidatesOnDataErrors=True, 
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="15" Content="{x:Static Res:Resources.LblDeviceSDMemoryCard}"  />
+            <TextBox Name="TxtSDMemoryCard" Grid.Row="15" Grid.Column="1" MaxLength="10" Text="{Binding AuthPendingDevice.SdMemoryCard, ValidatesOnDataErrors=True, 
                     TargetNullValue='', ValidatesOnExceptions=True, UpdateSourceTrigger=LostFocus}" Margin="0,0,0,10" >
-                    <i:Interaction.Behaviors>
-                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" JustPositivDecimalInput="true" />
-                    </i:Interaction.Behaviors>
-                </TextBox>
-                <Label Grid.Row="15" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblMemoryUnit}" HorizontalAlignment="Right" />
-                <TextBlock Grid.Row="15" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtSDMemoryCard,
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" JustPositivDecimalInput="true" />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            <Label Grid.Row="15" Grid.Column="1" Margin="0,3,0,10" Content="{x:Static Res:Resources.LblMemoryUnit}" HorizontalAlignment="Right" />
+            <TextBlock Grid.Row="15" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtSDMemoryCard,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="16" Content="{x:Static Res:Resources.LblDeviceGmailAccount}"  />
-                <TextBox Name="TxtGmailAccount" Grid.Row="16" Grid.Column="1" Text="{Binding AuthPendingDevice.GmailAccount, ValidatesOnDataErrors=True, 
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="16" Content="{x:Static Res:Resources.LblDeviceGmailAccount}"  />
+            <TextBox Name="TxtGmailAccount" Grid.Row="16" Grid.Column="1" Text="{Binding AuthPendingDevice.GmailAccount, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
-                <TextBlock Grid.Row="16" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtGmailAccount,
+            <TextBlock Grid.Row="16" Grid.Column="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ElementName=TxtGmailAccount,
                     Path=(Validation.Errors)[0].ErrorContent}" Foreground="{StaticResource TextErrorColorBrush}" />
 
-                <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="17" Content="{x:Static Res:Resources.LblDeviceStatus}"  />
-                <TextBox Grid.Row="17" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Status, Converter={StaticResource DeviceStatusToStringConverter}}" Margin="0,0,0,10" />
-                <Label VerticalContentAlignment="Center" Grid.Row="18" Content="{x:Static Res:Resources.LblDeviceComments}"  />
-                <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding AuthPendingDevice.Comments}" VerticalScrollBarVisibility="Auto" 
+            <Label VerticalContentAlignment="Center" Margin="0,0,0,10" Grid.Row="17" Content="{x:Static Res:Resources.LblDeviceStatus}"  />
+            <TextBox Grid.Row="17" IsReadOnly="True" Grid.Column="1" Text="{Binding AuthPendingDevice.Status, Converter={StaticResource DeviceStatusToStringConverter}}" Margin="0,0,0,10" />
+            <Label VerticalContentAlignment="Center" Grid.Row="18" Content="{x:Static Res:Resources.LblDeviceComments}"  />
+            <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding AuthPendingDevice.Comments}" VerticalScrollBarVisibility="Auto" 
                          Grid.ColumnSpan="2" Grid.Row="19" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
                          Margin="0,0,0,10" />
-                <Button Grid.Row="20" Name="BtnAuthorize" IsDefault="True" Command="{Binding AuthorizeDeviceCommand}"
+            <Button Grid.Row="20" Name="BtnAuthorize" IsDefault="True" Command="{Binding AuthorizeDeviceCommand}"
                 Padding="12,12" FontSize="14"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                          FontWeight="SemiBold" HorizontalAlignment="Left" Click="BtnAuthorize_Click"  >
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <Viewbox Height="30" Child="{StaticResource AuthDevice}" />
-                            <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap"
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <Viewbox Height="30" Child="{StaticResource AuthDevice}" />
+                        <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap"
                                        Text="{x:Static Res:Resources.BtnAuthorize}"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Controls:TransitioningContentControl  Grid.Row="20" Grid.Column="1"
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Controls:TransitioningContentControl  Grid.Row="20" Grid.Column="1"
                     Name="Transitioning" VerticalContentAlignment="Center" Transition="Left" />
-            </Grid>
-        </ScrollViewer>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

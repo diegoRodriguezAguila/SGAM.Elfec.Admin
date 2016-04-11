@@ -23,7 +23,7 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
-                Mouse.OverrideCursor = Cursors.Arrow;
+                Mouse.OverrideCursor = null;
             });
         }
 
@@ -44,7 +44,7 @@ namespace SGAM.Elfec
                 Dispatcher.InvokeAsync(() =>
                 {
                     MainWindowService.Instance.MainWindow.StatusBarDefault();
-                    Mouse.OverrideCursor = Cursors.Arrow;
+                    Mouse.OverrideCursor = null;
                 });
             }
         }

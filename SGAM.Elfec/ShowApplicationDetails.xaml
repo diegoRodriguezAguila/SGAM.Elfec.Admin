@@ -20,61 +20,55 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Button Name="BtnBack" ToolTip="{x:Static Res:Resources.TooltipBack}" 
-                    Style="{DynamicResource MetroCircleButtonStyle}" Width="42" Height="42" Margin="10,10" Click="BtnBack_Click" >
-                <Button.Content>
-                    <Viewbox Height="18" Child="{StaticResource Back}"  />
-                </Button.Content>
-            </Button>
-            <Image Height="64" Margin="20,10,5,10"  VerticalAlignment="Center" Source="{Binding SelectedVersion.IconUrl}"
-                   SnapsToDevicePixels="True" />
-            <sgam:SelectableTextBlock Text="{Binding Application.Name}" FontSize="26" VerticalContentAlignment="Center"
-                                      FontFamily="Segoe UI Light" Padding="0,0,0,2"/>
-        </StackPanel>
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
-            <Grid  >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid Margin="0,0,45,0" VerticalAlignment="Stretch"  HorizontalAlignment="Left">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Border BorderThickness="0,1,1,0" BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
-                    <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
+    <Grid  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="180" MaxWidth="800" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+        <Grid VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
+                <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
                                Background="{StaticResource BackgroundGrayBrush}"
-                               Padding="10,5,0,5" 
+                               Padding="10,5,0,5"  Foreground="{StaticResource MainColorBrush}"
                                Text="{x:Static Res:Resources.LblApplicationVersions}" />
-                    </Border>
-                    <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
-                             MinWidth="180" ItemsSource="{Binding Application.AppVersions}" 
+            </Border>
+            <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
+                             ItemsSource="{Binding Application.AppVersions}" 
                              SelectedValue="{Binding SelectedVersion}"
                              BorderThickness="0,0,1,0"
-                             ItemTemplate="{StaticResource AppVersionItemTemplate}" />          
-                </Grid>
-                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{x:Static Res:Resources.LblApplicationPackage}" />
-                    <sgam:SelectableTextBlock Text="{Binding Application.Package}" />
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{x:Static Res:Resources.LblApplicationVersion}" />
-                    <sgam:SelectableTextBlock Text="{Binding SelectedVersion.Version}" />
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{x:Static Res:Resources.LblApplicationVersionCode}" />
-                    <sgam:SelectableTextBlock Text="{Binding SelectedVersion.VersionCode}" />
-                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{x:Static Res:Resources.LblApplicationStatus}" />
-                    <sgam:SelectableTextBlock  Text="{Binding SelectedVersion.Status, Converter={StaticResource AppStatusConverter}}" />
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.CanContentScroll="False"
+                             ItemTemplate="{StaticResource AppVersionItemTemplate}" />
+        </Grid>
+        <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
+                              HorizontalAlignment="Stretch" />
+        <ScrollViewer  Grid.Column="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+            <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" >
+                    <Image Height="64"  VerticalAlignment="Center" Margin="0,0,10,0"   
+                           Source="{Binding SelectedVersion.IconUrl}" SnapsToDevicePixels="True" />
+                    <sgam:SelectableTextBlock Text="{Binding Application.Name}" FontSize="24"
+                                              VerticalContentAlignment="Center" />
                 </StackPanel>
-            </Grid>
+                <TextBlock FontSize="11" Margin="0,20,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblApplicationPackage}" />
+                <sgam:SelectableTextBlock Text="{Binding Application.Package}" />
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblApplicationVersion}" />
+                <sgam:SelectableTextBlock Text="{Binding SelectedVersion.Version}" />
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblApplicationVersionCode}" />
+                <sgam:SelectableTextBlock Text="{Binding SelectedVersion.VersionCode}" />
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblApplicationStatus}" />
+                <sgam:SelectableTextBlock  Text="{Binding SelectedVersion.Status, Converter={StaticResource AppStatusConverter}}" />
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

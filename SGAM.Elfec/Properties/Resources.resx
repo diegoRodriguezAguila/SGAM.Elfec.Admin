@@ -483,4 +483,10 @@
   <data name="LblPolicies" xml:space="preserve">
     <value>Directivas de usuario</value>
   </data>
+  <data name="LblNavBack" xml:space="preserve">
+    <value>Navegar atrás</value>
+  </data>
+  <data name="LblNavForward" xml:space="preserve">
+    <value>Navegar adelante</value>
+  </data>
 </root>

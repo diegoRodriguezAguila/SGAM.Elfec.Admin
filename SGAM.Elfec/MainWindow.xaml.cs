@@ -196,8 +196,11 @@ namespace SGAM.Elfec
 
         private void BtnAddPolicyRule_Click(object sender, RoutedEventArgs e)
         {
-            var policyRule = new PolicyRules();
-            MainWindowService.Instance.MainWindowView.CurrentView(policyRule);
+            if (!(MainWindowService.Instance.CurrentView is PolicyRules))
+            {
+                var policyRule = new PolicyRules();
+                MainWindowService.Instance.MainWindowView.CurrentView(policyRule);
+            }
         }
     }
 }

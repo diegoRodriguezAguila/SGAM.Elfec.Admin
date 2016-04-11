@@ -556,6 +556,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navegar atrás.
+        /// </summary>
+        public static string LblNavBack {
+            get {
+                return ResourceManager.GetString("LblNavBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navegar adelante.
+        /// </summary>
+        public static string LblNavForward {
+            get {
+                return ResourceManager.GetString("LblNavForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nuevo miembro.
         /// </summary>
         public static string LblNewMember {

@@ -173,6 +173,9 @@
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
     <Compile Include="Converters\RootTreeViewConverter.cs" />
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
+    <Compile Include="PolicyDetails.xaml.cs">
+      <DependentUpon>PolicyDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PolicyRules.xaml.cs">
       <DependentUpon>PolicyRules.xaml</DependentUpon>
     </Compile>
@@ -195,11 +198,11 @@
     <Compile Include="Converters\UserStatusToBackgroundConverter.cs" />
     <Compile Include="Converters\UserStatusToOpacityConverter.cs" />
     <Compile Include="Converters\UserStatusToStringConverter.cs" />
-    <Compile Include="Interfaces\IMainWindowView.cs" />
+    <Compile Include="Interfaces\IMainWindowService.cs" />
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindowService.cs" />
+    <Compile Include="Services\MainWindowService.cs" />
     <Compile Include="ShowApplicationDetails.xaml.cs">
       <DependentUpon>ShowApplicationDetails.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewUserGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PolicyDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -468,6 +475,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\User\PolicyMini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Navigation\Back.png" />
+    <Resource Include="Resources\Navigation\Forward.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

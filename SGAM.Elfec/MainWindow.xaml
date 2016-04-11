@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
-        <Fluent:Ribbon Grid.Row="0" >
+        <Fluent:Ribbon Grid.Row="0" AutomaticStateManagement="False" >
             <!--Backstage-->
             <Fluent:Ribbon.Menu>
                 <Fluent:Backstage Header="{x:Static Res:Resources.TabStart}" >
@@ -27,6 +27,19 @@
                     </Fluent:BackstageTabControl>
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
+            <!--Quick access-->
+            <Fluent:Ribbon.QuickAccessItems >
+                <!--Use Content or Target Property to set QAT item-->
+                <Fluent:QuickAccessMenuItem IsChecked="True">
+                    <Fluent:SplitButton Header="{x:Static Res:Resources.LblNavBack}"
+                                   Icon="/Resources/Navigation/Back.png" ToolTip="{x:Static Res:Resources.LblNavBack}" />
+                </Fluent:QuickAccessMenuItem>
+                <Fluent:QuickAccessMenuItem IsChecked="True">
+                    <Fluent:Button Header="{x:Static Res:Resources.LblNavForward}" 
+                                   Icon="/Resources/Navigation/Forward.png" ToolTip="{x:Static Res:Resources.LblNavForward}" />
+                </Fluent:QuickAccessMenuItem>
+                <!--You Can Just Bind with Any Control-->
+            </Fluent:Ribbon.QuickAccessItems>
             <!--Tabs-->
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabInsert}">
                 <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.ToolsUser}">

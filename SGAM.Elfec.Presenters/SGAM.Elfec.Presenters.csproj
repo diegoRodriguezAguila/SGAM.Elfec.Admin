@@ -89,6 +89,7 @@
     <Compile Include="Commands\ListItemCommand.cs" />
     <Compile Include="LoginPresenter.cs" />
     <Compile Include="ObservableObject.cs" />
+    <Compile Include="PolicyDetailsPresenter.cs" />
     <Compile Include="PolicyRulesPresenter.cs" />
     <Compile Include="Presentation\PoliciesThreeViewRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Views\IAddNewUserView.cs" />
     <Compile Include="Views\IAuthorizeDeviceView.cs" />
     <Compile Include="Views\ILoadingContentErrorView.cs" />
+    <Compile Include="Views\IPolicyDetailsView.cs" />
     <Compile Include="Views\IPolicyRulesView.cs" />
     <Compile Include="Views\IShowApplicationDetailsView.cs" />
     <Compile Include="Views\IShowDevicesView.cs" />

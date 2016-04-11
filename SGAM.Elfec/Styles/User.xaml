@@ -61,20 +61,20 @@
     <!--Device UserBlueItemTemplate-->
 
     <DataTemplate x:Key="UserBlueItemTemplate" >
-        <StackPanel Orientation="Horizontal" >
+        <VirtualizingStackPanel Orientation="Horizontal" >
             <Image Margin="5" VerticalAlignment="Center"  Width="32" Height="32"  SnapsToDevicePixels="True">
                 <Image.Source>
                     <BitmapImage UriCachePolicy="CacheIfAvailable" 
                                  UriSource="{Binding PhotoUrl}"/>
                 </Image.Source>
             </Image>
-            <StackPanel  Width="165" VerticalAlignment="Center" Margin="5" >
+            <VirtualizingStackPanel  Width="165" VerticalAlignment="Center" Margin="5" >
                 <TextBlock FontSize="12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
                     <Run Text="{Binding FirstName}" />    
                     <Run Text="{Binding LastName}" />
                 </TextBlock>
                 <TextBlock FontSize="11" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Username}" />
-            </StackPanel>
-        </StackPanel>
+            </VirtualizingStackPanel>
+        </VirtualizingStackPanel>
     </DataTemplate>
 </ResourceDictionary>

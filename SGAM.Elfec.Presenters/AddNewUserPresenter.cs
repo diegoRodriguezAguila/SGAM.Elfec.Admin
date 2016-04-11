@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
@@ -21,6 +22,7 @@ namespace SGAM.Elfec.Presenters
             {
                 WorkerSupportsCancellation = true
             };
+            _syncContext = SynchronizationContext.Current;
             _worker.DoWork += Filter;
             _worker.RunWorkerCompleted += FilterComplete;
             LoadNonRegisteredUsers();
@@ -28,10 +30,12 @@ namespace SGAM.Elfec.Presenters
 
         #region Private Attributes
         private IList<User> _allUsers;
+        private readonly SynchronizationContext _syncContext;
         private ObservableCollection<User> _users;
         private User _selectedUser;
         private string _searchQuery;
         private readonly BackgroundWorker _worker;
+        private const int LOAD_FREQ = 25;
         #endregion
 
         #region Properties
@@ -85,10 +89,8 @@ namespace SGAM.Elfec.Presenters
                 var callback = new ResultCallback<IList<User>>();
                 callback.Success += (s, users) =>
                 {
-                    //TODO find better way to bind this, without
-                    //blocking UI thread
                     _allUsers = users;
-                    Users = new ObservableCollection<User>(users);
+                    DelayedBindUsers(users);
                     View.OnDataLoaded();
                 };
                 callback.Failure += (s, errors) =>
@@ -97,6 +99,25 @@ namespace SGAM.Elfec.Presenters
                 };
                 UsersManager.GetAllUsers(callback, UserStatus.NonRegistered);
             }).Start();
+        }
+
+        /// <summary>
+        /// Asigna la lista de Users con un delay para
+        /// no sobrecargar el UI thread
+        /// </summary>
+        /// <param name="users"></param>
+        private void DelayedBindUsers(IList<User> users)
+        {
+            Users = new ObservableCollection<User>(users.Take(LOAD_FREQ));
+            new Thread(()=> {
+                for (int i = 1; i * LOAD_FREQ < users.Count; i++)
+                {
+                    Thread.Sleep(80);
+                    _syncContext.Post((o) => 
+                    {
+                        Users.AddRange(users.Skip(i * LOAD_FREQ).Take(LOAD_FREQ));
+                    }, null);
+                }}).Start();
         }
 
         /// <summary>
@@ -162,9 +183,7 @@ namespace SGAM.Elfec.Presenters
             var filtered = (IList<User>)e.Result;
             Users.Clear();
 
-            foreach (var f in filtered)
-                Users.Add(f);
-            SelectedUser = Users.FirstOrDefault();
+            DelayedBindUsers(filtered);
         }
 
         #endregion

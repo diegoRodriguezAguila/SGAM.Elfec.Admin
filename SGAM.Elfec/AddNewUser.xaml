@@ -42,7 +42,7 @@
         </StackPanel>
         <Grid Grid.Row="1"  >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="242" MaxWidth="800" />
+                <ColumnDefinition Width="Auto" MinWidth="243" MaxWidth="800" />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" MinWidth="100" />
             </Grid.ColumnDefinitions>
@@ -88,7 +88,8 @@
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                               HorizontalAlignment="Stretch" />
-            <Controls:TransitioningContentControl Grid.Column="2" Margin="40,0,0,0"
+            <ScrollViewer Grid.Column="2"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" >
+            <Controls:TransitioningContentControl Margin="40,0,0,40"
                                                   Name="Transitioning" 
                                                   VerticalContentAlignment="Top" Transition="Left" >
                 <StackPanel Name="UserInfoPanel" Grid.Column="1" 
@@ -155,6 +156,7 @@
                     </StackPanel>
                 </StackPanel>
             </Controls:TransitioningContentControl >
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

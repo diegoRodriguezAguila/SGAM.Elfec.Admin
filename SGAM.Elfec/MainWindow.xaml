@@ -12,6 +12,7 @@
         Title="{Binding Navigation.Current.Tag, StringFormat='SGAM Elfec - {0}', 
     FallbackValue='SGAM Elfec'}" Height="480" Width="720">
     <Fluent:RibbonWindow.Resources>
+        <converters:IndexAndCountToBoolConverter x:Key="IndexAndCountToBoolConverter" Invert="True" />
         <converters:CountToBoolConverter x:Key="CountToBoolConverter" />
         <converters:BoolToVisibilityConverter x:Key="VisibleConverter"  
                                               TrueValue="Visible" FalseValue="Hidden"  />
@@ -42,6 +43,12 @@
                         Converter={StaticResource CountToBoolConverter},ConverterParameter=1}" 
                                         Icon="/Resources/Navigation/Back.png" Click="BtnBack_Click"
                                         ToolTip="{x:Static Res:Resources.LblNavBack}" >
+                        <Fluent:SplitButton.IsButtonEnabled>
+                            <MultiBinding Converter="{StaticResource IndexAndCountToBoolConverter}">
+                                <Binding Path="Navigation.CurrentIndex"/>
+                                <Binding Path="Navigation.NavigationStack.Count"/>
+                            </MultiBinding>
+                        </Fluent:SplitButton.IsButtonEnabled>
                         <ListBox Name="ListNavigationStack" BorderThickness="0" SelectedIndex="{Binding Navigation.CurrentIndex, Mode=TwoWay}"
                                  Padding="-2" ItemsSource="{Binding Navigation.NavigationStack}" >
                             <ListBox.ItemTemplate>

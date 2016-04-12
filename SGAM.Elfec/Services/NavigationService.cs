@@ -47,7 +47,8 @@ namespace SGAM.Elfec.Services
         {
             if (NavigationStack.Count > 0 && _current > 0)
             {
-                for (int i = 0; i < _current; i++)
+                int curr = _current;
+                for (int i = 0; i < curr; i++)
                 {
                     NavigationStack.Pop();
                 }

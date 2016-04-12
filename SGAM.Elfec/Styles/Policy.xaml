@@ -6,7 +6,7 @@
                     xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
                     xmlns:local="clr-namespace:SGAM.Elfec">
 
-    <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" />
+    <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" Size="16" />
     <converters:RuleActionToImageConverter x:Key="RuleActionToImageConverter" />
     <!-- Item Template for Policy Rules-->
     <HierarchicalDataTemplate  x:Key="RuleTreeTemplate"
@@ -39,7 +39,7 @@
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" >
             <Image Width="16" Height="16"  VerticalAlignment="Center"
                    SnapsToDevicePixels="True"
-                   Source="/Resources/User/PolicyMini.png" />
+                   Source="/Resources/User/Policy16.png" />
             <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{x:Static Res:Resources.LblPolicies}"></TextBlock>
         </StackPanel>
     </HierarchicalDataTemplate>

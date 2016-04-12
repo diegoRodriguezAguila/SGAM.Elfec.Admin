@@ -1,6 +1,9 @@
-﻿namespace SGAM.Elfec.Presenters.Views
+﻿using SGAM.Elfec.Model;
+
+namespace SGAM.Elfec.Presenters.Views
 {
     public interface IPolicyRulesView : ILoadingContentErrorView
     {
+        void PolicyDetails(Policy policy);
     }
 }

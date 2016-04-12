@@ -5,27 +5,29 @@ using System.Windows.Data;
 
 namespace SGAM.Elfec.Converters
 {
-    public class ApiStatusToStringConverter : IValueConverter
+    [ValueConversion(typeof(ApiStatus), typeof(string))]
+    public class PolicyStatusToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ApiStatus status = (ApiStatus)value;
+            ApiStatus? status = value as ApiStatus?;
             switch (status)
             {
                 case ApiStatus.Disabled:
-                    return Properties.Resources.ApiStatusDisabled;
+                    return Properties.Resources.PolicyStatusDisabled;
                 case ApiStatus.Enabled:
-                    return Properties.Resources.ApiStatusEnabled;
+                    return Properties.Resources.PolicyStatusEnabled;
+                default:
+                    return null;
             }
-            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string status = (String)value;
-            if (status == Properties.Resources.ApiStatusDisabled)
+            string status = value as string;
+            if (status == Properties.Resources.PolicyStatusDisabled)
                 return ApiStatus.Disabled;
-            if (status == Properties.Resources.ApiStatusEnabled)
+            if (status == Properties.Resources.PolicyStatusEnabled)
                 return ApiStatus.Enabled;
             return null;
         }

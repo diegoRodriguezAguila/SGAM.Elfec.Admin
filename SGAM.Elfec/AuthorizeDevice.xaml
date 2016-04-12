@@ -14,13 +14,7 @@
              Tag="{x:Static Res:Resources.LblAuthorizeDevice}"
              d:DesignHeight="1050" d:DesignWidth="800">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <converters:DeviceStatusToStringConverter x:Key="DeviceStatusToStringConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
+        <converters:DeviceStatusToStringConverter x:Key="DeviceStatusToStringConverter" />
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
         <Grid Name="AuthPanel" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left" >

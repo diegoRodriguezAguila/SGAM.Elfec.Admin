@@ -18,7 +18,30 @@
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="450" d:DesignWidth="700">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" />
+        <converters:PolicyStatusToStringConverter x:Key="PolicyStatusToStringConverter" />
+    </UserControl.Resources>
+    <ScrollViewer Name="ScrollMain"   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
+                      CanContentScroll="True">
+        <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" >
+                <Image Height="32"  VerticalAlignment="Center" Margin="0,0,10,0"   
+                    Source="{Binding Policy.Type, Converter={StaticResource PolicyTypeToImageConverter}}"
+                    SnapsToDevicePixels="True" />
+                <sgam:SelectableTextBlock Text="{Binding Policy.Name}" FontSize="24"
+                                             VerticalContentAlignment="Center" />
+            </StackPanel>
+            <TextBlock FontSize="11" Margin="0,20,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblPolicyDescription}" />
+            <sgam:SelectableTextBlock Text="{Binding Policy.Description}" FontSize="20" TextWrapping="Wrap" 
+                                      MaxWidth="{Binding ElementName=ScrollMain, Path=ViewportWidth}" 
+                                      HorizontalAlignment="Left" HorizontalContentAlignment="Left" />
+            <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblPolicyStatus}" />
+            <sgam:SelectableTextBlock Text="{Binding Policy.Status, Converter={StaticResource PolicyStatusToStringConverter}}" />
+                       
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

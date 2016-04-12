@@ -610,6 +610,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string LblPolicyDescription {
+            get {
+                return ResourceManager.GetString("LblPolicyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string LblPolicyStatus {
+            get {
+                return ResourceManager.GetString("LblPolicyStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ver aplicaciones.
         /// </summary>
         public static string LblShowApps {
@@ -912,6 +930,24 @@ namespace SGAM.Elfec.Properties {
         public static string MsgUserRegisteredSuccessfully {
             get {
                 return ResourceManager.GetString("MsgUserRegisteredSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dada de baja.
+        /// </summary>
+        public static string PolicyStatusDisabled {
+            get {
+                return ResourceManager.GetString("PolicyStatusDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activa.
+        /// </summary>
+        public static string PolicyStatusEnabled {
+            get {
+                return ResourceManager.GetString("PolicyStatusEnabled", resourceCulture);
             }
         }
         

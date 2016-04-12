@@ -173,6 +173,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\IndexAndCountToBoolConverter.cs" />
     <Compile Include="Converters\CountToBoolConverter.cs" />
+    <Compile Include="Converters\PolicyStatusToStringConverter.cs" />
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
     <Compile Include="Converters\RootTreeViewConverter.cs" />
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
@@ -464,10 +465,10 @@
     <Resource Include="Resources\User\Policy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Application\AppPolicy.png" />
+    <Resource Include="Resources\Application\AppPolicy16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Device\DevicePolicy.png" />
+    <Resource Include="Resources\Device\DevicePolicy16.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Rule\Deny.png" />
@@ -479,7 +480,7 @@
     <Resource Include="Resources\Rule\Rule.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\User\PolicyMini.png" />
+    <Resource Include="Resources\User\Policy16.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Navigation\Back.png" />
@@ -487,6 +488,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Navigation\Current.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Application\AppPolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Device\DevicePolicy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

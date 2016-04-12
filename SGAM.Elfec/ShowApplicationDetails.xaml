@@ -13,12 +13,7 @@
              Tag="{Binding Application.Name}"
              d:DesignHeight="350" d:DesignWidth="600">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <converters:ApiStatusToStringConverter x:Key="AppStatusConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <converters:ApiStatusToStringConverter x:Key="AppStatusConverter" />
     </UserControl.Resources>
     <Grid  >
         <Grid.ColumnDefinitions>

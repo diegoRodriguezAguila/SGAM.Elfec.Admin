@@ -14,13 +14,8 @@
              Background="White"
              d:DesignHeight="400" d:DesignWidth="700">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <converters:UriToCachedImageConverter x:Key="UriCachedConverter" />
-            <converters:NullToIsEnabledConverter x:Key="NullToIsEnabledConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <converters:UriToCachedImageConverter x:Key="UriCachedConverter" />
+        <converters:NullToIsEnabledConverter x:Key="NullToIsEnabledConverter" />
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" 
                    HorizontalScrollBarVisibility="Auto" CanContentScroll="True">

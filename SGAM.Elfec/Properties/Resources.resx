@@ -489,4 +489,16 @@
   <data name="LblNavForward" xml:space="preserve">
     <value>Navegar adelante</value>
   </data>
+  <data name="LblPolicyDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="LblPolicyStatus" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="PolicyStatusDisabled" xml:space="preserve">
+    <value>Dada de baja</value>
+  </data>
+  <data name="PolicyStatusEnabled" xml:space="preserve">
+    <value>Activa</value>
+  </data>
 </root>

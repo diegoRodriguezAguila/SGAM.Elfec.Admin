@@ -1,4 +1,5 @@
-﻿using SGAM.Elfec.Presenters;
+﻿using SGAM.Elfec.Model;
+using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using System;
 using System.Windows.Controls;
@@ -11,11 +12,16 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class PolicyRules : UserControl, IPolicyRulesView
     {
+        public PolicyDetails PolicyDetailsView { get; set; }
+
         public PolicyRules()
         {
             InitializeComponent();
             DataContext = new PolicyRulesPresenter(this);
+            PolicyDetailsView = new PolicyDetails(null);
         }
+
+        #region Interface Methods
 
         public void OnDataLoaded()
         {
@@ -47,5 +53,16 @@ namespace SGAM.Elfec
                 });
             }
         }
+
+        public void PolicyDetails(Policy policy)
+        {
+            Dispatcher.InvokeAsync(() =>
+            {
+                ((PolicyDetailsPresenter)PolicyDetailsView.DataContext).Policy = policy;
+                TransitioningDetails.Content = PolicyDetailsView;
+            });
+        }
+
+        #endregion
     }
 }

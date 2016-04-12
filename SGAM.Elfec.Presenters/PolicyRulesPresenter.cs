@@ -30,17 +30,20 @@ namespace SGAM.Elfec.Presenters
             set
             {
                 _policiesRoot = value;
-                Selected = _policiesRoot.Policies.FirstOrDefault();
+                Selected = _policiesRoot;
                 RaisePropertyChanged("PoliciesRoot");
             }
         }
 
         public object Selected
         {
-            get { return _selectedPolicy != null ? (object)_selectedPolicy : (object)_selectedRule; }
+            get { return _selectedPolicy != null ? 
+                    (object)_selectedPolicy : 
+                    (_selectedRule!=null? (object)_selectedRule : (object)_policiesRoot); }
             set
             {
                 _selectedPolicy = value as Policy;
+                if (_selectedPolicy != null) View.PolicyDetails(_selectedPolicy);
                 _selectedRule = value as Rule;
                 RaisePropertyChanged("Selected");
             }

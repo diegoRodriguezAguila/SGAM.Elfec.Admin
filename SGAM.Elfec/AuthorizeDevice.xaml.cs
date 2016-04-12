@@ -33,12 +33,6 @@ namespace SGAM.Elfec
             ValidationErrorsAssistant.UpdateSources(AuthPanel);
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindowService.Instance.MainWindow.Back();
-        }
-
-
         #region Interface Methods
 
         public void ShowProcesingAuthorization()

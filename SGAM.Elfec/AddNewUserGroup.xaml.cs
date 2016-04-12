@@ -4,7 +4,6 @@ using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -25,12 +24,6 @@ namespace SGAM.Elfec
             var presenter = new AddNewUserGroupPresenter(this);
             UserSelector.ItemFilter += presenter.FilterUsers;
             DataContext = presenter;
-        }
-
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindowService.Instance.MainWindow.StatusBarDefault();
-            MainWindowService.Instance.MainWindow.Back();
         }
 
         #region Interface methods

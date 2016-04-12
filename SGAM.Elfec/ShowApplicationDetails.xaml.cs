@@ -1,7 +1,6 @@
 ﻿using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -17,7 +16,7 @@ namespace SGAM.Elfec
             DataContext = new ShowApplicationDetailsPresenter(this, application);
         }
 
-        #region
+        #region Interface Methods
         public void OnDataLoaded()
         {
             throw new NotImplementedException();
@@ -34,11 +33,6 @@ namespace SGAM.Elfec
         }
         #endregion
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindowService.Instance.MainWindow.StatusBarDefault();
-            MainWindowService.Instance.MainWindow.Back();
-        }
 
     }
 }

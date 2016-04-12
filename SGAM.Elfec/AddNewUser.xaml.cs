@@ -4,7 +4,6 @@ using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -23,12 +22,6 @@ namespace SGAM.Elfec
             _indeterminateLoading = new IndeterminateLoading();
             _errorMessage = new ErrorMessage();
             DataContext = new AddNewUserPresenter(this);
-        }
-
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindowService.Instance.MainWindow.StatusBarDefault();
-            MainWindowService.Instance.MainWindow.Back();
         }
 
 

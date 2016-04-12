@@ -1,7 +1,6 @@
 ﻿using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -47,12 +46,6 @@ namespace SGAM.Elfec
                     Mouse.OverrideCursor = null;
                 });
             }
-        }
-
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindowService.Instance.MainWindow
-                .StatusBarDefault().Back();
         }
     }
 }

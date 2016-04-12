@@ -30,12 +30,6 @@ namespace SGAM.Elfec
             BindingOperations.SetBinding(_progressLoading.ProgressBarLoading, ProgressBar.ValueProperty, binding);
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindowService.Instance.MainWindow.StatusBarDefault();
-            MainWindowService.Instance.MainWindow.Back();
-        }
-
         private void BtnBrowseApk_Click(object sender, RoutedEventArgs e)
         {
             var ofd = new Microsoft.Win32.OpenFileDialog() { Filter = Properties.Resources.FileAPKFilter };

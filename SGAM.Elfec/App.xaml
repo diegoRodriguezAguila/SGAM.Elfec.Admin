@@ -12,6 +12,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!-- this window should be blue -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
+                <!-- and should use the light theme -->
+                <ResourceDictionary Source="/Styles/Accents/CustomAccent.xaml" />
                 <ResourceDictionary Source="/Resources/SVG/IconsResourceDictionary.xaml" />
                 <ResourceDictionary Source="/Styles/Application.xaml" />
                 <ResourceDictionary Source="/Styles/Device.xaml" />

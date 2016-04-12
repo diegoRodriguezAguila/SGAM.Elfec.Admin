@@ -619,11 +619,83 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se han definido reglas para ésta directiva.
+        /// </summary>
+        public static string LblPolicyEmptyRules {
+            get {
+                return ResourceManager.GetString("LblPolicyEmptyRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reglas.
+        /// </summary>
+        public static string LblPolicyRules {
+            get {
+                return ResourceManager.GetString("LblPolicyRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reglas ({0}).
+        /// </summary>
+        public static string LblPolicyRulesCount {
+            get {
+                return ResourceManager.GetString("LblPolicyRulesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string LblPolicyStatus {
             get {
                 return ResourceManager.GetString("LblPolicyStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acción.
+        /// </summary>
+        public static string LblRuleAction {
+            get {
+                return ResourceManager.GetString("LblRuleAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excepciones.
+        /// </summary>
+        public static string LblRuleException {
+            get {
+                return ResourceManager.GetString("LblRuleException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string LblRuleName {
+            get {
+                return ResourceManager.GetString("LblRuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuarios.
+        /// </summary>
+        public static string LblRuleUsers {
+            get {
+                return ResourceManager.GetString("LblRuleUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Condición.
+        /// </summary>
+        public static string LblRuleValue {
+            get {
+                return ResourceManager.GetString("LblRuleValue", resourceCulture);
             }
         }
         

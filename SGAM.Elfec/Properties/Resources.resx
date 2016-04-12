@@ -501,4 +501,28 @@
   <data name="PolicyStatusEnabled" xml:space="preserve">
     <value>Activa</value>
   </data>
+  <data name="LblPolicyRules" xml:space="preserve">
+    <value>Reglas</value>
+  </data>
+  <data name="LblPolicyRulesCount" xml:space="preserve">
+    <value>Reglas ({0})</value>
+  </data>
+  <data name="LblRuleAction" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="LblRuleException" xml:space="preserve">
+    <value>Excepciones</value>
+  </data>
+  <data name="LblRuleName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LblRuleUsers" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="LblRuleValue" xml:space="preserve">
+    <value>Condición</value>
+  </data>
+  <data name="LblPolicyEmptyRules" xml:space="preserve">
+    <value>No se han definido reglas para ésta directiva</value>
+  </data>
 </root>

@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="Behaviors\TreeViewHelper.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\IndexAndCountToBoolConverter.cs" />
     <Compile Include="Converters\CountToBoolConverter.cs" />
     <Compile Include="Converters\PolicyStatusToStringConverter.cs" />
@@ -291,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShowDevices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Accents\CustomAccent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

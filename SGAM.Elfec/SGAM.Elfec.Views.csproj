@@ -404,12 +404,6 @@
     <Resource Include="Resources\Phone.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\PhoneGroup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Delete.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Edit.png" />
   </ItemGroup>
   <ItemGroup>
@@ -444,9 +438,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AddMedium.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DeleteSmall.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Application\AddWhitelist.png" />
@@ -515,6 +506,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Tools\Delete16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rule\Delete16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -73,15 +73,20 @@
                           SelectionUnit="FullRow" RowStyle="{StaticResource RuleDataGridRowStyle}" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"
-                                            Binding="{Binding Action, Converter={StaticResource RuleActionToStringConverter}}" />
+                                        Binding="{Binding Action, Converter={StaticResource RuleActionToStringConverter}}" 
+                                        ElementStyle="{StaticResource DataGridTrimmingStyle}"/>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleUsers}"
-                                        Width="250" Binding="{Binding EntitiesString}" ElementStyle="{StaticResource DataGridTrimmingStyle}" />
+                                        Width="250" Binding="{Binding EntitiesString}" 
+                                        ElementStyle="{StaticResource DataGridTrimmingStyle}" />
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleName}"
-                                            Binding="{Binding Name}" />
+                                        Binding="{Binding Name}" 
+                                        ElementStyle="{StaticResource DataGridTrimmingStyle}" />
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleValue}"
-                                            Binding="{Binding Value}" />
+                                        Binding="{Binding Value}"
+                                        ElementStyle="{StaticResource DataGridTrimmingStyle}" />
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleException}"
-                                            Binding="{Binding Exception}" />
+                                        Binding="{Binding Exception}" 
+                                        ElementStyle="{StaticResource DataGridTrimmingStyle}" />
                 </DataGrid.Columns>
             </DataGrid>           
         </StackPanel>

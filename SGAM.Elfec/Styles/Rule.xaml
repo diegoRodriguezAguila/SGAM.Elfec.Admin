@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+                    xmlns:local="clr-namespace:SGAM.Elfec">
+    <!-- DataGrid Rule Context Menu-->
+    <ContextMenu x:Key="DataGridRuleContextMenu" >
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type DataGrid}}, 
+                  Path=DataContext.DeleteRuleCommand}"
+                  CommandParameter="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type DataGrid}}, 
+                  Path=SelectedItems}" Header="{x:Static Res:Resources.LblDelete}" >
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Tools/Delete16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+    <Style x:Key="RuleDataGridRowStyle" TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
+        <Setter Property="ContextMenu" Value="{StaticResource DataGridRuleContextMenu}" />
+    </Style>
+</ResourceDictionary>

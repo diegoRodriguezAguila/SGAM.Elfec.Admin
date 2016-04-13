@@ -25,6 +25,7 @@
                 <ResourceDictionary Source="/Styles/Application.xaml" />
                 <ResourceDictionary Source="/Styles/Device.xaml" />
                 <ResourceDictionary Source="/Styles/Policy.xaml" />
+                <ResourceDictionary Source="/Styles/Rule.xaml" />
                 <ResourceDictionary Source="/Styles/User.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -70,7 +70,7 @@
                 Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=1}"
                       RenderOptions.ClearTypeHint="Enabled" BorderThickness="1" BorderBrush="#B9B9B9" CanUserDeleteRows="False"
                           TextOptions.TextFormattingMode="Display" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
-                          SelectionUnit="FullRow" >
+                          SelectionUnit="FullRow" RowStyle="{StaticResource RuleDataGridRowStyle}" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"
                                             Binding="{Binding Action, Converter={StaticResource RuleActionToStringConverter}}" />

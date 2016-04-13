@@ -11,6 +11,22 @@
     <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" Size="16" />
     <converters:RuleActionToImageConverter x:Key="RuleActionToImageConverter" />
     
+      
+    <!-- TreeView Rule Context Menu-->
+    <ContextMenu x:Key="TreeViewRuleContextMenu" >
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type TreeView}}, 
+                  Path=DataContext.DeleteRuleCommand}"
+                  CommandParameter="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type TreeView}}, 
+                  Path=SelectedItem}" Header="{x:Static Res:Resources.LblDelete}" >
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Tools/Delete16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
     <!-- Policy Context Menu -->
     <ContextMenu x:Key="PolicyContextMenu" >
         <MenuItem Header="{x:Static Res:Resources.LblAddRule}"
@@ -27,7 +43,16 @@
     <!-- Item Template for Policy Rules-->
     <HierarchicalDataTemplate  x:Key="RuleTreeTemplate"
                                DataType="{x:Type Model:Rule}" ItemsSource="{Binding}">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" >
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" 
+                   ContextMenu="{StaticResource TreeViewRuleContextMenu}" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseRightButtonDown">
+                    <ei:ChangePropertyAction PropertyName="IsSelected" Value="true" 
+                                             TargetObject="{Binding RelativeSource=
+                {RelativeSource FindAncestor, 
+                AncestorType={x:Type TreeViewItem}}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <Image Width="16" Height="16" VerticalAlignment="Center"
                    SnapsToDevicePixels="True"
                    Source="{Binding Action, Converter={StaticResource RuleActionToImageConverter}}" />

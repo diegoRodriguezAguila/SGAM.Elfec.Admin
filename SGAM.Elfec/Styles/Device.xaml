@@ -19,7 +19,7 @@
             Converter={StaticResource DeviceStatusMenuItemConverter},
             ConverterParameter='AuthDevice'}" Header="{x:Static res:Resources.MenuItemAuthorizeDevice}" >
             <MenuItem.Icon>
-                <Viewbox Height="18" Width="18" Child="{StaticResource AuthDevice}" />
+                <Viewbox Height="16" Width="16" Child="{StaticResource AuthDevice}" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>

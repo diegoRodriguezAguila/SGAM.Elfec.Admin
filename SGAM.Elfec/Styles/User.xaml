@@ -15,16 +15,9 @@
                   CommandParameter="{Binding RelativeSource=
                   {RelativeSource FindAncestor, 
                   AncestorType={x:Type ListView}}, 
-                  Path=SelectedItems}" >
-            <MenuItem.Header>
-                <Grid Height="25" Background="Transparent" >
-                    <TextBlock Text="{x:Static res:Resources.LblDelete}" VerticalAlignment="Center" />
-                </Grid>
-            </MenuItem.Header>
+                  Path=SelectedItems}" Header="{x:Static res:Resources.LblDelete}" >
             <MenuItem.Icon>
-                <Grid Height="25" Width="25" Background="Transparent" >
-                    <Image Width="16" Height="16" Source="/Resources/DeleteSmall.png" />
-                </Grid>
+                <Image Width="16" Height="16" Source="/Resources/Tools/Delete16.png" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>

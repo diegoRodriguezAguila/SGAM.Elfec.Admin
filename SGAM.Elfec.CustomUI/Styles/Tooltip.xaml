@@ -1,44 +1,57 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
                     xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <DropShadowEffect x:Key="WindowShadowEffect" ShadowDepth="0" BlurRadius="4" Color="{StaticResource SoftGray}"/>
     <Style x:Key="{x:Type ToolTip}"
        TargetType="ToolTip">
 
         <Setter Property="OverridesDefaultStyle"
           Value="true" />
-        <Setter Property="HasDropShadow"
-          Value="True" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HasDropShadow" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
-                    <Border Padding="4" >
-                        <Border Name="Border"
-                BorderThickness="1"
-                Width="{TemplateBinding Width}"
-                Background="White"
-                                Effect="{StaticResource WindowShadowEffect}"
-                BorderBrush="{StaticResource TooltipBorderBrush}"
-                Height="{TemplateBinding Height}">
-
-                            <ContentPresenter Margin="4"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            TextBlock.Foreground="{StaticResource AlmostBlackTextBrush}"
-                            TextBlock.FontSize="12"/>
+                    <mwt:SystemDropShadowChrome Color="#00FFFFFF" Name="Shdw" SnapsToDevicePixels="True">
+                        <Border BorderThickness="1" Padding="4" 
+                BorderBrush="{StaticResource TooltipBorderBrush}" Background="White">
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+                ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" 
+                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" 
+                TextBlock.Foreground="{StaticResource AlmostBlackTextBrush}"
+                TextBlock.FontSize="12"
+                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" 
+                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
                         </Border>
-                    </Border>
+                    </mwt:SystemDropShadowChrome>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="HasDropShadow"
-                   Value="true">
-                            <Setter TargetName="Border" Property="Effect" Value="{StaticResource WindowShadowEffect}" />
+                        <Trigger Property="ToolTipService.HasDropShadow" Value="True" >
+                            <Setter Property="FrameworkElement.Margin" TargetName="Shdw">
+                                <Setter.Value>
+                                    <Thickness>0,0,5,5</Thickness>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="mwt:SystemDropShadowChrome.Color" TargetName="Shdw">
+                                <Setter.Value>
+                                    <Color>#71000000</Color>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="DataGridTrimmingStyle">
+        <Setter Property="TextBlock.TextTrimming"
+                       Value="CharacterEllipsis"/>
+        <Setter Property="TextBlock.ToolTip">
+            <Setter.Value>
+                <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}"
+                                                 Content="{Binding Text}" 
+                                                 Placement="RelativePoint" PlacementRectangle="-5,-5,0,0"/>
             </Setter.Value>
         </Setter>
     </Style>

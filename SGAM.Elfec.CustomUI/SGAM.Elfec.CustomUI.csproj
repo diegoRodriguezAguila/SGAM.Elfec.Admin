@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -97,6 +98,7 @@
     <Compile Include="TokenizedTextBox\TokenItem.cs" />
     <Compile Include="TokenizedTextBox\TokenizedTextBox.cs" />
     <Compile Include="TokenizedTextBox\TokenizedTextBoxCommands.cs" />
+    <Compile Include="TrimmedTextBlockVisibilityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\RichTextBox.xaml">

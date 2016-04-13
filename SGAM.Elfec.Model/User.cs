@@ -1,10 +1,11 @@
 ﻿using SGAM.Elfec.Model.Enums;
+using SGAM.Elfec.Model.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace SGAM.Elfec.Model
 {
-    public class User
+    public class User : IEntity
     {
         public string Username { get; set; }
         public string AuthenticationToken { get; set; }
@@ -27,5 +28,10 @@ namespace SGAM.Elfec.Model
             this.Username = username;
             this.AuthenticationToken = authenticationToken;
         }
+
+        #region Entity Methods
+        public string Name { get { return Username; } }
+        public string Details { get { return FullName; } }
+        #endregion
     }
 }

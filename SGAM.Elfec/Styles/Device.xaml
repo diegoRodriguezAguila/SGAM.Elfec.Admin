@@ -17,16 +17,9 @@
                 Path=DataContext.AuthorizeDevice}"
                   CommandParameter="{Binding}" Visibility="{Binding Path=Status, 
             Converter={StaticResource DeviceStatusMenuItemConverter},
-            ConverterParameter='AuthDevice'}" >
-            <MenuItem.Header>
-                <Grid Height="25" Background="Transparent" >
-                    <TextBlock Text="{x:Static res:Resources.MenuItemAuthorizeDevice}" VerticalAlignment="Center" />
-                </Grid>
-            </MenuItem.Header>
+            ConverterParameter='AuthDevice'}" Header="{x:Static res:Resources.MenuItemAuthorizeDevice}" >
             <MenuItem.Icon>
-                <Grid Height="25" Width="25" Background="Transparent" >
-                    <Viewbox Height="16" Child="{StaticResource AuthDevice}" />
-                </Grid>
+                <Viewbox Height="18" Width="18" Child="{StaticResource AuthDevice}" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>

@@ -101,6 +101,7 @@
       <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -178,6 +179,7 @@
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
     <Compile Include="Converters\RootTreeViewConverter.cs" />
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
+    <Compile Include="Converters\RuleActionToStringConverter.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="PolicyDetails.xaml.cs">
       <DependentUpon>PolicyDetails.xaml</DependentUpon>
@@ -499,6 +501,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Device\DevicePolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rule\Add.png" />
+    <Resource Include="Resources\Rule\Add16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rule\Add24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Button.xaml" />
-        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Menu.xaml" />
+        <!--<ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Menu.xaml" />-->
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBlock.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/PasswordBox.xaml" />

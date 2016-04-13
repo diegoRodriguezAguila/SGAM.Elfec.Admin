@@ -4,10 +4,26 @@
                     xmlns:Presentation="clr-namespace:SGAM.Elfec.Model.Presentation;assembly=SGAM.Elfec.Presenters"
                     xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
                     xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                     xmlns:local="clr-namespace:SGAM.Elfec">
 
     <converters:PolicyTypeToImageConverter x:Key="PolicyTypeToImageConverter" Size="16" />
     <converters:RuleActionToImageConverter x:Key="RuleActionToImageConverter" />
+    
+    <!-- Policy Context Menu -->
+    <ContextMenu x:Key="PolicyContextMenu" >
+        <MenuItem Header="{x:Static Res:Resources.LblAddRule}"
+                  Command="{Binding RelativeSource=
+                {RelativeSource FindAncestor, 
+                AncestorType={x:Type TreeView}}, 
+                Path=DataContext.AddRule}"
+                  CommandParameter="{Binding}" >
+            <MenuItem.Icon>
+                <Image Height="16" Width="16" Source="/Resources/Rule/Add16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
     <!-- Item Template for Policy Rules-->
     <HierarchicalDataTemplate  x:Key="RuleTreeTemplate"
                                DataType="{x:Type Model:Rule}" ItemsSource="{Binding}">
@@ -24,11 +40,20 @@
         x:Key="PolicyTreeTemplate"
         DataType="{x:Type Model:Policy}" ItemsSource="{Binding Rules}"
         ItemTemplate="{StaticResource RuleTreeTemplate}">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" >
+        <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource PolicyContextMenu}" 
+                    VerticalAlignment="Center" Margin="6,2" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseRightButtonDown">
+                    <ei:ChangePropertyAction PropertyName="IsSelected" Value="true" 
+                                             TargetObject="{Binding RelativeSource=
+                {RelativeSource FindAncestor, 
+                AncestorType={x:Type TreeViewItem}}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <Image Width="16" Height="16"  VerticalAlignment="Center"
                    SnapsToDevicePixels="True"
                    Source="{Binding Type, Converter={StaticResource PolicyTypeToImageConverter}}" />
-            <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Path = Name}"></TextBlock>
+            <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Path = Name}" />
         </StackPanel>
     </HierarchicalDataTemplate>
     <!-- Item Template for Policies Root -->

@@ -137,6 +137,7 @@
     <Compile Include="WebServices\ApiEndpoints\ISgamAuthenticatedEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\IUserGroupsEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\IUsersEndpoint.cs" />
+    <Compile Include="WebServices\Converters\EntityConverter.cs" />
     <Compile Include="WebServices\Converters\SnakeCaseEnumConverter.cs" />
     <Compile Include="WebServices\Converters\StringExtensions.cs" />
     <Compile Include="WebServices\JsonContractResolver\DeliminatorSeparatedPropertyNamesContractResolver .cs" />

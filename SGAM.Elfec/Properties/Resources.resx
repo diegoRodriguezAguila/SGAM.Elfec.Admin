@@ -525,4 +525,13 @@
   <data name="LblPolicyEmptyRules" xml:space="preserve">
     <value>No se han definido reglas para ésta directiva</value>
   </data>
+  <data name="RuleActionDeny" xml:space="preserve">
+    <value>Denegar</value>
+  </data>
+  <data name="RuleActionPermit" xml:space="preserve">
+    <value>Permitir</value>
+  </data>
+  <data name="LblAddRule" xml:space="preserve">
+    <value>Crear nueva regla</value>
+  </data>
 </root>

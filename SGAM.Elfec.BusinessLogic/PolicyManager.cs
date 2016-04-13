@@ -18,7 +18,7 @@ namespace SGAM.Elfec.BusinessLogic
             User user = SessionManager.Instance.CurrentLoggedUser;
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,type";
-            parameters["include"] = "rules";
+            parameters["include"] = "rules.entities";
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
                     .GetAllPolicies(parameters));

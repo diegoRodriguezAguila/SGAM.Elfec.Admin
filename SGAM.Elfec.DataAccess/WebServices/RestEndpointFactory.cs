@@ -12,7 +12,17 @@ namespace SGAM.Elfec.DataAccess.WebServices
     /// </summary>
     public class RestEndpointFactory
     {
-
+        private static JsonSerializerSettings _settings;
+        static RestEndpointFactory()
+        {
+            _settings = new JsonSerializerSettings()
+            {
+                ContractResolver = new SnakeCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            _settings.Converters.Add(new SnakeCaseEnumConverter { AllowIntegerValues = true });
+            _settings.Converters.Add(new EntityConverter());
+        }
         /// <summary>
         /// Crea un endpoint Rest  con la url por defecto <see cref="Settings.Properties.SGAM.Default.BaseApiURL"/>
         /// </summary>
@@ -20,13 +30,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
         /// <returns>Punto de acceso al webservice rest</returns>
         public static T Create<T>() where T : ISgamApiEndpoint
         {
-            var settings = new JsonSerializerSettings()
-            {
-                ContractResolver = new SnakeCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            settings.Converters.Add(new SnakeCaseEnumConverter { AllowIntegerValues = true });
-            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, settings);
+            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, _settings);
         }
         /// <summary>
         /// Crea un endpoint Rest  con la url por defecto <see cref="BASE_URL"/>

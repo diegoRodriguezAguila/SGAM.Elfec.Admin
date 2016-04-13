@@ -250,6 +250,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crear nueva regla.
+        /// </summary>
+        public static string LblAddRule {
+            get {
+                return ResourceManager.GetString("LblAddRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agregar nuevo grupo de usuarios.
         /// </summary>
         public static string LblAddUserGroup {
@@ -1020,6 +1029,24 @@ namespace SGAM.Elfec.Properties {
         public static string PolicyStatusEnabled {
             get {
                 return ResourceManager.GetString("PolicyStatusEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Denegar.
+        /// </summary>
+        public static string RuleActionDeny {
+            get {
+                return ResourceManager.GetString("RuleActionDeny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permitir.
+        /// </summary>
+        public static string RuleActionPermit {
+            get {
+                return ResourceManager.GetString("RuleActionPermit", resourceCulture);
             }
         }
         

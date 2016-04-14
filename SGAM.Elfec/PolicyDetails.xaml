@@ -54,7 +54,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
                             VerticalAlignment="Top" >
                 <Button Name="BtnAddRule" HorizontalAlignment="Left" 
-                            Margin="0,10,0,10"  >
+                            Margin="0,10,0,10" Click="BtnAddRule_Click"  >
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" Height="32" >
                             <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Add24.png" 

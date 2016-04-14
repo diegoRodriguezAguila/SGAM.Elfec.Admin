@@ -7,6 +7,7 @@
         xmlns:toastinet="clr-namespace:ToastinetWPF;assembly=ToastinetWPF"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         Icon="pack://application:,,,/Resources/MainIcon.ico"
+        SaveWindowPosition="True"
         UseLayoutRounding="True"
         xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
         Title="{Binding Navigation.Current.Tag, StringFormat='SGAM Elfec - {0}', 

@@ -180,6 +180,11 @@
     <Compile Include="Converters\RootTreeViewConverter.cs" />
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
     <Compile Include="Converters\RuleActionToStringConverter.cs" />
+    <Compile Include="Interfaces\IDialog.cs" />
+    <Compile Include="Services\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IDialogBuilder.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="PolicyDetails.xaml.cs">
       <DependentUpon>PolicyDetails.xaml</DependentUpon>
@@ -210,6 +215,7 @@
     <Compile Include="LoginDialogWindow.xaml.cs">
       <DependentUpon>LoginDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\DialogBuilder.cs" />
     <Compile Include="Services\MainWindowService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ShowApplicationDetails.xaml.cs">
@@ -246,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewUserGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Services\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

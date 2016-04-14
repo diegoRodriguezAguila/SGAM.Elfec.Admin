@@ -2,7 +2,6 @@
 using SGAM.Elfec.Interfaces;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace SGAM.Elfec
 {
@@ -18,7 +17,7 @@ namespace SGAM.Elfec
             _isFirstActivated = true;
             DevicesView();
             DataContext = MainWindowService.Instance;
-            // Activated += (s, e) => { ShowLoginDialog(); };
+            //Activated += (s, e) => { ShowLoginDialog(); };
         }
 
         #region Private Variables

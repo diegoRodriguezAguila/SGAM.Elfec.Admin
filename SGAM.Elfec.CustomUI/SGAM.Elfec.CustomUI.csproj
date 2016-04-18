@@ -98,6 +98,7 @@
     <Compile Include="SelectableTextBlock.cs" />
     <Compile Include="SharedResourceDictionary.cs" />
     <Compile Include="StatusBarButton.cs" />
+    <Compile Include="SyntaxHighlightBox.cs" />
     <Compile Include="TokenizedTextBox\Token.cs" />
     <Compile Include="TokenizedTextBox\TokenItem.cs" />
     <Compile Include="TokenizedTextBox\TokenizedTextBox.cs" />

@@ -8,24 +8,25 @@
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="SyntaxHighlightBoxStyle" TargetType="{x:Type syntax:SyntaxHighlightBox}" >
+    <Style x:Key="SyntaxHighlightBoxStyle" TargetType="{x:Type sgam:SyntaxHighlightBox}" >
         <Setter Property="Background" Value="White" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="BorderBrush" Value="DimGray" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorderBrush}" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Height" Value="32" />
-        <Setter Property="Padding" Value="4,6,4,2" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Padding" Value="2" />
         <Setter Property="ContextMenu" Value="{StaticResource TextBoxContextMenu}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="IsLineNumbersMarginVisible" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type syntax:SyntaxHighlightBox}">
+                <ControlTemplate TargetType="{x:Type sgam:SyntaxHighlightBox}">
                     <!--Visual-->
                     <Border x:Name="Border" SnapsToDevicePixels="True" Background="{TemplateBinding Background}"
-                        BorderBrush="{StaticResource TextBoxBorderBrush}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
                         Padding="{TemplateBinding Padding}" 
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid >
@@ -42,12 +43,12 @@
 
                             <Grid Grid.Column="2" >
                                 <!--Render canvas-->
-                                <Grid Margin="{TemplateBinding Padding}" VerticalAlignment="Bottom">
-                                    <syntax:DrawingControl x:Name="PART_RenderCanvas" ClipToBounds="True"
+                                <Grid Margin="{TemplateBinding Padding}">
+                                    <syntax:DrawingControl x:Name="PART_RenderCanvas" ClipToBounds="True" Margin="0,2,0,0"
                                     TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" />
                                 </Grid>
                                 <!--Transparent input textbox-->
-                                <ScrollViewer x:Name="PART_ContentHost" Background="#00FFFFFF" />
+                                <ScrollViewer x:Name="PART_ContentHost" Background="Transparent" />
 
                             </Grid>
 
@@ -61,13 +62,13 @@
                             <Setter TargetName="lineNumbersSeparator" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="Border"  Property="BorderBrush" Value="{StaticResource TextBoxBorderFocusedBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource TextBoxBorderFocusedBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border"  Property="BorderBrush" Value="{StaticResource TextBoxBorderOverBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource TextBoxBorderOverBrush}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter TargetName="Border"  Property="BorderBrush" Value="{StaticResource TextErrorColorBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource TextErrorColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -1,10 +1,4 @@
 ﻿using SGAM.Elfec.Presenters.Views;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Resources;
-using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -18,7 +12,7 @@ namespace SGAM.Elfec
         {
             InitializeComponent();
             TxtValue.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
-            TxtValue.LineHeight = 19;
+            TxtValue.LineHeight = 18.5;
             TxtException.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
         }
     }

@@ -95,7 +95,14 @@
     <Compile Include="SharedResourceDictionary.cs" />
     <Compile Include="StatusBarButton.cs" />
     <Compile Include="SyntaxHighlight\DrawingControl.cs" />
-    <Compile Include="SyntaxHighlight\IHighlighter.cs" />
+    <Compile Include="SyntaxHighlight\Highlighters\BaseHighlighter.cs" />
+    <Compile Include="SyntaxHighlight\Highlighters\IHighlighter.cs" />
+    <Compile Include="SyntaxHighlight\Highlighters\XmlHighlighter.cs" />
+    <Compile Include="SyntaxHighlight\Rules\AdvancedHighlightRule.cs" />
+    <Compile Include="SyntaxHighlight\Rules\HighlightLineRule.cs" />
+    <Compile Include="SyntaxHighlight\Rules\HighlightWordsRule.cs" />
+    <Compile Include="SyntaxHighlight\Rules\IHighlightRule.cs" />
+    <Compile Include="SyntaxHighlight\Rules\RuleOptions.cs" />
     <Compile Include="SyntaxHighlight\SyntaxHighlightBox.cs" />
     <Compile Include="SyntaxHighlight\TextUtilities.cs" />
     <Compile Include="TokenizedTextBox\Token.cs" />

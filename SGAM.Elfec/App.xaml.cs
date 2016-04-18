@@ -20,6 +20,7 @@ namespace SGAM.Elfec
              typeof(Timeline),
               new FrameworkPropertyMetadata { DefaultValue = 30 }
                 );
+            var instance = HighlighterManager.Instance;
         }
     }
 }

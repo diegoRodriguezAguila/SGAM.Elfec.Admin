@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace SGAM.Elfec.CustomUI.SyntaxHighlight
+namespace SGAM.Elfec.CustomUI.SyntaxHighlight.Highlighters
 {
     public interface IHighlighter
     {

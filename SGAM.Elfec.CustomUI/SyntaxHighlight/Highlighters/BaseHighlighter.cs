@@ -1,5 +1,4 @@
 ﻿using SGAM.Elfec.CustomUI.SyntaxHighlight.Rules;
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
@@ -31,21 +30,16 @@ namespace SGAM.Elfec.CustomUI.SyntaxHighlight.Highlighters
             {
                 foreach (HighlightWordsRule rule in WordsRules)
                 {
-                    foreach (string word in rule.Words)
+                    if (rule.Expression.IsMatch(m.Value))
                     {
-                        if (string.Equals(m.Value, word, rule.Options.IgnoreCase ?
-                            StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture))
-                        {
-                            ApplyFormat(text, rule.Options, m.Index, m.Length);
-                        }
+                        ApplyFormat(text, rule.Options, m.Index, m.Length);
                     }
                 }
             }
             // REGEX RULES
             foreach (AdvancedHighlightRule rule in RegexRules)
             {
-                Regex regexRgx = new Regex(rule.Expression);
-                foreach (Match m in regexRgx.Matches(text.Text))
+                foreach (Match m in rule.Satisfies(text.Text))
                 {
                     ApplyFormat(text, rule.Options, m.Index, m.Length);
                 }
@@ -53,8 +47,7 @@ namespace SGAM.Elfec.CustomUI.SyntaxHighlight.Highlighters
             // LINES RULES
             foreach (HighlightLineRule rule in LineRules)
             {
-                Regex lineRgx = new Regex(Regex.Escape(rule.LineStart) + ".*");
-                foreach (Match m in lineRgx.Matches(text.Text))
+                foreach (Match m in rule.Satisfies(text.Text))
                 {
                     ApplyFormat(text, rule.Options, m.Index, m.Length);
                 }

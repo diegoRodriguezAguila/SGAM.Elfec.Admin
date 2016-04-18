@@ -17,6 +17,29 @@ namespace SGAM.Elfec.CustomUI
         // Attributes
         // --------------------------------------------------------------------
 
+        #region DefaultForeground
+
+        /// <summary>
+        /// Gets or sets DefaultForeground, the default foreground color used
+        /// 
+        /// </summary>
+        public Brush DefaultForeground
+        {
+            get { return (Brush)this.GetValue(DefaultForegroundProperty); }
+            set { this.SetValue(DefaultForegroundProperty, value); }
+        }
+
+        /// <summary>
+        /// Using a DependencyProperty as the backing store for DefaultForeground. 
+        /// This enables animation, styling, binding, etc...
+        /// </summary>
+        public static readonly DependencyProperty DefaultForegroundProperty =
+            DependencyProperty.Register("DefaultForeground", typeof(Brush), typeof(SyntaxHighlightBox),
+            new UIPropertyMetadata(Brushes.Black));
+
+        #endregion
+
+
         public double LineHeight
         {
             get { return lineHeight; }
@@ -73,16 +96,17 @@ namespace SGAM.Elfec.CustomUI
                 new FrameworkPropertyMetadata(typeof(SyntaxHighlightBox)));
             TextProperty.OverrideMetadata(typeof(SyntaxHighlightBox),
             new FrameworkPropertyMetadata(typeof(SyntaxHighlightBox))
-            { DefaultValue = null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+            { DefaultValue = null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });           
         }
 
 
         public SyntaxHighlightBox() : base()
         {
             MaxLineCountInBlock = 100;
-            LineHeight = FontSize * 1.3;
+            LineHeight = FontSize * 1.5;
             totalLineCount = 1;
             blocks = new List<InnerTextBlock>();
+            Foreground = Brushes.Transparent;
         }
         public override void OnApplyTemplate()
         {
@@ -342,7 +366,7 @@ namespace SGAM.Elfec.CustomUI
                 FlowDirection.LeftToRight,
                 new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
                 FontSize,
-                Brushes.Black);
+                DefaultForeground);
 
             ft.Trimming = TextTrimming.None;
             ft.LineHeight = lineHeight;
@@ -365,7 +389,7 @@ namespace SGAM.Elfec.CustomUI
                 System.Globalization.CultureInfo.InvariantCulture,
                 FlowDirection.LeftToRight,
                 new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
-                FontSize, Brushes.Black);
+                FontSize, DefaultForeground);
 
             ft.Trimming = TextTrimming.None;
             ft.LineHeight = lineHeight;
@@ -385,7 +409,7 @@ namespace SGAM.Elfec.CustomUI
                 FlowDirection.LeftToRight,
                 new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
                 FontSize,
-                Brushes.Black);
+                DefaultForeground);
 
             ft.Trimming = TextTrimming.None;
             ft.LineHeight = lineHeight;

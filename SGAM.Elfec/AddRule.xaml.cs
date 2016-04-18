@@ -12,7 +12,6 @@ namespace SGAM.Elfec
         {
             InitializeComponent();
             TxtValue.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
-            TxtValue.LineHeight = 18.5;
             TxtException.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
         }
     }

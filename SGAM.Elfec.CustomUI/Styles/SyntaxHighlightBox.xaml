@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-                    xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI" 
-                    xmlns:syntax="clr-namespace:AurelienRibon.Ui.SyntaxHighlightBox;assembly=AurelienRibon.Ui.SyntaxHighlightBox"
+                    xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI.SyntaxHighlight" 
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Brushes.xaml" />
@@ -35,7 +34,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <syntax:DrawingControl x:Name="PART_LineNumbersCanvas" Grid.Column="0" ClipToBounds="True" />
+                            <sgam:DrawingControl x:Name="PART_LineNumbersCanvas" Grid.Column="0" ClipToBounds="True" />
 
                             <Line Grid.Column="1" Margin="2,0,5,0" Stroke="Gray" StrokeThickness="1" Y2="1" Stretch="Fill"
                             StrokeDashArray="1,1" RenderOptions.EdgeMode="Aliased" x:Name="lineNumbersSeparator" />
@@ -43,7 +42,7 @@
                             <Grid Grid.Column="2" >
                                 <!--Render canvas-->
                                 <Grid Margin="{TemplateBinding Padding}">
-                                    <syntax:DrawingControl x:Name="PART_RenderCanvas" ClipToBounds="True" Margin="0,2,0,0"
+                                    <sgam:DrawingControl x:Name="PART_RenderCanvas" ClipToBounds="True" Margin="0,2,0,0"
                                     TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" />
                                 </Grid>
                                 <!--Transparent input textbox-->

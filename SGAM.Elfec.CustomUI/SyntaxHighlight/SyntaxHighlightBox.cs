@@ -1,5 +1,4 @@
-﻿using AurelienRibon.Ui.SyntaxHighlightBox;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -8,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SGAM.Elfec.CustomUI
+namespace SGAM.Elfec.CustomUI.SyntaxHighlight
 {
     public partial class SyntaxHighlightBox : TextBox
     {
@@ -42,26 +41,26 @@ namespace SGAM.Elfec.CustomUI
 
         public double LineHeight
         {
-            get { return lineHeight; }
+            get { return _lineHeight; }
             set
             {
-                if (value != lineHeight)
+                if (value != _lineHeight)
                 {
-                    lineHeight = value;
-                    blockHeight = MaxLineCountInBlock * value;
+                    _lineHeight = value;
+                    _blockHeight = MaxLineCountInBlock * value;
                     TextBlock.SetLineStackingStrategy(this, LineStackingStrategy.BlockLineHeight);
-                    TextBlock.SetLineHeight(this, lineHeight);
+                    TextBlock.SetLineHeight(this, _lineHeight);
                 }
             }
         }
 
         public int MaxLineCountInBlock
         {
-            get { return maxLineCountInBlock; }
+            get { return _maxLineCountInBlock; }
             set
             {
-                maxLineCountInBlock = value > 0 ? value : 0;
-                blockHeight = value * LineHeight;
+                _maxLineCountInBlock = value > 0 ? value : 0;
+                _blockHeight = value * LineHeight;
             }
         }
 
@@ -78,14 +77,14 @@ namespace SGAM.Elfec.CustomUI
         }
 
         private IHighlighter _currentHighlighter;
-        private DrawingControl renderCanvas;
-        private DrawingControl lineNumbersCanvas;
-        private ScrollViewer scrollViewer;
-        private double lineHeight;
-        private int totalLineCount;
-        private List<InnerTextBlock> blocks;
-        private double blockHeight;
-        private int maxLineCountInBlock;
+        private DrawingControl _renderCanvas;
+        private DrawingControl _lineNumbersCanvas;
+        private ScrollViewer _scrollViewer;
+        private double _lineHeight;
+        private int _totalLineCount;
+        private List<InnerTextBlock> _blocks;
+        private double _blockHeight;
+        private int _maxLineCountInBlock;
 
         // --------------------------------------------------------------------
         // Ctor and event handlers
@@ -96,7 +95,7 @@ namespace SGAM.Elfec.CustomUI
                 new FrameworkPropertyMetadata(typeof(SyntaxHighlightBox)));
             TextProperty.OverrideMetadata(typeof(SyntaxHighlightBox),
             new FrameworkPropertyMetadata(typeof(SyntaxHighlightBox))
-            { DefaultValue = null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });           
+            { DefaultValue = null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
         }
 
 
@@ -104,19 +103,19 @@ namespace SGAM.Elfec.CustomUI
         {
             MaxLineCountInBlock = 100;
             LineHeight = FontSize * 1.5;
-            totalLineCount = 1;
-            blocks = new List<InnerTextBlock>();
+            _totalLineCount = 1;
+            _blocks = new List<InnerTextBlock>();
             Foreground = Brushes.Transparent;
         }
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            renderCanvas = (DrawingControl)GetTemplateChild("PART_RenderCanvas");
-            lineNumbersCanvas = (DrawingControl)GetTemplateChild("PART_LineNumbersCanvas");
-            scrollViewer = (ScrollViewer)GetTemplateChild("PART_ContentHost");
+            _renderCanvas = (DrawingControl)GetTemplateChild("PART_RenderCanvas");
+            _lineNumbersCanvas = (DrawingControl)GetTemplateChild("PART_LineNumbersCanvas");
+            _scrollViewer = (ScrollViewer)GetTemplateChild("PART_ContentHost");
 
-            lineNumbersCanvas.Width = GetFormattedTextWidth(string.Format("{0:0000}", totalLineCount)) + 5;
-            scrollViewer.ScrollChanged += OnScrollChanged;
+            _lineNumbersCanvas.Width = GetFormattedTextWidth(string.Format("{0:0000}", _totalLineCount)) + 5;
+            _scrollViewer.ScrollChanged += OnScrollChanged;
 
             InvalidateBlocks(0);
             InvalidateVisual();
@@ -157,57 +156,57 @@ namespace SGAM.Elfec.CustomUI
 
         private void UpdateTotalLineCount()
         {
-            totalLineCount = TextUtilities.GetLineCount(Text);
+            _totalLineCount = TextUtilities.GetLineCount(Text);
         }
 
         private void UpdateBlocks()
         {
-            if (blocks.Count == 0)
+            if (_blocks.Count == 0)
                 return;
 
             // While something is visible after last block...
-            while (!blocks.Last().IsLast && blocks.Last().Position.Y + blockHeight - VerticalOffset < ActualHeight)
+            while (!_blocks.Last().IsLast && _blocks.Last().Position.Y + _blockHeight - VerticalOffset < ActualHeight)
             {
-                int firstLineIndex = blocks.Last().LineEndIndex + 1;
-                int lastLineIndex = firstLineIndex + maxLineCountInBlock - 1;
-                lastLineIndex = lastLineIndex <= totalLineCount - 1 ? lastLineIndex : totalLineCount - 1;
+                int firstLineIndex = _blocks.Last().LineEndIndex + 1;
+                int lastLineIndex = firstLineIndex + _maxLineCountInBlock - 1;
+                lastLineIndex = lastLineIndex <= _totalLineCount - 1 ? lastLineIndex : _totalLineCount - 1;
 
-                int fisrCharIndex = blocks.Last().CharEndIndex + 1;
+                int fisrCharIndex = _blocks.Last().CharEndIndex + 1;
                 int lastCharIndex = TextUtilities.GetLastCharIndexFromLineIndex(Text, lastLineIndex); // to be optimized (forward search)
 
                 if (lastCharIndex <= fisrCharIndex)
                 {
-                    blocks.Last().IsLast = true;
+                    _blocks.Last().IsLast = true;
                     return;
                 }
 
                 InnerTextBlock block = new InnerTextBlock(
                     fisrCharIndex,
                     lastCharIndex,
-                    blocks.Last().LineEndIndex + 1,
+                    _blocks.Last().LineEndIndex + 1,
                     lastLineIndex,
                     LineHeight);
                 block.RawText = block.GetSubString(Text);
                 block.LineNumbers = GetFormattedLineNumbers(block.LineStartIndex, block.LineEndIndex);
-                blocks.Add(block);
-                FormatBlock(block, blocks.Count > 1 ? blocks[blocks.Count - 2] : null);
+                _blocks.Add(block);
+                FormatBlock(block, _blocks.Count > 1 ? _blocks[_blocks.Count - 2] : null);
             }
         }
 
         private void InvalidateBlocks(int changeOffset)
         {
             InnerTextBlock blockChanged = null;
-            for (int i = 0; i < blocks.Count; i++)
+            for (int i = 0; i < _blocks.Count; i++)
             {
-                if (blocks[i].CharStartIndex <= changeOffset && changeOffset <= blocks[i].CharEndIndex + 1)
+                if (_blocks[i].CharStartIndex <= changeOffset && changeOffset <= _blocks[i].CharEndIndex + 1)
                 {
-                    blockChanged = blocks[i];
+                    blockChanged = _blocks[i];
                     break;
                 }
             }
 
             if (blockChanged == null && changeOffset > 0)
-                blockChanged = blocks.Last();
+                blockChanged = _blocks.Last();
 
             int fvline = blockChanged != null ? blockChanged.LineStartIndex : 0;
             int lvline = GetIndexOfLastVisibleLine();
@@ -215,7 +214,7 @@ namespace SGAM.Elfec.CustomUI
             int lvchar = TextUtilities.GetLastCharIndexFromLineIndex(Text, lvline);
 
             if (blockChanged != null)
-                blocks.RemoveRange(blocks.IndexOf(blockChanged), blocks.Count - blocks.IndexOf(blockChanged));
+                _blocks.RemoveRange(_blocks.IndexOf(blockChanged), _blocks.Count - _blocks.IndexOf(blockChanged));
 
             int localLineCount = 1;
             int charStart = fvchar;
@@ -238,34 +237,34 @@ namespace SGAM.Elfec.CustomUI
                     block.LineNumbers = GetFormattedLineNumbers(block.LineStartIndex, block.LineEndIndex);
                     block.IsLast = true;
 
-                    foreach (InnerTextBlock b in blocks)
+                    foreach (InnerTextBlock b in _blocks)
                         if (b.LineStartIndex == block.LineStartIndex)
                             throw new Exception();
 
-                    blocks.Add(block);
-                    FormatBlock(block, blocks.Count > 1 ? blocks[blocks.Count - 2] : null);
+                    _blocks.Add(block);
+                    FormatBlock(block, _blocks.Count > 1 ? _blocks[_blocks.Count - 2] : null);
                     break;
                 }
-                if (localLineCount > maxLineCountInBlock)
+                if (localLineCount > _maxLineCountInBlock)
                 {
                     InnerTextBlock block = new InnerTextBlock(
                         charStart,
                         i,
                         lineStart,
-                        lineStart + maxLineCountInBlock - 1,
+                        lineStart + _maxLineCountInBlock - 1,
                         LineHeight);
                     block.RawText = block.GetSubString(Text);
                     block.LineNumbers = GetFormattedLineNumbers(block.LineStartIndex, block.LineEndIndex);
 
-                    foreach (InnerTextBlock b in blocks)
+                    foreach (InnerTextBlock b in _blocks)
                         if (b.LineStartIndex == block.LineStartIndex)
                             throw new Exception();
 
-                    blocks.Add(block);
-                    FormatBlock(block, blocks.Count > 1 ? blocks[blocks.Count - 2] : null);
+                    _blocks.Add(block);
+                    FormatBlock(block, _blocks.Count > 1 ? _blocks[_blocks.Count - 2] : null);
 
                     charStart = i + 1;
-                    lineStart += maxLineCountInBlock;
+                    lineStart += _maxLineCountInBlock;
                     localLineCount = 1;
 
                     if (i > lvchar)
@@ -280,17 +279,17 @@ namespace SGAM.Elfec.CustomUI
 
         private void DrawBlocks()
         {
-            if (renderCanvas == null || lineNumbersCanvas == null)
+            if (_renderCanvas == null || _lineNumbersCanvas == null)
                 return;
 
-            var dc = renderCanvas.GetContext();
-            var dc2 = lineNumbersCanvas.GetContext();
-            for (int i = 0; i < blocks.Count; i++)
+            var dc = _renderCanvas.GetContext();
+            var dc2 = _lineNumbersCanvas.GetContext();
+            for (int i = 0; i < _blocks.Count; i++)
             {
-                InnerTextBlock block = blocks[i];
+                InnerTextBlock block = _blocks[i];
                 Point blockPos = block.Position;
                 double top = blockPos.Y - VerticalOffset;
-                double bottom = top + blockHeight;
+                double bottom = top + _blockHeight;
                 if (top < ActualHeight && bottom > 0)
                 {
                     try
@@ -298,8 +297,8 @@ namespace SGAM.Elfec.CustomUI
                         dc.DrawText(block.FormattedText, new Point(2 - HorizontalOffset, block.Position.Y - VerticalOffset));
                         if (IsLineNumbersMarginVisible)
                         {
-                            lineNumbersCanvas.Width = GetFormattedTextWidth(string.Format("{0:0000}", totalLineCount)) + 5;
-                            dc2.DrawText(block.LineNumbers, new Point(lineNumbersCanvas.ActualWidth, 1 + block.Position.Y - VerticalOffset));
+                            _lineNumbersCanvas.Width = GetFormattedTextWidth(string.Format("{0:0000}", _totalLineCount)) + 5;
+                            dc2.DrawText(block.LineNumbers, new Point(_lineNumbersCanvas.ActualWidth, 1 + block.Position.Y - VerticalOffset));
                         }
                     }
                     catch
@@ -325,8 +324,8 @@ namespace SGAM.Elfec.CustomUI
         /// </summary>
         public int GetIndexOfFirstVisibleLine()
         {
-            int guessedLine = (int)(VerticalOffset / lineHeight);
-            return guessedLine > totalLineCount ? totalLineCount : guessedLine;
+            int guessedLine = (int)(VerticalOffset / _lineHeight);
+            return guessedLine > _totalLineCount ? _totalLineCount : guessedLine;
         }
 
         /// <summary>
@@ -335,8 +334,8 @@ namespace SGAM.Elfec.CustomUI
         public int GetIndexOfLastVisibleLine()
         {
             double height = VerticalOffset + ViewportHeight;
-            int guessedLine = (int)(height / lineHeight);
-            return guessedLine > totalLineCount - 1 ? totalLineCount - 1 : guessedLine;
+            int guessedLine = (int)(height / _lineHeight);
+            return guessedLine > _totalLineCount - 1 ? _totalLineCount - 1 : guessedLine;
         }
 
         /// <summary>
@@ -369,7 +368,7 @@ namespace SGAM.Elfec.CustomUI
                 DefaultForeground);
 
             ft.Trimming = TextTrimming.None;
-            ft.LineHeight = lineHeight;
+            ft.LineHeight = _lineHeight;
 
             return ft;
         }
@@ -383,7 +382,6 @@ namespace SGAM.Elfec.CustomUI
             for (int i = firstIndex + 1; i <= lastIndex + 1; i++)
                 text += i.ToString() + "\n";
             text = text.Trim();
-
             FormattedText ft = new FormattedText(
                 text,
                 System.Globalization.CultureInfo.InvariantCulture,
@@ -392,7 +390,7 @@ namespace SGAM.Elfec.CustomUI
                 FontSize, DefaultForeground);
 
             ft.Trimming = TextTrimming.None;
-            ft.LineHeight = lineHeight;
+            ft.LineHeight = _lineHeight;
             ft.TextAlignment = TextAlignment.Right;
 
             return ft;
@@ -412,7 +410,7 @@ namespace SGAM.Elfec.CustomUI
                 DefaultForeground);
 
             ft.Trimming = TextTrimming.None;
-            ft.LineHeight = lineHeight;
+            ft.LineHeight = _lineHeight;
 
             return ft.Width;
         }

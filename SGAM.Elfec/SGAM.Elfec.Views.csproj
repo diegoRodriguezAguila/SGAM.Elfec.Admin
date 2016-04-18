@@ -89,10 +89,6 @@
       <HintPath>..\packages\Assisticant.1.1.4\lib\net45\Assisticant.XAML.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AurelienRibon.Ui.SyntaxHighlightBox, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AurelienRibon.Ui.SyntaxHighlightBox.2.0.2\lib\NET40\AurelienRibon.Ui.SyntaxHighlightBox.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Extensions.Wpf, Version=1.0.5241.30077, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Extensions.Wpf.1.0.5241.30077\lib\net45\Extensions.Wpf.dll</HintPath>
       <Private>True</Private>

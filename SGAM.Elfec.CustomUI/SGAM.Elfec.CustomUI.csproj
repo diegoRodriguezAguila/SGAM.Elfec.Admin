@@ -55,10 +55,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AurelienRibon.Ui.SyntaxHighlightBox, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AurelienRibon.Ui.SyntaxHighlightBox.2.0.2\lib\NET40\AurelienRibon.Ui.SyntaxHighlightBox.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
       <Private>True</Private>
@@ -98,7 +94,10 @@
     <Compile Include="SelectableTextBlock.cs" />
     <Compile Include="SharedResourceDictionary.cs" />
     <Compile Include="StatusBarButton.cs" />
-    <Compile Include="SyntaxHighlightBox.cs" />
+    <Compile Include="SyntaxHighlight\DrawingControl.cs" />
+    <Compile Include="SyntaxHighlight\IHighlighter.cs" />
+    <Compile Include="SyntaxHighlight\SyntaxHighlightBox.cs" />
+    <Compile Include="SyntaxHighlight\TextUtilities.cs" />
     <Compile Include="TokenizedTextBox\Token.cs" />
     <Compile Include="TokenizedTextBox\TokenItem.cs" />
     <Compile Include="TokenizedTextBox\TokenizedTextBox.cs" />
@@ -196,6 +195,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Resource Include="Resources\syntax.xsd">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CancelSearch.png" />

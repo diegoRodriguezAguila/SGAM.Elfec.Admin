@@ -1,4 +1,4 @@
-﻿using AurelienRibon.Ui.SyntaxHighlightBox;
+﻿using SGAM.Elfec.CustomUI.SyntaxHighlight;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace SGAM.Elfec
         {
             Highlighters = new Dictionary<string, IHighlighter>();
 
-            var gfdgd = Application.GetResourceStream(new Uri("pack://application:,,,/AurelienRibon.Ui.SyntaxHighlightBox;component/resources/syntax.xsd"));
+            var gfdgd = Application.GetResourceStream(new Uri("pack://application:,,,/SGAM.Elfec.CustomUI;component/resources/syntax.xsd"));
             var schemaStream = gfdgd.Stream;
             XmlSchema schema = XmlSchema.Read(schemaStream, (s, e) =>
             {

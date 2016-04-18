@@ -33,7 +33,7 @@
                   Command="{Binding RelativeSource=
                 {RelativeSource FindAncestor, 
                 AncestorType={x:Type TreeView}}, 
-                Path=DataContext.AddRule}"
+                Path=DataContext.AddRuleCommand}"
                   CommandParameter="{Binding}" >
             <MenuItem.Icon>
                 <Image Height="16" Width="16" Source="/Resources/Rule/Add16.png" />

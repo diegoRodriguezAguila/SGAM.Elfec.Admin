@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+             xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,11 +12,14 @@
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource {x:Static SystemColors.ControlTextColorKey}}" />
             <Style BasedOn="{StaticResource MetroContextMenu}" TargetType="ContextMenu" />
             <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="DataGrid" />
+            <Style BasedOn="{StaticResource MetroComboBox}" TargetType="ComboBox" />
+            <converters:SizeConverter x:Key="SizeConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ContextMenu.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.DataGrid.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ComboBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <!-- this window should be blue -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />

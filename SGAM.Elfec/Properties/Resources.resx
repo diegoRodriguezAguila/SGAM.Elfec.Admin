@@ -516,8 +516,8 @@
   <data name="LblRuleName" xml:space="preserve">
     <value>Nombre</value>
   </data>
-  <data name="LblRuleUsers" xml:space="preserve">
-    <value>Usuarios</value>
+  <data name="LblRuleEntities" xml:space="preserve">
+    <value>Usuarios y grupos</value>
   </data>
   <data name="LblRuleValue" xml:space="preserve">
     <value>Condición</value>
@@ -533,5 +533,26 @@
   </data>
   <data name="LblAddRule" xml:space="preserve">
     <value>Crear nueva regla</value>
+  </data>
+  <data name="LblRuleDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="LblRuleAddEntity" xml:space="preserve">
+    <value>Agregar usuario o grupo</value>
+  </data>
+  <data name="LblRuleWithNoEntities" xml:space="preserve">
+    <value>Aun no se agregó ningun usuario ni grupo</value>
+  </data>
+  <data name="TabEntities" xml:space="preserve">
+    <value>ENTIDADES</value>
+  </data>
+  <data name="TabGeneral" xml:space="preserve">
+    <value>GENERAL</value>
+  </data>
+  <data name="TabValues" xml:space="preserve">
+    <value>VALORES</value>
+  </data>
+  <data name="BtnSaveRule" xml:space="preserve">
+    <value>Guardar</value>
   </data>
 </root>

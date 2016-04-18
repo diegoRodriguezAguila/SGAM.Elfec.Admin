@@ -75,7 +75,7 @@
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"
                                         Binding="{Binding Action, Converter={StaticResource RuleActionToStringConverter}}" 
                                         ElementStyle="{StaticResource DataGridTrimmingStyle}"/>
-                    <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleUsers}"
+                    <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleEntities}"
                                         Width="250" Binding="{Binding EntitiesString}" 
                                         ElementStyle="{StaticResource DataGridTrimmingStyle}" />
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleName}"

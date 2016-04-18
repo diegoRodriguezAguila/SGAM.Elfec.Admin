@@ -17,6 +17,7 @@
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RibbonGroupBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Tooltip.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/SearchBox.xaml" />
+        <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/SyntaxHighlightBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/Expander.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/TokenizedTextBox.xaml" />
         <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Styles/RichTextBox.xaml" />

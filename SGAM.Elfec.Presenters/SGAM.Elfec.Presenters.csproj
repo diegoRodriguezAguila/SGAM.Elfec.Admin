@@ -101,6 +101,7 @@
     <Compile Include="Views\IAddNewApplicationView.cs" />
     <Compile Include="Views\IAddNewUserGroupView.cs" />
     <Compile Include="Views\IAddNewUserView.cs" />
+    <Compile Include="Views\IAddRuleView.cs" />
     <Compile Include="Views\IAuthorizeDeviceView.cs" />
     <Compile Include="Views\ILoadingContentErrorView.cs" />
     <Compile Include="Views\IPolicyDetailsView.cs" />

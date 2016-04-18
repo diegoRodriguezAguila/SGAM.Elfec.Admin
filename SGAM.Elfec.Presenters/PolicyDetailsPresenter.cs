@@ -1,5 +1,6 @@
 ﻿using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters.Views;
+using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -24,7 +25,17 @@ namespace SGAM.Elfec.Presenters
                 RaisePropertyChanged("Policy");
             }
         }
+
+        #region Commands
+        public ICommand AddRuleCommand { get { return new DelegateCommand(AddRule); } }
         #endregion
+
+        #endregion
+
+        private void AddRule()
+        {
+
+        }
 
     }
 }

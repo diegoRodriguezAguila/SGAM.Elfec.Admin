@@ -151,6 +151,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guardar.
+        /// </summary>
+        public static string BtnSaveRule {
+            get {
+                return ResourceManager.GetString("BtnSaveRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subir aplicación.
         /// </summary>
         public static string BtnUploadApp {
@@ -673,6 +682,33 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar usuario o grupo.
+        /// </summary>
+        public static string LblRuleAddEntity {
+            get {
+                return ResourceManager.GetString("LblRuleAddEntity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string LblRuleDescription {
+            get {
+                return ResourceManager.GetString("LblRuleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuarios y grupos.
+        /// </summary>
+        public static string LblRuleEntities {
+            get {
+                return ResourceManager.GetString("LblRuleEntities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excepciones.
         /// </summary>
         public static string LblRuleException {
@@ -691,20 +727,20 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usuarios.
-        /// </summary>
-        public static string LblRuleUsers {
-            get {
-                return ResourceManager.GetString("LblRuleUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Condición.
         /// </summary>
         public static string LblRuleValue {
             get {
                 return ResourceManager.GetString("LblRuleValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aun no se agregó ningun usuario ni grupo.
+        /// </summary>
+        public static string LblRuleWithNoEntities {
+            get {
+                return ResourceManager.GetString("LblRuleWithNoEntities", resourceCulture);
             }
         }
         
@@ -1069,6 +1105,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ENTIDADES.
+        /// </summary>
+        public static string TabEntities {
+            get {
+                return ResourceManager.GetString("TabEntities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GENERAL.
+        /// </summary>
+        public static string TabGeneral {
+            get {
+                return ResourceManager.GetString("TabGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to INSERTAR.
         /// </summary>
         public static string TabInsert {
@@ -1092,6 +1146,15 @@ namespace SGAM.Elfec.Properties {
         public static string TabUsers {
             get {
                 return ResourceManager.GetString("TabUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VALORES.
+        /// </summary>
+        public static string TabValues {
+            get {
+                return ResourceManager.GetString("TabValues", resourceCulture);
             }
         }
         

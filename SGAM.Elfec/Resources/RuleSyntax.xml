@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Very important: "name" attribute defines the syntax name that will be used by the HighlihterManager -->
+<Syntax name="RuleSyntax">
+  <!-- Words rules will only highlight the provided words -->
+  <AdvancedHighlightRule name="blue">
+    <Expression>([\*\%])</Expression>
+    <IgnoreCase>true</IgnoreCase>
+    <Foreground>#0000FF</Foreground>
+    <FontWeight>Normal</FontWeight>
+    <FontStyle>Normal</FontStyle>
+  </AdvancedHighlightRule>
+
+  <!-- Advanced rules use a regular expression to find what they must highlight -->
+  <!-- Do not overuse them, as they have a great computer time cost -->
+  <AdvancedHighlightRule name="separators">
+    <Expression>([\;,\,])</Expression>
+    <IgnoreCase>true</IgnoreCase>
+    <Foreground>#8F8F8F</Foreground>
+    <FontWeight>Normal</FontWeight>
+    <FontStyle>Normal</FontStyle>
+  </AdvancedHighlightRule>
+</Syntax>

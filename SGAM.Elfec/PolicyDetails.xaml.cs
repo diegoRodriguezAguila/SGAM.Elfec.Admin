@@ -19,7 +19,7 @@ namespace SGAM.Elfec
 
         private void BtnAddRule_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            DialogBuilder.For(new AddNewUser()).Build().ShowDialog();
+            DialogBuilder.For(new AddRule()).Build().ShowDialog();
         }
     }
 }

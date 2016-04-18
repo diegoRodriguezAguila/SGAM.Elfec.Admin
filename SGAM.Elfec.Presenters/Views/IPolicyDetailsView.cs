@@ -5,5 +5,6 @@
     /// </summary>
     public interface IPolicyDetailsView : IBaseView
     {
+        //void AddRule
     }
 }

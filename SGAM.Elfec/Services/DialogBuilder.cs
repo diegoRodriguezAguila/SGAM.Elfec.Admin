@@ -1,6 +1,4 @@
 ﻿using SGAM.Elfec.Interfaces;
-using System;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec.Services
@@ -28,12 +26,18 @@ namespace SGAM.Elfec.Services
         }
 
         /// <summary>
-        /// Shows the dialog
+        /// Builds the dialog
         /// </summary>
         /// <returns></returns>
         public IDialog Build()
         {
             var dialog = new DialogWindow();
+            if (_content != null)
+            {
+                _content.Measure(new System.Windows.Size(double.MaxValue, double.MaxValue));
+                dialog.Width = _content.DesiredSize.Width;
+                dialog.Height = _content.DesiredSize.Height;
+            }
             dialog.DialogContent.Child = _content;
             return dialog;
         }

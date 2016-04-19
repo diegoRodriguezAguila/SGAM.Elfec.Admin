@@ -1,5 +1,7 @@
 ﻿using Fluent;
 using SGAM.Elfec.Interfaces;
+using SGAM.Elfec.Presenters.Presentation.Collections;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,6 +15,7 @@ namespace SGAM.Elfec
         public MainWindow()
         {
             InitializeComponent();
+            ObservableCollectionExtensions.SyncContext = SynchronizationContext.Current;
             MainWindowService.Instance.MainWindow = this;
             _isFirstActivated = true;
             DevicesView();

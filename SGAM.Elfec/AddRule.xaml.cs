@@ -1,4 +1,6 @@
-﻿using SGAM.Elfec.Presenters.Views;
+﻿using SGAM.Elfec.Model;
+using SGAM.Elfec.Presenters;
+using SGAM.Elfec.Presenters.Views;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -8,11 +10,12 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class AddRule : UserControl, IAddRuleView
     {
-        public AddRule()
+        public AddRule(Policy policy, Rule rule = null)
         {
             InitializeComponent();
             TxtValue.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
             TxtException.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
+            DataContext = new AddRulePresenter(this, policy, rule);
         }
     }
 }

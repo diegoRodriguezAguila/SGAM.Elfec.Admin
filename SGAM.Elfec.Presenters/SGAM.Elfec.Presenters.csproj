@@ -83,6 +83,7 @@
     <Compile Include="AddNewApplicationPresenter.cs" />
     <Compile Include="AddNewUserGroupPresenter.cs" />
     <Compile Include="AddNewUserPresenter.cs" />
+    <Compile Include="AddRulePresenter.cs" />
     <Compile Include="AuthorizeDevicePresenter.cs" />
     <Compile Include="BasePresenter.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PolicyDetailsPresenter.cs" />
     <Compile Include="PolicyRulesPresenter.cs" />
+    <Compile Include="Presentation\Collections\ObservableCollectionExtensions.cs" />
     <Compile Include="Presentation\Collections\ObservableStack.cs" />
     <Compile Include="Presentation\PoliciesThreeViewRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,9 +17,9 @@ namespace SGAM.Elfec
             DataContext = new PolicyDetailsPresenter(this, policy);
         }
 
-        private void BtnAddRule_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void AddRule(Policy policy)
         {
-            DialogBuilder.For(new AddRule()).Build().ShowDialog();
+            DialogBuilder.For(new AddRule(policy)).Build().ShowDialog();
         }
     }
 }

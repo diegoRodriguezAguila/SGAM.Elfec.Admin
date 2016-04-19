@@ -34,7 +34,7 @@ namespace SGAM.Elfec.Presenters
 
         private void AddRule()
         {
-
+            View.AddRule(Policy);
         }
 
     }

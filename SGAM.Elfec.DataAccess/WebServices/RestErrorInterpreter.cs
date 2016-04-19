@@ -5,13 +5,14 @@ using SGAM.Elfec.Model.WebServices;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Reactive.Linq;
 
 namespace SGAM.Elfec.DataAccess.WebServices
 {
     /// <summary>
     /// Se encarga de interpretar el error de la api adecuadamente
     /// </summary>
-    public class RestErrorInterpreter
+    public static class RestErrorInterpreter
     {
         /// <summary>
         /// interpreta el error correcto de la llamada al web service
@@ -53,6 +54,18 @@ namespace SGAM.Elfec.DataAccess.WebServices
                 return new ServerSideException();
             RestErrorResponse error = JsonConvert.DeserializeObject<RestErrorResponse>(apiException.Content);
             return new Exception(error.Errors);
+        }
+
+        /// <summary>
+        /// Extension method for auto rethrow interpreted errors of webservices
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obs"></param>
+        /// <returns></returns>
+        public static IObservable<T> InterpretingErrors<T>(this IObservable<T> obs)
+        {
+            return obs.Catch((Func<Exception, IObservable<T>>)
+                (ex => { throw InterpretWebServiceError(ex); }));
         }
     }
 }

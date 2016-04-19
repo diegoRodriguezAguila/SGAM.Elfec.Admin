@@ -40,18 +40,19 @@ namespace SGAM.Elfec.Presenters.Presentation.Collections
             if (SyncContext == null)
                 throw new InvalidOperationException("SyncContext was not initialized, please set it on the Main thread in the Main Window");
             var obsCollection = new ObservableCollection<T>(collection.Take(LoadFrequency));
-            new Thread(() =>
-            {
-                int count = collection.Count(), freq = LoadFrequency;
-                for (int i = 1; i * freq < count; i++)
+            int count = collection.Count(), freq = LoadFrequency;
+            if (count > freq)
+                new Thread(() =>
                 {
-                    Thread.Sleep(LoadInterval);
-                    SyncContext.Post((o) =>
+                    for (int i = 1; i * freq < count; i++)
                     {
-                        obsCollection.AddRange(collection.Skip(i * freq).Take(freq));
-                    }, null);
-                }
-            }).Start();
+                        Thread.Sleep(LoadInterval);
+                        SyncContext.Post((o) =>
+                        {
+                            obsCollection.AddRange(collection.Skip(i * freq).Take(freq));
+                        }, null);
+                    }
+                }).Start();
             return obsCollection;
         }
     }

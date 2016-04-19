@@ -1,8 +1,12 @@
-﻿using SGAM.Elfec.Helpers.Utils;
+﻿using SGAM.Elfec.BusinessLogic;
+using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Interfaces;
+using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -11,6 +15,7 @@ namespace SGAM.Elfec.Presenters
         public AddRulePresenter(IAddRuleView view, Policy policy, Rule rule = null) : base(view)
         {
             Rule = rule == null ? new Rule() : ObjectCloner.Clone(rule);
+            LoadEntities();
         }
 
         #region Private Attributes
@@ -49,6 +54,24 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        #endregion
+
+        #region Private Methods
+
+        private void LoadEntities()
+        {
+            EntitiesManager.GetAllEntities()
+                .Subscribe(
+                (entities) =>
+                {
+                    Entities = entities.ToObservableCollectionAsync();
+                },
+                (error) =>
+                {
+                    Debug.WriteLine(error.Message);
+                    //show error
+                });
+        }
         #endregion
     }
 }

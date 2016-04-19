@@ -15,7 +15,9 @@ namespace SGAM.Elfec
             InitializeComponent();
             TxtValue.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
             TxtException.CurrentHighlighter = HighlighterManager.Instance.Highlighters["RuleSyntax"];
-            DataContext = new AddRulePresenter(this, policy, rule);
+            var presenter = new AddRulePresenter(this, policy, rule);
+            EntitySelector.ItemFilter += presenter.FilterEntities;
+            DataContext = presenter;
         }
     }
 }

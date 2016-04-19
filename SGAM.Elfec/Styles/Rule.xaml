@@ -5,6 +5,46 @@
                     xmlns:local="clr-namespace:SGAM.Elfec">
     <converters:RuleActionToStringConverter x:Key="RuleActionToStringConverter" />
     <converters:RuleActionToImageConverter x:Key="RuleActionToImageConverter" />
+    <converters:IEntityToImageConverter x:Key="EntityImageConverter" Size="24" />
+
+
+    <!--Entity Context Menu-->
+
+    <ContextMenu x:Key="EntityItemContextMenu" >
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListView}}, 
+                  Path=DataContext.DeleteEntityCommand}"
+                  CommandParameter="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListView}}, 
+                  Path=SelectedItems}" Header="{x:Static Res:Resources.LblDelete}" >
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Tools/Delete16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+    
+    <!--Device EntityItemTemplate-->
+
+    <DataTemplate x:Key="EntityItemTemplate" >
+        <VirtualizingStackPanel Orientation="Horizontal" >
+            <Image Margin="5" VerticalAlignment="Center"  Width="24" Height="24" SnapsToDevicePixels="True"
+                   Source="{Binding Converter={StaticResource EntityImageConverter}}"/>
+            <VirtualizingStackPanel  Width="144" VerticalAlignment="Center" Margin="0,5,5,5" >
+                <TextBlock FontSize="12" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="15" 
+                           Text="{Binding Details}" />
+                <TextBlock FontSize="11" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Name}" />
+            </VirtualizingStackPanel>
+        </VirtualizingStackPanel>
+    </DataTemplate>
+
+    <!--EntityItemOptionStyle ListItem Style-->
+    <Style x:Key="EntityItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
+           TargetType="ListViewItem">
+        <Setter Property="ContextMenu" Value="{StaticResource EntityItemContextMenu}" />
+    </Style>
+
     <!-- DataGrid Rule Context Menu-->
     <ContextMenu x:Key="DataGridRuleContextMenu" >
         <MenuItem Command="{Binding RelativeSource=

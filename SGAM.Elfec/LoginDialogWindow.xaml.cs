@@ -25,7 +25,7 @@ namespace SGAM.Elfec
         #endregion
 
         private IndeterminateLoading _indeterminateLoading;
-        private ErrorMessage _errorMessage;
+        private ErrorControl _errorMessage;
         private bool _manualClosing;
 
 
@@ -35,7 +35,7 @@ namespace SGAM.Elfec
             DataContext = new LoginPresenter(this);
             _indeterminateLoading = new IndeterminateLoading();
             _indeterminateLoading.Margin = new Thickness(0, 20, 0, 0);
-            _errorMessage = new ErrorMessage();
+            _errorMessage = new ErrorControl();
             var varRes = new ValidationResult(true, null);
             _errorMessage.BtnOk.Click += BtnOk_Click;
             Loaded += (s, e) => { ClearErrors(); };
@@ -61,7 +61,7 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(validationErrors);
+                    _errorMessage.Message = MessageListFormatter.FormatFromErrorList(validationErrors);
                     Transitioning.Content = _errorMessage;
                 });
             }

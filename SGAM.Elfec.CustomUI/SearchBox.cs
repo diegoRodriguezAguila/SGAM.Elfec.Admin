@@ -55,7 +55,7 @@ namespace SGAM.Elfec.CustomUI
         public bool HasText
         {
             get { return (bool)GetValue(HasTextProperty); }
-            private set { SetValue(HasTextPropertyKey, value); }
+            set { SetValue(HasTextPropertyKey, value); }
         }
         #endregion
         #region SearchTimeDelay
@@ -126,7 +126,7 @@ namespace SGAM.Elfec.CustomUI
                 new FrameworkPropertyMetadata(typeof(SearchBox)));
             TextProperty.OverrideMetadata(typeof(SearchBox),
             new FrameworkPropertyMetadata(typeof(SearchBox))
-            {DefaultValue=null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+            { DefaultValue = null, DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
         }
 
         protected override void OnTextChanged(TextChangedEventArgs e)

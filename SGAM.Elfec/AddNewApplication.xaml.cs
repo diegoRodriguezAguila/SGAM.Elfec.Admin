@@ -16,13 +16,13 @@ namespace SGAM.Elfec
     {
         private IndeterminateLoading _indeterminateLoading;
         private ProgressLoading _progressLoading;
-        private ErrorMessage _errorMessage;
+        private ErrorControl _errorMessage;
 
         public AddNewApplication()
         {
             InitializeComponent();
             _indeterminateLoading = new IndeterminateLoading();
-            _errorMessage = new ErrorMessage();
+            _errorMessage = new ErrorControl();
             _progressLoading = new ProgressLoading();
             DataContext = new AddNewApplicationPresenter(this);
             var binding = new Binding("UploadProgressPercentage");
@@ -54,7 +54,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
                 _errorMessage.BtnOk.Click += (s, o) => { OnAPKLoadFinished(); };
                 TransitioningLoadApk.Content = _errorMessage;
             });
@@ -83,7 +83,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
                     MainWindowService.Instance.MainWindow.StatusBarDefault();

@@ -1,16 +1,18 @@
-﻿<UserControl x:Class="SGAM.Elfec.UserControls.ErrorMessage"
+﻿<UserControl x:Class="SGAM.Elfec.UserControls.ErrorControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SGAM.Elfec.UserControls"
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Background="White"
              d:DesignHeight="80" d:DesignWidth="230">
-    <StackPanel Orientation="Vertical">
-        <TextBlock Name="TxtErrorMessage" TextWrapping="Wrap" Foreground="{StaticResource TextErrorColorBrush}" Text="Error sample" FontSize="14" />
+    <StackPanel Name="MainPanel" Orientation="Horizontal">
+        <TextBlock TextWrapping="Wrap" Foreground="{StaticResource TextErrorColorBrush}" 
+                   Text="{Binding Message, Mode=TwoWay,FallbackValue='Error message'}" FontSize="14" VerticalAlignment="Top" Margin="5" />
         <Button Name="BtnOk" Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 
-                Content="{x:Static Res:Resources.BtnOk}" Margin="0,10,0,0" Height="32" Padding="10,0,10,0" 
-                FontSize="14" FontWeight="SemiBold"  HorizontalAlignment="Left" />
+                Content="{x:Static Res:Resources.BtnOk}" Margin="5" Height="32" 
+                FontSize="14" FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Top" />
     </StackPanel>
 </UserControl>

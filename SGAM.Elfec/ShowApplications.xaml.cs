@@ -14,14 +14,14 @@ namespace SGAM.Elfec
     public partial class ShowApplications : UserControl, IShowApplicationsView
     {
         private IndeterminateLoading _indeterminateLoading;
-        private ErrorMessage _errorMessage;
+        private ErrorControl _errorMessage;
 
         public ShowApplications()
         {
             InitializeComponent();
             _indeterminateLoading = new IndeterminateLoading();
             _indeterminateLoading.Margin = new Thickness(40, 40, 0, 0);
-            _errorMessage = new ErrorMessage();
+            _errorMessage = new ErrorControl();
             _errorMessage.Margin = new Thickness(40, 40, 0, 0);
             DataContext = new ShowApplicationsPresenter(this);
         }
@@ -53,7 +53,7 @@ namespace SGAM.Elfec
                 Dispatcher.InvokeAsync(() =>
                 {
                     MainWindowService.Instance.MainWindow.StatusBarDefault();
-                    _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                    _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;
                 });

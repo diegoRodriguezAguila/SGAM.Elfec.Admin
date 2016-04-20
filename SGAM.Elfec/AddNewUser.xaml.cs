@@ -14,13 +14,13 @@ namespace SGAM.Elfec
     public partial class AddNewUser : UserControl, IAddNewUserView
     {
         private IndeterminateLoading _indeterminateLoading;
-        private ErrorMessage _errorMessage;
+        private ErrorControl _errorMessage;
 
         public AddNewUser()
         {
             InitializeComponent();
             _indeterminateLoading = new IndeterminateLoading();
-            _errorMessage = new ErrorMessage();
+            _errorMessage = new ErrorControl();
             DataContext = new AddNewUserPresenter(this);
         }
 
@@ -54,7 +54,7 @@ namespace SGAM.Elfec
                 Dispatcher.InvokeAsync(() =>
                 {
                     MainWindowService.Instance.MainWindow.StatusBarDefault();
-                    _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                    _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
                     _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
                     Transitioning.Content = _errorMessage;
                 });
@@ -75,7 +75,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {

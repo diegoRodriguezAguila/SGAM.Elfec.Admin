@@ -112,6 +112,18 @@
                 </StackPanel>
         </TabItem>
     </TabControl>
+        <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Left"
+                Command="{Binding RegisterRuleCommand}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal" Height="32" >
+                    <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Save24.png" 
+                               SnapsToDevicePixels="True" Margin="4" />
+                    <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
+                                   Margin="4,8,8,8" TextWrapping="Wrap"
+                                   VerticalAlignment="Center" Text="{x:Static Res:Resources.BtnSaveRule}"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
         <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Right"
                 Command="{Binding RegisterRuleCommand}">
             <Button.Content>

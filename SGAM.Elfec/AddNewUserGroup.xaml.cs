@@ -14,13 +14,13 @@ namespace SGAM.Elfec
     public partial class AddNewUserGroup : UserControl, IAddNewUserGroupView
     {
         private IndeterminateLoading _indeterminateLoading;
-        private ErrorMessage _errorMessage;
+        private ErrorControl _errorMessage;
 
         public AddNewUserGroup()
         {
             InitializeComponent();
             _indeterminateLoading = new IndeterminateLoading();
-            _errorMessage = new ErrorMessage();
+            _errorMessage = new ErrorControl();
             var presenter = new AddNewUserGroupPresenter(this);
             UserSelector.ItemFilter += presenter.FilterUsers;
             DataContext = presenter;
@@ -42,7 +42,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.TxtErrorMessage.Text = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {

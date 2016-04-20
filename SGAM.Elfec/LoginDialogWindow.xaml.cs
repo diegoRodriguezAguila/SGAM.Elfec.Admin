@@ -24,7 +24,7 @@ namespace SGAM.Elfec
         public event LoginCanceledEventHandler LoginCanceled;
         #endregion
 
-        private IndeterminateLoading _indeterminateLoading;
+        private LoadingControl _indeterminateLoading;
         private ErrorControl _errorMessage;
         private bool _manualClosing;
 
@@ -33,7 +33,7 @@ namespace SGAM.Elfec
         {
             InitializeComponent();
             DataContext = new LoginPresenter(this);
-            _indeterminateLoading = new IndeterminateLoading();
+            _indeterminateLoading = new LoadingControl();
             _indeterminateLoading.Margin = new Thickness(0, 20, 0, 0);
             _errorMessage = new ErrorControl();
             var varRes = new ValidationResult(true, null);
@@ -71,7 +71,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoginUser;
+                _indeterminateLoading.Message = Properties.Resources.MsgLoginUser;
                 Transitioning.Content = _indeterminateLoading;
             });
         }
@@ -80,7 +80,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = waitingMessage;
+                _indeterminateLoading.Message = waitingMessage;
             });
         }
 

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SGAM.Elfec.UserControls
 {
@@ -23,6 +11,21 @@ namespace SGAM.Elfec.UserControls
         public ProgressLoading()
         {
             InitializeComponent();
+            DataContext = this;
         }
+        #region Properties
+        #region Message
+
+        public static DependencyProperty MessageProperty = DependencyProperty.RegisterAttached(
+                "Message",
+                typeof(string),
+                typeof(LoadingControl));
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
+        }
+        #endregion
+        #endregion
     }
 }

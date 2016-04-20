@@ -15,13 +15,13 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class AuthorizeDevice : UserControl, IAuthorizeDeviceView
     {
-        private IndeterminateLoading _indeterminateLoading;
+        private LoadingControl _indeterminateLoading;
         private ErrorControl _errorMessage;
 
         public AuthorizeDevice(Device authPendingDevice)
         {
             InitializeComponent();
-            _indeterminateLoading = new IndeterminateLoading();
+            _indeterminateLoading = new LoadingControl();
             _errorMessage = new ErrorControl();
             _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
             DataContext = new AuthorizeDevicePresenter(this, authPendingDevice);
@@ -39,7 +39,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgAuthorizingDevice;
+                _indeterminateLoading.Message = Properties.Resources.MsgAuthorizingDevice;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgAuthorizingDevice);
                 Transitioning.Content = _indeterminateLoading;
             });

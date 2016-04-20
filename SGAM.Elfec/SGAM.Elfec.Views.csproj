@@ -239,8 +239,8 @@
     <Compile Include="UserControls\ErrorControl.xaml.cs">
       <DependentUpon>ErrorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\IndeterminateLoading.xaml.cs">
-      <DependentUpon>IndeterminateLoading.xaml</DependentUpon>
+    <Compile Include="UserControls\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ProgressLoading.xaml.cs">
       <DependentUpon>ProgressLoading.xaml</DependentUpon>
@@ -347,7 +347,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\IndeterminateLoading.xaml">
+    <Page Include="UserControls\LoadingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

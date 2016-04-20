@@ -15,13 +15,13 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class ShowDevices : UserControl, IShowDevicesView
     {
-        private IndeterminateLoading _indeterminateLoading;
+        private LoadingControl _indeterminateLoading;
         private ErrorControl _errorMessage;
 
         public ShowDevices()
         {
             InitializeComponent();
-            _indeterminateLoading = new IndeterminateLoading();
+            _indeterminateLoading = new LoadingControl();
             _indeterminateLoading.Margin = new Thickness(40, 40, 0, 0);
             _errorMessage = new ErrorControl();
             _errorMessage.Margin = new Thickness(40, 40, 0, 0);
@@ -58,7 +58,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingDevices;
+                _indeterminateLoading.Message = Properties.Resources.MsgLoadingDevices;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgLoadingDevices);
                 Transitioning.Content = _indeterminateLoading;
             });

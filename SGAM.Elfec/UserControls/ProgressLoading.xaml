@@ -9,7 +9,8 @@
              Background="White"
              d:DesignHeight="100" d:DesignWidth="300">
     <StackPanel Orientation="Vertical">
-        <TextBlock Name="TxtLoadingMessage" Text="Validando información de usuario&#8230;" FontSize="16" TextWrapping="Wrap"
+        <TextBlock Name="TxtLoadingMessage" Text="{Binding Message, Mode=TwoWay,FallbackValue='Cargando&#8230;'}"
+                   FontSize="16" TextWrapping="Wrap"
                    VerticalAlignment="Center"/>
         <Grid Margin="0,8">
             <Grid.ColumnDefinitions>

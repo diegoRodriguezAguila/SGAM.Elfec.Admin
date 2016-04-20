@@ -14,14 +14,14 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class AddNewApplication : UserControl, IAddNewApplicationView
     {
-        private IndeterminateLoading _indeterminateLoading;
+        private LoadingControl _indeterminateLoading;
         private ProgressLoading _progressLoading;
         private ErrorControl _errorMessage;
 
         public AddNewApplication()
         {
             InitializeComponent();
-            _indeterminateLoading = new IndeterminateLoading();
+            _indeterminateLoading = new LoadingControl();
             _errorMessage = new ErrorControl();
             _progressLoading = new ProgressLoading();
             DataContext = new AddNewApplicationPresenter(this);
@@ -44,7 +44,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingApk;
+                _indeterminateLoading.Message = Properties.Resources.MsgLoadingApk;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgLoadingApkShort);
                 TransitioningLoadApk.Content = _indeterminateLoading;
             });
@@ -73,7 +73,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _progressLoading.TxtLoadingMessage.Text = Properties.Resources.MsgUploadingApk;
+                _progressLoading.Message = Properties.Resources.MsgUploadingApk;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgUploadingApk);
                 TransitioningUpload.Content = _progressLoading;
             });

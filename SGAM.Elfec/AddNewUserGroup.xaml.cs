@@ -13,13 +13,13 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class AddNewUserGroup : UserControl, IAddNewUserGroupView
     {
-        private IndeterminateLoading _indeterminateLoading;
+        private LoadingControl _indeterminateLoading;
         private ErrorControl _errorMessage;
 
         public AddNewUserGroup()
         {
             InitializeComponent();
-            _indeterminateLoading = new IndeterminateLoading();
+            _indeterminateLoading = new LoadingControl();
             _errorMessage = new ErrorControl();
             var presenter = new AddNewUserGroupPresenter(this);
             UserSelector.ItemFilter += presenter.FilterUsers;
@@ -32,7 +32,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
            {
-               _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUserGroup;
+               _indeterminateLoading.Message = Properties.Resources.MsgRegisteringUserGroup;
                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgRegisteringUserGroup);
                TransitioningRegister.Content = _indeterminateLoading;
            });

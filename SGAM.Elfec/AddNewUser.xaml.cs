@@ -13,13 +13,13 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class AddNewUser : UserControl, IAddNewUserView
     {
-        private IndeterminateLoading _indeterminateLoading;
+        private LoadingControl _indeterminateLoading;
         private ErrorControl _errorMessage;
 
         public AddNewUser()
         {
             InitializeComponent();
-            _indeterminateLoading = new IndeterminateLoading();
+            _indeterminateLoading = new LoadingControl();
             _errorMessage = new ErrorControl();
             DataContext = new AddNewUserPresenter(this);
         }
@@ -41,7 +41,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgLoadingUsers;
+                _indeterminateLoading.Message = Properties.Resources.MsgLoadingUsers;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgLoadingUsers);
                 Transitioning.Content = _indeterminateLoading;
             });
@@ -65,7 +65,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _indeterminateLoading.TxtLoadingMessage.Text = Properties.Resources.MsgRegisteringUser;
+                _indeterminateLoading.Message = Properties.Resources.MsgRegisteringUser;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgRegisteringUser);
                 TransitioningRegister.Content = _indeterminateLoading;
             });

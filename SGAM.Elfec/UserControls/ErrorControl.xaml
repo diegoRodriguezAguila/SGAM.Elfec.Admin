@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="80" d:DesignWidth="230">
-    <StackPanel Name="MainPanel" Orientation="Horizontal">
+    <StackPanel Name="MainPanel" Orientation="Vertical">
         <TextBlock TextWrapping="Wrap" Foreground="{StaticResource TextErrorColorBrush}" 
                    Text="{Binding Message, Mode=TwoWay,FallbackValue='Error message'}" FontSize="14" VerticalAlignment="Top" Margin="5" />
         <Button Name="BtnOk" Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 

@@ -7,10 +7,10 @@ using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
@@ -22,6 +22,7 @@ namespace SGAM.Elfec.Presenters
             Rule = rule == null ? new Rule()
             { Entities = new ObservableCollection<IEntity>() }
                         : ObjectCloner.Clone(rule);
+            _policy = policy;
             LoadEntities();
         }
 
@@ -30,6 +31,7 @@ namespace SGAM.Elfec.Presenters
         private IEntity _entityToAdd;
         private string _entityName;
         private Rule _rule;
+        private Policy _policy;
         #endregion
         #region Properties
         public ObservableCollection<IEntity> Entities
@@ -76,7 +78,7 @@ namespace SGAM.Elfec.Presenters
         #region Commands
         public ICommand AddEntityCommand { get { return new DelegateCommand(AddEntity); } }
         public ICommand DeleteEntityCommand { get { return new ListItemCommand<IList>(DeleteEntity); } }
-        //public ICommand RegisterUserGroupCommand { get { return new DelegateCommand(RegisterUserGroup); } }
+        public ICommand RegisterRuleCommand { get { return new DelegateCommand(RegisterRule); } }
         #endregion
         #region Private Methods
 
@@ -126,6 +128,28 @@ namespace SGAM.Elfec.Presenters
                 EntityName = null;
             }
         }
+
+        /// <summary>
+        /// Remotely Adds the rule to the server
+        /// </summary>
+        private void RegisterRule()
+        {
+            View.Validate();
+            if (Rule.IsValid)
+                PolicyManager.RegisterRule(_policy.Type, Rule)
+                    .SelectMany(rule => RulesManager.AddEntities(rule.Id, Rule.Entities))
+                    .Subscribe(
+                    (u) =>
+                    {
+
+                    },
+                    (error) =>
+                    {
+                        Debug.WriteLine(error.Message);
+                    });
+            else View.NotifyErrorsInFields();
+        }
+
         #endregion
 
         #region Public Methods
@@ -134,13 +158,8 @@ namespace SGAM.Elfec.Presenters
             // Cast the value to an IEntity.
             IEntity entity = item as IEntity;
             if (entity != null)
-            {
-                if (entity.Name.ToLower().Contains(search.ToLower()))
-                    return true;
-
-                else if (entity.Name.ToLower().Contains(search.ToLower()))
-                    return true;
-            }
+                return (entity.Name.ToLower().Contains(search.ToLower()))
+                    || (entity.Details.ToLower().Contains(search.ToLower()));
             // If no match, return false.
             return false;
         }

@@ -103,6 +103,7 @@
     <Compile Include="EntitiesManager.cs" />
     <Compile Include="PolicyManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RulesManager.cs" />
     <Compile Include="UserGroupManager.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>

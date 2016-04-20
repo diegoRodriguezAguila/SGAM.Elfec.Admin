@@ -57,7 +57,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
         }
 
         /// <summary>
-        /// Extension method for auto rethrow interpreted errors of webservices
+        /// Extension method for rethrowing of interpreted webservice errors
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obs"></param>
@@ -65,7 +65,10 @@ namespace SGAM.Elfec.DataAccess.WebServices
         public static IObservable<T> InterpretingErrors<T>(this IObservable<T> obs)
         {
             return obs.Catch((Func<Exception, IObservable<T>>)
-                (ex => { throw InterpretWebServiceError(ex); }));
+                (ex => 
+                {
+                    throw InterpretWebServiceError(ex);
+                }));
         }
     }
 }

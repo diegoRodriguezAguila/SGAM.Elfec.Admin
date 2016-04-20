@@ -35,7 +35,7 @@ namespace SGAM.Elfec.BusinessLogic
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
                     .AddMembers(userGroupId,
-                    members.ToStringRepresentation((u) => { return u.Username; })));
+                    members.ToString((u) => { return u.Username; })));
         }
     }
 }

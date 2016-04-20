@@ -132,6 +132,7 @@
     <Compile Include="WebServices\ApiEndpoints\IApplicationsEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\IDevicesEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\IPoliciesEndpoint.cs" />
+    <Compile Include="WebServices\ApiEndpoints\IRulesEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISgamApiEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISessionsEndpoint.cs" />
     <Compile Include="WebServices\ApiEndpoints\ISgamAuthenticatedEndpoint.cs" />
@@ -139,7 +140,6 @@
     <Compile Include="WebServices\ApiEndpoints\IUsersEndpoint.cs" />
     <Compile Include="WebServices\Converters\EntityConverter.cs" />
     <Compile Include="WebServices\Converters\SnakeCaseEnumConverter.cs" />
-    <Compile Include="WebServices\Converters\StringExtensions.cs" />
     <Compile Include="WebServices\JsonContractResolver\DeliminatorSeparatedPropertyNamesContractResolver .cs" />
     <Compile Include="WebServices\JsonContractResolver\SnakeCasePropertyNamesContractResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +166,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SGAM.Elfec.Helpers\SGAM.Elfec.Helpers.csproj">
+      <Project>{b96cf4d8-cd3c-413f-8ddc-ec57586a7f6a}</Project>
+      <Name>SGAM.Elfec.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.Model\SGAM.Elfec.Model.csproj">
       <Project>{57df609e-1c63-49d4-a290-345781183faa}</Project>
       <Name>SGAM.Elfec.Model</Name>

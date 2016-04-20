@@ -154,7 +154,7 @@ namespace SGAM.Elfec.Presenters
                 var callback = new ResultCallback<UserGroup>();
                 callback.Success += (s, userGroup) =>
                 {
-                    if (UserGroup.Members.Count > 0)
+                    if (!UserGroup.Members.IsEmpty())
                         RegisterMembers(userGroup);
                 };
                 callback.Failure += (s, errors) =>

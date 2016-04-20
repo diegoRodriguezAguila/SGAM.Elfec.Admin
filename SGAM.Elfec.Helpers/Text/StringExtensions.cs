@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-namespace SGAM.Elfec.DataAccess.WebServices.Converters
+namespace SGAM.Elfec.Helpers.Text
 {
-    internal static class StringExtensions
+    public static class StringExtensions
     {
         /// <summary>
         /// Solo funciona si la cadena actual esta en camel

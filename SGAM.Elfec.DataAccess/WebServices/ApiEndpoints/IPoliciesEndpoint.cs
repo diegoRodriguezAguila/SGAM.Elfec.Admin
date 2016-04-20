@@ -10,5 +10,8 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
         // The "policies" is a relative path the a base URL, which we'll provide later
         [Get("/policies")]
         Task<IList<Policy>> GetAllPolicies([QueryMap] IDictionary<string, string> filters);
+
+        [Post("/policies/{policyId}/rules")]
+        Task<Rule> RegisterRule([Path] string policyId, [Body] Rule rule);
     }
 }

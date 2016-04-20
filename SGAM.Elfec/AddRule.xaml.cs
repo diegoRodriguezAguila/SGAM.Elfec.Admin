@@ -1,6 +1,8 @@
 ﻿using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
+using SGAM.Elfec.Utils;
+using System;
 using System.Windows.Controls;
 
 namespace SGAM.Elfec
@@ -18,6 +20,22 @@ namespace SGAM.Elfec
             var presenter = new AddRulePresenter(this, policy, rule);
             EntitySelector.ItemFilter += presenter.FilterEntities;
             DataContext = presenter;
+            Loaded += (s, e) => { ValidationErrorsAssistant.ClearErrors(RootPanel); };
         }
+
+        public object AuthPanel { get; private set; }
+        #region Interface Methods
+
+        public void NotifyErrorsInFields()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void Validate()
+        {
+            ValidationErrorsAssistant.UpdateSources(RootPanel);
+        }
+
+        #endregion
     }
 }

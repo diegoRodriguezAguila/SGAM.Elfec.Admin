@@ -30,6 +30,7 @@ namespace SGAM.Elfec.Model
         }
 
         #region Entity Methods
+        public string Id { get { return Username; } }
         public string Name { get { return Username; } }
         public string Details { get { return FullName; } }
         #endregion

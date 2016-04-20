@@ -33,12 +33,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="46" />
         </Grid.RowDefinitions>
-    <TabControl Padding="10" Grid.Row="0" >
+    <TabControl Name="RootPanel" Padding="10" Grid.Row="0" >
         <TabItem Header="{x:Static Res:Resources.TabGeneral}" >
             <StackPanel  Name="UserInfoPanel"
                          Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                 <Label Content="{x:Static Res:Resources.LblRuleName}" />
-                <TextBox Text="{Binding Rule.Name}" MaxLength="150" />
+                    <TextBox Text="{Binding Rule.Name, ValidatesOnDataErrors=True, 
+                    ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="150" />
                 <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleDescription}"/>
                 <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding Rule.Description}" 
                          VerticalScrollBarVisibility="Auto" Name="TxtNOMBRE"
@@ -101,7 +102,8 @@
                 <Label Content="{x:Static Res:Resources.LblRuleValue}" />
                 <sgam:SyntaxHighlightBox  Name="TxtValue"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
-                                            Text="{Binding Rule.Value}"/>
+                                            Text="{Binding Rule.Value, ValidatesOnDataErrors=True, 
+                    ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleException}" />
                     <sgam:SyntaxHighlightBox  Name="TxtException"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
@@ -110,7 +112,8 @@
                 </StackPanel>
         </TabItem>
     </TabControl>
-        <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Right" >
+        <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Right"
+                Command="{Binding RegisterRuleCommand}">
             <Button.Content>
                 <StackPanel Orientation="Horizontal" Height="32" >
                     <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Save24.png" 

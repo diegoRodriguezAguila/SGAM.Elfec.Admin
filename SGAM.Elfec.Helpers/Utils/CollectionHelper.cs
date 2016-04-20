@@ -1,6 +1,7 @@
-﻿using SGAM.Elfec.Helpers.Text;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace SGAM.Elfec.Helpers.Utils
 {
@@ -16,6 +17,19 @@ namespace SGAM.Elfec.Helpers.Utils
         /// <param name="coll"></param>
         /// <param name="items"></param>
         public static void AddRange<T>(this IList<T> coll, IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                coll.Add(item);
+            }
+        }
+        /// <summary>
+        /// Adds all items from the collection to the other
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="coll"></param>
+        /// <param name="items"></param>
+        public static void AddRange(this IList coll, IEnumerable items)
         {
             foreach (var item in items)
             {
@@ -41,19 +55,21 @@ namespace SGAM.Elfec.Helpers.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
-        public static string ToStringRepresentation<T>(this IList<T> list,
-            MessageListFormatter.AttributePickerDelegate<T> attributePicker)
+        public static string ToString<T>(this IList<T> list,
+            Func<T, string> attributePicker)
         {
-            if (list == null || list.Count == 0)
-                return "";
-            StringBuilder str = new StringBuilder();
-            foreach (var item in list)
-            {
-                str.Append(attributePicker(item)).Append(",");
-            }
-            str.Append("$%&");
-            str.Replace(",$%&", "");
-            return str.ToString();
+            return string.Join(",", list.Select(attributePicker));
+        }
+
+        /// <summary>
+        /// Returns true if the list is empty
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool IsEmpty<T>(this IList<T> list)
+        {
+            return list.Count == 0;
         }
     }
 }

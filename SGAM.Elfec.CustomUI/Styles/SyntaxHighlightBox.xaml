@@ -66,7 +66,7 @@
                             <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource TextBoxBorderOverBrush}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="BorderBrush" Value="{StaticResource TextErrorColorBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource TextErrorColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

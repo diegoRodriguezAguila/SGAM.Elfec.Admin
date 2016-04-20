@@ -1,16 +1,22 @@
 ﻿using SGAM.Elfec.DataAccess.WebServices;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
+using SGAM.Elfec.Helpers.Text;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
+using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 
 namespace SGAM.Elfec.BusinessLogic
 {
     public class PolicyManager
     {
         /// <summary>
-        /// Obtiene todos los dipositivos, ya sea por medio de la caché o de webservices
+        /// Obtiene todas las directivas de usuario, ya sea por medio de la caché o de webservices
         /// </summary>
         /// <param name="callback"></param>
         public static void GetAllPolicies(ResultCallback<IList<Policy>> callback)
@@ -23,5 +29,21 @@ namespace SGAM.Elfec.BusinessLogic
                     .Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
                     .GetAllPolicies(parameters));
         }
+
+        /// <summary>
+        /// Registra una regla en la politica con el id proporcionado
+        /// </summary>
+        /// <param name="policyId"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static IObservable<Rule> RegisterRule(PolicyType policyId, Rule rule)
+        {
+            User user = SessionManager.Instance.CurrentLoggedUser;
+            return RestEndpointFactory.Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
+                    .RegisterRule(policyId.ToString().FromCamelToSnakeCase(), rule).ToObservable()
+                    .SubscribeOn(NewThreadScheduler.Default)
+                    .InterpretingErrors();
+        }
+
     }
 }

@@ -1,5 +1,8 @@
-﻿using SGAM.Elfec.Model.Enums;
+﻿using FluentValidation.Results;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Model.Interfaces;
+using SGAM.Elfec.Model.Validations;
+using SGAM.Elfec.Model.Validations.Validators;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +11,7 @@ namespace SGAM.Elfec.Model
     /// <summary>
     /// Describes a policy rule
     /// </summary>
-    public class Rule
+    public class Rule : BaseEntity
     {
         public string Id { get; set; }
         public RuleAction Action { get; set; }
@@ -28,6 +31,11 @@ namespace SGAM.Elfec.Model
                 return string.Join(", ", Entities.Select(e =>
                         string.Format("{0}({1})", e.Name, e.Details)));
             }
+        }
+
+        public override ValidationResult SelfValidate()
+        {
+            return ValidationHelper.Validate<PolicyRuleValidator, Rule>(this);
         }
     }
 }

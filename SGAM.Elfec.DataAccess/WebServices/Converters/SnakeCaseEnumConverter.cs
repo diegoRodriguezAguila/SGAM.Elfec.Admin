@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using SGAM.Elfec.Helpers.Text;
 using System;
-using System.Globalization;
-using System.Linq;
 
 namespace SGAM.Elfec.DataAccess.WebServices.Converters
 {
@@ -36,7 +35,6 @@ namespace SGAM.Elfec.DataAccess.WebServices.Converters
             }
             else
             {
-                Type enumType = e.GetType();
                 string finalName = enumName.FromCamelToSnakeCase();
                 writer.WriteValue(finalName);
             }

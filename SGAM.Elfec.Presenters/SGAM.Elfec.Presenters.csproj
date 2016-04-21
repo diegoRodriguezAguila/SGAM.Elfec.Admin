@@ -108,6 +108,7 @@
     <Compile Include="Views\ILoadingContentErrorView.cs" />
     <Compile Include="Views\IPolicyDetailsView.cs" />
     <Compile Include="Views\IPolicyRulesView.cs" />
+    <Compile Include="Views\IProcessSuccessErrorView.cs" />
     <Compile Include="Views\IShowApplicationDetailsView.cs" />
     <Compile Include="Views\IShowDevicesView.cs" />
     <Compile Include="Views\IShowUsersView.cs" />

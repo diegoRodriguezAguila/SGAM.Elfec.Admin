@@ -4,16 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SGAM.Elfec.UserControls"
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="80" d:DesignWidth="230">
     <StackPanel Orientation="{Binding Orientation, FallbackValue=Vertical}">
-        <TextBlock TextWrapping="Wrap" Foreground="{StaticResource TextErrorColorBrush}" 
+        <sgam:SelectableTextBlock TextWrapping="Wrap" Foreground="{StaticResource TextErrorColorBrush}" 
                    MaxWidth="{Binding RelativeSource={RelativeSource FindAncestor, 
-                        AncestorType={x:Type UserControl}}, Path=ActualWidth}"
+                        AncestorType={x:Type UserControl}}, Path=ActualWidth, Converter={StaticResource SizeConverter}, ConverterParameter=-47}"
                    MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor, 
-                        AncestorType={x:Type UserControl}}, Path=ActualHeight}"
+                        AncestorType={x:Type UserControl}}, Path=ActualHeight, Converter={StaticResource SizeConverter}, ConverterParameter=-47}"
                    Text="{Binding Message, Mode=TwoWay,FallbackValue='Error message'}" FontSize="14" VerticalAlignment="Top" Margin="5" />
         <Button Name="BtnOk" Style="{StaticResource BlueButtonStyle}" VerticalContentAlignment="Center" 
                 Content="{x:Static Res:Resources.BtnOk}" Margin="5" Height="32" 

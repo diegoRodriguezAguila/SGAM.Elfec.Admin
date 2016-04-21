@@ -9,17 +9,19 @@
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
-             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI.SyntaxHighlight;assembly=SGAM.Elfec.CustomUI"
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             xmlns:syntax="clr-namespace:SGAM.Elfec.CustomUI.SyntaxHighlight;assembly=SGAM.Elfec.CustomUI"
              xmlns:enums="clr-namespace:SGAM.Elfec.Model.Enums;assembly=SGAM.Elfec.Model"
              xmlns:Extensions="clr-namespace:Extensions.Wpf.Behaviors;assembly=Extensions.Wpf"
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:utils="clr-namespace:SGAM.Elfec.Utils"
              mc:Ignorable="d"  
              Tag="{x:Static Res:Resources.LblAddRule}"
-             Background="White" Height="345" Width="400"
-             d:DesignHeight="345" d:DesignWidth="400">
+             Background="White" Height="365" Width="400"
+             d:DesignHeight="365" d:DesignWidth="400">
     <UserControl.Resources>
         <converters:RuleActionToStringConverter x:Key="RuleActionToStringConverter" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <ObjectDataProvider MethodName="GetValues"
         ObjectType="{x:Type enums:RuleAction}"
         x:Key="RuleActionEnumValues">
@@ -38,8 +40,14 @@
                 <StackPanel  Name="UserInfoPanel"
                          Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Label Content="{x:Static Res:Resources.LblRuleName}" />
-                    <TextBox Text="{Binding Rule.Name, ValidatesOnDataErrors=True, 
+                    <TextBox Name="TxtName" Text="{Binding Rule.Name, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="150" />
+                    <TextBlock Text="{Binding ElementName=TxtName, Path=(Validation.Errors)[0].ErrorContent}" 
+                               Visibility="{Binding ElementName=TxtName, Path=(Validation.HasError),
+                        Converter={StaticResource BoolToVisibilityConverter}}" 
+                               Foreground="{StaticResource TextErrorColorBrush}"
+                               Margin="0,4,0,0"
+                               TextWrapping="Wrap"/>
                     <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleDescription}"/>
                     <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding Rule.Description}" 
                          VerticalScrollBarVisibility="Auto" Name="TxtNOMBRE"
@@ -100,41 +108,44 @@
             <TabItem Header="{x:Static Res:Resources.TabValues}" >
                 <StackPanel Orientation="Vertical" >
                     <Label Content="{x:Static Res:Resources.LblRuleValue}" />
-                    <sgam:SyntaxHighlightBox  Name="TxtValue"
+                    <syntax:SyntaxHighlightBox  Name="TxtValue"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
                                             Text="{Binding Rule.Value, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="{Binding ElementName=TxtValue, Path=(Validation.Errors)[0].ErrorContent}" 
+                               Visibility="{Binding ElementName=TxtValue, Path=(Validation.HasError),
+                        Converter={StaticResource BoolToVisibilityConverter}}" 
+                               Foreground="{StaticResource TextErrorColorBrush}"
+                               Margin="0,4,0,0"
+                               TextWrapping="Wrap"/>
                     <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleException}" />
-                    <sgam:SyntaxHighlightBox  Name="TxtException"
+                    <syntax:SyntaxHighlightBox  Name="TxtException"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
                                             Text="{Binding Rule.Exception}" />
 
                 </StackPanel>
             </TabItem>
         </TabControl>
-        <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Left"
+        <Grid Grid.Row="1" Margin="0,10,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Controls:TransitioningContentControl Name="Transitioning" Grid.Column="0" 
+                       Transition="Left" HorizontalAlignment="Stretch" />
+
+            <Button Grid.Column="1" HorizontalAlignment="Right"
                 Command="{Binding RegisterRuleCommand}">
-            <Button.Content>
-                <StackPanel Orientation="Horizontal" Height="32" >
-                    <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Save24.png" 
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" Height="32" >
+                        <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Save24.png" 
                                SnapsToDevicePixels="True" Margin="4" />
-                    <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
+                        <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
                                    Margin="4,8,8,8" TextWrapping="Wrap"
                                    VerticalAlignment="Center" Text="{x:Static Res:Resources.BtnSaveRule}"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
-        <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Right"
-                Command="{Binding RegisterRuleCommand}">
-            <Button.Content>
-                <StackPanel Orientation="Horizontal" Height="32" >
-                    <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Save24.png" 
-                               SnapsToDevicePixels="True" Margin="4" />
-                    <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
-                                   Margin="4,8,8,8" TextWrapping="Wrap"
-                                   VerticalAlignment="Center" Text="{x:Static Res:Resources.BtnSaveRule}"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

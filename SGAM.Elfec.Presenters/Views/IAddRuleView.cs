@@ -1,6 +1,8 @@
-﻿namespace SGAM.Elfec.Presenters.Views
+﻿using SGAM.Elfec.Model;
+
+namespace SGAM.Elfec.Presenters.Views
 {
-    public interface IAddRuleView : IBaseView
+    public interface IAddRuleView : IProcessSuccessErrorView<Rule>
     {
         /// <summary>
         /// Llama a las validaciones necesarias en todos los campos de la vista que

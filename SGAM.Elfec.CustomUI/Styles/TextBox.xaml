@@ -51,6 +51,13 @@
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="Border"  Property="BorderBrush" Value="{StaticResource TextErrorColorBrush}" />
+                            <Setter Property="ToolTip" >
+                                <Setter.Value>
+                                    <ToolTip Foreground="{StaticResource TextErrorColorBrush}"                                            
+                                    DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Self}}"
+                                    Content="{Binding Path=(Validation.Errors)[0].ErrorContent}"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

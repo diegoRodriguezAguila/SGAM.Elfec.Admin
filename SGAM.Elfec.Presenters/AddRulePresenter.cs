@@ -136,17 +136,18 @@ namespace SGAM.Elfec.Presenters
         {
             View.Validate();
             if (Rule.IsValid)
+            {
+                View.ProcessingData();
                 PolicyManager.RegisterRule(_policy.Type, Rule)
-                    .SelectMany(rule => RulesManager.AddEntities(rule.Id, Rule.Entities))
-                    .Subscribe(
-                    (u) =>
+                    .SelectMany(rule =>
                     {
-
-                    },
-                    (error) =>
+                        Rule.Id = rule.Id;
+                        return RulesManager.AddEntities(rule.Id, Rule.Entities);
+                    }).Subscribe((u) =>
                     {
-                        Debug.WriteLine(error.Message);
-                    });
+                        View.Success(Rule);
+                    }, View.Error);
+            }
             else View.NotifyErrorsInFields();
         }
 

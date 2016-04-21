@@ -555,4 +555,13 @@
   <data name="BtnSaveRule" xml:space="preserve">
     <value>Guardar</value>
   </data>
+  <data name="LblNotAnyApps" xml:space="preserve">
+    <value>No hay aplicaciones disponibles para mostrar</value>
+  </data>
+  <data name="LblNotAnyDevices" xml:space="preserve">
+    <value>No hay dispositivos disponibles para mostrar</value>
+  </data>
+  <data name="LblNotAnyUsers" xml:space="preserve">
+    <value>No hay usuarios disponibles para mostrar</value>
+  </data>
 </root>

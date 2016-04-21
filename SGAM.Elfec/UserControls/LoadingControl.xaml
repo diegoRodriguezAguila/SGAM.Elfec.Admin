@@ -5,15 +5,38 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"            
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SGAM.Elfec.UserControls"
-             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+             mc:Ignorable="d" HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="White"
              d:DesignHeight="100" d:DesignWidth="260">
-    <StackPanel Orientation="Horizontal">
-        <Controls:ProgressRing IsActive="True" Width="36" Height="36" 
-                    Foreground="{StaticResource MainColorBrush}"
+    <UserControl.Resources>
+        <converters:OrientationToVisibilityConverter x:Key="HorizontalIsVisibleConverter" />
+        <converters:OrientationToVisibilityConverter x:Key="VerticalIsVisibleConverter" VerticalValue="Visible"
+                                                     HorizontalValue="Collapsed"/>
+    </UserControl.Resources>
+    <StackPanel Orientation="{Binding Orientation, FallbackValue=Horizontal}">
+        <Controls:ProgressRing IsActive="True" Width="36" Height="36"  Margin="5"
+                    Foreground="{StaticResource MainColorBrush}" 
+                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type StackPanel}}, Path=Orientation, 
+                        Converter={StaticResource HorizontalIsVisibleConverter}}"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
+        <Controls:MetroProgressBar IsIndeterminate="True"
+                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type StackPanel}}, Path=Orientation, 
+                        Converter={StaticResource VerticalIsVisibleConverter}}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Margin="5"
+                    Foreground="{StaticResource MainColorBrush}"/>
         <TextBlock Text="{Binding Message, Mode=TwoWay,FallbackValue='Cargando&#8230;'}" FontSize="16"
-                       Width="200" TextWrapping="Wrap"
-                       Margin="8,0,0,0"
-                       VerticalAlignment="Center"/>
+                    TextWrapping="Wrap"
+                    MaxWidth="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type UserControl}}, Path=ActualWidth}"
+                    MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type UserControl}}, Path=ActualHeight}"
+                    HorizontalAlignment="Center" Margin="5"
+                    VerticalAlignment="Center"/>    
     </StackPanel>
 </UserControl>

@@ -11,6 +11,8 @@
              d:DesignHeight="300" d:DesignWidth="500">
     <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
         <ListView Name="ListViewDevices" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Devices}"
-                    ItemContainerStyle="{StaticResource DeviceItemOptionStyle}" ItemTemplate="{StaticResource DeviceItemTemplate}" />
+                  ItemContainerStyle="{StaticResource DeviceItemOptionStyle}" 
+                  ItemTemplate="{StaticResource DeviceItemTemplate}"
+                  Tag="{x:Static Res:Resources.LblNotAnyDevices}" />
     </Controls:TransitioningContentControl>
 </UserControl>

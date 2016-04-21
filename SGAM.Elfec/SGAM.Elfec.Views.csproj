@@ -179,6 +179,7 @@
     <Compile Include="Converters\IEntityToImageConverter.cs" />
     <Compile Include="Converters\IndexAndCountToBoolConverter.cs" />
     <Compile Include="Converters\CountToBoolConverter.cs" />
+    <Compile Include="Converters\OrientationToVisibilityConverter.cs" />
     <Compile Include="Converters\PolicyStatusToStringConverter.cs" />
     <Compile Include="Converters\PolicyTypeToImageConverter.cs" />
     <Compile Include="Converters\RootTreeViewConverter.cs" />

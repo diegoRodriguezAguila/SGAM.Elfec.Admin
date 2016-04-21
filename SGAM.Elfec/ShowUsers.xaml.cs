@@ -56,7 +56,7 @@ namespace SGAM.Elfec
                 {
                     MainWindowService.Instance.MainWindow.StatusBarDefault();
                     _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
-                    _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = null; };
+                    _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = ListViewUsers; };
                     Transitioning.Content = _errorMessage;
                 });
             }

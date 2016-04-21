@@ -33,25 +33,25 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="46" />
         </Grid.RowDefinitions>
-    <TabControl Name="RootPanel" Padding="10" Grid.Row="0" >
-        <TabItem Header="{x:Static Res:Resources.TabGeneral}" >
-            <StackPanel  Name="UserInfoPanel"
+        <TabControl Name="RootPanel" Padding="10" Grid.Row="0" >
+            <TabItem Header="{x:Static Res:Resources.TabGeneral}" >
+                <StackPanel  Name="UserInfoPanel"
                          Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                <Label Content="{x:Static Res:Resources.LblRuleName}" />
+                    <Label Content="{x:Static Res:Resources.LblRuleName}" />
                     <TextBox Text="{Binding Rule.Name, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="150" />
-                <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleDescription}"/>
-                <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding Rule.Description}" 
+                    <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleDescription}"/>
+                    <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding Rule.Description}" 
                          VerticalScrollBarVisibility="Auto" Name="TxtNOMBRE"
                          Grid.ColumnSpan="2" Grid.Row="19" Height="66" TextWrapping="Wrap" AcceptsReturn="True" />
-                <Label Margin="0,10,0,0"  Content="{x:Static Res:Resources.LblRuleAction}" />
+                    <Label Margin="0,10,0,0"  Content="{x:Static Res:Resources.LblRuleAction}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource RuleActionEnumValues}}"
                          IsEditable="False" Height="32" SelectedItem="{Binding Rule.Action}"
                          HorizontalAlignment="Left" Width="160" ItemTemplate="{StaticResource RuleComboBoxItemTemplate}" />
 
                 </StackPanel>
-        </TabItem>
-        <TabItem Header="{x:Static Res:Resources.TabEntities}" >
+            </TabItem>
+            <TabItem Header="{x:Static Res:Resources.TabEntities}" >
                 <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -73,7 +73,7 @@
                                                      ValueMemberPath="Name"
                                                      SelectedItem="{Binding Path=EntityToAdd, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
                                                      ItemTemplate="{StaticResource EntityItemTemplate}" >
-                                
+
                             </Toolkit:AutoCompleteBox>
                             <Button Grid.Column="1" Height="32" Width="32" IsDefault="True" Command="{Binding AddEntityCommand}" >
                                 <Button.Content>
@@ -97,23 +97,21 @@
                     </Border>
                 </Grid>
             </TabItem>
-        <TabItem Header="{x:Static Res:Resources.TabValues}" >
-            <StackPanel Orientation="Vertical" >
-                <Label Content="{x:Static Res:Resources.LblRuleValue}" />
-                <sgam:SyntaxHighlightBox  Name="TxtValue"
+            <TabItem Header="{x:Static Res:Resources.TabValues}" >
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="{x:Static Res:Resources.LblRuleValue}" />
+                    <sgam:SyntaxHighlightBox  Name="TxtValue"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
                                             Text="{Binding Rule.Value, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleException}" />
+                    <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleException}" />
                     <sgam:SyntaxHighlightBox  Name="TxtException"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
                                             Text="{Binding Rule.Exception}" />
 
                 </StackPanel>
-        </TabItem>
-    </TabControl>
-        <Controls:MetroProgressBar IsIndeterminate="True"
-                                   Foreground="{StaticResource MainColorBrush}"/>
+            </TabItem>
+        </TabControl>
         <Button Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Left"
                 Command="{Binding RegisterRuleCommand}">
             <Button.Content>

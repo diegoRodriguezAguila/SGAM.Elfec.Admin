@@ -19,7 +19,7 @@ namespace SGAM.Elfec.UserControls
         public static DependencyProperty MessageProperty = DependencyProperty.RegisterAttached(
                 "Message",
                 typeof(string),
-                typeof(LoadingControl));
+                typeof(ProgressLoading));
         public string Message
         {
             get { return (string)GetValue(MessageProperty); }

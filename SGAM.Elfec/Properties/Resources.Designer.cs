@@ -610,6 +610,33 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No hay aplicaciones disponibles para mostrar.
+        /// </summary>
+        public static string LblNotAnyApps {
+            get {
+                return ResourceManager.GetString("LblNotAnyApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No hay dispositivos disponibles para mostrar.
+        /// </summary>
+        public static string LblNotAnyDevices {
+            get {
+                return ResourceManager.GetString("LblNotAnyDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No hay usuarios disponibles para mostrar.
+        /// </summary>
+        public static string LblNotAnyUsers {
+            get {
+                return ResourceManager.GetString("LblNotAnyUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contraseña.
         /// </summary>
         public static string LblPassword {

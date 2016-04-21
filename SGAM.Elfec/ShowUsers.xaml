@@ -12,7 +12,8 @@
              d:DesignHeight="300" d:DesignWidth="500">
     <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
         <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Users}"
-                 behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"   
+                 behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"
+                  Tag="{x:Static Res:Resources.LblNotAnyUsers}"
                   ItemContainerStyle="{StaticResource UserItemOptionStyle}" ItemTemplate="{StaticResource UserItemTemplate}" />
     </Controls:TransitioningContentControl>
 </UserControl>

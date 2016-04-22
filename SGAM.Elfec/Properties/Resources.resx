@@ -564,4 +564,10 @@
   <data name="LblNotAnyUsers" xml:space="preserve">
     <value>No hay usuarios disponibles para mostrar</value>
   </data>
+  <data name="MsgRegisteringRule" xml:space="preserve">
+    <value>Registrando regla y sus entidades…</value>
+  </data>
+  <data name="MsgRuleRegisteredSuccessfuly" xml:space="preserve">
+    <value>La regla: {0}, fue registrada exitosamente</value>
+  </data>
 </root>

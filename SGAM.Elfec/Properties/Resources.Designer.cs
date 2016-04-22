@@ -1033,6 +1033,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registrando regla y sus entidades….
+        /// </summary>
+        public static string MsgRegisteringRule {
+            get {
+                return ResourceManager.GetString("MsgRegisteringRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registrando usuario para su uso de la aplicación….
         /// </summary>
         public static string MsgRegisteringUser {
@@ -1047,6 +1056,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgRegisteringUserGroup {
             get {
                 return ResourceManager.GetString("MsgRegisteringUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La regla: {0}, fue registrada exitosamente.
+        /// </summary>
+        public static string MsgRuleRegisteredSuccessfuly {
+            get {
+                return ResourceManager.GetString("MsgRuleRegisteredSuccessfuly", resourceCulture);
             }
         }
         

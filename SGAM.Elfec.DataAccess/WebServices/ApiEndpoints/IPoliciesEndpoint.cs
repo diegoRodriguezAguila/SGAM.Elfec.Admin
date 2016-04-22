@@ -13,5 +13,8 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
 
         [Post("/policies/{policyId}/rules")]
         Task<Rule> RegisterRule([Path] string policyId, [Body] Rule rule);
+
+        [Delete("/policies/{policyId}/rules")]
+        Task DeleteRules([Path] string policyId, [Query] string ids);
     }
 }

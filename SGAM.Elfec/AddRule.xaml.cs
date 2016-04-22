@@ -2,6 +2,7 @@
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
+using SGAM.Elfec.UserControls;
 using SGAM.Elfec.Utils;
 using System;
 using System.Windows;
@@ -16,6 +17,7 @@ namespace SGAM.Elfec
     public partial class AddRule : UserControl, IAddRuleView
     {
         private SelectableTextBlock _errorMessage;
+        private LoadingControl _loadingControl;
         public AddRule(Policy policy, Rule rule = null)
         {
             InitializeComponent();
@@ -25,6 +27,8 @@ namespace SGAM.Elfec
             EntitySelector.ItemFilter += presenter.FilterEntities;
             DataContext = presenter;
             InitializeErrorMessage();
+            _loadingControl = new LoadingControl();
+            _loadingControl.Orientation = Orientation.Vertical;
             Loaded += (s, e) => { ValidationErrorsAssistant.ClearErrors(RootPanel); };
         }
 
@@ -50,16 +54,32 @@ namespace SGAM.Elfec
 
         public void ProcessingData()
         {
-            throw new NotImplementedException();
+            Dispatcher.InvokeAsync(() =>
+            {
+                _loadingControl.Message = Properties.Resources.MsgRegisteringRule;
+                MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgRegisteringRule);
+                Transitioning.Content = _loadingControl;
+            });
         }
 
-        public void Success(Rule data)
+        public void Success(Rule rule)
         {
-            throw new NotImplementedException();
+            Dispatcher.InvokeAsync(() =>
+            {
+                var mainWindow = MainWindowService.Instance.MainWindow;
+                mainWindow.StatusBarDefault();
+                mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
+                    string.Format(Properties.Resources.MsgRuleRegisteredSuccessfuly, rule.Name));
+            });
         }
         public void Error(Exception error)
         {
-            throw new NotImplementedException();
+            Dispatcher.InvokeAsync(() =>
+            {
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
+                _errorMessage.Text = error.Message;
+                Transitioning.Content = _errorMessage;
+            });
         }
 
         #endregion

@@ -15,7 +15,7 @@ namespace SGAM.Elfec
         public MainWindow()
         {
             InitializeComponent();
-            ObservableCollectionExtensions.SyncContext = SynchronizationContext.Current;
+            ObservableCollectionExtensions.Init();
             MainWindowService.Instance.MainWindow = this;
             _isFirstActivated = true;
             DevicesView();

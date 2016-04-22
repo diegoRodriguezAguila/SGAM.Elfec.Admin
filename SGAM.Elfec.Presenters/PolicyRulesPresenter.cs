@@ -4,7 +4,6 @@ using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Presentation;
 using SGAM.Elfec.Presenters.Views;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace SGAM.Elfec.Presenters
@@ -18,6 +17,7 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Private Attributes
+        private PolicyDetailsPresenter _policyDetails;
         private PoliciesThreeViewRoot _policiesRoot;
         private Policy _selectedPolicy;
         private Rule _selectedRule;
@@ -35,15 +35,32 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        public PolicyDetailsPresenter PolicyDetails
+        {
+            get { return _policyDetails; }
+            set
+            {
+                _policyDetails = value;
+                RaisePropertyChanged("PolicyDetails");
+            }
+        }
+
         public object Selected
         {
-            get { return _selectedPolicy != null ? 
-                    (object)_selectedPolicy : 
-                    (_selectedRule!=null? (object)_selectedRule : (object)_policiesRoot); }
+            get
+            {
+                return _selectedPolicy != null ?
+                  (object)_selectedPolicy :
+                  (_selectedRule != null ? (object)_selectedRule : (object)_policiesRoot);
+            }
             set
             {
                 _selectedPolicy = value as Policy;
-                if (_selectedPolicy != null) View.PolicyDetails(_selectedPolicy);
+                if (_selectedPolicy != null)
+                {
+                    PolicyDetails.Policy = _selectedPolicy;
+                    View.ShowPolicyDetails();
+                }
                 _selectedRule = value as Rule;
                 RaisePropertyChanged("Selected");
             }

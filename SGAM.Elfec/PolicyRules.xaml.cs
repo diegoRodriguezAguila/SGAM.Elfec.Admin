@@ -1,5 +1,4 @@
-﻿using SGAM.Elfec.Model;
-using SGAM.Elfec.Presenters;
+﻿using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using System;
 using System.Windows.Controls;
@@ -17,8 +16,11 @@ namespace SGAM.Elfec
         public PolicyRules()
         {
             InitializeComponent();
-            DataContext = new PolicyRulesPresenter(this);
+            var presenter = new PolicyRulesPresenter(this);
+            DataContext = presenter;
             PolicyDetailsView = new PolicyDetails(null);
+            presenter.PolicyDetails = new PolicyDetailsPresenter(PolicyDetailsView, null);
+            PolicyDetailsView.DataContext = presenter.PolicyDetails;
         }
 
         #region Interface Methods
@@ -54,11 +56,10 @@ namespace SGAM.Elfec
             }
         }
 
-        public void PolicyDetails(Policy policy)
+        public void ShowPolicyDetails()
         {
             Dispatcher.InvokeAsync(() =>
             {
-                ((PolicyDetailsPresenter)PolicyDetailsView.DataContext).Policy = policy;
                 TransitioningDetails.Content = PolicyDetailsView;
             });
         }

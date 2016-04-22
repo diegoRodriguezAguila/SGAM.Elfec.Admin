@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Commands
@@ -26,7 +28,14 @@ namespace SGAM.Elfec.Commands
 
         public void Execute(object parameter)
         {
-            _executeDel((T)parameter);
+            if (typeof(T) == typeof(IList) &&
+                !(parameter is IList))
+            {
+                IList list = new List<object>();
+                list.Add(parameter);
+                _executeDel((T)list);
+            }
+            else _executeDel((T)parameter);
         }
     }
 }

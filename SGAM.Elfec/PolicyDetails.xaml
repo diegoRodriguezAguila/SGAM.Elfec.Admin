@@ -50,7 +50,7 @@
             <TextBlock FontSize="11" Margin="0,10,0,0" Foreground="{StaticResource TextFormGrayBrush}" 
                                Text="{Binding Policy.Rules.Count, StringFormat={x:Static Res:Resources.LblPolicyRulesCount}}" ></TextBlock>
             <sgam:SelectableTextBlock Text="{x:Static Res:Resources.LblPolicyEmptyRules}" Visibility="{Binding Policy.Rules.Count, 
-                Converter={StaticResource InvCountToVisConverter}, ConverterParameter=1}" />
+                Converter={StaticResource InvCountToVisConverter}, ConverterParameter=0}" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
                             VerticalAlignment="Top" >
                 <Button Name="BtnAddRule" HorizontalAlignment="Left" 
@@ -67,11 +67,16 @@
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <DataGrid Margin="0,4,0,0" ItemsSource="{Binding Policy.Rules}" Visibility="{Binding Policy.Rules.Count, 
-                Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=1}"
-                      RenderOptions.ClearTypeHint="Enabled" BorderThickness="1" BorderBrush="#B9B9B9" CanUserDeleteRows="False"
+            <DataGrid Name="DataGridRules" Margin="0,4,0,0" ItemsSource="{Binding Policy.Rules}" 
+                      Visibility="{Binding Policy.Rules.Count, 
+                Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=0}"
+                      RenderOptions.ClearTypeHint="Enabled" BorderThickness="1" BorderBrush="#B9B9B9"
                           TextOptions.TextFormattingMode="Display" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
                           SelectionUnit="FullRow" RowStyle="{StaticResource RuleDataGridRowStyle}" >
+                <DataGrid.InputBindings>
+                    <KeyBinding Key="Delete" Command="{Binding Path=DeleteRuleCommand}"
+                                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}"></KeyBinding>
+                </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"
                                         Binding="{Binding Action, Converter={StaticResource RuleActionToStringConverter}}" 

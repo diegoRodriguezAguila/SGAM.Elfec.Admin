@@ -14,14 +14,9 @@
       
     <!-- TreeView Rule Context Menu-->
     <ContextMenu x:Key="TreeViewRuleContextMenu" >
-        <MenuItem Command="{Binding RelativeSource=
-                  {RelativeSource FindAncestor, 
-                  AncestorType={x:Type TreeView}}, 
-                  Path=DataContext.DeleteRuleCommand}"
-                  CommandParameter="{Binding RelativeSource=
-                  {RelativeSource FindAncestor, 
-                  AncestorType={x:Type TreeView}}, 
-                  Path=SelectedItem}" Header="{x:Static Res:Resources.LblDelete}" >
+        <MenuItem  Command="{Binding Path=PlacementTarget.Tag.PolicyDetails.DeleteRuleCommand, 
+            RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                  CommandParameter="{Binding}" Header="{x:Static Res:Resources.LblDelete}" >
             <MenuItem.Icon>
                 <Image Width="16" Height="16" Source="/Resources/Rule/Delete16.png" />
             </MenuItem.Icon>
@@ -30,11 +25,8 @@
     <!-- Policy Context Menu -->
     <ContextMenu x:Key="PolicyContextMenu" >
         <MenuItem Header="{x:Static Res:Resources.LblAddRule}"
-                  Command="{Binding RelativeSource=
-                {RelativeSource FindAncestor, 
-                AncestorType={x:Type TreeView}}, 
-                Path=DataContext.AddRuleCommand}"
-                  CommandParameter="{Binding}" >
+                  Command="{Binding Path=PlacementTarget.Tag.PolicyDetails.AddRuleCommand, 
+            RelativeSource={RelativeSource AncestorType=ContextMenu}}" >
             <MenuItem.Icon>
                 <Image Height="16" Width="16" Source="/Resources/Rule/Add16.png" />
             </MenuItem.Icon>
@@ -44,12 +36,13 @@
     <HierarchicalDataTemplate  x:Key="RuleTreeTemplate"
                                DataType="{x:Type Model:Rule}" ItemsSource="{Binding}">
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,2" 
-                   ContextMenu="{StaticResource TreeViewRuleContextMenu}" >
+                   ContextMenu="{StaticResource TreeViewRuleContextMenu}"
+                   Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseRightButtonDown">
                     <ei:ChangePropertyAction PropertyName="IsSelected" Value="true" 
                                              TargetObject="{Binding RelativeSource=
-                {RelativeSource FindAncestor, 
+                {RelativeSource FindAncestor, AncestorLevel=2,
                 AncestorType={x:Type TreeViewItem}}}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
@@ -66,6 +59,7 @@
         DataType="{x:Type Model:Policy}" ItemsSource="{Binding Rules}"
         ItemTemplate="{StaticResource RuleTreeTemplate}">
         <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource PolicyContextMenu}" 
+                    Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     VerticalAlignment="Center" Margin="6,2" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseRightButtonDown">

@@ -27,7 +27,7 @@ namespace SGAM.Elfec.BusinessLogic
         public static IObservable<Unit> AddEntities(string ruleId, IList<IEntity> entities)
         {
             if (entities.IsEmpty())
-                return Observable.Empty<Unit>();
+                return Observable.Defer(()=>Observable.Return(Unit.Default));
             User user = SessionManager.Instance.CurrentLoggedUser;
             return RestEndpointFactory
                     .Create<IRulesEndpoint>(user.Username, user.AuthenticationToken)

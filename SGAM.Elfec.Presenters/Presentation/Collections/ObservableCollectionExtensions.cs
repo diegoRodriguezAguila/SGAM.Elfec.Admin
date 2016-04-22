@@ -24,6 +24,15 @@ namespace SGAM.Elfec.Presenters.Presentation.Collections
         /// Intervalo en milisegundos con el que se cargan los datos
         /// </summary>
         public static int LoadInterval { get; set; } = 84;
+
+        /// <summary>
+        /// Inicializa el SynContext para poder utilizar ciertos metodos de las extensiones
+        /// </summary>
+        public static void Init()
+        {
+            SyncContext = SynchronizationContext.Current;
+        }
+
         /// <summary>
         /// Convierte asincronamente los elementos a una colección observable, 
         /// Primero crea una nueva <see cref="ObservableCollection{T}"/> con los primeros
@@ -38,7 +47,7 @@ namespace SGAM.Elfec.Presenters.Presentation.Collections
         public static ObservableCollection<T> ToObservableCollectionAsync<T>(this IEnumerable<T> collection)
         {
             if (SyncContext == null)
-                throw new InvalidOperationException("SyncContext was not initialized, please set it on the Main thread in the Main Window");
+                throw new InvalidOperationException("SyncContext was not initialized, please call Init in the Main thread in the Main Window");
             var obsCollection = new ObservableCollection<T>(collection.Take(LoadFrequency));
             int count = collection.Count(), freq = LoadFrequency;
             if (count > freq)

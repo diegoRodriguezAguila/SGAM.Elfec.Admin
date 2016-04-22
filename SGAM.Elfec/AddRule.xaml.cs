@@ -16,6 +16,7 @@ namespace SGAM.Elfec
     /// </summary>
     public partial class AddRule : UserControl, IAddRuleView
     {
+
         private SelectableTextBlock _errorMessage;
         private LoadingControl _loadingControl;
         public AddRule(Policy policy, Rule rule = null)
@@ -39,6 +40,30 @@ namespace SGAM.Elfec
             _errorMessage.Foreground = App.Current.Resources["TextErrorColorBrush"] as Brush;
             _errorMessage.TextWrapping = TextWrapping.Wrap;
         }
+
+        #region Events
+        public static readonly RoutedEvent AddRuleSuccessEvent =
+                EventManager.RegisterRoutedEvent(
+        "AddRuleSuccess",
+        RoutingStrategy.Bubble,
+        typeof(RoutedEventHandler),
+        typeof(AddRule));
+
+        /// <summary>
+        /// Evento que se ejecuta cuando la regla fue añadida exitosamente
+        /// </summary>
+        public event RoutedEventHandler AddRuleSuccess
+        {
+            add { AddHandler(AddRuleSuccessEvent, value); }
+            remove { RemoveHandler(AddRuleSuccessEvent, value); }
+        }
+
+        private void OnAddRuleSuccess(object sender)
+        {
+            RaiseEvent(new RoutedEventArgs(AddRuleSuccessEvent, sender));
+        }
+        #endregion
+
 
         #region Interface Methods
         public void Validate()
@@ -66,10 +91,12 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                var mainWindow = MainWindowService.Instance.MainWindow;
-                mainWindow.StatusBarDefault();
-                mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
-                    string.Format(Properties.Resources.MsgRuleRegisteredSuccessfuly, rule.Name));
+                MainWindowService.Instance.MainWindow
+                .StatusBarDefault()
+                .NotifyUser(Properties.Resources.TitleSuccess,
+                    string.Format(
+                        Properties.Resources.MsgRuleRegisteredSuccessfuly, rule.Name));
+                OnAddRuleSuccess(this);
             });
         }
         public void Error(Exception error)

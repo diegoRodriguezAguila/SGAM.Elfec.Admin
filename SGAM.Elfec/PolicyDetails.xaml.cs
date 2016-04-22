@@ -19,7 +19,10 @@ namespace SGAM.Elfec
 
         public void AddRule(Policy policy)
         {
-            DialogBuilder.For(new AddRule(policy)).Build().ShowDialog();
+            var addRuleView = new AddRule(policy);
+            var dialog = DialogBuilder.For(addRuleView).Build();
+            addRuleView.AddRuleSuccess += (s, e) => { dialog.SetDialogResult(true); };
+            dialog.ShowDialog();
         }
     }
 }

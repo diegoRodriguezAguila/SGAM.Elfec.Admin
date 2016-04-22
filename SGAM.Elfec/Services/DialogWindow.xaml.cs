@@ -13,5 +13,10 @@ namespace SGAM.Elfec.Services
             InitializeComponent();
             Owner = System.Windows.Application.Current.MainWindow;
         }
+
+        public void SetDialogResult(bool result)
+        {
+            DialogResult = result;
+        }
     }
 }

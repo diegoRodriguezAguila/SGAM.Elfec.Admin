@@ -34,6 +34,22 @@ namespace SGAM.Elfec.Presenters.Presentation.Collections
         }
 
         /// <summary>
+        /// Ordena y agrega el item en orden a la colección actual
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="item"></param>
+        /// <param name="orderby"></param>
+        public static void AddInOrder<T, T2>(this IList<T> collection, T item, Func<T, T2> orderby)
+        {
+            collection.Add(item);
+            var tempCol = collection.OrderBy(orderby).ToList();
+            collection.Clear();
+            collection.AddRange(tempCol);
+        }
+
+        /// <summary>
         /// Convierte asincronamente los elementos a una colección observable, 
         /// Primero crea una nueva <see cref="ObservableCollection{T}"/> con los primeros
         /// <see cref="LoadFrequency"/> elementos agregandolos de forma síncrona, luego en

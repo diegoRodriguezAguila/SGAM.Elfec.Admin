@@ -12,5 +12,10 @@
         /// Closes the dialog
         /// </summary>
         void Close();
+        /// <summary>
+        /// Sets the dialog result
+        /// </summary>
+        /// <param name="result"></param>
+        void SetDialogResult(bool result);
     }
 }

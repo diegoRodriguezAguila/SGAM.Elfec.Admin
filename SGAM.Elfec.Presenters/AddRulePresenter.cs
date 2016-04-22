@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Threading;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
@@ -143,8 +144,11 @@ namespace SGAM.Elfec.Presenters
                     {
                         Rule.Id = rule.Id;
                         return RulesManager.AddEntities(rule.Id, Rule.Entities);
-                    }).Subscribe((u) =>
+                    })
+                    .ObserveOn(SynchronizationContext.Current)
+                    .Subscribe((u) =>
                     {
+                        _policy.Rules.AddInOrder(Rule, (r => r.Name));
                         View.Success(Rule);
                     }, View.Error);
             }

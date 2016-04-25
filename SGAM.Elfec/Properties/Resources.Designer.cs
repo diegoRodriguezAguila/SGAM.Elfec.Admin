@@ -115,6 +115,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        public static string BtnCancel {
+            get {
+                return ResourceManager.GetString("BtnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iniciar sesión.
         /// </summary>
         public static string BtnLogin {
@@ -952,6 +961,25 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Confirma que desea eliminar la(s) regla(s) seleccionada(s)?
+        ///Tome en cuenta que esta operación es irreversible y no se podrá recuperar la regla eliminada en el futuro.
+        /// </summary>
+        public static string MsgDeleteRuleConfirmation {
+            get {
+                return ResourceManager.GetString("MsgDeleteRuleConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminando regla(s)….
+        /// </summary>
+        public static string MsgDeletingRule {
+            get {
+                return ResourceManager.GetString("MsgDeletingRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El dispositivo {0} fue autorizado correctamente.
         /// </summary>
         public static string MsgDeviceSuccessfullyAuthorized {
@@ -1011,6 +1039,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgLoadingDevices {
             get {
                 return ResourceManager.GetString("MsgLoadingDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obteniendo información de directivas….
+        /// </summary>
+        public static string MsgLoadingPolicies {
+            get {
+                return ResourceManager.GetString("MsgLoadingPolicies", resourceCulture);
             }
         }
         
@@ -1218,6 +1255,15 @@ namespace SGAM.Elfec.Properties {
         public static string TitleApplications {
             get {
                 return ResourceManager.GetString("TitleApplications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminar regla.
+        /// </summary>
+        public static string TitleDeleteRule {
+            get {
+                return ResourceManager.GetString("TitleDeleteRule", resourceCulture);
             }
         }
         

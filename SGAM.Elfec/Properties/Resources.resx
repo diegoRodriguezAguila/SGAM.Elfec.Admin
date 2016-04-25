@@ -570,4 +570,20 @@
   <data name="MsgRuleRegisteredSuccessfuly" xml:space="preserve">
     <value>La regla: {0}, fue registrada exitosamente</value>
   </data>
+  <data name="MsgLoadingPolicies" xml:space="preserve">
+    <value>Obteniendo información de directivas…</value>
+  </data>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="MsgDeletingRule" xml:space="preserve">
+    <value>Eliminando regla(s)…</value>
+  </data>
+  <data name="MsgDeleteRuleConfirmation" xml:space="preserve">
+    <value>¿Confirma que desea eliminar la(s) regla(s) seleccionada(s)?
+Tome en cuenta que esta operación es irreversible y no se podrá recuperar la regla eliminada en el futuro</value>
+  </data>
+  <data name="TitleDeleteRule" xml:space="preserve">
+    <value>Eliminar regla</value>
+  </data>
 </root>

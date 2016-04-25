@@ -11,16 +11,16 @@
         UseLayoutRounding="True"             
         SnapsToDevicePixels="True" MinWidth="100" MinHeight="100" d:Width="300"
                      d:Height="400"
-        Width="{Binding ElementName=DialogContent, Path=Child.Width, FallbackValue=400, Mode=TwoWay}"        
-        Height="{Binding ElementName=DialogContent, Path=Child.Height, FallbackValue=300, Mode=TwoWay, 
+        Width="{Binding DialogContent.Width, FallbackValue=400, Mode=TwoWay}"        
+        Height="{Binding DialogContent.Height, FallbackValue=300, Mode=TwoWay, 
     Converter={StaticResource SizeConverter}, ConverterParameter=26}"  
-        Title="{Binding ElementName=DialogContent, Path=Child.Tag, FallbackValue='SGAM Elfec'}" >
+        Title="{Binding DialogContent.Tag, FallbackValue='SGAM Elfec'}" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Fluent:Ribbon Grid.Row="0" Height="26" IsQuickAccessToolBarVisible="False" IsMinimized="True" />
-        <Border Grid.Row="1" Name="DialogContent" />
+        <ContentControl Grid.Row="1" Content="{Binding DialogContent}" />
     </Grid>
 </Fluent:RibbonWindow>

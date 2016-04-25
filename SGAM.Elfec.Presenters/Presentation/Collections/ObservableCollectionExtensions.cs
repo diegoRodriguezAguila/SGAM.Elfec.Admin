@@ -34,7 +34,7 @@ namespace SGAM.Elfec.Presenters.Presentation.Collections
         }
 
         /// <summary>
-        /// Ordena y agrega el item en orden a la colección actual
+        /// Agrega el item y ordena la colección actual
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="T2"></typeparam>

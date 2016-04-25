@@ -50,9 +50,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{StaticResource MainColorBrush}">
+                    <Border Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{StaticResource MainColorBrush}"
+                            Padding="{TemplateBinding Padding}">
                         <ContentPresenter Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                          RecognizesAccessKey="True" 
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>

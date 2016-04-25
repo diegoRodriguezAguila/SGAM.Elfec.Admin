@@ -13,6 +13,16 @@
             <Style BasedOn="{StaticResource MetroContextMenu}" TargetType="ContextMenu" />
             <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="DataGrid" />
             <Style BasedOn="{StaticResource MetroComboBox}" TargetType="ComboBox" />
+            <Style BasedOn="{StaticResource MetroTreeView}" TargetType="TreeView" >
+                <Style.Setters>
+                    <Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
+                    <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+                </Style.Setters>
+            </Style>
+            <Style BasedOn="{StaticResource MetroTreeViewItem}" TargetType="TreeViewItem" />
+
+
+
             <converters:SizeConverter x:Key="SizeConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />

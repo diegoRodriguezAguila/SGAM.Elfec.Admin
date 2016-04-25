@@ -32,13 +32,7 @@ namespace SGAM.Elfec.Services
         public IDialog Build()
         {
             var dialog = new DialogWindow();
-            if (_content != null)
-            {
-                _content.Measure(new System.Windows.Size(double.MaxValue, double.MaxValue));
-                dialog.Width = _content.DesiredSize.Width;
-                dialog.Height = _content.DesiredSize.Height;
-            }
-            dialog.DialogContent.Child = _content;
+            dialog.DialogContent = _content;
             return dialog;
         }
     }

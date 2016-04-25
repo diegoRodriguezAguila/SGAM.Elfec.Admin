@@ -40,6 +40,8 @@ namespace SGAM.Elfec.DataAccess.WebServices
             if (apiException.StatusCode == HttpStatusCode.InternalServerError)
                 return new ServerSideException();
             RestErrorResponse error = JsonConvert.DeserializeObject<RestErrorResponse>(apiException.Content);
+            if (error == null)
+                return new ServerSideException();
             return new Exception(error.Errors);
         }
 
@@ -53,6 +55,8 @@ namespace SGAM.Elfec.DataAccess.WebServices
             if (apiException.StatusCode == HttpStatusCode.InternalServerError)
                 return new ServerSideException();
             RestErrorResponse error = JsonConvert.DeserializeObject<RestErrorResponse>(apiException.Content);
+            if (error == null)
+                return new ServerSideException();
             return new Exception(error.Errors);
         }
 
@@ -65,7 +69,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
         public static IObservable<T> InterpretingErrors<T>(this IObservable<T> obs)
         {
             return obs.Catch((Func<Exception, IObservable<T>>)
-                (ex => 
+                (ex =>
                 {
                     throw InterpretWebServiceError(ex);
                 }));

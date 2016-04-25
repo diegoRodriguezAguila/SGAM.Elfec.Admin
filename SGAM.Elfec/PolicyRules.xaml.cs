@@ -39,8 +39,8 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow
-                .StatusBar(Properties.Resources.MsgLoadingUsers);
-                Mouse.OverrideCursor = Cursors.AppStarting;
+                .StatusBar(Properties.Resources.MsgLoadingPolicies)
+                .SetCursor(Cursors.AppStarting);
             });
         }
 
@@ -50,8 +50,8 @@ namespace SGAM.Elfec
             {
                 Dispatcher.InvokeAsync(() =>
                 {
-                    MainWindowService.Instance.MainWindow.StatusBarDefault();
-                    Mouse.OverrideCursor = null;
+                    MainWindowService.Instance.MainWindow.StatusBarDefault()
+                    .DefaultCursor();
                 });
             }
         }

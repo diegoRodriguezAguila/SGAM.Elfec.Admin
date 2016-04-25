@@ -1,9 +1,9 @@
 ﻿using Fluent;
 using SGAM.Elfec.Interfaces;
 using SGAM.Elfec.Presenters.Presentation.Collections;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SGAM.Elfec
 {
@@ -180,6 +180,19 @@ namespace SGAM.Elfec
         private void BtnForward_Click(object sender, RoutedEventArgs e)
         {
             Forward();
+        }
+
+        public IMainWindow SetCursor(Cursor mouse)
+        {
+            Mouse.OverrideCursor = mouse;
+            return this;
+        }
+
+        public IMainWindow DefaultCursor()
+        {
+
+            Mouse.OverrideCursor = null;
+            return this;
         }
     }
 }

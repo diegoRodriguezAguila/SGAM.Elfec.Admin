@@ -9,6 +9,7 @@
         Icon="pack://application:,,,/Resources/MainIcon.ico"
         SaveWindowPosition="True"
         UseLayoutRounding="True"
+                     SnapsToDevicePixels="True"
         xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
         Title="{Binding Navigation.Current.Tag, StringFormat='SGAM Elfec - {0}', 
     FallbackValue='SGAM Elfec'}" Height="480" Width="720">

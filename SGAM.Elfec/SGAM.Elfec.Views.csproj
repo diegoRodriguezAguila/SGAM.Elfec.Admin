@@ -186,6 +186,13 @@
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
     <Compile Include="Converters\RuleActionToStringConverter.cs" />
     <Compile Include="Converters\SizeConverter.cs" />
+    <Compile Include="Services\Dialogs\ConfirmationDialog.cs" />
+    <Compile Include="Services\Dialogs\ConfirmationDialogBuilder.cs" />
+    <Compile Include="Services\Dialogs\ConfirmationDialogContent.xaml.cs">
+      <DependentUpon>ConfirmationDialogContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IConfirmationDialogBuilder.cs" />
+    <Compile Include="Utils\AttachedHelper.cs" />
     <Compile Include="Utils\HighlighterManager.cs" />
     <Compile Include="Interfaces\IDialog.cs" />
     <Compile Include="Services\DialogWindow.xaml.cs">
@@ -265,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddRule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Services\Dialogs\ConfirmationDialogContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -556,6 +567,7 @@
     <Resource Include="Resources\User\User24.png" />
     <Resource Include="Resources\User\UserGroup24.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

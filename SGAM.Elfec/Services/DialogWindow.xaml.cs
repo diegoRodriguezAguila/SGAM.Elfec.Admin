@@ -1,5 +1,6 @@
 ﻿using Fluent;
 using SGAM.Elfec.Interfaces;
+using System.Windows;
 
 namespace SGAM.Elfec.Services
 {
@@ -11,6 +12,7 @@ namespace SGAM.Elfec.Services
         internal DialogWindow()
         {
             InitializeComponent();
+            DataContext = this;
             Owner = System.Windows.Application.Current.MainWindow;
         }
 
@@ -18,5 +20,20 @@ namespace SGAM.Elfec.Services
         {
             DialogResult = result;
         }
+
+        #region Properties
+        #region DialogContent
+
+        public static DependencyProperty DialogContentProperty = DependencyProperty.RegisterAttached(
+                "DialogContent",
+                typeof(UIElement),
+                typeof(DialogWindow));
+        public UIElement DialogContent
+        {
+            get { return (UIElement)GetValue(DialogContentProperty); }
+            set { SetValue(DialogContentProperty, value); }
+        }
+        #endregion
+        #endregion
     }
 }

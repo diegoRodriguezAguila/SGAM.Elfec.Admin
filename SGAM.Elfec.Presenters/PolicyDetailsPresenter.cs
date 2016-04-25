@@ -5,13 +5,10 @@ using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters.Views;
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reactive.Concurrency;
-using System.Windows.Input;
-using SGAM.Elfec.Presenters.Presentation.Collections;
 using System.Threading;
+using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
 {
@@ -56,18 +53,17 @@ namespace SGAM.Elfec.Presenters
         private void DeleteRules(IList selectedRules)
         {
             var rulesToDel = selectedRules.Cast<Rule>().ToArray();
-            if (rulesToDel != null && rulesToDel.Length > 0)
+            if (rulesToDel != null && rulesToDel.Length > 0 &&
+                View.DeleteConfirmation())
             {
-                //Policy.Rules.RemoveRange(rulesToDel);
+                View.DeletingRule();
                 PolicyManager.DeleteRules(Policy.Type, rulesToDel)
                     .ObserveOn(SynchronizationContext.Current)
                     .Subscribe((u) =>
                     {
                         Policy.Rules.RemoveRange(rulesToDel);
-                    }, (e) =>
-                    {
-                        Debug.WriteLine(e.Message);
-                    });
+                        View.RuleDeleted();
+                    }, View.ErrorDeleting);
             }
         }
 

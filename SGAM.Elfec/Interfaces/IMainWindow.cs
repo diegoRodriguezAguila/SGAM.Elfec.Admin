@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SGAM.Elfec.Interfaces
 {
@@ -51,6 +52,17 @@ namespace SGAM.Elfec.Interfaces
         /// </summary>
         /// <returns></returns>
         IMainWindow StatusBarDefault();
+        /// <summary>
+        /// Asigna el tipo de cursor al mouse
+        /// </summary>
+        /// <param name="cursor"></param>
+        /// <returns></returns>
+        IMainWindow SetCursor(Cursor cursor);
+        /// <summary>
+        /// Pone el cursor de mouse por defecto
+        /// </summary>
+        /// <returns></returns>
+        IMainWindow DefaultCursor();
         /// <summary>
         /// Muestra un mensaje con su titulo al usuario
         /// </summary>

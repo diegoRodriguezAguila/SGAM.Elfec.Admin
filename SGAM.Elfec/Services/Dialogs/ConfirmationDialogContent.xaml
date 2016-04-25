@@ -9,9 +9,9 @@
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              mc:Ignorable="d" Background="White"
              Height="{Binding ElementName=GridContainer, Path=ActualHeight, FallbackValue=160}" 
-             Width="260" Tag="Confirmación"             
-             MaxHeight="160" MaxWidth="260"
-             d:DesignHeight="160" d:DesignWidth="260">
+             Width="340" Tag="Confirmación"             
+             MaxHeight="200" MaxWidth="340"
+             d:DesignHeight="200" d:DesignWidth="340">
     <UserControl.Resources>
         <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     </UserControl.Resources>
@@ -23,11 +23,12 @@
         <ContentControl Grid.Row="0" Margin="9,6,9,6" Content="{Binding ConfirmationContent}"
                         Visibility="{Binding ConfirmationContent, 
             Converter={StaticResource NullToVisibilityConverter}}"/>
-        <sgam:SelectableTextBlock Grid.Row="0" Margin="9,6,9,6" FontSize="14"
+        <TextBlock Grid.Row="0" Margin="9,6,9,6" FontSize="12"
                                   FontFamily="Segoe UI"
-                                  HorizontalScrollBarVisibility="Disabled"
+                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                                   TextWrapping="Wrap"
-                                  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
+                                  HorizontalAlignment="Stretch"
                                   Visibility="{Binding ConfirmationContent, 
             Converter={StaticResource NullToVisibilityConverter},
             ConverterParameter={x:Static converters:NullToVisibility.Invert}}"

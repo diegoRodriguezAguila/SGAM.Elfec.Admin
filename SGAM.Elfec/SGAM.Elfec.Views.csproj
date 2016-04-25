@@ -130,6 +130,7 @@
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Fluent.Ribbon.3.6.0.221\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -192,6 +193,10 @@
       <DependentUpon>ConfirmationDialogContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IConfirmationDialogBuilder.cs" />
+    <Compile Include="Services\Dialogs\InformationDialog.cs" />
+    <Compile Include="Services\Dialogs\InformationDialogContent.xaml.cs">
+      <DependentUpon>InformationDialogContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AttachedHelper.cs" />
     <Compile Include="Utils\HighlighterManager.cs" />
     <Compile Include="Interfaces\IDialog.cs" />
@@ -276,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Services\Dialogs\ConfirmationDialogContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Services\Dialogs\InformationDialogContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -567,7 +576,13 @@
     <Resource Include="Resources\User\User24.png" />
     <Resource Include="Resources\User\UserGroup24.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Tools\Error.png" />
+    <Resource Include="Resources\Tools\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Tools\Information.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

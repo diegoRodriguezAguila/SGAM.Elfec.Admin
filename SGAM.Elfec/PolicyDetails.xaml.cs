@@ -51,7 +51,16 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
-                MainWindowService.Instance.MainWindow.StatusBarDefault();
+                MainWindowService.Instance.MainWindow
+                .StatusBarDefault()
+                .DefaultCursor();
+                new InformationDialog
+                {
+                    Title = Properties.Resources.TitleErrorDeletingRule,
+                    Message = string.Format(Properties.Resources.MessageErrorDeletingRule,
+                    error.Message),
+                    IconType = IconType.Warning
+                }.ShowDialog();
             });
         }
 

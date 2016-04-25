@@ -943,6 +943,17 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se pudo eliminar la(s) regla(s):
+        ///
+        ///{0}.
+        /// </summary>
+        public static string MessageErrorDeletingRule {
+            get {
+                return ResourceManager.GetString("MessageErrorDeletingRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La aplicación {0} fue registrada exitosamente.
         /// </summary>
         public static string MsgApplicationUploadedSuccessfully {
@@ -962,7 +973,8 @@ namespace SGAM.Elfec.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to ¿Confirma que desea eliminar la(s) regla(s) seleccionada(s)?
-        ///Tome en cuenta que esta operación es irreversible y no se podrá recuperar la regla eliminada en el futuro.
+        ///
+        ///Tome en cuenta que esta operación es irreversible y no se podrán recuperar ninguna de las reglas eliminada en el futuro.
         /// </summary>
         public static string MsgDeleteRuleConfirmation {
             get {
@@ -1273,6 +1285,15 @@ namespace SGAM.Elfec.Properties {
         public static string TitleDevices {
             get {
                 return ResourceManager.GetString("TitleDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error de eliminación.
+        /// </summary>
+        public static string TitleErrorDeletingRule {
+            get {
+                return ResourceManager.GetString("TitleErrorDeletingRule", resourceCulture);
             }
         }
         

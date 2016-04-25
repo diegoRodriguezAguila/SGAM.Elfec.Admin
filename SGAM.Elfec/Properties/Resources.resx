@@ -581,9 +581,18 @@
   </data>
   <data name="MsgDeleteRuleConfirmation" xml:space="preserve">
     <value>¿Confirma que desea eliminar la(s) regla(s) seleccionada(s)?
-Tome en cuenta que esta operación es irreversible y no se podrá recuperar la regla eliminada en el futuro</value>
+
+Tome en cuenta que esta operación es irreversible y no se podrán recuperar ninguna de las reglas eliminada en el futuro</value>
   </data>
   <data name="TitleDeleteRule" xml:space="preserve">
     <value>Eliminar regla</value>
+  </data>
+  <data name="MessageErrorDeletingRule" xml:space="preserve">
+    <value>No se pudo eliminar la(s) regla(s):
+
+{0}</value>
+  </data>
+  <data name="TitleErrorDeletingRule" xml:space="preserve">
+    <value>Error de eliminación</value>
   </data>
 </root>

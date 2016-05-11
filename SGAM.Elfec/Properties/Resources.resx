@@ -588,7 +588,7 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
     <value>Eliminar regla</value>
   </data>
   <data name="MessageErrorDeletingRule" xml:space="preserve">
-    <value>No se pudo eliminar la(s) regla(s):
+    <value>No se pudo eliminar la(s) regla(s) seleccionada(s):
 
 {0}</value>
   </data>

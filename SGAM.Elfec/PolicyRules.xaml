@@ -23,23 +23,22 @@
     <UserControl.Resources>
         <converters:RootTreeviewConverter x:Key="RootTreeviewConverter" />
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="100" MaxWidth="800" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="*" MinWidth="100" />
-            </Grid.ColumnDefinitions>
-            <TreeView Grid.Column="0" Name="TrvPolicies" Padding="0,5,5,5" BorderThickness="0,0,1,0"
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="100" MaxWidth="800" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Column="0" Name="TrvPolicies" Padding="0,5,5,5" BorderThickness="0,0,1,0"
                           BorderBrush="{StaticResource TabBorderBrush}"
                           behaviors:TreeViewHelper.SelectedItem="{Binding Path=Selected, Mode=TwoWay}"
                           ItemsSource="{Binding PoliciesRoot, Converter={StaticResource RootTreeviewConverter}}" 
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
                           ItemTemplate="{StaticResource PoliciesRootTreeTemplate}" />
-            <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
+        <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                               HorizontalAlignment="Stretch" />
-            <Controls:TransitioningContentControl Grid.Column="2" 
+        <Controls:TransitioningContentControl Grid.Column="2" 
                                                   Name="TransitioningDetails" Transition="Left" />
-        </Grid>
-    </ScrollViewer>
+    </Grid>
 </UserControl>
 

@@ -943,7 +943,7 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No se pudo eliminar la(s) regla(s):
+        ///   Looks up a localized string similar to No se pudo eliminar la(s) regla(s) seleccionada(s):
         ///
         ///{0}.
         /// </summary>

@@ -32,7 +32,8 @@ namespace SGAM.Elfec.BusinessLogic
             return RestEndpointFactory
                     .Create<IRulesEndpoint>(user.Username, user.AuthenticationToken)
                     .AddEntities(ruleId, entities.IsEmpty() ? "0" :
-                    entities.ToString(e => e.Id)).ToObservable();
+                    entities.ToString(e => e.Id)).ToObservable()
+                    .InterpretingErrors();
         }
     }
 }

@@ -140,11 +140,6 @@ namespace SGAM.Elfec.Presenters
             {
                 View.ProcessingData();
                 PolicyManager.RegisterRule(_policy.Type, Rule)
-                    .SelectMany(rule =>
-                    {
-                        Rule.Id = rule.Id;
-                        return RulesManager.AddEntities(rule.Id, Rule.Entities);
-                    })
                     .ObserveOn(SynchronizationContext.Current)
                     .Subscribe((u) =>
                     {

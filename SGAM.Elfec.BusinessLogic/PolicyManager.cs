@@ -42,7 +42,8 @@ namespace SGAM.Elfec.BusinessLogic
         {
             User user = SessionManager.Instance.CurrentLoggedUser;
             return RestEndpointFactory.Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
-                    .RegisterRule(policyId.ToString().FromCamelToSnakeCase(), rule).ToObservable()
+                    .RegisterRule(policyId.ToString().FromCamelToSnakeCase(), rule,
+                    rule.Entities.ToString(e => e.Id)).ToObservable()
                     .SubscribeOn(NewThreadScheduler.Default)
                     .InterpretingErrors();
         }

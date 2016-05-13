@@ -12,7 +12,8 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
         Task<IList<Policy>> GetAllPolicies([QueryMap] IDictionary<string, string> filters);
 
         [Post("/policies/{policyId}/rules")]
-        Task<Rule> RegisterRule([Path] string policyId, [Body] Rule rule);
+        Task<Rule> RegisterRule([Path] string policyId, [Body] Rule rule, 
+            [Query("entity_ids")] string entityIds = "");
 
         [Delete("/policies/{policyId}/rules")]
         Task DeleteRules([Path] string policyId, [Query] string ids);

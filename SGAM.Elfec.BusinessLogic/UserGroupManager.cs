@@ -20,7 +20,8 @@ namespace SGAM.Elfec.BusinessLogic
             User user = SessionManager.Instance.CurrentLoggedUser;
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
-                    .RegisterUserGroup(userGroup));
+                    .RegisterUserGroup(userGroup,
+                    userGroup.Members.ToString((u) => { return u.Username; })));
         }
 
         /// <summary>

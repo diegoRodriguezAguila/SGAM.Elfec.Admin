@@ -27,55 +27,64 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer Name="ScrollMain"   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
-                      CanContentScroll="True">
-        <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
+                  CanContentScroll="True">
+        <Grid Margin="20" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel  Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
                             VerticalAlignment="Top" >
-                <Image Height="32"  VerticalAlignment="Center" Margin="0,0,10,0"   
-                    Source="{Binding Policy.Type, Converter={StaticResource PolicyTypeToImageConverter}}"
-                    SnapsToDevicePixels="True" />
-                <sgam:SelectableTextBlock Text="{Binding Policy.Name}" FontSize="24"
-                                             VerticalContentAlignment="Center" />
-            </StackPanel>
-            <TextBlock FontSize="11" Margin="0,20,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{x:Static Res:Resources.LblPolicyDescription}" />
-            <sgam:SelectableTextBlock Text="{Binding Policy.Description}" FontSize="20" TextWrapping="Wrap" 
-                                      MaxWidth="{Binding ElementName=ScrollMain, Path=ViewportWidth}" 
-                                      HorizontalAlignment="Left" HorizontalContentAlignment="Left" />
-            <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{x:Static Res:Resources.LblPolicyStatus}" />
-            <sgam:SelectableTextBlock Text="{Binding Policy.Status, 
-                Converter={StaticResource PolicyStatusToStringConverter}}" 
-                                      HorizontalAlignment="Left" HorizontalContentAlignment="Left" />
-            <TextBlock FontSize="11" Margin="0,10,0,0" Foreground="{StaticResource TextFormGrayBrush}" 
-                               Text="{Binding Policy.Rules.Count, StringFormat={x:Static Res:Resources.LblPolicyRulesCount}}" ></TextBlock>
-            <sgam:SelectableTextBlock Text="{x:Static Res:Resources.LblPolicyEmptyRules}" Visibility="{Binding Policy.Rules.Count, 
-                Converter={StaticResource InvCountToVisConverter}, ConverterParameter=0}" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
+                    <Image Height="32"  VerticalAlignment="Center" Margin="0,0,10,0"   
+                           Source="{Binding Policy.Type, Converter={StaticResource PolicyTypeToImageConverter}}"
+                           SnapsToDevicePixels="True" />
+                    <sgam:SelectableTextBlock Text="{Binding Policy.Name}" FontSize="24"
+                                              VerticalContentAlignment="Center" />
+                </StackPanel>
+                <TextBlock FontSize="11" Margin="0,20,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblPolicyDescription}" />
+                <sgam:SelectableTextBlock Text="{Binding Policy.Description}" FontSize="20" TextWrapping="Wrap" 
+                                          MaxWidth="{Binding ElementName=ScrollMain, Path=ViewportWidth}" 
+                                          HorizontalAlignment="Left" HorizontalContentAlignment="Left" />
+                <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblPolicyStatus}" />
+                <sgam:SelectableTextBlock Text="{Binding Policy.Status, 
+                                          Converter={StaticResource PolicyStatusToStringConverter}}" 
+                                          HorizontalAlignment="Left" HorizontalContentAlignment="Left" />
+                <TextBlock FontSize="11" Margin="0,10,0,0" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{Binding Policy.Rules.Count, StringFormat={x:Static Res:Resources.LblPolicyRulesCount}, 
+                           FallbackValue={x:Static Res:Resources.LblPolicyRules}}" ></TextBlock>
+                <sgam:SelectableTextBlock Text="{x:Static Res:Resources.LblPolicyEmptyRules}" Visibility="{Binding Policy.Rules.Count, 
+                                          Converter={StaticResource InvCountToVisConverter}, ConverterParameter=0}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
                             VerticalAlignment="Top" >
-                <Button Name="BtnAddRule" HorizontalAlignment="Left" 
-                        Command="{Binding AddRuleCommand}"
+                    <Button Name="BtnAddRule" HorizontalAlignment="Left" 
+                            Command="{Binding AddRuleCommand}"
                             Margin="0,10,0,10" >
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal" Height="32" >
-                            <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Add24.png" 
-                               SnapsToDevicePixels="True" Margin="4" />
-                            <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
-                                   Margin="4,8,8,8" TextWrapping="Wrap"
-                                   VerticalAlignment="Center" Text="{x:Static Res:Resources.LblAddRule}"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal" Height="32" >
+                                <Image VerticalAlignment="Center" Height="24" Source="/Resources/Rule/Add24.png" 
+                                       SnapsToDevicePixels="True" Margin="4" />
+                                <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
+                                           Margin="4,8,8,8" TextWrapping="Wrap"
+                                           VerticalAlignment="Center" Text="{x:Static Res:Resources.LblAddRule}"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+
             </StackPanel>
-            <DataGrid Name="DataGridRules" Margin="0,4,0,0" ItemsSource="{Binding Policy.Rules}" 
+            <DataGrid Name="DataGridRules" Grid.Row="1" Margin="0,4,0,0" ItemsSource="{Binding Policy.Rules}" 
+                      MinHeight="150" ScrollViewer.VerticalScrollBarVisibility="Auto"
                       Visibility="{Binding Policy.Rules.Count, 
-                Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=0}"
+                      Converter={StaticResource CountToVisibilityConverter}, ConverterParameter=0}"
                       RenderOptions.ClearTypeHint="Enabled" BorderThickness="1" BorderBrush="#B9B9B9"
-                          TextOptions.TextFormattingMode="Display" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
-                          SelectionUnit="FullRow" RowStyle="{StaticResource RuleDataGridRowStyle}" >
+                      TextOptions.TextFormattingMode="Display" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                      SelectionUnit="FullRow" RowStyle="{StaticResource RuleDataGridRowStyle}" >
                 <DataGrid.InputBindings>
                     <KeyBinding Key="Delete" Command="{Binding Path=DeleteRuleCommand}"
-                                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}"></KeyBinding>
+                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}"></KeyBinding>
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"
@@ -94,7 +103,7 @@
                                         Binding="{Binding Exception}" 
                                         ElementStyle="{StaticResource DataGridTrimmingStyle}" />
                 </DataGrid.Columns>
-            </DataGrid>           
-        </StackPanel>
+            </DataGrid>
+        </Grid>
     </ScrollViewer>
 </UserControl>

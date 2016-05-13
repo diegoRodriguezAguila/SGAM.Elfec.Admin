@@ -154,8 +154,7 @@ namespace SGAM.Elfec.Presenters
                 var callback = new ResultCallback<UserGroup>();
                 callback.Success += (s, userGroup) =>
                 {
-                    if (!UserGroup.Members.IsEmpty())
-                        RegisterMembers(userGroup);
+                    View.ShowUserGroupRegistered(userGroup);
                 };
                 callback.Failure += (s, errors) =>
                 {
@@ -164,27 +163,5 @@ namespace SGAM.Elfec.Presenters
                 UserGroupManager.RegisterUserGroup(UserGroup, callback);
             }).Start();
         }
-
-        /// <summary>
-        /// Registra los miembros del grupo de usuarios
-        /// </summary>
-        /// <param name="userGroup">El grupo de usuarios</param>
-        private void RegisterMembers(UserGroup userGroup)
-        {
-            new Thread(() =>
-            {
-                var callback = new VoidCallback();
-                callback.Success += (s) =>
-                {
-                    View.ShowUserGroupRegistered(userGroup);
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.ShowRegistrationErrors(errors);
-                };
-                UserGroupManager.AddMembers(userGroup.Id, UserGroup.Members, callback);
-            }).Start();
-        }
-
     }
 }

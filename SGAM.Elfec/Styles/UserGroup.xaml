@@ -5,6 +5,7 @@
                     xmlns:local="clr-namespace:SGAM.Elfec">
     <converters:UserStatusToOpacityConverter x:Key="UserStatusToOpacityConverter" />
     <converters:UserStatusToBackgroundConverter x:Key="UserStatusToBackgroundConverter" />
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <!--User Context Menu-->
 
     <ContextMenu x:Key="UserGroupItemContextMenu" >
@@ -25,11 +26,16 @@
     <!--Device UserGroupItemTemplate-->
 
     <DataTemplate x:Key="UserGroupItemTemplate" >
-        <VirtualizingStackPanel  Width="200" VerticalAlignment="Center" Margin="5" >
+        <VirtualizingStackPanel Width="200" Orientation="Vertical" VerticalAlignment="Center" Margin="10" >
             <TextBlock FontSize="12" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Name}" />
             <TextBlock FontSize="11" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" 
+                       Visibility="{Binding Description, Converter={StaticResource NullToVisibilityConverter}}"
                        LineHeight="15"  Text="{Binding Description}" />
-            <TextBlock FontSize="10" TextWrapping="Wrap" Text="{Binding Members.Count}" />
+            <VirtualizingStackPanel Orientation="Horizontal" >
+                <Image Source="/Resources/User/UserGroup16.png" Width="16" Height="16" VerticalAlignment="Center" />
+                <TextBlock FontSize="10" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding Members.Count, 
+                StringFormat={x:Static res:Resources.LblMemberCount}}" VerticalAlignment="Center" />
+            </VirtualizingStackPanel>
         </VirtualizingStackPanel>
     </DataTemplate>
 </ResourceDictionary>

@@ -40,7 +40,12 @@
                     Converter={StaticResource UserStatusToBackgroundConverter}}" Opacity="{Binding Status, 
                     Converter={StaticResource UserStatusToOpacityConverter}}" Orientation="Horizontal" >
             <Image Margin="10,10,5,10" VerticalAlignment="Center" Width="64" Height="64"  SnapsToDevicePixels="True"
-                   Source="{Binding PhotoUrl}" />
+                   >
+                <Image.Source>
+                    <BitmapImage UriCachePolicy="CacheIfAvailable" 
+                                 UriSource="{Binding PhotoUrl}"/>
+                </Image.Source>
+            </Image>
             <StackPanel  Width="116" VerticalAlignment="Center" Margin="5,10,10,10">
                 <TextBlock FontSize="14" TextWrapping="Wrap" FontWeight="Bold" LineStackingStrategy="BlockLineHeight" LineHeight="15"  >
                     <Run Text="{Binding FirstName}" />    

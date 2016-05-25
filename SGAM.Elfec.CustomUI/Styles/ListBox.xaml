@@ -58,7 +58,8 @@
 
 
     <Style x:Key="BlueListBoxItem" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="BorderBrush" Value="{StaticResource ListItemBorderBrush}" />
         <Setter Property="Background" Value="{StaticResource BackgroundGrayBrush}" />
         <Setter Property="Padding" Value="4,2" />
         <Setter Property="Template">

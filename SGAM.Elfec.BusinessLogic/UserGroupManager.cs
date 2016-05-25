@@ -4,12 +4,35 @@ using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Security;
+using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 
 namespace SGAM.Elfec.BusinessLogic
 {
     public class UserGroupManager
     {
+        /// <summary>
+        /// Obtiene todos los grupos de usuario, ya sea por medio de la caché o de webservices
+        /// </summary>
+        /// <param name="includeMembers">true si es que se quiere obtener las entidades
+        /// de los miembros de cada grupo</param>
+        /// <returns>Observable del resultado de la lista de grupos de usuario</returns>
+        public static IObservable<IList<UserGroup>> GetAllUserGroups(bool includeMembers = false)
+        {
+            User user = SessionManager.Instance.CurrentLoggedUser;
+            var parameters = new Dictionary<string, string>();
+            parameters["sort"] = "-status,name";
+            if (includeMembers)
+                parameters["include"] = "members";
+            return RestEndpointFactory.Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+                .GetAllUserGroups(parameters).ToObservable()
+                    .SubscribeOn(TaskPoolScheduler.Default)
+                    .InterpretingErrors();
+        }
+
         /// <summary>
         /// Registra un grupo de usuarios en la api
         /// </summary>

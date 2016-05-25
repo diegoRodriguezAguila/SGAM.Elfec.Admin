@@ -583,6 +583,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} miembros.
+        /// </summary>
+        public static string LblMemberCount {
+            get {
+                return ResourceManager.GetString("LblMemberCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GB.
         /// </summary>
         public static string LblMemoryUnit {

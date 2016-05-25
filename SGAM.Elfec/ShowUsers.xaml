@@ -28,17 +28,17 @@
                            Text="{x:Static Res:Resources.TitleUserGroups}" />
             </Border>
             <ListBox Grid.Row="1" Name="ListBoxGroups" Style="{StaticResource BlueListBox}" 
-                     ItemsSource="{Binding Application.AppVersions}" 
-                     SelectedValue="{Binding SelectedVersion}"
+                     ItemsSource="{Binding UserGroups}" 
+                     SelectedValue="{Binding SelectedUserGroup}"
                      BorderThickness="0,0,1,0"
                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.CanContentScroll="False"
-                     ItemTemplate="{StaticResource AppVersionItemTemplate}" />
+                     ItemTemplate="{StaticResource UserGroupItemTemplate}" />
         </Grid>
         <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                       HorizontalAlignment="Stretch" />
         <Controls:TransitioningContentControl Grid.Column="2"  Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
-            <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Users}"
+            <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding SelectedUserGroup.Members}"
                       behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"
                       Tag="{x:Static Res:Resources.LblNotAnyUsers}"
                       ItemContainerStyle="{StaticResource UserItemOptionStyle}" 

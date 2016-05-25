@@ -601,4 +601,7 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="BtnSwitchUser" xml:space="preserve">
     <value>Cambiar de usuario</value>
   </data>
+  <data name="LblMemberCount" xml:space="preserve">
+    <value>{0} miembros</value>
+  </data>
 </root>

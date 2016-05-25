@@ -97,7 +97,7 @@ namespace SGAM.Elfec.Presenters
                 (error) =>
                 {
                     Debug.WriteLine(error.Message);
-                    //show error
+                    //TODO show error
                 });
         }
         /// <summary>

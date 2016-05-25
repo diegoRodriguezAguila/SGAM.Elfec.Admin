@@ -42,6 +42,7 @@
                 <ResourceDictionary Source="/Styles/Policy.xaml" />
                 <ResourceDictionary Source="/Styles/Rule.xaml" />
                 <ResourceDictionary Source="/Styles/User.xaml" />
+                <ResourceDictionary Source="/Styles/UserGroup.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -476,7 +476,7 @@ namespace SGAM.Elfec.Settings
             /// <exception cref="NotSupportedException">Always.</exception>
             public override void SetPropertyValues(SettingsContext context, SettingsPropertyValueCollection collection)
             {
-                throw new NotSupportedException();
+                throw new NotImplementedException();
             }
 
             #endregion

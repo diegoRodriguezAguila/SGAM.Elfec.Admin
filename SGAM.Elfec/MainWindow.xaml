@@ -4,22 +4,26 @@
         xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+        xmlns:utils="clr-namespace:SGAM.Elfec.Utils"
         xmlns:security="clr-namespace:SGAM.Elfec.Security;assembly=SGAM.Elfec.Security"
         xmlns:toastinet="clr-namespace:ToastinetWPF;assembly=ToastinetWPF"
-        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"   
+        xmlns:converters="clr-namespace:SGAM.Elfec.Converters"  
         Icon="pack://application:,,,/Resources/MainIcon.ico"
-                     TextOptions.TextRenderingMode="Auto"
-        SaveWindowPosition="True"
-        UseLayoutRounding="True"
-                     SnapsToDevicePixels="True"
-        xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+        TextOptions.TextRenderingMode="Auto" UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
         Title="{Binding Navigation.Current.Tag, StringFormat='SGAM Elfec - {0}', 
-    FallbackValue='SGAM Elfec'}" Height="480" Width="720">
+            FallbackValue='SGAM Elfec'}" 
+        Height="{utils:SettingBinding Height, FallbackValue=480}"
+        Width="{utils:SettingBinding Width, FallbackValue=720}"
+        Left="{utils:SettingBinding Left}"
+        Top="{utils:SettingBinding Top}">
     <Fluent:RibbonWindow.Resources>
         <converters:IndexAndCountToBoolConverter x:Key="IndexAndCountToBoolConverter" Invert="True" />
         <converters:CountToBoolConverter x:Key="CountToBoolConverter" />
         <converters:BoolToVisibilityConverter x:Key="VisibleConverter"  
                                               TrueValue="Visible" FalseValue="Hidden"  />
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     </Fluent:RibbonWindow.Resources>
     <Grid Margin="-1" >
         <Grid.RowDefinitions>
@@ -198,6 +202,7 @@
             </Fluent:RibbonTabItem>
             <Fluent:Ribbon.ToolBarItems >
                 <Fluent:DropDownButton SizeDefinition="Middle" Size="Middle" Margin="5,0,5,0"
+                                       Visibility="{Binding CurrentLoggedUser, Converter={StaticResource NullToVisibilityConverter}}"
                                        DataContext="{Binding Source={x:Static security:SessionManager.Instance}}"
                                        Header="{Binding CurrentLoggedUser.Username, Mode=OneWay, FallbackValue='No user'}" >
                     <Fluent:DropDownButton.Icon>
@@ -207,7 +212,7 @@
                     <StackPanel Orientation="Vertical" Margin="7">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="60" Height="60" SnapsToDevicePixels="True"
-                   Source="{Binding CurrentLoggedUser.PhotoUrl, Mode=OneWay}" />
+                   Source="{Binding CurrentLoggedUser.PhotoUrl, Mode=OneWay, FallbackValue='/Resources/User/UserDefault64.png'}" />
                             <StackPanel Margin="5,0,0,0" Orientation="Vertical">
                             <Label FontSize="20" Foreground="{StaticResource BlackTextBrush}" 
                                    Content="{Binding CurrentLoggedUser.FullName, Mode=OneWay}" />

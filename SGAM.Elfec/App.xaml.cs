@@ -1,12 +1,4 @@
-﻿using SGAM.Elfec.Presenters.Presentation.Collections;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Animation;
 
 namespace SGAM.Elfec
@@ -23,6 +15,7 @@ namespace SGAM.Elfec
               new FrameworkPropertyMetadata { DefaultValue = 30 }
                 );
             var instance = HighlighterManager.Instance;
+            Exit += (s, e) => { SGAM.Elfec.Properties.WindowSettings.Default.Save(); };
         }
     }
 }

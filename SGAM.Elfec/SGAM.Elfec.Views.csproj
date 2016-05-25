@@ -261,9 +261,15 @@
     <Compile Include="Utils\PasswordBoxAssistant.cs" />
     <Compile Include="Utils\RichTextBoxExtensions.cs" />
     <Compile Include="Utils\RichTextBoxHelper.cs" />
+    <Compile Include="Utils\SettingBindingExtension.cs" />
     <Compile Include="Utils\ValidationErrorsAssistant.cs" />
     <Compile Include="Utils\WatermarkAdorner.cs" />
     <Compile Include="Utils\WatermarkService.cs" />
+    <Compile Include="Properties\WindowSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>WindowSettings.settings</DependentUpon>
+    </Compile>
     <Page Include="AddNewApplication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -364,6 +370,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\UserGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ErrorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -392,6 +402,10 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
+    <None Include="Properties\WindowSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>WindowSettings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

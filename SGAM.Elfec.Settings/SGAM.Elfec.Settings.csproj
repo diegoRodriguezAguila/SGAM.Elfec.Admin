@@ -75,6 +75,7 @@
     <Content Include="SGAM.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="app.config" />
     <None Include="Properties\SGAM.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>SGAM.Designer.cs</LastGenOutput>

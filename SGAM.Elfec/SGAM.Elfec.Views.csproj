@@ -413,6 +413,10 @@
       <Project>{86e1ecfd-226c-4fe7-bdff-5c6b64c19c0b}</Project>
       <Name>SGAM.Elfec.Presenters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SGAM.Elfec.Security\SGAM.Elfec.Security.csproj">
+      <Project>{8302f8e5-e8da-4f23-a523-e69e25cc0bd0}</Project>
+      <Name>SGAM.Elfec.Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SGAM.Elfec.Settings\SGAM.Elfec.Settings.csproj">
       <Project>{9b2cc177-53e8-4ec6-ab5a-45fef33f0099}</Project>
       <Name>SGAM.Elfec.Settings</Name>
@@ -585,6 +589,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Device\Authorize16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\User\UserDefault16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

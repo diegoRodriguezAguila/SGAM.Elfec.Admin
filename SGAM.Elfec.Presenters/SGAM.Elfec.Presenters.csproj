@@ -89,7 +89,6 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\ListItemCommand.cs" />
     <Compile Include="LoginPresenter.cs" />
-    <Compile Include="ObservableObject.cs" />
     <Compile Include="PolicyDetailsPresenter.cs" />
     <Compile Include="PolicyRulesPresenter.cs" />
     <Compile Include="Presentation\Collections\ObservableCollectionExtensions.cs" />

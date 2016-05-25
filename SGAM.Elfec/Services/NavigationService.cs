@@ -1,4 +1,5 @@
 ﻿using SGAM.Elfec.Interfaces;
+using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Presentation.Collections;
 using System;

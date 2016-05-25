@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SGAM.Elfec.Presenters
+namespace SGAM.Elfec.Model
 {
     public class ObservableObject : INotifyPropertyChanged
     {

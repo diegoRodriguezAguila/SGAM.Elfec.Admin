@@ -20,7 +20,14 @@ namespace SGAM.Elfec
             _isFirstActivated = true;
             DevicesView();
             DataContext = MainWindowService.Instance;
-            //Activated += (s, e) => { ShowLoginDialog(); };
+            /*Activated += (s, e) =>
+            {
+                if (_isFirstActivated)
+                {
+                    _isFirstActivated = false;
+                    ShowLoginDialog();
+                }
+            };*/
         }
 
         #region Private Variables
@@ -49,17 +56,14 @@ namespace SGAM.Elfec
             UsersView();
         }
 
-        private void ShowLoginDialog()
+        private void ShowLoginDialog(bool closeIfCanceled = true)
         {
-            if (_isFirstActivated)
-            {
-                _isFirstActivated = false;
-                var loginDialog = new LoginDialogWindow();
-                loginDialog.Owner = this;
+            var loginDialog = new LoginDialogWindow();
+            loginDialog.Owner = this;
+            if (closeIfCanceled)
                 loginDialog.LoginCanceled += (s, e) => { Close(); };
-                loginDialog.UserLoggedIn += (s, u) => { DevicesView(); };
-                loginDialog.ShowDialog();
-            }
+            loginDialog.UserLoggedIn += (s, u) => { DevicesView(); };
+            loginDialog.ShowDialog();
         }
         #endregion
 
@@ -193,6 +197,11 @@ namespace SGAM.Elfec
 
             Mouse.OverrideCursor = null;
             return this;
+        }
+
+        private void BtnSwitchUser_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ShowLoginDialog(false);
         }
     }
 }

@@ -4,6 +4,7 @@
         xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+        xmlns:security="clr-namespace:SGAM.Elfec.Security;assembly=SGAM.Elfec.Security"
         xmlns:toastinet="clr-namespace:ToastinetWPF;assembly=ToastinetWPF"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"     
         Icon="pack://application:,,,/Resources/MainIcon.ico"
@@ -195,17 +196,28 @@
                     </Fluent:ToggleButton>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
-            <Fluent:Ribbon.ToolBarItems>
-                <Fluent:DropDownButton SizeDefinition="Middle" Margin="5,0,5,0" Header="drodriguezd" >
-                    <Fluent:DropDownButton.Icon> 
-                        <Viewbox Width="16" Height="16" Child="{StaticResource ContactPictureMenu}" />
+            <Fluent:Ribbon.ToolBarItems >
+                <Fluent:DropDownButton SizeDefinition="Middle" Size="Middle" Margin="5,0,5,0"
+                                       DataContext="{Binding Source={x:Static security:SessionManager.Instance}}"
+                                       Header="{Binding CurrentLoggedUser.Username, Mode=OneWay, FallbackValue='No user'}" >
+                    <Fluent:DropDownButton.Icon>
+                        <Image VerticalAlignment="Center" Width="16" Height="16" SnapsToDevicePixels="True"
+                   Source="{Binding CurrentLoggedUser.PhotoUrl, Mode=OneWay, FallbackValue='/Resources/User/UserDefault16.png'}" />
                     </Fluent:DropDownButton.Icon>
                     <StackPanel Orientation="Vertical" Margin="7">
                         <StackPanel Orientation="Horizontal">
-                            <Viewbox Width="60" Height="60" Child="{StaticResource ContactPictureMenu}" />
-                            <Label FontSize="18" Foreground="{StaticResource BlackTextBrush}" Content="drodriguezd" />
+                            <Image VerticalAlignment="Center" Width="60" Height="60" SnapsToDevicePixels="True"
+                   Source="{Binding CurrentLoggedUser.PhotoUrl, Mode=OneWay}" />
+                            <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                            <Label FontSize="20" Foreground="{StaticResource BlackTextBrush}" 
+                                   Content="{Binding CurrentLoggedUser.FullName, Mode=OneWay}" />
+                            <Label FontSize="13" Foreground="{StaticResource BlackTextBrush}" 
+                                   Content="{Binding CurrentLoggedUser.Username, Mode=OneWay}" />
+                            </StackPanel>
                         </StackPanel>
-                        <TextBlock Margin="0,10,0,0" Text="Cambiar de usuario" Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}" />
+                        <TextBlock Name="BtnSwitchUser" Margin="0,10,0,0" Text="{x:Static Res:Resources.BtnSwitchUser}" 
+                                   Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}" 
+                                   MouseUp="BtnSwitchUser_MouseUp"/>
                     </StackPanel>
                 </Fluent:DropDownButton>
             </Fluent:Ribbon.ToolBarItems>

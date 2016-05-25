@@ -1,4 +1,5 @@
-﻿using SGAM.Elfec.Presenters.Views;
+﻿using SGAM.Elfec.Model;
+using SGAM.Elfec.Presenters.Views;
 
 namespace SGAM.Elfec.Presenters
 {

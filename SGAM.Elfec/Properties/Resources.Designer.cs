@@ -169,6 +169,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cambiar de usuario.
+        /// </summary>
+        public static string BtnSwitchUser {
+            get {
+                return ResourceManager.GetString("BtnSwitchUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subir aplicación.
         /// </summary>
         public static string BtnUploadApp {
@@ -1303,6 +1312,15 @@ namespace SGAM.Elfec.Properties {
         public static string TitleSuccess {
             get {
                 return ResourceManager.GetString("TitleSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grupos.
+        /// </summary>
+        public static string TitleUserGroups {
+            get {
+                return ResourceManager.GetString("TitleUserGroups", resourceCulture);
             }
         }
         

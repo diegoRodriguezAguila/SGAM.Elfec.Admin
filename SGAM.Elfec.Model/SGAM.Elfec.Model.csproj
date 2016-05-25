@@ -110,6 +110,7 @@
     <Compile Include="Exceptions\ServerSideException.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Policy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

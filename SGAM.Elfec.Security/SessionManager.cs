@@ -9,7 +9,7 @@ using System.Net.Http;
 
 namespace SGAM.Elfec.Security
 {
-    public class SessionManager
+    public class SessionManager : ObservableObject
     {
         private static WeakReference<SessionManager> _sessionManagerInstanceRef;
 
@@ -56,6 +56,7 @@ namespace SGAM.Elfec.Security
                     if (PermissionManager.Instance.HasAdminAccessPermission(user))
                     {
                         UserDAL.CurrentUser = AuthTokenProtect.ProtectToken(user);
+                        RaisePropertyChanged("CurrentLoggedUser");
                         callback.OnSuccess(this, user);
                         return;
                     }

@@ -9,11 +9,39 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
-             d:DesignHeight="300" d:DesignWidth="500">
-    <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
-        <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Users}"
-                 behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"
-                  Tag="{x:Static Res:Resources.LblNotAnyUsers}"
-                  ItemContainerStyle="{StaticResource UserItemOptionStyle}" ItemTemplate="{StaticResource UserItemTemplate}" />
-    </Controls:TransitioningContentControl>
+             d:DesignHeight="340" d:DesignWidth="600">
+    <Grid  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="180" MaxWidth="800" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+        <Grid VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource BackgroundBorderGrayBrush}">
+                <TextBlock FontSize="22" FontFamily="Segoe UI Semilight" 
+                           Background="{StaticResource BackgroundGrayBrush}"
+                           Padding="10,5,0,5"  Foreground="{StaticResource MainColorBrush}"
+                           Text="{x:Static Res:Resources.TitleUserGroups}" />
+            </Border>
+            <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
+                     ItemsSource="{Binding Application.AppVersions}" 
+                     SelectedValue="{Binding SelectedVersion}"
+                     BorderThickness="0,0,1,0"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.CanContentScroll="False"
+                     ItemTemplate="{StaticResource AppVersionItemTemplate}" />
+        </Grid>
+        <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
+                      HorizontalAlignment="Stretch" />
+        <Controls:TransitioningContentControl Grid.Column="2"  Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
+            <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Users}"
+                      behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"
+                      Tag="{x:Static Res:Resources.LblNotAnyUsers}"
+                      ItemContainerStyle="{StaticResource UserItemOptionStyle}" ItemTemplate="{StaticResource UserItemTemplate}" />
+        </Controls:TransitioningContentControl>
+    </Grid>
 </UserControl>

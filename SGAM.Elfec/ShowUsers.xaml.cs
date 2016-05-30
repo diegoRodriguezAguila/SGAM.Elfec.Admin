@@ -1,10 +1,12 @@
 ﻿using SGAM.Elfec.Helpers.Text;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
+using SGAM.Elfec.Services.Dialogs;
 using SGAM.Elfec.UserControls;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SGAM.Elfec
 {
@@ -60,6 +62,34 @@ namespace SGAM.Elfec
                     Transitioning.Content = _errorMessage;
                 });
             }
+        }
+
+        public void ProcessingStatusChange()
+        {
+            MainWindowService.Instance.MainWindow.
+                StatusBar(Properties.Resources.MsgUpdatingUserGroupStatus)
+                .SetCursor(Cursors.AppStarting);
+        }
+
+        public void ErrorChangingStatus(Exception error)
+        {
+            MainWindowService.Instance.MainWindow
+               .StatusBarDefault()
+               .DefaultCursor();
+            new InformationDialog
+            {
+                Title = Properties.Resources.TitleErrorDeletingRule,
+                Message = string.Format(Properties.Resources.MsgErrorInUserGroupStatusUpdate,
+                error.Message),
+                IconType = IconType.Warning
+            }.ShowDialog();
+        }
+
+        public void StatusChanged()
+        {
+            MainWindowService.Instance.MainWindow
+                .StatusBarDefault()
+                .DefaultCursor();
         }
 
         #endregion

@@ -574,6 +574,33 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dar de baja.
+        /// </summary>
+        public static string LblDismiss {
+            get {
+                return ResourceManager.GetString("LblDismiss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deshabilitar.
+        /// </summary>
+        public static string LblDismissUserGroup {
+            get {
+                return ResourceManager.GetString("LblDismissUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Habilitar.
+        /// </summary>
+        public static string LblEnableUserGroup {
+            get {
+                return ResourceManager.GetString("LblEnableUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iniciar sesión.
         /// </summary>
         public static string LblLogin {
@@ -1028,6 +1055,17 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se pudo actualizar correctamente el estado del grupo de usuarios:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string MsgErrorInUserGroupStatusUpdate {
+            get {
+                return ResourceManager.GetString("MsgErrorInUserGroupStatusUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Los campos tienen errores, corrigalos para poder continuar..
         /// </summary>
         public static string MsgErrorsInFields {
@@ -1132,6 +1170,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgRuleRegisteredSuccessfuly {
             get {
                 return ResourceManager.GetString("MsgRuleRegisteredSuccessfuly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actualizando estado del grupo de usuarios….
+        /// </summary>
+        public static string MsgUpdatingUserGroupStatus {
+            get {
+                return ResourceManager.GetString("MsgUpdatingUserGroupStatus", resourceCulture);
             }
         }
         
@@ -1501,6 +1548,15 @@ namespace SGAM.Elfec.Properties {
         public static string TooltipShowUsersDesc {
             get {
                 return ResourceManager.GetString("TooltipShowUsersDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cerrado.
+        /// </summary>
+        public static string UserGroupStatusSealed {
+            get {
+                return ResourceManager.GetString("UserGroupStatusSealed", resourceCulture);
             }
         }
         

@@ -6,22 +6,40 @@
     <converters:UserStatusToOpacityConverter x:Key="UserStatusToOpacityConverter" />
     <converters:UserStatusToBackgroundConverter x:Key="UserStatusToBackgroundConverter" />
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-    <!--User Context Menu-->
+    <converters:UserGroupStatusToMenuItemVisibility x:Key="StatusToVisibility" />
+    <converters:UserGroupStatusToStringConverter x:Key="StatusToString" />
+    <!--User Group Context Menu-->
 
     <ContextMenu x:Key="UserGroupItemContextMenu" >
         <MenuItem Command="{Binding RelativeSource=
                   {RelativeSource FindAncestor, 
-                  AncestorType={x:Type ListView}}, 
-                  Path=DataContext.DeleteMemberCommand}"
-                  CommandParameter="{Binding RelativeSource=
-                  {RelativeSource FindAncestor, 
-                  AncestorType={x:Type ListView}}, 
-                  Path=SelectedItems}" Header="{x:Static res:Resources.LblDelete}" >
+                  AncestorType={x:Type ListBox}}, 
+                  Path=DataContext.DismissUserGroupCommand}"
+                  CommandParameter="{Binding}" Header="{x:Static res:Resources.LblDismissUserGroup}"
+                  Visibility="{Binding Status, Converter={StaticResource StatusToVisibility}, 
+                  ConverterParameter={x:Static res:Resources.LblDismissUserGroup}}">
             <MenuItem.Icon>
-                <Image Width="16" Height="16" Source="/Resources/Tools/Delete16.png" />
+                <Image Width="16" Height="16" Source="/Resources/Tools/Dismiss16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListBox}}, 
+                  Path=DataContext.EnableUserGroupCommand}"
+                  CommandParameter="{Binding}" Header="{x:Static res:Resources.LblEnableUserGroup}"
+                  Visibility="{Binding Status, Converter={StaticResource StatusToVisibility}, 
+                  ConverterParameter={x:Static res:Resources.LblEnableUserGroup}}">
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/User/EnableUserGroup16.png" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>
+
+    <!--MemberItemOptionStyle ListItem Style-->
+    <Style x:Key="UserGroupItemOptionStyle" BasedOn="{StaticResource BlueListBoxItem}"
+           TargetType="ListBoxItem">
+        <Setter Property="ContextMenu" Value="{StaticResource UserGroupItemContextMenu}" />
+    </Style>
 
     <!--Device UserGroupItemTemplate-->
 
@@ -30,12 +48,22 @@
             <TextBlock FontSize="12" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Name}" />
             <TextBlock FontSize="11" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" 
                        Visibility="{Binding Description, Converter={StaticResource NullToVisibilityConverter}}"
+                       TextTrimming="CharacterEllipsis"
+                       MaxHeight="55"
                        LineHeight="15"  Text="{Binding Description}" />
-            <VirtualizingStackPanel Orientation="Horizontal" >
-                <Image Source="/Resources/User/UserGroup16.png" Width="16" Height="16" VerticalAlignment="Center" />
-                <TextBlock FontSize="10" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding Members.Count, 
+            <Grid Margin="0,2,0,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="/Resources/User/UserGroup16.png" Width="16" Height="16" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1"  FontSize="10" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding Members.Count, 
                 StringFormat={x:Static res:Resources.LblMemberCount}}" VerticalAlignment="Center" />
-            </VirtualizingStackPanel>
+                <TextBlock Grid.Column="3"  FontSize="11" VerticalAlignment="Center"
+                           Text="{Binding Status, Converter={StaticResource StatusToString}}" />
+            </Grid>
         </VirtualizingStackPanel>
     </DataTemplate>
 </ResourceDictionary>

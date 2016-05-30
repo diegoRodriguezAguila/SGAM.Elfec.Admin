@@ -9,7 +9,7 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
     {
         // The "user_groups" is a relative path the a base URL, which we'll provide later
         [Post("/user_groups")]
-        Task<UserGroup> RegisterUserGroup([Body] UserGroup UserGroup, [Query] string usernames = null);
+        Task<UserGroup> RegisterUserGroup([Body] UserGroup userGroup, [Query] string usernames = null);
 
         // The "user_groups" is a relative path the a base URL, which we'll provide later
         [Post("/user_groups/{userGroupId}/members/{usernames}")]
@@ -18,5 +18,8 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
         // The "user_groups" is a relative path the a base URL, which we'll provide later
         [Get("/user_groups")]
         Task<IList<UserGroup>> GetAllUserGroups([QueryMap] IDictionary<string, string> filters);
+
+        [Put("/user_groups/{userGroupId}")]
+        Task<UserGroup> UpdateUserGroup([Path] string userGroupId, [Body] UserGroup userGroup);
     }
 }

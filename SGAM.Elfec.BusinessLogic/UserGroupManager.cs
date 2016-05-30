@@ -3,6 +3,7 @@ using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,23 @@ namespace SGAM.Elfec.BusinessLogic
                     .Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
                     .AddMembers(userGroupId,
                     members.ToString((u) => { return u.Username; })));
+        }
+
+        /// <summary>
+        /// Actualiza el estado de un grupo de usuario, ya sea de baja o de alta
+        /// </summary>
+        /// <param name="userGroupId">id grupo de usuario</param>
+        /// <param name="newStatus">nuevo estado para el grupo</param>
+        /// <returns></returns>
+        public static IObservable<UserGroup>
+            UpdateUserGroupStatus(string userGroupId, UserGroupStatus newStatus)
+        {
+            User user = SessionManager.Instance.CurrentLoggedUser;
+            return RestEndpointFactory.Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+                .UpdateUserGroup(userGroupId, new UserGroup { Status = newStatus })
+                .ToObservable()
+                    .SubscribeOn(TaskPoolScheduler.Default)
+                    .InterpretingErrors();
         }
     }
 }

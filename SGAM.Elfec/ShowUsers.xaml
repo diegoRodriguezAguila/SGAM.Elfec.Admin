@@ -30,6 +30,7 @@
             <ListBox Grid.Row="1" Name="ListBoxGroups" Style="{StaticResource BlueListBox}" 
                      ItemsSource="{Binding UserGroups}" 
                      SelectedValue="{Binding SelectedUserGroup}"
+                     ItemContainerStyle="{StaticResource UserGroupItemOptionStyle}"
                      BorderThickness="0,0,1,0"
                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.CanContentScroll="False"

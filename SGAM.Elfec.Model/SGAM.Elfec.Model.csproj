@@ -103,6 +103,7 @@
     <Compile Include="Enums\DeviceStatus.cs" />
     <Compile Include="Enums\PolicyType.cs" />
     <Compile Include="Enums\RuleAction.cs" />
+    <Compile Include="Enums\UserGroupStatus.cs" />
     <Compile Include="Enums\UserStatus.cs" />
     <Compile Include="Exceptions\ApiMultipartException.cs" />
     <Compile Include="Exceptions\PermissionException.cs" />

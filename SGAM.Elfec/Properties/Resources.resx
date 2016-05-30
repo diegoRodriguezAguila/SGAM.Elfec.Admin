@@ -604,4 +604,24 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="LblMemberCount" xml:space="preserve">
     <value>{0} miembros</value>
   </data>
+  <data name="LblDismiss" xml:space="preserve">
+    <value>Dar de baja</value>
+  </data>
+  <data name="LblDismissUserGroup" xml:space="preserve">
+    <value>Deshabilitar</value>
+  </data>
+  <data name="LblEnableUserGroup" xml:space="preserve">
+    <value>Habilitar</value>
+  </data>
+  <data name="UserGroupStatusSealed" xml:space="preserve">
+    <value>Cerrado</value>
+  </data>
+  <data name="MsgErrorInUserGroupStatusUpdate" xml:space="preserve">
+    <value>No se pudo actualizar correctamente el estado del grupo de usuarios:
+
+{0}</value>
+  </data>
+  <data name="MsgUpdatingUserGroupStatus" xml:space="preserve">
+    <value>Actualizando estado del grupo de usuarios…</value>
+  </data>
 </root>

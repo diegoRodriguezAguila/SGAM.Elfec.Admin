@@ -78,7 +78,7 @@ namespace SGAM.Elfec
                .DefaultCursor();
             new InformationDialog
             {
-                Title = Properties.Resources.TitleErrorDeletingRule,
+                Title = Properties.Resources.TitleErrorInUserGroupStatusUpdate,
                 Message = string.Format(Properties.Resources.MsgErrorInUserGroupStatusUpdate,
                 error.Message),
                 IconType = IconType.Warning

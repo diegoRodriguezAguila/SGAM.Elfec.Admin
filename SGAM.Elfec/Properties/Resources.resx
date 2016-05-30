@@ -624,4 +624,7 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="MsgUpdatingUserGroupStatus" xml:space="preserve">
     <value>Actualizando estado del grupo de usuarios…</value>
   </data>
+  <data name="TitleErrorInUserGroupStatusUpdate" xml:space="preserve">
+    <value>Error de actualización</value>
+  </data>
 </root>

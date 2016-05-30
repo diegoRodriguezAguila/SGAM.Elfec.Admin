@@ -1363,6 +1363,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error de actualización.
+        /// </summary>
+        public static string TitleErrorInUserGroupStatusUpdate {
+            get {
+                return ResourceManager.GetString("TitleErrorInUserGroupStatusUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exito!.
         /// </summary>
         public static string TitleSuccess {

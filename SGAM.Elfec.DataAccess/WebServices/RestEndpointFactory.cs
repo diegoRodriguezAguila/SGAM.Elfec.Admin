@@ -3,6 +3,7 @@ using RestEase;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.DataAccess.WebServices.Converters;
 using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
+using SGAM.Elfec.Model;
 
 namespace SGAM.Elfec.DataAccess.WebServices
 {
@@ -39,13 +40,13 @@ namespace SGAM.Elfec.DataAccess.WebServices
         /// <param name="username">usuario para autenticación</param>
         /// <param name="authToken">token para autenticación</param>
         /// <returns>Punto de acceso al webservice rest</returns>
-        public static T Create<T>(string username, string authToken) where T : ISgamAuthenticatedEndpoint
+        public static T Create<T>(User authUser) where T : ISgamAuthenticatedEndpoint
         {
             T endpoint = Create<T>();
-            if (username != null && authToken != null)
+            if (authUser != null && authUser.IsAuthenticable)
             {
-                endpoint.ApiToken = authToken;
-                endpoint.ApiUsername = username;
+                endpoint.ApiToken = authUser.AuthenticationToken;
+                endpoint.ApiUsername = authUser.Username;
             }
             return endpoint;
         }

@@ -2,9 +2,14 @@
 using SGAM.Elfec.Commands;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Enums;
+using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -35,7 +40,7 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
-        public ICommand AuthorizeDevice
+        public ICommand AuthorizeDeviceCommand
         {
             get
             {
@@ -45,7 +50,10 @@ namespace SGAM.Elfec.Presenters
                 });
             }
         }
+        public ICommand EnableDeviceCommand { get { return new ListItemCommand<Device>(EnableDevice); } }
 
+
+        public ICommand DisableDeviceCommand { get { return new ListItemCommand<Device>(DisableDevice); } }
         #endregion
 
         #region Public Methods
@@ -61,7 +69,7 @@ namespace SGAM.Elfec.Presenters
                 var callback = new ResultCallback<IList<Device>>();
                 callback.Success += (s, devices) =>
                 {
-                    Devices = new ObservableCollection<Device>(devices);
+                    Devices = devices.ToObservableCollectionAsync();
                     View.OnDataLoaded();
                 };
                 callback.Failure += (s, errors) =>
@@ -73,5 +81,43 @@ namespace SGAM.Elfec.Presenters
         }
 
         #endregion Public Methods
+
+        #region Private Methods
+
+        private void EnableDevice(Device device)
+        {
+            View.ProcessingStatusChange();
+            DevicesManager.UpdateDeviceStatus(device.Imei, DeviceStatus.Authorized)
+                .ObserveOnDispatcher()
+                .Subscribe(
+                (updatedDevice) =>
+                {
+                    RefreshUpatedStatus(device, updatedDevice);
+                    View.StatusChanged();
+                }, View.ErrorChangingStatus);
+        }
+
+        private void DisableDevice(Device device)
+        {
+            View.ProcessingStatusChange();
+            DevicesManager.UpdateDeviceStatus(device.Imei, DeviceStatus.Unauthorized)
+                .ObserveOnDispatcher()
+                .Subscribe(
+                (updatedDevice) =>
+                {
+                    RefreshUpatedStatus(device, updatedDevice);
+                    View.StatusChanged();
+                }, View.ErrorChangingStatus);
+        }
+
+        private void RefreshUpatedStatus(Device device, Device updatedDevice)
+        {
+            //TODO look for Move instead of all this stuff, with binary search
+            Devices.Remove(device);
+            Devices.Add(updatedDevice);
+            Devices = Devices.OrderByDescending(u => u.Status)
+                .ThenBy(u => u.Name).ToObservableCollectionAsync();
+        }
+        #endregion
     }
 }

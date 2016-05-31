@@ -23,12 +23,11 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback"></param>
         public static void GetAllPolicies(ResultCallback<IList<Policy>> callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,type";
             parameters["include"] = "rules.entities";
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IPoliciesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .GetAllPolicies(parameters));
         }
 
@@ -40,8 +39,8 @@ namespace SGAM.Elfec.BusinessLogic
         /// <returns></returns>
         public static IObservable<Rule> RegisterRule(PolicyType policyId, Rule rule)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
-            return RestEndpointFactory.Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
+            return RestEndpointFactory
+                .Create<IPoliciesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .RegisterRule(policyId.ToString().FromCamelToSnakeCase(), rule,
                     rule.Entities.ToString(e => e.Id)).ToObservable()
                     .SubscribeOn(NewThreadScheduler.Default)
@@ -58,8 +57,8 @@ namespace SGAM.Elfec.BusinessLogic
         {
             if (rules.IsEmpty())
                 return Observable.Defer(() => Observable.Return(Unit.Default));
-            User user = SessionManager.Instance.CurrentLoggedUser;
-            return RestEndpointFactory.Create<IPoliciesEndpoint>(user.Username, user.AuthenticationToken)
+            return RestEndpointFactory.Create<IPoliciesEndpoint>(SessionManager
+                .Instance.CurrentLoggedUser)
                     .DeleteRules(policyId.ToString().FromCamelToSnakeCase(),
                     rules.ToString(r => r.Id))
                     .ToObservable()

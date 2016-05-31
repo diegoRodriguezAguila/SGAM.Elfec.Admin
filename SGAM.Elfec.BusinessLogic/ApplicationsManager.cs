@@ -22,11 +22,11 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback"></param>
         public static void GetAllApplications(ResultCallback<IList<Application>> callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,name";
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IApplicationsEndpoint>(user.Username, user.AuthenticationToken).GetAllApplications(parameters));
+                    .Create<IApplicationsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
+                    .GetAllApplications(parameters));
         }
 
 

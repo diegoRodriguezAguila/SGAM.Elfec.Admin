@@ -29,6 +29,13 @@ namespace SGAM.Elfec.Model
             this.AuthenticationToken = authenticationToken;
         }
 
+        /// <summary>
+        /// Verifica si el usuario actual se puede autenticar
+        /// para ello tiene que tener asignados los valores del token de autenticación
+        /// y el nombre de usuario
+        /// </summary>
+        public bool IsAuthenticable { get { return Username != null && AuthenticationToken != null; } }
+
         #region Entity Methods
         public string Id { get { return Username; } }
         public string Name { get { return Username; } }

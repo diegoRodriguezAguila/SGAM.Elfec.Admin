@@ -3,10 +3,12 @@ using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
+using SGAM.Elfec.Services.Dialogs;
 using SGAM.Elfec.UserControls;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SGAM.Elfec
 {
@@ -68,6 +70,34 @@ namespace SGAM.Elfec
         {
             var authDeviceView = new AuthorizeDevice(ObjectCloner.Clone(device));
             MainWindowService.Instance.MainWindow.CurrentView(authDeviceView);
+        }
+
+        public void ProcessingStatusChange()
+        {
+            MainWindowService.Instance.MainWindow.
+                StatusBar(Properties.Resources.MsgUpdatingDeviceStatus)
+                .SetCursor(Cursors.AppStarting);
+        }
+
+        public void ErrorChangingStatus(Exception error)
+        {
+            MainWindowService.Instance.MainWindow
+               .StatusBarDefault()
+               .DefaultCursor();
+            new InformationDialog
+            {
+                Title = Properties.Resources.TitleErrorInDeviceStatusUpdate,
+                Message = string.Format(Properties.Resources.MsgErrorInDeviceStatusUpdate,
+                error.Message),
+                IconType = IconType.Warning
+            }.ShowDialog();
+        }
+
+        public void StatusChanged()
+        {
+            MainWindowService.Instance.MainWindow
+                .StatusBarDefault()
+                .DefaultCursor();
         }
 
         #endregion

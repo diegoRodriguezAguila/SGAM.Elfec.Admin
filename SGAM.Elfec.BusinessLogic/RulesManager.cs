@@ -1,7 +1,6 @@
 ﻿using SGAM.Elfec.DataAccess.WebServices;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Helpers.Utils;
-using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Interfaces;
 using SGAM.Elfec.Security;
 using System;
@@ -27,10 +26,9 @@ namespace SGAM.Elfec.BusinessLogic
         public static IObservable<Unit> AddEntities(string ruleId, IList<IEntity> entities)
         {
             if (entities.IsEmpty())
-                return Observable.Defer(()=>Observable.Return(Unit.Default));
-            User user = SessionManager.Instance.CurrentLoggedUser;
+                return Observable.Defer(() => Observable.Return(Unit.Default));
             return RestEndpointFactory
-                    .Create<IRulesEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IRulesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .AddEntities(ruleId, entities.IsEmpty() ? "0" :
                     entities.ToString(e => e.Id)).ToObservable()
                     .InterpretingErrors();

@@ -4,7 +4,11 @@ using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
+using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 
 namespace SGAM.Elfec.BusinessLogic
 {
@@ -16,20 +20,38 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback"></param>
         public static void GetAllDevices(ResultCallback<IList<Device>> callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,name";
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IDevicesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .GetAllDevices(parameters));
         }
-
+        /// <summary>
+        /// Autoriza remotamente un dispositivo
+        /// </summary>
+        /// <param name="deviceToAuth"></param>
+        /// <param name="callback"></param>
         public static void AuthorizeDevice(Device deviceToAuth, ResultCallback<Device> callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IDevicesEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IDevicesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth)));
+        }
+
+        /// <summary>
+        /// Actualiza el estado de un dispositivo
+        /// </summary>
+        /// <param name="deviceId">id dispositivo (imei/android id)</param>
+        /// <param name="newStatus">estado nuevo</param>
+        /// <returns>observable del restulado de la operación</returns>
+        public static IObservable<Device> UpdateDeviceStatus(string deviceId, DeviceStatus newStatus)
+        {
+            return RestEndpointFactory.Create<IDevicesEndpoint>(SessionManager
+                .Instance.CurrentLoggedUser)
+                .UpdateDevice(deviceId, new Device { Status = newStatus })
+                .ToObservable()
+                .SubscribeOn(TaskPoolScheduler.Default)
+                .InterpretingErrors();
         }
 
         /// <summary>

@@ -988,6 +988,24 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deshabilitar.
+        /// </summary>
+        public static string MenuItemDisableDevice {
+            get {
+                return ResourceManager.GetString("MenuItemDisableDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Habilitar.
+        /// </summary>
+        public static string MenuItemEnableDevice {
+            get {
+                return ResourceManager.GetString("MenuItemEnableDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se pudo eliminar la(s) regla(s) seleccionada(s):
         ///
         ///{0}.
@@ -1051,6 +1069,17 @@ namespace SGAM.Elfec.Properties {
         public static string MsgEmptyUserList {
             get {
                 return ResourceManager.GetString("MsgEmptyUserList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No se pudo actualizar correctamente el estado del dispositivo seleccionado:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string MsgErrorInDeviceStatusUpdate {
+            get {
+                return ResourceManager.GetString("MsgErrorInDeviceStatusUpdate", resourceCulture);
             }
         }
         
@@ -1170,6 +1199,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgRuleRegisteredSuccessfuly {
             get {
                 return ResourceManager.GetString("MsgRuleRegisteredSuccessfuly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actualizando estado del dispositivo….
+        /// </summary>
+        public static string MsgUpdatingDeviceStatus {
+            get {
+                return ResourceManager.GetString("MsgUpdatingDeviceStatus", resourceCulture);
             }
         }
         
@@ -1359,6 +1397,15 @@ namespace SGAM.Elfec.Properties {
         public static string TitleErrorDeletingRule {
             get {
                 return ResourceManager.GetString("TitleErrorDeletingRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al actualizar.
+        /// </summary>
+        public static string TitleErrorInDeviceStatusUpdate {
+            get {
+                return ResourceManager.GetString("TitleErrorInDeviceStatusUpdate", resourceCulture);
             }
         }
         

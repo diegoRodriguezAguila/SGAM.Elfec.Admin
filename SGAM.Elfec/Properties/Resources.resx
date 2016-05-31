@@ -627,4 +627,21 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="TitleErrorInUserGroupStatusUpdate" xml:space="preserve">
     <value>Error de actualización</value>
   </data>
+  <data name="MenuItemDisableDevice" xml:space="preserve">
+    <value>Deshabilitar</value>
+  </data>
+  <data name="MenuItemEnableDevice" xml:space="preserve">
+    <value>Habilitar</value>
+  </data>
+  <data name="MsgErrorInDeviceStatusUpdate" xml:space="preserve">
+    <value>No se pudo actualizar correctamente el estado del dispositivo seleccionado:
+
+{0}</value>
+  </data>
+  <data name="MsgUpdatingDeviceStatus" xml:space="preserve">
+    <value>Actualizando estado del dispositivo…</value>
+  </data>
+  <data name="TitleErrorInDeviceStatusUpdate" xml:space="preserve">
+    <value>Error al actualizar</value>
+  </data>
 </root>

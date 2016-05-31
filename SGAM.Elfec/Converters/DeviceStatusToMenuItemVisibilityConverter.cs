@@ -11,10 +11,17 @@ namespace SGAM.Elfec.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DeviceStatus status = (DeviceStatus)value;
-            String menuItem = parameter.ToString();
-            if (status == DeviceStatus.AuthPending)
-                return Visibility.Visible;
-            return Visibility.Collapsed;
+            string menuItem = parameter.ToString();
+            if (status != DeviceStatus.AuthPending && 
+                menuItem == Properties.Resources.MenuItemAuthorizeDevice)
+                return Visibility.Collapsed;
+            if (status == DeviceStatus.Authorized &&
+                menuItem == Properties.Resources.MenuItemEnableDevice)
+                return Visibility.Collapsed;
+            if (status == DeviceStatus.Unauthorized &&
+                menuItem == Properties.Resources.MenuItemDisableDevice)
+                return Visibility.Collapsed;
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

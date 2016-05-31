@@ -25,10 +25,10 @@ namespace SGAM.Elfec.BusinessLogic
             parameters["sort"] = "username,name";
             parameters["status"] = "1";
             var getUsersObs = RestEndpointFactory
-                    .Create<IUsersEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IUsersEndpoint>(user)
                     .GetAllUsers(parameters).ToObservable();
             var getUserGroupsObs = RestEndpointFactory
-                    .Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IUserGroupsEndpoint>(user)
                     .GetAllUserGroups(parameters).ToObservable();
             return Observable.Zip(getUsersObs, getUserGroupsObs, (users, userGroups) =>
              {

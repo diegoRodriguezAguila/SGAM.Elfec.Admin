@@ -14,10 +14,11 @@
         <MenuItem Command="{Binding RelativeSource=
                 {RelativeSource FindAncestor, 
                 AncestorType={x:Type ListView}}, 
-                Path=DataContext.AuthorizeDevice}"
+                Path=DataContext.AuthorizeDeviceCommand}"
                   CommandParameter="{Binding}" Visibility="{Binding Path=Status, 
             Converter={StaticResource DeviceStatusMenuItemConverter},
-            ConverterParameter='AuthDevice'}" Header="{x:Static res:Resources.MenuItemAuthorizeDevice}" >
+            ConverterParameter={x:Static res:Resources.MenuItemAuthorizeDevice}}" 
+                  Header="{x:Static res:Resources.MenuItemAuthorizeDevice}" >
             <MenuItem.Icon>
                 <Image Width="16" Height="16" Source="/Resources/Device/Authorize16.png" />
             </MenuItem.Icon>
@@ -25,12 +26,25 @@
         <MenuItem Command="{Binding RelativeSource=
                 {RelativeSource FindAncestor, 
                 AncestorType={x:Type ListView}}, 
-                Path=DataContext.AuthorizeDevice}"
+                Path=DataContext.EnableDeviceCommand}"
                   CommandParameter="{Binding}" Visibility="{Binding Path=Status, 
             Converter={StaticResource DeviceStatusMenuItemConverter},
-            ConverterParameter='AuthDevice'}" Header="{x:Static res:Resources.MenuItemAuthorizeDevice}" >
+            ConverterParameter={x:Static res:Resources.MenuItemEnableDevice}}" 
+                  Header="{x:Static res:Resources.MenuItemEnableDevice}" >
             <MenuItem.Icon>
-                <Image Width="16" Height="16" Source="/Resources/Tools/Delete16.png" />
+                <Image Width="16" Height="16" Source="/Resources/Device/Enable16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="{Binding RelativeSource=
+                {RelativeSource FindAncestor, 
+                AncestorType={x:Type ListView}}, 
+                Path=DataContext.DisableDeviceCommand}"
+                  CommandParameter="{Binding}" Visibility="{Binding Path=Status, 
+            Converter={StaticResource DeviceStatusMenuItemConverter},
+            ConverterParameter={x:Static res:Resources.MenuItemDisableDevice}}" 
+                  Header="{x:Static res:Resources.MenuItemDisableDevice}" >
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Tools/Dismiss16.png" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>

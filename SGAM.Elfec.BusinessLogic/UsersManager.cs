@@ -17,9 +17,8 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback">callback</param>
         public static void RegisterUser(User userToRegister, ResultCallback<User> callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IUsersEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IUsersEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .RegisterUser(userToRegister));
         }
 
@@ -31,13 +30,12 @@ namespace SGAM.Elfec.BusinessLogic
         /// los usuarios registrados en la aplicación</param>
         public static void GetAllUsers(ResultCallback<IList<User>> callback, UserStatus? userStatus = null)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,username";
             if (userStatus != null)
                 parameters["status"] = ((int)userStatus).ToString();
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IUsersEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IUsersEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .GetAllUsers(parameters));
         }
     }

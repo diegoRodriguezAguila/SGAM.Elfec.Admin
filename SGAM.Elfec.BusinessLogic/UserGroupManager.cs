@@ -23,12 +23,11 @@ namespace SGAM.Elfec.BusinessLogic
         /// <returns>Observable del resultado de la lista de grupos de usuario</returns>
         public static IObservable<IList<UserGroup>> GetAllUserGroups(bool includeMembers = false)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,name";
             if (includeMembers)
                 parameters["include"] = "members";
-            return RestEndpointFactory.Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+            return RestEndpointFactory.Create<IUserGroupsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                 .GetAllUserGroups(parameters).ToObservable()
                     .SubscribeOn(TaskPoolScheduler.Default)
                     .InterpretingErrors();
@@ -41,9 +40,8 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback">callback</param>
         public static void RegisterUserGroup(UserGroup userGroup, ResultCallback<UserGroup> callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IUserGroupsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .RegisterUserGroup(userGroup,
                     userGroup.Members.ToString((u) => { return u.Username; })));
         }
@@ -56,9 +54,8 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="callback"></param>
         public static void AddMembers(string userGroupId, IList<User> members, VoidCallback callback)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+                    .Create<IUserGroupsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .AddMembers(userGroupId,
                     members.ToString((u) => { return u.Username; })));
         }
@@ -72,8 +69,8 @@ namespace SGAM.Elfec.BusinessLogic
         public static IObservable<UserGroup>
             UpdateUserGroupStatus(string userGroupId, UserGroupStatus newStatus)
         {
-            User user = SessionManager.Instance.CurrentLoggedUser;
-            return RestEndpointFactory.Create<IUserGroupsEndpoint>(user.Username, user.AuthenticationToken)
+            return RestEndpointFactory.Create<IUserGroupsEndpoint>(SessionManager
+                .Instance.CurrentLoggedUser)
                 .UpdateUserGroup(userGroupId, new UserGroup { Status = newStatus })
                 .ToObservable()
                     .SubscribeOn(TaskPoolScheduler.Default)

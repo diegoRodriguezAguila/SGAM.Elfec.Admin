@@ -17,13 +17,15 @@
         <converters:UriToCachedImageConverter x:Key="UriCachedConverter" />
         <converters:NullToIsEnabledConverter x:Key="NullToIsEnabledConverter" />
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" 
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Top"
                    HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
-        <Grid Name="AuthPanel" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left" >
+        <Grid Name="AuthPanel" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="260" />
+                <ColumnDefinition Width="*" MinWidth="260" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

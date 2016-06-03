@@ -21,7 +21,7 @@ namespace SGAM.Elfec
         public AddNewApplication()
         {
             InitializeComponent();
-            _indeterminateLoading = new LoadingControl();
+            _indeterminateLoading = new LoadingControl { Orientation = Orientation.Vertical };
             _errorMessage = new ErrorControl();
             _progressLoading = new ProgressLoading();
             DataContext = new AddNewApplicationPresenter(this);

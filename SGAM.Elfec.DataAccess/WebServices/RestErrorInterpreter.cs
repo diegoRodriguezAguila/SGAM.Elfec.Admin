@@ -24,7 +24,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
             if (exception is ApiException)
                 return InterpretError(exception as ApiException);
             if (exception is ApiMultipartException)
-                return InterpretError(exception as ApiException);
+                return InterpretError(exception as ApiMultipartException);
             if (exception is HttpRequestException)
                 return new ServerConnectException();
             return exception;

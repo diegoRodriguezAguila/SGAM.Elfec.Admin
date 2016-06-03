@@ -14,11 +14,6 @@ namespace SGAM.Elfec.BusinessLogic
 {
     public static class ApplicationsManager
     {
-        public static ICollection<int> RegisterApplication(Application newApplication)
-        {
-            List<int> dasd = new List<int>();
-            return null;
-        }
 
         /// <summary>
         /// Obtiene todas las aplicaciones, ya sea por medio de la caché o de webservices

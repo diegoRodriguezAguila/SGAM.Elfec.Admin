@@ -100,6 +100,12 @@ namespace SGAM.Elfec
                 .DefaultCursor();
         }
 
+        public void ShowDeviceDetails(Device device)
+        {
+            var showDeviceDetails = new DeviceDetails(device);
+            MainWindowService.Instance.MainWindow.CurrentView(showDeviceDetails);
+        }
+
         #endregion
 
 

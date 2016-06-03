@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="SGAM.Elfec.DeviceDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SGAM.Elfec"
+             xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
+             xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
+             Background="White"
+             xmlns:ctrl="clr-namespace:SGAM.Elfec.UserControls"
+             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
+             Tag="{x:Static Res:Resources.LblAuthorizeDevice}"
+             d:DesignHeight="7100" d:DesignWidth="700">
+    <UserControl.Resources>
+        <converters:DeviceStatusToStringConverter x:Key="DeviceStatusToStringConverter" />
+        <converters:RelativeToAbsoluteUrlConverter x:Key="RelativeToAbsoluteUrlConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True"
+                  HorizontalAlignment="Stretch">
+        <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Top" >
+                <Image Height="64"  VerticalAlignment="Center" Margin="0,0,10,0"   
+                           Source="{Binding Device.IconUrl, Converter={StaticResource RelativeToAbsoluteUrlConverter}}" SnapsToDevicePixels="True" />
+                <sgam:SelectableTextBlock Text="{Binding Device.Name, FallbackValue='Sin nombre'}" FontSize="24"
+                                              VerticalContentAlignment="Center" />
+            </StackPanel>
+            <ctrl:GroupTitleControl Text="{x:Static Res:Resources.LblDeviceGeneralInfo}"  Margin="0,10,0,0"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <Grid Margin="8,0,8,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceIMEI}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.Imei}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceSerial}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.Serial}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceStatus}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.Status, Converter={StaticResource DeviceStatusToStringConverter}}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceBrand}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.Brand}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceModel}" />
+                    <sgam:SelectableTextBlock  Text="{Binding Device.Model}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceGmailAccount}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.GmailAccount, TargetNullValue='No gmail'}" />
+                </StackPanel>
+            </Grid>
+            <ctrl:GroupTitleControl Text="{x:Static Res:Resources.LblDeviceSystemInfo}" Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <Grid Margin="8,0,8,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDevicePlatform}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.Platform}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceOSVersion}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.OsVersion}" />
+                </StackPanel>
+            </Grid>
+            <ctrl:GroupTitleControl Text="{x:Static Res:Resources.LblDeviceNetworkInfo}" Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <Grid Margin="8,0,8,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceWifiMac}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.WifiMacAddress}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceBluetoothMac}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.BluetoothMacAddress}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceBasebandVersion}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.BasebandVersion}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceIdCiscoASA}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.IdCiscoAsa, TargetNullValue='No asignada'}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDevicePhoneNumber}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.PhoneNumber, TargetNullValue=Sin numero}" />
+                </StackPanel>
+            </Grid>
+            <ctrl:GroupTitleControl Text="{x:Static Res:Resources.LblDeviceHardwareInfo}" Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <Grid Margin="8,0,8,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceScreenSize}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.ScreenSize, StringFormat='{}{0} Pulg.'}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceScreenRes}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.ScreenResolution, StringFormat='{}{0} Px'}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical" >
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceCamera}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.Camera, StringFormat='{}{0} MP'}" />
+                    <TextBlock FontSize="11" Margin="0,10,0,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                               Text="{x:Static Res:Resources.LblDeviceSDMemoryCard}" />
+                    <sgam:SelectableTextBlock Text="{Binding Device.SdMemoryCard, StringFormat='{}{0} GB', TargetNullValue='No tiene'}" />
+                </StackPanel>
+            </Grid>
+            <ctrl:GroupTitleControl Text="{x:Static Res:Resources.LblDeviceOtherInfo}" Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+            <TextBlock FontSize="11" Margin="8,10,8,-3" Foreground="{StaticResource TextFormGrayBrush}" 
+                           Text="{x:Static Res:Resources.LblDeviceComments}" />
+            <sgam:SelectableTextBlock Margin="8,0,8,0" Text="{Binding Device.Comments, TargetNullValue='Sin comentarios'}" FontSize="20" 
+                                      TextWrapping="Wrap" HorizontalAlignment="Left" 
+                                      HorizontalContentAlignment="Left" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

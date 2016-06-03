@@ -5,6 +5,7 @@
                     xmlns:local="clr-namespace:SGAM.Elfec">
 
     <converters:AppVersionStatusToVisibilityConverter x:Key="StatusToVisibility" />
+    <converters:ApiStatusToOpacityConverter x:Key="StatusToOpacity" />
     <!--Application Context Menu-->
 
     <ContextMenu x:Key="ApplicationItemContextMenu" >
@@ -78,6 +79,7 @@
     <!-- Application Version ItemTemplate-->
     <DataTemplate x:Key="AppVersionItemTemplate" >
         <TextBlock Padding="7,5" FontFamily="Segoe UI Semilight" FontSize="15"
+                   Opacity="{Binding Status, Converter={StaticResource StatusToOpacity}}"
                   Text="{Binding FullVersion}" />
 
     </DataTemplate>

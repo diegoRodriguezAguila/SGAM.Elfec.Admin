@@ -179,6 +179,7 @@
       <DependentUpon>AddRule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\TreeViewHelper.cs" />
+    <Compile Include="Converters\ApiStatusToOpacityConverter.cs" />
     <Compile Include="Converters\AppVersionStatusToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
@@ -194,6 +195,9 @@
     <Compile Include="Converters\SizeConverter.cs" />
     <Compile Include="Converters\UserGroupStatusToMenuItemVisibility.cs" />
     <Compile Include="Converters\UserGroupStatusToStringConverter.cs" />
+    <Compile Include="DeviceDetails.xaml.cs">
+      <DependentUpon>DeviceDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Services\Dialogs\ConfirmationDialogBuilder.cs" />
     <Compile Include="Services\Dialogs\ConfirmationDialogContent.xaml.cs">
@@ -203,6 +207,9 @@
     <Compile Include="Services\Dialogs\InformationDialog.cs" />
     <Compile Include="Services\Dialogs\InformationDialogContent.xaml.cs">
       <DependentUpon>InformationDialogContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GroupTitleControl.xaml.cs">
+      <DependentUpon>GroupTitleControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AttachedHelper.cs" />
     <Compile Include="Utils\HighlighterManager.cs" />
@@ -290,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddRule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeviceDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -382,6 +393,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ErrorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GroupTitleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

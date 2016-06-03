@@ -40,6 +40,8 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        #region Commands
+
         public ICommand AuthorizeDeviceCommand
         {
             get
@@ -50,10 +52,24 @@ namespace SGAM.Elfec.Presenters
                 });
             }
         }
+
+        public ICommand ShowDeviceDetailsCommand
+        {
+            get
+            {
+                return new ListItemCommand<Device>((device) =>
+                {
+                    View.ShowDeviceDetails(device);
+                });
+            }
+        }
+
         public ICommand EnableDeviceCommand { get { return new ListItemCommand<Device>(EnableDevice); } }
 
 
         public ICommand DisableDeviceCommand { get { return new ListItemCommand<Device>(DisableDevice); } }
+        #endregion
+
         #endregion
 
         #region Public Methods

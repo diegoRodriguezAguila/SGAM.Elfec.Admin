@@ -172,7 +172,7 @@
     <value>Tamaño pantalla:</value>
   </data>
   <data name="LblDeviceSDMemoryCard" xml:space="preserve">
-    <value>SD Memoria:</value>
+    <value>Memoria SD:</value>
   </data>
   <data name="LblDeviceSerial" xml:space="preserve">
     <value>N° de serie:</value>
@@ -660,5 +660,20 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   </data>
   <data name="TitleErrorInAppVersionStatusUpdate" xml:space="preserve">
     <value>Error de actualización</value>
+  </data>
+  <data name="LblDeviceGeneralInfo" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="LblDeviceHardwareInfo" xml:space="preserve">
+    <value>Hardware</value>
+  </data>
+  <data name="LblDeviceNetworkInfo" xml:space="preserve">
+    <value>Comunicación y red</value>
+  </data>
+  <data name="LblDeviceOtherInfo" xml:space="preserve">
+    <value>Otra información</value>
+  </data>
+  <data name="LblDeviceSystemInfo" xml:space="preserve">
+    <value>Sistema</value>
   </data>
 </root>

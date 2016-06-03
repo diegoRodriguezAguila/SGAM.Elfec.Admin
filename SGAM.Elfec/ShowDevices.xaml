@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"  xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
              Tag="{x:Static Res:Resources.TitleDevices}"
              Background="White"
              d:DesignHeight="300" d:DesignWidth="500">
@@ -13,6 +13,7 @@
         <ListView Name="ListViewDevices" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Devices}"
                   ItemContainerStyle="{StaticResource DeviceItemOptionStyle}" 
                   ItemTemplate="{StaticResource DeviceItemTemplate}"
+                  behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowDeviceDetailsCommand}" 
                   Tag="{x:Static Res:Resources.LblNotAnyDevices}" />
     </Controls:TransitioningContentControl>
 </UserControl>

@@ -448,11 +448,29 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string LblDeviceGeneralInfo {
+            get {
+                return ResourceManager.GetString("LblDeviceGeneralInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cuenta gmail:.
         /// </summary>
         public static string LblDeviceGmailAccount {
             get {
                 return ResourceManager.GetString("LblDeviceGmailAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardware.
+        /// </summary>
+        public static string LblDeviceHardwareInfo {
+            get {
+                return ResourceManager.GetString("LblDeviceHardwareInfo", resourceCulture);
             }
         }
         
@@ -493,11 +511,29 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comunicación y red.
+        /// </summary>
+        public static string LblDeviceNetworkInfo {
+            get {
+                return ResourceManager.GetString("LblDeviceNetworkInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Versión:.
         /// </summary>
         public static string LblDeviceOSVersion {
             get {
                 return ResourceManager.GetString("LblDeviceOSVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Otra información.
+        /// </summary>
+        public static string LblDeviceOtherInfo {
+            get {
+                return ResourceManager.GetString("LblDeviceOtherInfo", resourceCulture);
             }
         }
         
@@ -538,7 +574,7 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SD Memoria:.
+        ///   Looks up a localized string similar to Memoria SD:.
         /// </summary>
         public static string LblDeviceSDMemoryCard {
             get {
@@ -561,6 +597,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblDeviceStatus {
             get {
                 return ResourceManager.GetString("LblDeviceStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sistema.
+        /// </summary>
+        public static string LblDeviceSystemInfo {
+            get {
+                return ResourceManager.GetString("LblDeviceSystemInfo", resourceCulture);
             }
         }
         

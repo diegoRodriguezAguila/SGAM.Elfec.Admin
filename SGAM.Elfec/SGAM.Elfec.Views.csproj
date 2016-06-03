@@ -179,6 +179,7 @@
       <DependentUpon>AddRule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\TreeViewHelper.cs" />
+    <Compile Include="Converters\AppVersionStatusToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\IEntityToImageConverter.cs" />
@@ -243,8 +244,8 @@
     <Compile Include="Services\DialogBuilder.cs" />
     <Compile Include="Services\MainWindowService.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ShowApplicationDetails.xaml.cs">
-      <DependentUpon>ShowApplicationDetails.xaml</DependentUpon>
+    <Compile Include="ApplicationDetails.xaml.cs">
+      <DependentUpon>ApplicationDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowApplications.xaml.cs">
       <DependentUpon>ShowApplications.xaml</DependentUpon>
@@ -336,7 +337,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShowApplicationDetails.xaml">
+    <Page Include="ApplicationDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -621,6 +622,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Device\Enable16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Application\Enable16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

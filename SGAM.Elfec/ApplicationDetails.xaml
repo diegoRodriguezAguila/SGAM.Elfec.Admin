@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SGAM.Elfec.ShowApplicationDetails"
+﻿<UserControl x:Class="SGAM.Elfec.ApplicationDetails"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -34,7 +34,8 @@
             </Border>
             <ListBox Grid.Row="1" Name="ListBoxVersions" Style="{StaticResource BlueListBox}" 
                              ItemsSource="{Binding Application.AppVersions}" 
-                             SelectedValue="{Binding SelectedVersion}"
+                             SelectedItem="{Binding SelectedVersion, Mode=TwoWay}"
+                             ItemContainerStyle="{StaticResource AppVersionItemOptionStyle}"
                              BorderThickness="0,0,1,0"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
                              ScrollViewer.CanContentScroll="False"

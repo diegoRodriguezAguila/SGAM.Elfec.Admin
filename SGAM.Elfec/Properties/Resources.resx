@@ -644,4 +644,21 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="TitleErrorInDeviceStatusUpdate" xml:space="preserve">
     <value>Error al actualizar</value>
   </data>
+  <data name="LblDisableAppVersion" xml:space="preserve">
+    <value>Dar versión de baja</value>
+  </data>
+  <data name="LblEnableAppVersion" xml:space="preserve">
+    <value>Dar versión de alta</value>
+  </data>
+  <data name="MsgErrorInAppVersionStatusUpdate" xml:space="preserve">
+    <value>No se pudo actualizar correctamente el estado de la versión de la aplicación seleccionada:
+
+{0}</value>
+  </data>
+  <data name="MsgUpdatingAppVersionStatus" xml:space="preserve">
+    <value>Actualizando estado de la versión de la aplicación…</value>
+  </data>
+  <data name="TitleErrorInAppVersionStatusUpdate" xml:space="preserve">
+    <value>Error de actualización</value>
+  </data>
 </root>

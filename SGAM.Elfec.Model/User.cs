@@ -11,7 +11,7 @@ namespace SGAM.Elfec.Model
         public string AuthenticationToken { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName { get { return FirstName + " " + LastName; } }
+        public string FullName { get { return string.Format("{0} {1}", FirstName, LastName); } }
         public string Email { get; set; }
         public string Position { get; set; }
         public string CompanyArea { get; set; }

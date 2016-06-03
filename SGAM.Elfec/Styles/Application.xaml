@@ -3,6 +3,8 @@
                     xmlns:res="clr-namespace:SGAM.Elfec.Properties"
                     xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
                     xmlns:local="clr-namespace:SGAM.Elfec">
+
+    <converters:AppVersionStatusToVisibilityConverter x:Key="StatusToVisibility" />
     <!--Application Context Menu-->
 
     <ContextMenu x:Key="ApplicationItemContextMenu" >
@@ -20,10 +22,42 @@
         </MenuItem>
     </ContextMenu>
 
+    <!--App Version Context Menu-->
+
+    <ContextMenu x:Key="AppVersionContextMenu" >
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListBox}}, 
+                  Path=DataContext.DisableAppVersionCommand}"
+                  CommandParameter="{Binding}" Header="{x:Static res:Resources.LblDisableAppVersion}"
+                  Visibility="{Binding Status, Converter={StaticResource StatusToVisibility}, 
+                  ConverterParameter={x:Static res:Resources.LblDisableAppVersion}}">
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Tools/Dismiss16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type ListBox}}, 
+                  Path=DataContext.EnableAppVersionCommand}"
+                  CommandParameter="{Binding}" Header="{x:Static res:Resources.LblEnableAppVersion}"
+                  Visibility="{Binding Status, Converter={StaticResource StatusToVisibility}, 
+                  ConverterParameter={x:Static res:Resources.LblEnableAppVersion}}">
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Application/Enable16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+
     <!--Application ListItem Style-->
     <Style x:Key="ApplicationItemOptionStyle" BasedOn="{StaticResource ListViewItemOptionStyle}"
            TargetType="ListViewItem">
         
+    </Style>
+    <!-- AppVersion Option Style-->
+    <Style x:Key="AppVersionItemOptionStyle" BasedOn="{StaticResource BlueListBoxItem}"
+           TargetType="ListBoxItem">
+        <Setter Property="ContextMenu" Value="{StaticResource AppVersionContextMenu}" />
     </Style>
 
     <!--Application ItemTemplate-->
@@ -43,14 +77,9 @@
     
     <!-- Application Version ItemTemplate-->
     <DataTemplate x:Key="AppVersionItemTemplate" >
-        <TextBlock Padding="7,5" FontFamily="Segoe UI Semilight" FontSize="15" >
-            <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0} ({1})">
-                    <Binding Path="Version" />
-                    <Binding Path="VersionCode" />
-                </MultiBinding>
-            </TextBlock.Text>
-        </TextBlock>
+        <TextBlock Padding="7,5" FontFamily="Segoe UI Semilight" FontSize="15"
+                  Text="{Binding FullVersion}" />
+
     </DataTemplate>
 
 </ResourceDictionary>

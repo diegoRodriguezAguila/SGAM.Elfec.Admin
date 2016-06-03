@@ -113,7 +113,7 @@
     <Compile Include="Views\IPolicyDetailsView.cs" />
     <Compile Include="Views\IPolicyRulesView.cs" />
     <Compile Include="Views\IProcessSuccessErrorView.cs" />
-    <Compile Include="Views\IShowApplicationDetailsView.cs" />
+    <Compile Include="Views\IApplicationDetailsView.cs" />
     <Compile Include="Views\IShowDevicesView.cs" />
     <Compile Include="Views\IShowUsersView.cs" />
     <Compile Include="Views\IWaitingView.cs" />

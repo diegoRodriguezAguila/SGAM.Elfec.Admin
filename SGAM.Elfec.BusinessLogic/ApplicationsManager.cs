@@ -2,9 +2,13 @@
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
+using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 
 namespace SGAM.Elfec.BusinessLogic
 {
@@ -54,6 +58,24 @@ namespace SGAM.Elfec.BusinessLogic
                 callback.AddErrors(RestErrorInterpreter.InterpretWebServiceError(e));
                 callback.OnFailure(null);
             }
+        }
+
+        /// <summary>
+        /// Updates the app version status of an app
+        /// </summary>
+        /// <param name="package">package of an app</param>
+        /// <param name="version">version of an app</param>
+        /// <param name="newStatus">status to update</param>
+        /// <returns>Observable of an app</returns>
+        public static IObservable<Application> UpdateAppVersionStatus(string package,
+            string version, ApiStatus newStatus)
+        {
+            return RestEndpointFactory.Create<IApplicationsEndpoint>(
+                SessionManager.Instance.CurrentLoggedUser)
+                .UpdateAppVersionStatus(package, version, new AppVersion { Status = newStatus })
+                .ToObservable()
+                .SubscribeOn(TaskPoolScheduler.Default)
+                .InterpretingErrors();
         }
     }
 }

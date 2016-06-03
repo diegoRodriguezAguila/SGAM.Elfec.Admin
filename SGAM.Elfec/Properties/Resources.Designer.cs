@@ -574,6 +574,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dar versión de baja.
+        /// </summary>
+        public static string LblDisableAppVersion {
+            get {
+                return ResourceManager.GetString("LblDisableAppVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dar de baja.
         /// </summary>
         public static string LblDismiss {
@@ -588,6 +597,15 @@ namespace SGAM.Elfec.Properties {
         public static string LblDismissUserGroup {
             get {
                 return ResourceManager.GetString("LblDismissUserGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dar versión de alta.
+        /// </summary>
+        public static string LblEnableAppVersion {
+            get {
+                return ResourceManager.GetString("LblEnableAppVersion", resourceCulture);
             }
         }
         
@@ -1073,6 +1091,17 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se pudo actualizar correctamente el estado de la versión de la aplicación seleccionada:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string MsgErrorInAppVersionStatusUpdate {
+            get {
+                return ResourceManager.GetString("MsgErrorInAppVersionStatusUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se pudo actualizar correctamente el estado del dispositivo seleccionado:
         ///
         ///{0}.
@@ -1199,6 +1228,15 @@ namespace SGAM.Elfec.Properties {
         public static string MsgRuleRegisteredSuccessfuly {
             get {
                 return ResourceManager.GetString("MsgRuleRegisteredSuccessfuly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actualizando estado de la versión de la aplicación….
+        /// </summary>
+        public static string MsgUpdatingAppVersionStatus {
+            get {
+                return ResourceManager.GetString("MsgUpdatingAppVersionStatus", resourceCulture);
             }
         }
         
@@ -1397,6 +1435,15 @@ namespace SGAM.Elfec.Properties {
         public static string TitleErrorDeletingRule {
             get {
                 return ResourceManager.GetString("TitleErrorDeletingRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error de actualización.
+        /// </summary>
+        public static string TitleErrorInAppVersionStatusUpdate {
+            get {
+                return ResourceManager.GetString("TitleErrorInAppVersionStatusUpdate", resourceCulture);
             }
         }
         

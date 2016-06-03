@@ -32,7 +32,7 @@ namespace SGAM.Elfec
 
         public void ShowApplicationDetails(Model.Application application)
         {
-            var showAppDetails = new ShowApplicationDetails(application);
+            var showAppDetails = new ApplicationDetails(application);
             MainWindowService.Instance.MainWindow.CurrentView(showAppDetails);
         }
 

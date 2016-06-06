@@ -193,6 +193,7 @@
     <Compile Include="Converters\RuleActionToImageConverter.cs" />
     <Compile Include="Converters\RuleActionToStringConverter.cs" />
     <Compile Include="Converters\SizeConverter.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\UserGroupStatusToMenuItemVisibility.cs" />
     <Compile Include="Converters\UserGroupStatusToStringConverter.cs" />
     <Compile Include="DeviceDetails.xaml.cs">
@@ -210,6 +211,9 @@
     </Compile>
     <Compile Include="UserControls\GroupTitleControl.xaml.cs">
       <DependentUpon>GroupTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetails.xaml.cs">
+      <DependentUpon>UserDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AttachedHelper.cs" />
     <Compile Include="Utils\HighlighterManager.cs" />
@@ -405,6 +409,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ProgressLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

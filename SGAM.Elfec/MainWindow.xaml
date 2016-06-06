@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto" UseLayoutRounding="True"
         SnapsToDevicePixels="True"
         Title="{Binding Navigation.Current.Tag, StringFormat='SGAM Elfec - {0}', 
-            FallbackValue='SGAM Elfec'}" 
+            FallbackValue='SGAM Elfec', TargetNullValue='SGAM Elfec'}" 
         Height="{utils:SettingBinding Height, FallbackValue=480}"
         Width="{utils:SettingBinding Width, FallbackValue=720}"
         Left="{utils:SettingBinding Left}"

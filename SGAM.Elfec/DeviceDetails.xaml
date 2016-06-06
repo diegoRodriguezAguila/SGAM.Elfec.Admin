@@ -13,13 +13,14 @@
              Background="White"
              xmlns:ctrl="clr-namespace:SGAM.Elfec.UserControls"
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
-             Tag="{x:Static Res:Resources.LblAuthorizeDevice}"
-             d:DesignHeight="7100" d:DesignWidth="700">
+             Tag="{Binding Device.Name, Converter={StaticResource StringFormatConverter},
+             ConverterParameter='Dispositivo {0}', StringFormat='{}Dispositivo {0}'}"
+             d:DesignHeight="750" d:DesignWidth="700">
     <UserControl.Resources>
         <converters:DeviceStatusToStringConverter x:Key="DeviceStatusToStringConverter" />
         <converters:RelativeToAbsoluteUrlConverter x:Key="RelativeToAbsoluteUrlConverter" />
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True"
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="False"
                   HorizontalAlignment="Stretch">
         <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" 

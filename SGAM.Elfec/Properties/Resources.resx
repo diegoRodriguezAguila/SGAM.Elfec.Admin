@@ -676,4 +676,7 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="LblDeviceSystemInfo" xml:space="preserve">
     <value>Sistema</value>
   </data>
+  <data name="LblUserStatus" xml:space="preserve">
+    <value>Estado</value>
+  </data>
 </root>

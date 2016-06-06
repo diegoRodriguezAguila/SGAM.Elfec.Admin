@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGAM.Elfec.Model;
+using System;
 
 namespace SGAM.Elfec.Presenters.Views
 {
@@ -7,5 +8,6 @@ namespace SGAM.Elfec.Presenters.Views
         void ProcessingStatusChange();
         void ErrorChangingStatus(Exception error);
         void StatusChanged();
+        void ShowUserDetails(User user);
     }
 }

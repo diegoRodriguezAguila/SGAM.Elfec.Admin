@@ -1024,6 +1024,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string LblUserStatus {
+            get {
+                return ResourceManager.GetString("LblUserStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario.
         /// </summary>
         public static string LblUserUsername {

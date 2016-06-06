@@ -10,7 +10,8 @@
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              Background="White"
-             Tag="{Binding Application.Name}"
+             Tag="{Binding Application.Name, Converter={StaticResource StringFormatConverter},
+             ConverterParameter='Aplicación {0}', StringFormat='{}Aplicación {0}'}"
              d:DesignHeight="350" d:DesignWidth="600">
     <UserControl.Resources>
         <converters:ApiStatusToStringConverter x:Key="AppStatusConverter" />

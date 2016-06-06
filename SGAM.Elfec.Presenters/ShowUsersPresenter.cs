@@ -45,6 +45,18 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        #endregion
+        #region Commands
+        public ICommand ShowUserDetailsCommand
+        {
+            get
+            {
+                return new ListItemCommand<User>((user) =>
+                {
+                    View.ShowUserDetails(user);
+                });
+            }
+        }
         public ICommand DismissUserGroupCommand { get { return new ListItemCommand<UserGroup>(DismissUserGroup); } }
         public ICommand EnableUserGroupCommand { get { return new ListItemCommand<UserGroup>(EnableUserGroup); } }
 

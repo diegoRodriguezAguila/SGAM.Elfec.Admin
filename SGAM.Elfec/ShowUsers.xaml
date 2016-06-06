@@ -40,7 +40,7 @@
                       HorizontalAlignment="Stretch" />
         <Controls:TransitioningContentControl Grid.Column="2"  Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
             <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding SelectedUserGroup.Members}"
-                      behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowApplicationDetailsCommand}"
+                      behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowUserDetailsCommand}"
                       Tag="{x:Static Res:Resources.LblNotAnyUsers}"
                       ItemContainerStyle="{StaticResource UserItemOptionStyle}" 
                       ItemTemplate="{StaticResource UserItemTemplate}" />

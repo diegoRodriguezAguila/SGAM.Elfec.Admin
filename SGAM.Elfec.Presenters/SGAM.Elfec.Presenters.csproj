@@ -105,6 +105,7 @@
     <Compile Include="ShowApplicationsPresenter.cs" />
     <Compile Include="ShowDevicesPresenter.cs" />
     <Compile Include="ShowUsersPresenter.cs" />
+    <Compile Include="UserDetailsPresenter.cs" />
     <Compile Include="Views\IAddNewApplicationView.cs" />
     <Compile Include="Views\IAddNewUserGroupView.cs" />
     <Compile Include="Views\IAddNewUserView.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Views\IApplicationDetailsView.cs" />
     <Compile Include="Views\IShowDevicesView.cs" />
     <Compile Include="Views\IShowUsersView.cs" />
+    <Compile Include="Views\IUserDetailsView.cs" />
     <Compile Include="Views\IWaitingView.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\IShowApplicationsView.cs" />

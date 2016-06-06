@@ -24,6 +24,7 @@
 
 
             <converters:SizeConverter x:Key="SizeConverter" />
+            <converters:StringFormatConverter x:Key="StringFormatConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
                 <ResourceDictionary Source="/SGAM.Elfec.CustomUI;component/Themes/Generic.xaml" />

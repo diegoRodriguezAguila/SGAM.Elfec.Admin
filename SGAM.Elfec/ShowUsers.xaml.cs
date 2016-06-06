@@ -7,6 +7,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using SGAM.Elfec.Model;
 
 namespace SGAM.Elfec
 {
@@ -90,6 +91,12 @@ namespace SGAM.Elfec
             MainWindowService.Instance.MainWindow
                 .StatusBarDefault()
                 .DefaultCursor();
+        }
+
+        public void ShowUserDetails(User user)
+        {
+            var userDetails = new UserDetails(user);
+            MainWindowService.Instance.MainWindow.CurrentView(userDetails);
         }
 
         #endregion

@@ -17,7 +17,7 @@ namespace SGAM.Elfec
             InitializeComponent();
             ObservableCollectionExtensions.Init();
             MainWindowService.Instance.MainWindow = this;
-            _isFirstActivated = true;
+            //_isFirstActivated = true;
             DevicesView();
             DataContext = MainWindowService.Instance;
             /*Activated += (s, e) =>
@@ -31,7 +31,7 @@ namespace SGAM.Elfec
         }
 
         #region Private Variables
-        private bool _isFirstActivated;
+        //private bool _isFirstActivated;
         #endregion
 
         #region Private Methods

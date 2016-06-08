@@ -23,6 +23,7 @@ namespace SGAM.Elfec.BusinessLogic
         {
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,name";
+            parameters["include"] = "app_versions";
             RestInvoker.InvokeWebService(callback, RestEndpointFactory
                     .Create<IApplicationsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .GetAllApplications(parameters));

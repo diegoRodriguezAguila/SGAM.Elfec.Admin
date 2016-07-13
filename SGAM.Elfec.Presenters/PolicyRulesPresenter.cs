@@ -1,9 +1,9 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Presentation;
 using SGAM.Elfec.Presenters.Views;
-using System.Collections.Generic;
+using System;
+using System.Reactive.Linq;
 using System.Threading;
 
 namespace SGAM.Elfec.Presenters
@@ -75,21 +75,14 @@ namespace SGAM.Elfec.Presenters
         /// <param name="isRefresh"></param>
         private void LoadPolicies(bool isRefresh = false)
         {
-            new Thread(() =>
-            {
-                View.OnLoadingData(isRefresh);
-                var callback = new ResultCallback<IList<Policy>>();
-                callback.Success += (s, policies) =>
+            View.OnLoadingData(isRefresh);
+            PolicyManager.GetAllPolicies()
+            .ObserveOn(SynchronizationContext.Current)
+                .Subscribe((policies) =>
                 {
                     PoliciesRoot = new PoliciesThreeViewRoot(policies);
                     View.OnDataLoaded();
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.OnLoadingErrors(isRefresh, errors);
-                };
-                PolicyManager.GetAllPolicies(callback);
-            }).Start();
+                }, (e) => View.OnLoadingErrors(false, e));
         }
         #endregion
     }

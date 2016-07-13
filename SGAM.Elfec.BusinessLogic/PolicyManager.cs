@@ -3,7 +3,6 @@ using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Helpers.Text;
 using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
 using System;
@@ -21,14 +20,17 @@ namespace SGAM.Elfec.BusinessLogic
         /// Obtiene todas las directivas de usuario, ya sea por medio de la caché o de webservices
         /// </summary>
         /// <param name="callback"></param>
-        public static void GetAllPolicies(ResultCallback<IList<Policy>> callback)
+        public static IObservable<IList<Policy>> GetAllPolicies()
         {
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,type";
             parameters["include"] = "rules.entities";
-            RestInvoker.InvokeWebService(callback, RestEndpointFactory
+            return RestEndpointFactory
                     .Create<IPoliciesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
-                    .GetAllPolicies(parameters));
+                    .GetAllPolicies(parameters)
+                    .ToObservable()
+                    .SubscribeOn(NewThreadScheduler.Default)
+                    .InterpretingErrors();
         }
 
         /// <summary>

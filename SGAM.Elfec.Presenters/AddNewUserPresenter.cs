@@ -1,14 +1,15 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -80,22 +81,15 @@ namespace SGAM.Elfec.Presenters
         /// <param name="isRefresh"></param>
         private void LoadNonRegisteredUsers(bool isRefresh = false)
         {
-            new Thread(() =>
-            {
-                View.OnLoadingData(isRefresh);
-                var callback = new ResultCallback<IList<User>>();
-                callback.Success += (s, users) =>
-                {
-                    _allUsers = users;
-                    Users = users.ToObservableCollectionAsync();
-                    View.OnDataLoaded();
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.OnLoadingErrors(isRefresh, errors);
-                };
-                UsersManager.GetAllUsers(callback, UserStatus.NonRegistered);
-            }).Start();
+            View.OnLoadingData(isRefresh);
+            UsersManager.GetAllUsers(UserStatus.NonRegistered)
+             .ObserveOn(SynchronizationContext.Current)
+             .Subscribe((users) =>
+             {
+                 _allUsers = users;
+                 Users = users.ToObservableCollectionAsync();
+                 View.OnDataLoaded();
+             }, (e) => View.OnLoadingErrors(isRefresh, e));
         }
 
 
@@ -104,20 +98,11 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         private void RegisterUser()
         {
-            new Thread(() =>
-            {
-                View.ShowRegisteringUser();
-                var callback = new ResultCallback<User>();
-                callback.Success += (s, user) =>
-                {
-                    View.ShowUserRegisteredSuccessfully(user);
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.ShowRegistrationErrors(errors);
-                };
-                UsersManager.RegisterUser(SelectedUser, callback);
-            }).Start();
+            View.ShowRegisteringUser();
+            UsersManager.RegisterUser(SelectedUser)
+            .ObserveOn(SynchronizationContext.Current)
+            .Subscribe(View.ShowUserRegisteredSuccessfully,
+            View.ShowRegistrationError);
         }
 
         /// <summary>

@@ -71,11 +71,11 @@ namespace SGAM.Elfec
             });
         }
 
-        public void ShowRegistrationErrors(params Exception[] errors)
+        public void ShowRegistrationError(Exception error)
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = error.Message;
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
@@ -93,7 +93,7 @@ namespace SGAM.Elfec
                 mainWindow.StatusBarDefault();
                 mainWindow.UsersView(true);
                 mainWindow.NotifyUser(Properties.Resources.TitleSuccess,
-                    string.Format(Properties.Resources.MsgUserGroupRegisteredSuccessfully, user.FullName));
+                    string.Format(Properties.Resources.MsgUserRegisteredSuccessfully, user.FullName));
             });
         }
 

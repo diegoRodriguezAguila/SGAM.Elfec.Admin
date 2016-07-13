@@ -2,12 +2,10 @@
 using SGAM.Elfec.Commands;
 using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Views;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -104,15 +102,9 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         private void LoadElegibleUsers()
         {
-            new Thread(() =>
-            {
-                var callback = new ResultCallback<IList<User>>();
-                callback.Success += (s, users) =>
-                {
-                    ElegibleUsers = new ObservableCollection<User>(users);
-                };
-                UsersManager.GetAllUsers(callback, UserStatus.Enabled);
-            }).Start();
+            UsersManager.GetAllUsers(UserStatus.Enabled)
+            .ObserveOn(SynchronizationContext.Current)
+            .Subscribe((users) => ElegibleUsers = new ObservableCollection<User>(users));
         }
 
         /// <summary>

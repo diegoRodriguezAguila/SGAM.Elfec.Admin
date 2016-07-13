@@ -10,10 +10,10 @@ namespace SGAM.Elfec.Presenters.Views
         /// </summary>
         void ShowRegisteringUser();
         /// <summary>
-        /// Muestra los errores de registro de usuario
+        /// Muestra el error de registro de usuario
         /// </summary>
-        /// <param name="errors">errores</param>
-        void ShowRegistrationErrors(params Exception[] errors);
+        /// <param name="errors">error</param>
+        void ShowRegistrationError(Exception error);
         /// <summary>
         /// Muestra al usuario que se finalizó el registro de usuario exitosamente
         /// </summary>

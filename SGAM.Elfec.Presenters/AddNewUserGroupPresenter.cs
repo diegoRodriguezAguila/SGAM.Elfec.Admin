@@ -5,10 +5,12 @@ using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Views;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -148,20 +150,11 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         private void RegisterUserGroup()
         {
-            new Thread(() =>
-            {
-                View.ShowRegisteringUserGroup();
-                var callback = new ResultCallback<UserGroup>();
-                callback.Success += (s, userGroup) =>
-                {
-                    View.ShowUserGroupRegistered(userGroup);
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.ShowRegistrationErrors(errors);
-                };
-                UserGroupManager.RegisterUserGroup(UserGroup, callback);
-            }).Start();
+            View.ShowRegisteringUserGroup();
+            UserGroupManager.RegisterUserGroup(UserGroup)
+            .ObserveOn(SynchronizationContext.Current)
+            .Subscribe(View.ShowUserGroupRegistered,
+            View.ShowRegistrationError);
         }
     }
 }

@@ -2,11 +2,11 @@
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
 using System;
 using System.Collections.Generic;
+using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
@@ -38,12 +38,15 @@ namespace SGAM.Elfec.BusinessLogic
         /// </summary>
         /// <param name="userGroup">grupo de usuarios a registrar</param>
         /// <param name="callback">callback</param>
-        public static void RegisterUserGroup(UserGroup userGroup, ResultCallback<UserGroup> callback)
+        public static IObservable<UserGroup> RegisterUserGroup(UserGroup userGroup)
         {
-            RestInvoker.InvokeWebService(callback, RestEndpointFactory
+            return RestEndpointFactory
                     .Create<IUserGroupsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .RegisterUserGroup(userGroup,
-                    userGroup.Members.ToString((u) => { return u.Username; })));
+                    userGroup.Members.ToString((u) => u.Username))
+                    .ToObservable()
+                    .SubscribeOn(TaskPoolScheduler.Default)
+                    .InterpretingErrors();
         }
 
         /// <summary>
@@ -52,12 +55,15 @@ namespace SGAM.Elfec.BusinessLogic
         /// <param name="userGroupId"></param>
         /// <param name="members"></param>
         /// <param name="callback"></param>
-        public static void AddMembers(string userGroupId, IList<User> members, VoidCallback callback)
+        public static IObservable<Unit> AddMembers(string userGroupId, IList<User> members)
         {
-            RestInvoker.InvokeWebService(callback, RestEndpointFactory
+            return RestEndpointFactory
                     .Create<IUserGroupsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                     .AddMembers(userGroupId,
-                    members.ToString((u) => { return u.Username; })));
+                    members.ToString((u) => u.Username))
+                    .ToObservable()
+                    .SubscribeOn(TaskPoolScheduler.Default)
+                    .InterpretingErrors();
         }
 
         /// <summary>

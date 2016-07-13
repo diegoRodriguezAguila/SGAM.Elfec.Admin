@@ -1,5 +1,4 @@
-﻿using SGAM.Elfec.Helpers.Text;
-using SGAM.Elfec.Model;
+﻿using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
@@ -38,11 +37,11 @@ namespace SGAM.Elfec
            });
         }
 
-        public void ShowRegistrationErrors(params Exception[] errors)
+        public void ShowRegistrationError(Exception error)
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = error.Message;
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {

@@ -1,16 +1,13 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Commands;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
@@ -79,21 +76,14 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         public void LoadAllDevices(bool isRefresh = false)
         {
-            new Thread(() =>
+            View.OnLoadingData(isRefresh);
+            DevicesManager.GetAllDevices()
+            .Subscribe((devices) =>
             {
-                View.OnLoadingData(isRefresh);
-                var callback = new ResultCallback<IList<Device>>();
-                callback.Success += (s, devices) =>
-                {
-                    Devices = devices.ToObservableCollectionAsync();
-                    View.OnDataLoaded();
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.OnLoadingErrors(isRefresh, errors);
-                };
-                DevicesManager.GetAllDevices(callback);
-            }).Start();
+                Devices = devices.ToObservableCollectionAsync();
+                View.OnDataLoaded();
+            },
+            (error) => View.OnLoadingErrors(isRefresh, error));
         }
 
         #endregion Public Methods

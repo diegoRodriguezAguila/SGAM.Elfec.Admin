@@ -1,8 +1,7 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
-using System.Threading;
+using System;
 using System.Windows.Input;
 
 namespace SGAM.Elfec.Presenters
@@ -35,22 +34,15 @@ namespace SGAM.Elfec.Presenters
 
         private void AuthorizeDevice()
         {
-            if (AuthPendingDevice.IsValid)
-                new Thread(() =>
-                {
-                    View.ShowProcesingAuthorization();
-                    var callback = new ResultCallback<Device>();
-                    callback.Success += (s, device) =>
-                    {
-                        View.ShowDeviceAuthorizedSuccessfuly(device);
-                    };
-                    callback.Failure += (s, errors) =>
-                    {
-                        View.ShowAuthorizationErrors(errors);
-                    };
-                    DevicesManager.AuthorizeDevice(AuthPendingDevice, callback);
-                }).Start();
-            else View.NotifyErrorsInFields();
+            if (!AuthPendingDevice.IsValid)
+            {
+                View.NotifyErrorsInFields();
+                return;
+            }
+            View.ShowProcesingAuthorization();
+            DevicesManager.AuthorizeDevice(AuthPendingDevice)
+                .Subscribe(View.ShowDeviceAuthorizedSuccessfuly,
+                View.ShowAuthorizationError);
         }
     }
 }

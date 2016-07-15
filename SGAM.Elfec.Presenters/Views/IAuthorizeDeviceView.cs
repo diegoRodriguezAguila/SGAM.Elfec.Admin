@@ -15,8 +15,8 @@ namespace SGAM.Elfec.Presenters.Views
         /// <summary>
         /// Muestra los errores de autorización
         /// </summary>
-        /// <param name="errors">errores</param>
-        void ShowAuthorizationErrors(params Exception[] errors);
+        /// <param name="error">error</param>
+        void ShowAuthorizationError(Exception error);
         /// <summary>
         /// Muestra al usuario que se autorizó exitosamente el dispositivo
         /// </summary>

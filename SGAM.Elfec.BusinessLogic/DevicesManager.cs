@@ -1,7 +1,6 @@
 ﻿using SGAM.Elfec.DataAccess.WebServices;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Security;
 using System;
@@ -18,24 +17,30 @@ namespace SGAM.Elfec.BusinessLogic
         /// Obtiene todos los dipositivos, ya sea por medio de la caché o de webservices
         /// </summary>
         /// <param name="callback"></param>
-        public static void GetAllDevices(ResultCallback<IList<Device>> callback)
+        public static IObservable<IList<Device>> GetAllDevices()
         {
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,name";
-            RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IDevicesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
-                    .GetAllDevices(parameters));
+
+            return RestEndpointFactory
+                .Create<IDevicesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
+                .GetAllDevices(parameters).ToObservable()
+                .SubscribeOn(TaskPoolScheduler.Default)
+                .InterpretingErrors();
         }
         /// <summary>
         /// Autoriza remotamente un dispositivo
         /// </summary>
         /// <param name="deviceToAuth"></param>
         /// <param name="callback"></param>
-        public static void AuthorizeDevice(Device deviceToAuth, ResultCallback<Device> callback)
+        public static IObservable<Device> AuthorizeDevice(Device deviceToAuth)
         {
-            RestInvoker.InvokeWebService(callback, RestEndpointFactory
+            return RestEndpointFactory
                     .Create<IDevicesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
-                    .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth)));
+                    .UpdateDevice(deviceToAuth.Imei, PrepareDeviceForAuth(deviceToAuth))
+                    .ToObservable()
+                    .SubscribeOn(TaskPoolScheduler.Default)
+                    .InterpretingErrors();
         }
 
         /// <summary>

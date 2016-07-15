@@ -1,5 +1,4 @@
-﻿using SGAM.Elfec.Helpers.Text;
-using SGAM.Elfec.Model;
+﻿using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
@@ -45,12 +44,12 @@ namespace SGAM.Elfec
             });
         }
 
-        public void ShowAuthorizationErrors(params Exception[] errors)
+        public void ShowAuthorizationError(Exception error)
         {
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
-                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = error.Message;
                 Transitioning.Content = _errorMessage;
             });
         }

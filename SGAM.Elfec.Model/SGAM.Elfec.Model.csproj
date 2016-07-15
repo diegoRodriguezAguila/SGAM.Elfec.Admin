@@ -96,7 +96,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Callbacks\Callback.cs" />
     <Compile Include="Callbacks\ResultCallback.cs" />
-    <Compile Include="Callbacks\UploadResultCallback.cs" />
+    <Compile Include="Callbacks\UploadProgressListener.cs" />
     <Compile Include="Callbacks\VoidCallback.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Enums\ApiStatus.cs" />

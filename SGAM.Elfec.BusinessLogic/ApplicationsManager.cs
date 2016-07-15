@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
+using System.Threading.Tasks;
 
 namespace SGAM.Elfec.BusinessLogic
 {
@@ -18,15 +19,24 @@ namespace SGAM.Elfec.BusinessLogic
         /// <summary>
         /// Obtiene todas las aplicaciones, ya sea por medio de la caché o de webservices
         /// </summary>
-        /// <param name="callback"></param>
-        public static void GetAllApplications(ResultCallback<IList<Application>> callback)
+        public static IObservable<IList<Application>> GetAllApplications()
         {
             var parameters = new Dictionary<string, string>();
             parameters["sort"] = "-status,name";
             parameters["include"] = "app_versions";
-            RestInvoker.InvokeWebService(callback, RestEndpointFactory
-                    .Create<IApplicationsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
-                    .GetAllApplications(parameters));
+            return RestEndpointFactory
+                .Create<IApplicationsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
+                .GetAllApplications(parameters).ToObservable()
+                .SubscribeOn(TaskPoolScheduler.Default)
+                .InterpretingErrors();
+        }
+
+        public static IObservable<Application> RegisterApplication(string apkPath, UploadProgressListener listener)
+        {
+            return RegisterApplicationTask(apkPath, listener)
+                .ToObservable()
+                .SubscribeOn(TaskPoolScheduler.Default)
+                .InterpretingErrors();
         }
 
 
@@ -36,24 +46,15 @@ namespace SGAM.Elfec.BusinessLogic
         /// </summary>
         /// <param name="apkPath"></param>
         /// <param name="callback"></param>
-        public static async void RegisterApplication(string apkPath, UploadResultCallback<Application> callback)
+        private static Task<Application> RegisterApplicationTask(string apkPath, UploadProgressListener listener)
         {
-            try
-            {
-                User user = SessionManager.Instance.CurrentLoggedUser;
-                var uploader = new MultipartUploader(Settings.Properties.SGAM.Default.BaseApiURL,
-                    "applications", apkPath);
-                uploader.Headers.Add("X-Api-Token", user.AuthenticationToken);
-                uploader.Headers.Add("X-Api-Username", user.Username);
-                uploader.UploadProgressChanged += callback.OnUploadProgressChanged;
-                var app = await uploader.UploadAsync<Application>();
-                callback.OnSuccess(uploader, app);
-            }
-            catch (Exception e)
-            {
-                callback.AddErrors(RestErrorInterpreter.InterpretWebServiceError(e));
-                callback.OnFailure(null);
-            }
+            User user = SessionManager.Instance.CurrentLoggedUser;
+            var uploader = new MultipartUploader(Settings.Properties.SGAM.Default.BaseApiURL,
+                "applications", apkPath);
+            uploader.Headers.Add("X-Api-Token", user.AuthenticationToken);
+            uploader.Headers.Add("X-Api-Username", user.Username);
+            uploader.UploadProgressChanged += listener.OnUploadProgressChanged;
+            return uploader.UploadAsync<Application>();
         }
 
         /// <summary>

@@ -2,6 +2,8 @@
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
+using System;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -65,23 +67,16 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         private void LoadApkInfo()
         {
-            new Thread(() =>
-                {
-                    View.ShowLoadingAPK();
-                    NewApplication = null;
-                    var callback = new ResultCallback<Application>();
-                    callback.Success += (s, app) =>
-                    {
-                        NewApplication = app;
-                        View.OnAPKLoadFinished();
-                    };
-                    callback.Failure += (s, errors) =>
-                    {
-                        View.ShowAPKLoadErrors(errors);
-                    };
-                    new ApkManager(ApkPath).GetApplication(callback);
-                }
-            ).Start();
+            View.ShowLoadingAPK();
+            NewApplication = null;
+            new ApkManager(ApkPath).GetApplication()
+            .ObserveOn(SynchronizationContext.Current)
+            .Subscribe((app) =>
+            {
+                NewApplication = app;
+                View.OnAPKLoadFinished();
+            },
+            View.ShowAPKLoadError);
         }
 
         /// <summary>
@@ -89,25 +84,16 @@ namespace SGAM.Elfec.Presenters
         /// </summary>
         private void UploadApplication()
         {
-            new Thread(() =>
+            View.ShowUploadingAplication();
+            var listener = new UploadProgressListener();
+            listener.ProgressChanged += (s, ev) =>
             {
-                View.ShowUploadingAplication();
-                var callback = new UploadResultCallback<Application>();
-                callback.UploadProgressChanged += (s, ev) =>
-                {
-                    UploadProgressPercentage = (int)(ev.ProgressPercentage*1.8);
-                };
-                callback.Success += (s, app) =>
-                {
-                    View.ShowAplicationUploadedSuccessfully(app);
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.ShowAplicationUploadErrors(errors);
-                };
-                ApplicationsManager.RegisterApplication(ApkPath, callback);
-            }
-            ).Start();
+                UploadProgressPercentage = (int)(ev.ProgressPercentage * 1.95);
+            };
+            ApplicationsManager.RegisterApplication(ApkPath, listener)
+            .ObserveOn(SynchronizationContext.Current)
+            .Subscribe(View.ShowAplicationUploadedSuccessfully,
+             View.ShowAplicationUploadError);
         }
         #endregion
     }

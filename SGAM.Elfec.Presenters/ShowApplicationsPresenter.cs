@@ -1,10 +1,10 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Commands;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Presenters.Views;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -49,21 +49,14 @@ namespace SGAM.Elfec.Presenters
         /// <param name="isRefresh"></param>
         public void LoadAllApplications(bool isRefresh = false)
         {
-            new Thread(() =>
+            View.OnLoadingData(isRefresh);
+            ApplicationsManager.GetAllApplications()
+            .ObserveOn(SynchronizationContext.Current)
+            .Subscribe((apps) =>
             {
-                View.OnLoadingData(isRefresh);
-                var callback = new ResultCallback<IList<Application>>();
-                callback.Success += (s, apps) =>
-                {
-                    Applications = new ObservableCollection<Application>(apps);
-                    View.OnDataLoaded();
-                };
-                callback.Failure += (s, errors) =>
-                {
-                    View.OnLoadingErrors(isRefresh, errors);
-                };
-                ApplicationsManager.GetAllApplications(callback);
-            }).Start();
+                Applications = new ObservableCollection<Application>(apps);
+                View.OnDataLoaded();
+            }, (e) => View.OnLoadingErrors(isRefresh, e));
         }
         #endregion
     }

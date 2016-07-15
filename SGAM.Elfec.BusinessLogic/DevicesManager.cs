@@ -16,7 +16,6 @@ namespace SGAM.Elfec.BusinessLogic
         /// <summary>
         /// Obtiene todos los dipositivos, ya sea por medio de la caché o de webservices
         /// </summary>
-        /// <param name="callback"></param>
         public static IObservable<IList<Device>> GetAllDevices()
         {
             var parameters = new Dictionary<string, string>();
@@ -32,7 +31,6 @@ namespace SGAM.Elfec.BusinessLogic
         /// Autoriza remotamente un dispositivo
         /// </summary>
         /// <param name="deviceToAuth"></param>
-        /// <param name="callback"></param>
         public static IObservable<Device> AuthorizeDevice(Device deviceToAuth)
         {
             return RestEndpointFactory

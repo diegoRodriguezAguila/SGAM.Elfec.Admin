@@ -1,5 +1,4 @@
-﻿using SGAM.Elfec.Helpers.Text;
-using SGAM.Elfec.Presenters;
+﻿using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.UserControls;
 using System;
@@ -50,11 +49,11 @@ namespace SGAM.Elfec
             });
         }
 
-        public void ShowAPKLoadErrors(params Exception[] errors)
+        public void ShowAPKLoadError(Exception error)
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = error.Message;
                 _errorMessage.BtnOk.Click += (s, o) => { OnAPKLoadFinished(); };
                 TransitioningLoadApk.Content = _errorMessage;
             });
@@ -79,11 +78,11 @@ namespace SGAM.Elfec
             });
         }
 
-        public void ShowAplicationUploadErrors(params Exception[] errors)
+        public void ShowAplicationUploadError(Exception error)
         {
             Dispatcher.InvokeAsync(() =>
             {
-                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.Message = error.Message;
                 _errorMessage.BtnOk.Click += (s, o) =>
                 {
                     MainWindowService.Instance.MainWindow.StatusBarDefault();

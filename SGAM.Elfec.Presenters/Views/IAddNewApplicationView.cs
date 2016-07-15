@@ -12,8 +12,8 @@ namespace SGAM.Elfec.Presenters.Views
         /// <summary>
         /// Muestra los errores de carga del apk
         /// </summary>
-        /// <param name="errors">errores</param>
-        void ShowAPKLoadErrors(params Exception[] errors);
+        /// <param name="error">error</param>
+        void ShowAPKLoadError(Exception error);
         /// <summary>
         /// Muestra al usuario que se finalizó la carga del apk
         /// </summary>
@@ -26,8 +26,8 @@ namespace SGAM.Elfec.Presenters.Views
         /// <summary>
         /// Muestra los errores de subida de la aplicación
         /// </summary>
-        /// <param name="errors">errores</param>
-        void ShowAplicationUploadErrors(params Exception[] errors);
+        /// <param name="error">error</param>
+        void ShowAplicationUploadError(Exception error);
         /// <summary>
         /// Muestra al usuario que se finalizó la subida de la aplicación exitosamente
         /// </summary>

@@ -1,12 +1,12 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
 using Iteedee.ApkReader;
 using SGAM.Elfec.Model;
-using SGAM.Elfec.Model.Callbacks;
 using SGAM.Elfec.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 
 namespace SGAM.Elfec.BusinessLogic
 {
@@ -73,27 +73,30 @@ namespace SGAM.Elfec.BusinessLogic
             return new ApkReader().extractInfo(manifestData, resourcesData);
         }
 
+        public IObservable<Application> GetApplication()
+        {
+            return Observable.Start(GetApplicationSync);
+        }
+
         /// <summary>
         /// Obtiene el Model de Aplicación a partir del análisis de un apk
         /// </summary>
         /// <param name="APKFilePath"></param>
         /// <returns></returns>
-        public void GetApplication(ResultCallback<Application> callback)
+        private Application GetApplicationSync()
         {
-            try
+            ApkInfo apkInfo = GetApkInfo();
+            string iconPath = ExtractFileAndSave(BuildApkIconFilename(apkInfo),
+                BuildTempFilePath(apkInfo.packageName, apkInfo.versionName) + ICONS_PATH);
+            var app = new Application()
             {
-                ApkInfo apkInfo = GetApkInfo();
-                string iconPath = ExtractFileAndSave(BuildApkIconFilename(apkInfo),
-                    BuildTempFilePath(apkInfo.packageName, apkInfo.versionName) + ICONS_PATH);
-                var app = new Application()
-                {
-                    Name = apkInfo.label,
-                    Package = apkInfo.packageName,
-                    Status = ApiStatus.Enabled,
-                    LatestVersion = apkInfo.versionName,
-                    LatestVersionCode = Convert.ToInt32(apkInfo.versionCode),
-                    IconUrl = new Uri(iconPath),
-                    AppVersions = new List<AppVersion>()
+                Name = apkInfo.label,
+                Package = apkInfo.packageName,
+                Status = ApiStatus.Enabled,
+                LatestVersion = apkInfo.versionName,
+                LatestVersionCode = Convert.ToInt32(apkInfo.versionCode),
+                IconUrl = new Uri(iconPath),
+                AppVersions = new List<AppVersion>()
                 {
                     new AppVersion()
                     {
@@ -103,16 +106,8 @@ namespace SGAM.Elfec.BusinessLogic
                         Status = ApiStatus.Enabled
                     }
                 }
-                };
-                callback.OnSuccess(null, app);
-                return;
-            }
-            catch (Exception e)
-            {
-                callback.AddErrors(e);
-            }
-            callback.OnFailure(this);
-
+            };
+            return app;
         }
 
         /// <summary>

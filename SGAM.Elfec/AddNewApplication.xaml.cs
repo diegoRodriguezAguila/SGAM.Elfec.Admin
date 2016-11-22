@@ -72,6 +72,7 @@ namespace SGAM.Elfec
         {
             Dispatcher.InvokeAsync(() =>
             {
+                _progressLoading.ProgressBarLoading.Value = 0;
                 _progressLoading.Message = Properties.Resources.MsgUploadingApk;
                 MainWindowService.Instance.MainWindow.StatusBar(Properties.Resources.MsgUploadingApk);
                 TransitioningUpload.Content = _progressLoading;

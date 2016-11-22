@@ -21,9 +21,11 @@ namespace SGAM.Elfec.BusinessLogic
         /// </summary>
         public static IObservable<IList<Application>> GetAllApplications()
         {
-            var parameters = new Dictionary<string, string>();
-            parameters["sort"] = "-status,name";
-            parameters["include"] = "app_versions";
+            var parameters = new Dictionary<string, string>
+            {
+                ["sort"] = "-status,name",
+                ["include"] = "app_versions"
+            };
             return RestEndpointFactory
                 .Create<IApplicationsEndpoint>(SessionManager.Instance.CurrentLoggedUser)
                 .GetAllApplications(parameters).ToObservable()
@@ -45,7 +47,7 @@ namespace SGAM.Elfec.BusinessLogic
         /// con sus debidos callbacks del progreso
         /// </summary>
         /// <param name="apkPath"></param>
-        /// <param name="callback"></param>
+        /// <param name="listener"></param>
         private static Task<Application> RegisterApplicationTask(string apkPath, UploadProgressListener listener)
         {
             User user = SessionManager.Instance.CurrentLoggedUser;

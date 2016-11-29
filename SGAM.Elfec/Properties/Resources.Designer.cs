@@ -169,6 +169,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buscar dispositivos.
+        /// </summary>
+        public static string BtnSearchDevices {
+            get {
+                return ResourceManager.GetString("BtnSearchDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cambiar de usuario.
         /// </summary>
         public static string BtnSwitchUser {
@@ -246,6 +255,15 @@ namespace SGAM.Elfec.Properties {
         public static string HintSearch {
             get {
                 return ResourceManager.GetString("HintSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herramientas.
+        /// </summary>
+        public static string LabelGroupTools {
+            get {
+                return ResourceManager.GetString("LabelGroupTools", resourceCulture);
             }
         }
         

@@ -12,6 +12,7 @@
         Icon="pack://application:,,,/Resources/MainIcon.ico"
         TextOptions.TextRenderingMode="Auto" UseLayoutRounding="True"
         SnapsToDevicePixels="True"
+        KeyDown="MainWindow_OnKeyDown"
         Title="{Binding Navigation.Current.Tag, StringFormat='SGAM Elfec - {0}', 
             FallbackValue='SGAM Elfec', TargetNullValue='SGAM Elfec'}" 
         Height="{utils:SettingBinding Height, FallbackValue=480}"
@@ -128,12 +129,12 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabDevices}">
-                <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button  Header="Green"
-                           Icon="Images\Green.png"
-                           LargeIcon="Images\GreenLarge.png" />
-                    <Fluent:Button Header="Grey" Icon="Images\Gray.png"
-                           LargeIcon="Images\GrayLarge.png" />
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LabelGroupTools}">
+                    <Fluent:Button Name="BtnSearchDevices" Header="{x:Static Res:Resources.BtnSearchDevices}"
+                           Click="BtnSearchDevices_OnClick"
+                           ToolTip="{x:Static Res:Resources.BtnSearchDevices}"         
+                           Icon="/Resources/Device/SearchDevice.png"
+                           LargeIcon="/Resources/Device/SearchDevice.png" />
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabApplications}">
@@ -145,8 +146,6 @@
                                    Click="BtnAddApp_Click" Header="{x:Static Res:Resources.BtnAddPolicyRule}"
                                    LargeIcon="/Resources/AddPolicyRule.png"
                                    Icon="/Resources/AddPolicyRule.png"/>
-
-
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabUsers}">

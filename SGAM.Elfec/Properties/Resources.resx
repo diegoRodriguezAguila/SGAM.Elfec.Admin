@@ -679,4 +679,10 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="LblUserStatus" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="BtnSearchDevices" xml:space="preserve">
+    <value>Buscar dispositivos</value>
+  </data>
+  <data name="LabelGroupTools" xml:space="preserve">
+    <value>Herramientas</value>
+  </data>
 </root>

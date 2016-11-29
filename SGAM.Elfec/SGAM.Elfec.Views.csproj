@@ -199,6 +199,7 @@
     <Compile Include="DeviceDetails.xaml.cs">
       <DependentUpon>DeviceDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISearchable.cs" />
     <Compile Include="Services\Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Services\Dialogs\ConfirmationDialogBuilder.cs" />
     <Compile Include="Services\Dialogs\ConfirmationDialogContent.xaml.cs">
@@ -648,6 +649,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Application\Enable16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Device\SearchDevice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

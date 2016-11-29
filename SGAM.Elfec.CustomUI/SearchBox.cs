@@ -25,8 +25,8 @@ namespace SGAM.Elfec.CustomUI
     public class SearchBox : TextBox
     {
         #region Private Attributes
-        private Button btnSearch;
-        private DispatcherTimer searchEventDelayTimer;
+        private Button _btnSearch;
+        private DispatcherTimer _searchEventDelayTimer;
 
         #endregion
 
@@ -79,8 +79,8 @@ namespace SGAM.Elfec.CustomUI
             SearchBox stb = o as SearchBox;
             if (stb != null)
             {
-                stb.searchEventDelayTimer.Interval = ((Duration)e.NewValue).TimeSpan;
-                stb.searchEventDelayTimer.Stop();
+                stb._searchEventDelayTimer.Interval = ((Duration)e.NewValue).TimeSpan;
+                stb._searchEventDelayTimer.Stop();
             }
         }
 
@@ -106,16 +106,16 @@ namespace SGAM.Elfec.CustomUI
 
         public SearchBox() : base()
         {
-            searchEventDelayTimer = new DispatcherTimer();
-            searchEventDelayTimer.Interval = SearchTimeDelay.TimeSpan;
-            searchEventDelayTimer.Tick += new EventHandler(OnSearchEventDelayTimerTick);
+            _searchEventDelayTimer = new DispatcherTimer();
+            _searchEventDelayTimer.Interval = SearchTimeDelay.TimeSpan;
+            _searchEventDelayTimer.Tick += new EventHandler(OnSearchEventDelayTimerTick);
 
         }
 
 
         void OnSearchEventDelayTimerTick(object o, EventArgs e)
         {
-            searchEventDelayTimer.Stop();
+            _searchEventDelayTimer.Stop();
             RaiseSearchEvent();
         }
 
@@ -135,16 +135,16 @@ namespace SGAM.Elfec.CustomUI
             if (SearchMode == SearchMode.Delayed)
             {
                 HasText = Text.Length != 0;
-                searchEventDelayTimer.Stop();
-                searchEventDelayTimer.Start();
+                _searchEventDelayTimer.Stop();
+                _searchEventDelayTimer.Start();
             }
         }
 
         public override void OnApplyTemplate()
         {
-            btnSearch = (Button)GetTemplateChild("BtnSearch");
-            if (btnSearch != null)
-                btnSearch.Click += SearchClick;
+            _btnSearch = (Button)GetTemplateChild("BtnSearch");
+            if (_btnSearch != null)
+                _btnSearch.Click += SearchClick;
             base.OnApplyTemplate();
         }
 

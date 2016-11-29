@@ -31,13 +31,39 @@ namespace SGAM.Elfec
         }
 
         #region Private Variables
+
         //private bool _isFirstActivated;
+
+        #endregion
+
+        #region Events
+
+        public static readonly RoutedEvent RequestSearchEvent =
+            EventManager.RegisterRoutedEvent(
+                "RequestSearch",
+                RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler),
+                typeof(MainWindow));
+
+
+        public event RoutedEventHandler RequestSearch
+        {
+            add { AddHandler(RequestSearchEvent, value); }
+            remove { RemoveHandler(RequestSearchEvent, value); }
+        }
+
         #endregion
 
         #region Private Methods
+
         private void ChangePrincipalView(Control view)
         {
             MainWindowService.Instance.Navigation.Clear();
+            var searchable = view as ISearchable;
+            if (searchable != null)
+            {
+                this.RequestSearch += searchable.OnRequestSearch;
+            }
             CurrentView(view);
         }
 
@@ -58,16 +84,17 @@ namespace SGAM.Elfec
 
         private void ShowLoginDialog(bool closeIfCanceled = true)
         {
-            var loginDialog = new LoginDialogWindow();
-            loginDialog.Owner = this;
+            var loginDialog = new LoginDialogWindow { Owner = this };
             if (closeIfCanceled)
                 loginDialog.LoginCanceled += (s, e) => { Close(); };
             loginDialog.UserLoggedIn += (s, u) => { DevicesView(); };
             loginDialog.ShowDialog();
         }
+
         #endregion
 
         #region Public Methods
+
         public void CloseWindow()
         {
             this.Close();
@@ -87,7 +114,6 @@ namespace SGAM.Elfec
 
         public IMainWindow DevicesView(bool force = false)
         {
-
             BtnShowApps.IsSelected = false;
             BtnShowDevices.IsSelected = true;
             BtnViewDevices.IsChecked = true;
@@ -169,11 +195,17 @@ namespace SGAM.Elfec
 
         private void BtnAddPolicyRule_Click(object sender, RoutedEventArgs e)
         {
-            if (!(MainWindowService.Instance.Navigation.Current is PolicyRules))
-            {
-                var policyRule = new PolicyRules();
-                MainWindowService.Instance.MainWindow.CurrentView(policyRule);
-            }
+            if (MainWindowService.Instance.Navigation.Current is PolicyRules) return;
+            var policyRule = new PolicyRules();
+            MainWindowService.Instance.MainWindow.CurrentView(policyRule);
+        }
+
+        private void BtnSearchDevices_OnClick(object sender, RoutedEventArgs e)
+        {
+            DevicesView();
+            var current = MainWindowService.Instance.Navigation.Current;
+            var devices = current as ShowDevices;
+            devices?.ShowSearch();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -194,7 +226,6 @@ namespace SGAM.Elfec
 
         public IMainWindow DefaultCursor()
         {
-
             Mouse.OverrideCursor = null;
             return this;
         }
@@ -202,6 +233,16 @@ namespace SGAM.Elfec
         private void BtnSwitchUser_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ShowLoginDialog(false);
+        }
+
+        //Interpretate Hotkey combos
+        private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key == Key.F) &&
+                (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                RaiseEvent(new RoutedEventArgs(RequestSearchEvent));
+            }
         }
     }
 }

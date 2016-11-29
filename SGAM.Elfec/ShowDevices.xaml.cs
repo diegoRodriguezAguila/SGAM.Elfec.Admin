@@ -1,5 +1,6 @@
 ﻿using SGAM.Elfec.Helpers.Text;
 using SGAM.Elfec.Helpers.Utils;
+using SGAM.Elfec.Interfaces;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
@@ -15,20 +16,33 @@ namespace SGAM.Elfec
     /// <summary>
     /// Interaction logic for ShowDevices.xaml
     /// </summary>
-    public partial class ShowDevices : UserControl, IShowDevicesView
+    public partial class ShowDevices : UserControl, IShowDevicesView, ISearchable
     {
-        private LoadingControl _indeterminateLoading;
-        private ErrorControl _errorMessage;
+        private readonly LoadingControl _indeterminateLoading;
+        private readonly ErrorControl _errorMessage;
 
         public ShowDevices()
         {
             InitializeComponent();
-            _indeterminateLoading = new LoadingControl();
-            _indeterminateLoading.Margin = new Thickness(40, 40, 0, 0);
-            _errorMessage = new ErrorControl();
-            _errorMessage.Margin = new Thickness(40, 40, 0, 0);
+            _indeterminateLoading = new LoadingControl { Margin = new Thickness(40, 40, 0, 0) };
+            _errorMessage = new ErrorControl { Margin = new Thickness(40, 40, 0, 0) };
             DataContext = new ShowDevicesPresenter(this);
         }
+
+        public void ShowSearch()
+        {
+            MessageBox.Show("Showing Search");
+        }
+
+        #region ISearchable
+
+        public void OnRequestSearch(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (IsVisible)
+                ShowSearch();
+        }
+
+        #endregion
 
         #region Interface Methods
 
@@ -82,13 +96,13 @@ namespace SGAM.Elfec
         public void ErrorChangingStatus(Exception error)
         {
             MainWindowService.Instance.MainWindow
-               .StatusBarDefault()
-               .DefaultCursor();
+                .StatusBarDefault()
+                .DefaultCursor();
             new InformationDialog
             {
                 Title = Properties.Resources.TitleErrorInDeviceStatusUpdate,
                 Message = string.Format(Properties.Resources.MsgErrorInDeviceStatusUpdate,
-                error.Message),
+                    error.Message),
                 IconType = IconType.Warning
             }.ShowDialog();
         }
@@ -107,7 +121,5 @@ namespace SGAM.Elfec
         }
 
         #endregion
-
-
     }
 }

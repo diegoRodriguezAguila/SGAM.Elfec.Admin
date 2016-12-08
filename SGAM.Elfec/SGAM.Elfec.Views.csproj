@@ -213,6 +213,9 @@
     <Compile Include="UserControls\GroupTitleControl.xaml.cs">
       <DependentUpon>GroupTitleControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SearchPanel.xaml.cs">
+      <DependentUpon>SearchPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserDetails.xaml.cs">
       <DependentUpon>UserDetails.xaml</DependentUpon>
     </Compile>
@@ -410,6 +413,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ProgressLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SearchPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

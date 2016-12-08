@@ -37,7 +37,7 @@ namespace SGAM.Elfec
         #endregion
 
         #region Events
-
+        #region RequestSearch
         public static readonly RoutedEvent RequestSearchEvent =
             EventManager.RegisterRoutedEvent(
                 "RequestSearch",
@@ -53,6 +53,23 @@ namespace SGAM.Elfec
         }
 
         #endregion
+        #region RequestCancel
+        public static readonly RoutedEvent RequestCancelEvent =
+            EventManager.RegisterRoutedEvent(
+                "RequestCancel",
+                RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler),
+                typeof(MainWindow));
+
+
+        public event RoutedEventHandler RequestCancel
+        {
+            add { AddHandler(RequestCancelEvent, value); }
+            remove { RemoveHandler(RequestCancelEvent, value); }
+        }
+
+        #endregion
+        #endregion
 
         #region Private Methods
 
@@ -63,6 +80,7 @@ namespace SGAM.Elfec
             if (searchable != null)
             {
                 this.RequestSearch += searchable.OnRequestSearch;
+                this.RequestCancel += searchable.OnCancelSearch;
             }
             CurrentView(view);
         }
@@ -205,7 +223,7 @@ namespace SGAM.Elfec
             DevicesView();
             var current = MainWindowService.Instance.Navigation.Current;
             var devices = current as ShowDevices;
-            devices?.ShowSearch();
+            devices?.OnRequestSearch(this, null);
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -242,6 +260,10 @@ namespace SGAM.Elfec
                 (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
                 RaiseEvent(new RoutedEventArgs(RequestSearchEvent));
+            }
+            if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                RaiseEvent(new RoutedEventArgs(RequestCancelEvent));
             }
         }
     }

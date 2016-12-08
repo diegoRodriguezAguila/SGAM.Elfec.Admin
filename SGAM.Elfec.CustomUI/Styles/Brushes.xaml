@@ -48,4 +48,6 @@
     <SolidColorBrush x:Key="BackgroundBorderGrayBrush" Color="#D6D6D6" />
     <SolidColorBrush x:Key="SearchBoxBorderBrush" Color="#ACACAC" />
     <SolidColorBrush x:Key="ListItemBorderBrush" Color="#E1E1E1" />
+    <SolidColorBrush x:Key="SoftWhiteBackground" Color="#FDFDFD" />
+    <SolidColorBrush x:Key="PanelBorder" Color="#D4D4D4" />
 </sgam:SharedResourceDictionary>

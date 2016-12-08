@@ -29,17 +29,18 @@ namespace SGAM.Elfec
             DataContext = new ShowDevicesPresenter(this);
         }
 
-        public void ShowSearch()
-        {
-            MessageBox.Show("Showing Search");
-        }
-
         #region ISearchable
 
         public void OnRequestSearch(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (IsVisible)
-                ShowSearch();
+            if (IsVisible && !SearchPanel.IsOpened)
+                SearchPanel.IsOpened = true;
+        }
+
+        public void OnCancelSearch(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (IsVisible && SearchPanel.IsOpened)
+                SearchPanel.IsOpened = false;
         }
 
         #endregion
@@ -51,23 +52,21 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
-                if (Transitioning.Content != ListViewDevices)
-                    Transitioning.Content = ListViewDevices;
+                if (Transitioning.Content != ListContent)
+                    Transitioning.Content = ListContent;
             });
         }
 
         public void OnLoadingErrors(bool isRefresh = false, params Exception[] errors)
         {
-            if (errors.Length > 0)
+            if (errors.Length == 0) return;
+            Dispatcher.InvokeAsync(() =>
             {
-                Dispatcher.InvokeAsync(() =>
-                {
-                    MainWindowService.Instance.MainWindow.StatusBarDefault();
-                    _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
-                    _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = ListViewDevices; };
-                    Transitioning.Content = _errorMessage;
-                });
-            }
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
+                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = ListContent; };
+                Transitioning.Content = _errorMessage;
+            });
         }
 
         public void OnLoadingData(bool isRefresh = false)
@@ -121,5 +120,10 @@ namespace SGAM.Elfec
         }
 
         #endregion
+
+        private void SearchPanel_OnSearch(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Search event thrown");
+        }
     }
 }

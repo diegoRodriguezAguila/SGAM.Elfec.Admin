@@ -1,19 +1,32 @@
 ﻿<UserControl x:Class="SGAM.Elfec.ShowDevices"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
-             mc:Ignorable="d"  xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
+             mc:Ignorable="d" xmlns:behaviors="clr-namespace:SGAM.Elfec.Behaviors"
+             xmlns:utils="clr-namespace:SGAM.Elfec.Utils"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:customUi="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
+             xmlns:userControls="clr-namespace:SGAM.Elfec.UserControls"
              Tag="{x:Static Res:Resources.TitleDevices}"
              Background="White"
              d:DesignHeight="300" d:DesignWidth="500">
-    <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
-        <ListView Name="ListViewDevices" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding Devices}"
-                  ItemContainerStyle="{StaticResource DeviceItemOptionStyle}" 
-                  ItemTemplate="{StaticResource DeviceItemTemplate}"
-                  behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowDeviceDetailsCommand}" 
-                  Tag="{x:Static Res:Resources.LblNotAnyDevices}" />
+    <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left">
+        <Grid Name="ListContent">
+            <userControls:SearchPanel x:Name="SearchPanel" VerticalAlignment="Top" 
+                                      HorizontalAlignment="Right"
+                                      IsOpened="False"
+                                      Search="SearchPanel_OnSearch">
+                
+            </userControls:SearchPanel>
+            <ListView Name="ListViewDevices" Style="{StaticResource WrapPanelListView}"
+                      ItemsSource="{Binding Devices}" Grid.ZIndex="1"
+                      ItemContainerStyle="{StaticResource DeviceItemOptionStyle}"
+                      ItemTemplate="{StaticResource DeviceItemTemplate}"
+                      behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowDeviceDetailsCommand}"
+                      Tag="{x:Static Res:Resources.LblNotAnyDevices}" />
+        </Grid>
     </Controls:TransitioningContentControl>
 </UserControl>

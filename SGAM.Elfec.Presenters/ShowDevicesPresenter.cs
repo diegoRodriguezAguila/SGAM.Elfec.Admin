@@ -1,10 +1,12 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Commands;
+using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -23,10 +25,16 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Private Attributes
+
+        private IList<Device> _allDevices;
         private ObservableCollection<Device> _devices;
+        private string _searchQuery;
+        private ListSearcher<Device> _listSearcher;
+
         #endregion
 
         #region Properties
+
         public ObservableCollection<Device> Devices
         {
             get { return _devices; }
@@ -37,34 +45,35 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
+        public string SearchQuery
+        {
+            get { return _searchQuery; }
+            set
+            {
+                _searchQuery = value;
+                RaisePropertyChanged("SearchQuery");
+            }
+        }
+
         #region Commands
 
         public ICommand AuthorizeDeviceCommand
         {
-            get
-            {
-                return new ListItemCommand<Device>((device) =>
-                {
-                    View.ViewDeviceAuthorization(device);
-                });
-            }
+            get { return new ListItemCommand<Device>((device) => { View.ViewDeviceAuthorization(device); }); }
         }
 
         public ICommand ShowDeviceDetailsCommand
         {
-            get
-            {
-                return new ListItemCommand<Device>((device) =>
-                {
-                    View.ShowDeviceDetails(device);
-                });
-            }
+            get { return new ListItemCommand<Device>((device) => { View.ShowDeviceDetails(device); }); }
         }
 
-        public ICommand EnableDeviceCommand { get { return new ListItemCommand<Device>(EnableDevice); } }
+        public ICommand EnableDeviceCommand => new ListItemCommand<Device>(EnableDevice);
 
 
-        public ICommand DisableDeviceCommand { get { return new ListItemCommand<Device>(DisableDevice); } }
+        public ICommand DisableDeviceCommand => new ListItemCommand<Device>(DisableDevice);
+
+        public ICommand SearchDevicesCommand => new DelegateCommand(SearchDevices);
+
         #endregion
 
         #endregion
@@ -78,12 +87,15 @@ namespace SGAM.Elfec.Presenters
         {
             View.OnLoadingData(isRefresh);
             DevicesManager.GetAllDevices()
-            .Subscribe((devices) =>
-            {
-                Devices = devices.ToObservableCollectionAsync();
-                View.OnDataLoaded();
-            },
-            (error) => View.OnLoadingErrors(isRefresh, error));
+                .Subscribe((devices) =>
+                {
+                    _allDevices = devices;
+                    Devices = devices.ToObservableCollectionAsync();
+                    _listSearcher = ListSearcher<Device>.For(_allDevices)
+                        .With(DeviceMatchHelper.MatchesSearchQuery);
+                    _listSearcher.SearchCompleted += SearchCompleted;
+                    View.OnDataLoaded();
+                }, (error) => View.OnLoadingErrors(isRefresh, error));
         }
 
         #endregion Public Methods
@@ -96,11 +108,11 @@ namespace SGAM.Elfec.Presenters
             DevicesManager.UpdateDeviceStatus(device.Imei, DeviceStatus.Authorized)
                 .ObserveOnDispatcher()
                 .Subscribe(
-                (updatedDevice) =>
-                {
-                    RefreshUpatedStatus(device, updatedDevice);
-                    View.StatusChanged();
-                }, View.ErrorChangingStatus);
+                    (updatedDevice) =>
+                    {
+                        RefreshUpatedStatus(device, updatedDevice);
+                        View.StatusChanged();
+                    }, View.ErrorChangingStatus);
         }
 
         private void DisableDevice(Device device)
@@ -109,11 +121,11 @@ namespace SGAM.Elfec.Presenters
             DevicesManager.UpdateDeviceStatus(device.Imei, DeviceStatus.Unauthorized)
                 .ObserveOnDispatcher()
                 .Subscribe(
-                (updatedDevice) =>
-                {
-                    RefreshUpatedStatus(device, updatedDevice);
-                    View.StatusChanged();
-                }, View.ErrorChangingStatus);
+                    (updatedDevice) =>
+                    {
+                        RefreshUpatedStatus(device, updatedDevice);
+                        View.StatusChanged();
+                    }, View.ErrorChangingStatus);
         }
 
         private void RefreshUpatedStatus(Device device, Device updatedDevice)
@@ -124,6 +136,18 @@ namespace SGAM.Elfec.Presenters
             Devices = Devices.OrderByDescending(u => u.Status)
                 .ThenBy(u => u.Name).ToObservableCollectionAsync();
         }
+
+        private void SearchDevices()
+        {
+            _listSearcher?.Search(SearchQuery);
+        }
+
+        private void SearchCompleted(object sender, IEnumerable<Device> devices)
+        {
+            Devices.Clear();
+            Devices = devices.ToObservableCollectionAsync();
+        }
+
         #endregion
     }
 }

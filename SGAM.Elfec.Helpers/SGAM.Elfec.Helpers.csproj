@@ -69,7 +69,9 @@
     <Compile Include="Text\MessageListFormatter.cs" />
     <Compile Include="Text\StringExtensions.cs" />
     <Compile Include="Utils\CollectionHelper.cs" />
+    <Compile Include="Utils\ListSearcher.cs" />
     <Compile Include="Utils\ObjectCloner.cs" />
+    <Compile Include="Utils\DeviceMatchHelper.cs" />
     <Compile Include="Utils\UserMatchHelper.cs" />
   </ItemGroup>
   <ItemGroup>

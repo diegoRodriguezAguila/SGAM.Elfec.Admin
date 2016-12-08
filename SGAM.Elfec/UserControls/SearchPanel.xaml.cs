@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace SGAM.Elfec.UserControls
 {
@@ -15,23 +17,23 @@ namespace SGAM.Elfec.UserControls
         public SearchPanel()
         {
             InitializeComponent();
-            DataContext = this;
             BindSearchEvents();
+            this.IsVisibleChanged += VisibilityChanged;
         }
 
         #region Properties
 
-        #region SearchQuery
+        #region Query
 
-        public static DependencyProperty SearchQueryProperty = DependencyProperty.RegisterAttached(
-            "SearchQuery",
+        public static DependencyProperty QueryProperty = DependencyProperty.RegisterAttached(
+            "Query",
             typeof(string),
             typeof(SearchPanel));
 
-        public string SearchQuery
+        public string Query
         {
-            get { return (string)GetValue(SearchQueryProperty); }
-            set { SetValue(SearchQueryProperty, value); }
+            get { return (string)GetValue(QueryProperty); }
+            set { SetValue(QueryProperty, value); }
         }
 
         #endregion
@@ -50,7 +52,10 @@ namespace SGAM.Elfec.UserControls
             set
             {
                 if (value == false)
+                {
+                    Query = null;
                     RaiseEvent(new RoutedEventArgs(ClosedEvent));
+                }
                 SetValue(IsOpenedProperty, value);
             }
         }
@@ -90,6 +95,19 @@ namespace SGAM.Elfec.UserControls
 
         #endregion
 
+        private void VisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue)
+            {
+                Dispatcher.BeginInvoke(
+                DispatcherPriority.ContextIdle,
+                new Action(delegate
+                {
+                    SearchBox.Focus();
+                }));
+            }
+        }
+
         private void OnDragDelta(object sender, DragDeltaEventArgs e)
         {
             double width = double.IsNaN(SizableContent.Width) ? SizableContent.ActualWidth : SizableContent.Width;
@@ -119,7 +137,7 @@ namespace SGAM.Elfec.UserControls
 
         private void BindSearchEvents()
         {
-            TxtSearch.Search += (sender, args) => { RaiseEvent(new RoutedEventArgs(SearchEvent)); };
+            SearchBox.Search += (sender, args) => { RaiseEvent(new RoutedEventArgs(SearchEvent)); };
         }
     }
 }

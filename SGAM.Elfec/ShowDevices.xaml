@@ -15,11 +15,15 @@
              d:DesignHeight="300" d:DesignWidth="500">
     <Controls:TransitioningContentControl Name="Transitioning" VerticalContentAlignment="Top" Transition="Left">
         <Grid Name="ListContent">
-            <userControls:SearchPanel x:Name="SearchPanel" VerticalAlignment="Top" 
+            <userControls:SearchPanel x:Name="SearchPanel" VerticalAlignment="Top"
                                       HorizontalAlignment="Right"
-                                      IsOpened="False"
-                                      Search="SearchPanel_OnSearch">
-                
+                                      Query="{Binding SearchQuery, Mode=TwoWay}"
+                                      IsOpened="False">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Search">
+                        <i:InvokeCommandAction Command="{Binding Path=SearchDevicesCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </userControls:SearchPanel>
             <ListView Name="ListViewDevices" Style="{StaticResource WrapPanelListView}"
                       ItemsSource="{Binding Devices}" Grid.ZIndex="1"

@@ -120,10 +120,5 @@ namespace SGAM.Elfec
         }
 
         #endregion
-
-        private void SearchPanel_OnSearch(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Search event thrown");
-        }
     }
 }

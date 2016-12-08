@@ -68,9 +68,9 @@ namespace SGAM.Elfec.Presenters
             }
         }
 
-        public ICommand RegisterUserCommand { get { return new DelegateCommand(RegisterUser); } }
+        public ICommand RegisterUserCommand => new DelegateCommand(RegisterUser);
 
-        public ICommand SearchUserCommand { get { return new DelegateCommand(SearchUser); } }
+        public ICommand SearchUserCommand => new DelegateCommand(SearchUser);
 
         #endregion
 

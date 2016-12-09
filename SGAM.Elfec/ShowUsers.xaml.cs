@@ -1,4 +1,6 @@
 ﻿using SGAM.Elfec.Helpers.Text;
+using SGAM.Elfec.Interfaces;
+using SGAM.Elfec.Model;
 using SGAM.Elfec.Presenters;
 using SGAM.Elfec.Presenters.Views;
 using SGAM.Elfec.Services.Dialogs;
@@ -7,14 +9,13 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using SGAM.Elfec.Model;
 
 namespace SGAM.Elfec
 {
     /// <summary>
     /// Interaction logic for ShowAllDeviceGroups.xaml
     /// </summary>
-    public partial class ShowUsers : UserControl, IShowUsersView
+    public partial class ShowUsers : UserControl, IShowUsersView, ISearchable
     {
         private LoadingControl _indeterminateLoading;
         private ErrorControl _errorMessage;
@@ -22,10 +23,8 @@ namespace SGAM.Elfec
         public ShowUsers()
         {
             InitializeComponent();
-            _indeterminateLoading = new LoadingControl();
-            _indeterminateLoading.Margin = new Thickness(40, 40, 0, 0);
-            _errorMessage = new ErrorControl();
-            _errorMessage.Margin = new Thickness(40, 40, 0, 0);
+            _indeterminateLoading = new LoadingControl { Margin = new Thickness(40, 40, 0, 0) };
+            _errorMessage = new ErrorControl { Margin = new Thickness(40, 40, 0, 0) };
             DataContext = new ShowUsersPresenter(this);
         }
 
@@ -36,8 +35,8 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow.StatusBarDefault();
-                if (Transitioning.Content != ListViewUsers)
-                    Transitioning.Content = ListViewUsers;
+                if (Transitioning.Content != ListContent)
+                    Transitioning.Content = ListContent;
             });
         }
 
@@ -53,16 +52,14 @@ namespace SGAM.Elfec
 
         public void OnLoadingErrors(bool isRefresh = false, params Exception[] errors)
         {
-            if (errors.Length > 0)
+            if (errors.Length == 0) return;
+            Dispatcher.InvokeAsync(() =>
             {
-                Dispatcher.InvokeAsync(() =>
-                {
-                    MainWindowService.Instance.MainWindow.StatusBarDefault();
-                    _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
-                    _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = ListViewUsers; };
-                    Transitioning.Content = _errorMessage;
-                });
-            }
+                MainWindowService.Instance.MainWindow.StatusBarDefault();
+                _errorMessage.Message = MessageListFormatter.FormatFromErrorList(errors);
+                _errorMessage.BtnOk.Click += (s, e) => { Transitioning.Content = ListContent; };
+                Transitioning.Content = _errorMessage;
+            });
         }
 
         public void ProcessingStatusChange()
@@ -75,13 +72,13 @@ namespace SGAM.Elfec
         public void ErrorChangingStatus(Exception error)
         {
             MainWindowService.Instance.MainWindow
-               .StatusBarDefault()
-               .DefaultCursor();
+                .StatusBarDefault()
+                .DefaultCursor();
             new InformationDialog
             {
                 Title = Properties.Resources.TitleErrorInUserGroupStatusUpdate,
                 Message = string.Format(Properties.Resources.MsgErrorInUserGroupStatusUpdate,
-                error.Message),
+                    error.Message),
                 IconType = IconType.Warning
             }.ShowDialog();
         }
@@ -100,5 +97,31 @@ namespace SGAM.Elfec
         }
 
         #endregion
+
+        #region ISearchable
+
+        public void OnRequestSearch(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (IsVisible && !SearchPanel.IsOpened)
+                SearchPanel.IsOpened = true;
+        }
+
+        public void OnCancelSearch(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (IsVisible && SearchPanel.IsOpened)
+                SearchPanel.IsOpened = false;
+        }
+
+        #endregion
+
+        public void ForceShowSearch()
+        {
+            SearchPanel.IsOpened = true;
+        }
+
+        private void ListBoxGroups_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SearchPanel.IsOpened = false;
+        }
     }
 }

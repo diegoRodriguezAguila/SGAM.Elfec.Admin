@@ -139,7 +139,7 @@
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabApplications}">
                 <Fluent:RibbonGroupBox Header="Aplicaciones">
-                    
+
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Aplicaciones Permitidas">
                     <Fluent:Button Name="BtnAddPolicyRule2" ToolTip="{x:Static Res:Resources.BtnAddPolicyRule}" 
@@ -149,7 +149,13 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="{x:Static Res:Resources.TabUsers}">
-                
+                <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LabelGroupTools}">
+                    <Fluent:Button Name="BtnSearchUsers" Header="{x:Static Res:Resources.BtnSearchUsers}"
+                           Click="BtnSearchUsers_OnClick"
+                           ToolTip="{x:Static Res:Resources.BtnSearchUsers}"         
+                           Icon="/Resources/User/SearchUsers.png"
+                           LargeIcon="/Resources/User/SearchUsers.png" />
+                </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="{x:Static Res:Resources.LblUserGroup}">
                     <Fluent:Button Name="BtnAddUserGroup2" ToolTip="{x:Static Res:Resources.BtnUserGroup}" 
                                    Click="BtnAddUserGroup_Click" Header="{x:Static Res:Resources.BtnUserGroup}" >

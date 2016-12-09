@@ -1,10 +1,12 @@
 ﻿using SGAM.Elfec.BusinessLogic;
 using SGAM.Elfec.Commands;
+using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -21,7 +23,10 @@ namespace SGAM.Elfec.Presenters
 
         #region Private Attributes
         private ObservableCollection<UserGroup> _userGroups;
+        private ObservableCollection<User> _filteredUsers;
         private UserGroup _selectedUserGroup;
+        private string _searchQuery;
+        private ListSearcher<User> _listSearcher;
         #endregion
 
         #region Properties
@@ -31,6 +36,10 @@ namespace SGAM.Elfec.Presenters
             set
             {
                 _selectedUserGroup = value;
+                FilteredUsers = _selectedUserGroup?.Members?.ToObservableCollectionAsync();
+                _listSearcher = ListSearcher<User>.For(_selectedUserGroup?.Members)
+                        .With(UserMatchHelper.MatchesSearchQuery);
+                _listSearcher.SearchCompleted += SearchCompleted;
                 RaisePropertyChanged("SelectedUserGroup");
             }
         }
@@ -42,6 +51,26 @@ namespace SGAM.Elfec.Presenters
                 _userGroups = value;
                 SelectedUserGroup = _userGroups.First();
                 RaisePropertyChanged("UserGroups");
+            }
+        }
+
+        public ObservableCollection<User> FilteredUsers
+        {
+            get { return _filteredUsers; }
+            set
+            {
+                _filteredUsers = value;
+                RaisePropertyChanged("FilteredUsers");
+            }
+        }
+
+        public string SearchQuery
+        {
+            get { return _searchQuery; }
+            set
+            {
+                _searchQuery = value;
+                RaisePropertyChanged("SearchQuery");
             }
         }
 
@@ -59,7 +88,7 @@ namespace SGAM.Elfec.Presenters
         }
         public ICommand DismissUserGroupCommand { get { return new ListItemCommand<UserGroup>(DismissUserGroup); } }
         public ICommand EnableUserGroupCommand { get { return new ListItemCommand<UserGroup>(EnableUserGroup); } }
-
+        public ICommand SearchUsersCommand => new DelegateCommand(SearchUsers);
         #endregion
 
         #region Private Methods
@@ -128,6 +157,18 @@ namespace SGAM.Elfec.Presenters
             UserGroups = UserGroups.OrderByDescending(u => u.Status)
                 .ThenBy(u => u.Name).ToObservableCollectionAsync();
         }
+
+        private void SearchUsers()
+        {
+            _listSearcher?.Search(SearchQuery);
+        }
+
+        private void SearchCompleted(object sender, IEnumerable<User> users)
+        {
+            FilteredUsers?.Clear();
+            FilteredUsers = users.ToObservableCollectionAsync();
+        }
+
         #endregion
     }
 }

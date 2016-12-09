@@ -223,7 +223,16 @@ namespace SGAM.Elfec
             DevicesView();
             var current = MainWindowService.Instance.Navigation.Current;
             var devices = current as ShowDevices;
-            devices?.OnRequestSearch(this, null);
+            devices?.ForceShowSearch();
+        }
+
+
+        private void BtnSearchUsers_OnClick(object sender, RoutedEventArgs e)
+        {
+            UsersView();
+            var current = MainWindowService.Instance.Navigation.Current;
+            var users = current as ShowUsers;
+            users?.ForceShowSearch();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

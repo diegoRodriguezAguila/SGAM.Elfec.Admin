@@ -178,6 +178,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buscar usuarios.
+        /// </summary>
+        public static string BtnSearchUsers {
+            get {
+                return ResourceManager.GetString("BtnSearchUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cambiar de usuario.
         /// </summary>
         public static string BtnSwitchUser {

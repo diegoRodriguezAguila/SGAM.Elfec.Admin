@@ -685,4 +685,7 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="LabelGroupTools" xml:space="preserve">
     <value>Herramientas</value>
   </data>
+  <data name="BtnSearchUsers" xml:space="preserve">
+    <value>Buscar usuarios</value>
+  </data>
 </root>

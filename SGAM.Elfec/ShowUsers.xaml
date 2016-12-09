@@ -9,6 +9,8 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
              xmlns:behaviors ="clr-namespace:SGAM.Elfec.Behaviors"
+             xmlns:userControls="clr-namespace:SGAM.Elfec.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DesignHeight="340" d:DesignWidth="600">
     <Grid  >
         <Grid.ColumnDefinitions>
@@ -30,6 +32,7 @@
             <ListBox Grid.Row="1" Name="ListBoxGroups" Style="{StaticResource BlueListBox}" 
                      ItemsSource="{Binding UserGroups}" 
                      SelectedValue="{Binding SelectedUserGroup}"
+                     SelectionChanged="ListBoxGroups_OnSelectionChanged"
                      ItemContainerStyle="{StaticResource UserGroupItemOptionStyle}"
                      BorderThickness="0,0,1,0"
                      ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -39,11 +42,23 @@
         <GridSplitter Grid.Column="1" Width="5" Background="Transparent"
                       HorizontalAlignment="Stretch" />
         <Controls:TransitioningContentControl Grid.Column="2"  Name="Transitioning" VerticalContentAlignment="Top" Transition="Left" >
-            <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding SelectedUserGroup.Members}"
+            <Grid Name="ListContent">
+                <userControls:SearchPanel x:Name="SearchPanel" VerticalAlignment="Top"
+                                      HorizontalAlignment="Right"
+                                      Query="{Binding SearchQuery, Mode=TwoWay}"
+                                      IsOpened="False">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Search">
+                            <i:InvokeCommandAction Command="{Binding Path=SearchUsersCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </userControls:SearchPanel>
+                <ListView Name="ListViewUsers" Style="{StaticResource WrapPanelListView}" ItemsSource="{Binding FilteredUsers}"
                       behaviors:DoubleClickSelectorItem.DoubleClickItemCommand="{Binding ShowUserDetailsCommand}"
                       Tag="{x:Static Res:Resources.LblNotAnyUsers}"
                       ItemContainerStyle="{StaticResource UserItemOptionStyle}" 
                       ItemTemplate="{StaticResource UserItemTemplate}" />
+            </Grid>
         </Controls:TransitioningContentControl>
     </Grid>
 </UserControl>

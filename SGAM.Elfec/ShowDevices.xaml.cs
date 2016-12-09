@@ -29,6 +29,11 @@ namespace SGAM.Elfec
             DataContext = new ShowDevicesPresenter(this);
         }
 
+        public void ForceShowSearch()
+        {
+            SearchPanel.IsOpened = true;
+        }
+
         #region ISearchable
 
         public void OnRequestSearch(object sender, RoutedEventArgs routedEventArgs)

@@ -14,6 +14,13 @@
       
     <!-- TreeView Rule Context Menu-->
     <ContextMenu x:Key="TreeViewRuleContextMenu" >
+        <MenuItem  Command="{Binding Path=PlacementTarget.Tag.PolicyDetails.EditRuleCommand, 
+            RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                  CommandParameter="{Binding}" Header="{x:Static Res:Resources.LblEdit}" >
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Rule/Edit16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
         <MenuItem  Command="{Binding Path=PlacementTarget.Tag.PolicyDetails.DeleteRuleCommand, 
             RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                   CommandParameter="{Binding}" Header="{x:Static Res:Resources.LblDelete}" >

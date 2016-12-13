@@ -688,4 +688,7 @@ Tome en cuenta que esta operación es irreversible y no se podrán recuperar nin
   <data name="BtnSearchUsers" xml:space="preserve">
     <value>Buscar usuarios</value>
   </data>
+  <data name="LblEdit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
 </root>

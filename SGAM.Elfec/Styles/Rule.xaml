@@ -50,6 +50,18 @@
         <MenuItem Command="{Binding RelativeSource=
                   {RelativeSource FindAncestor, 
                   AncestorType={x:Type DataGrid}}, 
+                  Path=DataContext.EditRuleCommand}"
+                  CommandParameter="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type DataGrid}}, 
+                  Path=SelectedItems}" Header="{x:Static Res:Resources.LblEdit}" >
+            <MenuItem.Icon>
+                <Image Width="16" Height="16" Source="/Resources/Rule/Edit16.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="{Binding RelativeSource=
+                  {RelativeSource FindAncestor, 
+                  AncestorType={x:Type DataGrid}}, 
                   Path=DataContext.DeleteRuleCommand}"
                   CommandParameter="{Binding RelativeSource=
                   {RelativeSource FindAncestor, 

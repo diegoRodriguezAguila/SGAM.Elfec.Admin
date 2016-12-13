@@ -84,7 +84,9 @@
                       SelectionUnit="FullRow" RowStyle="{StaticResource RuleDataGridRowStyle}" >
                 <DataGrid.InputBindings>
                     <KeyBinding Key="Delete" Command="{Binding Path=DeleteRuleCommand}"
-                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}"></KeyBinding>
+                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}" />
+                    <KeyBinding Key="Enter" Command="{Binding Path=EditRuleCommand}"
+                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}" />
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"

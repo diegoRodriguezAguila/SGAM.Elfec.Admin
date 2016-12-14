@@ -20,9 +20,10 @@ namespace SGAM.Elfec.Presenters
     {
         public AddRulePresenter(IAddRuleView view, Policy policy, Rule rule = null) : base(view)
         {
-            Rule = rule == null
+            _isEditingMode = rule != null;
+            Rule = !_isEditingMode
                 ? new Rule()
-                {Entities = new ObservableCollection<IEntity>()}
+                { Entities = new ObservableCollection<IEntity>() }
                 : ObjectCloner.Clone(rule);
             _policy = policy;
             LoadEntities();
@@ -35,6 +36,7 @@ namespace SGAM.Elfec.Presenters
         private string _entityName;
         private Rule _rule;
         private Policy _policy;
+        private bool _isEditingMode;
 
         #endregion
 
@@ -136,7 +138,7 @@ namespace SGAM.Elfec.Presenters
         /// <param name="selectedEntities"></param>
         private void DeleteEntity(IList selectedEntities)
         {
-            var entitiesToDel = selectedEntities.Cast<IEntity>().ToList();
+            var entitiesToDel = selectedEntities?.Cast<IEntity>().ToList();
             if (entitiesToDel == null || entitiesToDel.Count == 0) return;
             Rule.Entities.RemoveRange(entitiesToDel);
             Entities.AddRange(entitiesToDel);
@@ -156,11 +158,29 @@ namespace SGAM.Elfec.Presenters
                 return;
             }
             View.ProcessingData();
+            if (_isEditingMode)
+                EditRule();
+            else AddRule();
+        }
+
+        private void AddRule()
+        {
             PolicyManager.RegisterRule(_policy.Type, Rule)
                 .ObserveOn(SynchronizationContext.Current)
                 .Subscribe(rule =>
                 {
                     _policy.Rules.AddInOrder(rule, (r => r.Name));
+                    View.Success(rule);
+                }, View.Error);
+        }
+
+        private void EditRule()
+        {
+            RulesManager.Update(Rule)
+                .ObserveOn(SynchronizationContext.Current)
+                .Subscribe(rule =>
+                {
+                    _policy.Rules.Replace(Rule, rule);
                     View.Success(rule);
                 }, View.Error);
         }

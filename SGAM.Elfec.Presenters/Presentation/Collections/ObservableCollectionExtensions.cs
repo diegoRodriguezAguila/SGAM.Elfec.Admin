@@ -50,6 +50,23 @@ namespace SGAM.Elfec.Presenters.Presentation.Collections
         }
 
         /// <summary>
+        /// Replaces an item by other in the same position as the original one
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">collection to perfrom operation</param>
+        /// <param name="original">item to be replaced</param>
+        /// <param name="replacement">replacement item</param>
+        public static bool Replace<T>(this IList<T> collection, T original, T replacement)
+        {
+            int index = collection.IndexOf(original);
+            if (index == -1)
+                return false;
+            collection.RemoveAt(index);
+            collection.Insert(index, replacement);
+            return true;
+        }
+
+        /// <summary>
         /// Convierte asincronamente los elementos a una colección observable, 
         /// Primero crea una nueva <see cref="ObservableCollection{T}"/> con los primeros
         /// <see cref="LoadFrequency"/> elementos agregandolos de forma síncrona, luego en

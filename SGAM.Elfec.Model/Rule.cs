@@ -3,6 +3,7 @@ using SGAM.Elfec.Model.Enums;
 using SGAM.Elfec.Model.Interfaces;
 using SGAM.Elfec.Model.Validations;
 using SGAM.Elfec.Model.Validations.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace SGAM.Elfec.Model
     /// <summary>
     /// Describes a policy rule
     /// </summary>
-    public class Rule : BaseEntity
+    public class Rule : BaseEntity, IEquatable<Rule>
     {
         public string Id { get; set; }
         public RuleAction Action { get; set; }
@@ -36,6 +37,11 @@ namespace SGAM.Elfec.Model
         public override ValidationResult SelfValidate()
         {
             return ValidationHelper.Validate<PolicyRuleValidator, Rule>(this);
+        }
+
+        public bool Equals(Rule other)
+        {
+            return other != null && string.Equals(this.Id, other.Id);
         }
     }
 }

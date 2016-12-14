@@ -67,7 +67,7 @@ namespace SGAM.Elfec.Presenters
         {
             var rulesToDel = selectedRules.Cast<Rule>().ToArray();
             if (rulesToDel.Length == 0 ||
-                View.DeleteConfirmation()) return;
+                !View.DeleteConfirmation()) return;
             View.DeletingRule();
             PolicyManager.DeleteRules(Policy.Type, rulesToDel)
                 .ObserveOn(SynchronizationContext.Current)

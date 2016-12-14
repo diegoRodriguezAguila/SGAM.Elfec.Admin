@@ -53,7 +53,7 @@ namespace SGAM.Elfec.BusinessLogic
         /// Registra una regla en la politica con el id proporcionado
         /// </summary>
         /// <param name="policyId"></param>
-        /// <param name="rule"></param>
+        /// <param name="rules"></param>
         /// <returns></returns>
         public static IObservable<Unit> DeleteRules(PolicyType policyId, params Rule[] rules)
         {

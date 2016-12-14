@@ -87,6 +87,8 @@
                                 CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}" />
                     <KeyBinding Key="Enter" Command="{Binding Path=EditRuleCommand}"
                                 CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}" />
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=EditRuleCommand}"
+                                CommandParameter="{Binding ElementName=DataGridRules,Path=SelectedItems}"/>
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{x:Static Res:Resources.LblRuleAction}"

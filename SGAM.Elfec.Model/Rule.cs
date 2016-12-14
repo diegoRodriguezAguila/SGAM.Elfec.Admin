@@ -29,7 +29,7 @@ namespace SGAM.Elfec.Model
                 if (Entities == null)
                     return null;
                 return string.Join(", ", Entities.Select(e =>
-                        string.Format("{0}({1})", e.Name, e.Details)));
+                    $"{e.Name}({e.Details})"));
             }
         }
 

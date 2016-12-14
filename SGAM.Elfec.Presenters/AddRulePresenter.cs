@@ -20,21 +20,26 @@ namespace SGAM.Elfec.Presenters
     {
         public AddRulePresenter(IAddRuleView view, Policy policy, Rule rule = null) : base(view)
         {
-            Rule = rule == null ? new Rule()
-            { Entities = new ObservableCollection<IEntity>() }
-                        : ObjectCloner.Clone(rule);
+            Rule = rule == null
+                ? new Rule()
+                {Entities = new ObservableCollection<IEntity>()}
+                : ObjectCloner.Clone(rule);
             _policy = policy;
             LoadEntities();
         }
 
         #region Private Attributes
+
         private ObservableCollection<IEntity> _entities;
         private IEntity _entityToAdd;
         private string _entityName;
         private Rule _rule;
         private Policy _policy;
+
         #endregion
+
         #region Properties
+
         public ObservableCollection<IEntity> Entities
         {
             get { return _entities; }
@@ -76,11 +81,26 @@ namespace SGAM.Elfec.Presenters
         }
 
         #endregion
+
         #region Commands
-        public ICommand AddEntityCommand { get { return new DelegateCommand(AddEntity); } }
-        public ICommand DeleteEntityCommand { get { return new ListItemCommand<IList>(DeleteEntity); } }
-        public ICommand RegisterRuleCommand { get { return new DelegateCommand(RegisterRule); } }
+
+        public ICommand AddEntityCommand
+        {
+            get { return new DelegateCommand(AddEntity); }
+        }
+
+        public ICommand DeleteEntityCommand
+        {
+            get { return new ListItemCommand<IList>(DeleteEntity); }
+        }
+
+        public ICommand RegisterRuleCommand
+        {
+            get { return new DelegateCommand(RegisterRule); }
+        }
+
         #endregion
+
         #region Private Methods
 
         /// <summary>
@@ -90,28 +110,24 @@ namespace SGAM.Elfec.Presenters
         {
             EntitiesManager.GetAllEntities()
                 .Subscribe(
-                (entities) =>
-                {
-                    Entities = entities.ToObservableCollectionAsync();
-                },
-                (error) =>
-                {
-                    Debug.WriteLine(error.Message);
-                    //TODO show error
-                });
+                    (entities) => { Entities = entities.ToObservableCollectionAsync(); },
+                    (error) =>
+                    {
+                        Debug.WriteLine(error.Message);
+                        //TODO show error
+                    });
         }
+
         /// <summary>
         /// Adds an entity to the rule
         /// </summary>
         private void AddEntity()
         {
-            if (EntityToAdd != null && !Rule.Entities.Contains(EntityToAdd))
-            {
-                Rule.Entities.Add(EntityToAdd);
-                Entities.Remove(EntityToAdd);
-                EntityToAdd = null;
-                EntityName = null;
-            }
+            if (EntityToAdd == null || Rule.Entities.Contains(EntityToAdd)) return;
+            Rule.Entities.Add(EntityToAdd);
+            Entities.Remove(EntityToAdd);
+            EntityToAdd = null;
+            EntityName = null;
         }
 
         /// <summary>
@@ -121,13 +137,11 @@ namespace SGAM.Elfec.Presenters
         private void DeleteEntity(IList selectedEntities)
         {
             var entitiesToDel = selectedEntities.Cast<IEntity>().ToList();
-            if (entitiesToDel != null && entitiesToDel.Count > 0)
-            {
-                Rule.Entities.RemoveRange(entitiesToDel);
-                Entities.AddRange(entitiesToDel);
-                EntityToAdd = null;
-                EntityName = null;
-            }
+            if (entitiesToDel == null || entitiesToDel.Count == 0) return;
+            Rule.Entities.RemoveRange(entitiesToDel);
+            Entities.AddRange(entitiesToDel);
+            EntityToAdd = null;
+            EntityName = null;
         }
 
         /// <summary>
@@ -136,33 +150,36 @@ namespace SGAM.Elfec.Presenters
         private void RegisterRule()
         {
             View.Validate();
-            if (Rule.IsValid)
+            if (!Rule.IsValid)
             {
-                View.ProcessingData();
-                PolicyManager.RegisterRule(_policy.Type, Rule)
-                    .ObserveOn(SynchronizationContext.Current)
-                    .Subscribe((u) =>
-                    {
-                        _policy.Rules.AddInOrder(Rule, (r => r.Name));
-                        View.Success(Rule);
-                    }, View.Error);
+                View.NotifyErrorsInFields();
+                return;
             }
-            else View.NotifyErrorsInFields();
+            View.ProcessingData();
+            PolicyManager.RegisterRule(_policy.Type, Rule)
+                .ObserveOn(SynchronizationContext.Current)
+                .Subscribe(rule =>
+                {
+                    _policy.Rules.AddInOrder(rule, (r => r.Name));
+                    View.Success(rule);
+                }, View.Error);
         }
 
         #endregion
 
         #region Public Methods
+
         public bool FilterEntities(string search, object item)
         {
             // Cast the value to an IEntity.
             IEntity entity = item as IEntity;
             if (entity != null)
                 return (entity.Name.ToLower().Contains(search.ToLower()))
-                    || (entity.Details.ToLower().Contains(search.ToLower()));
+                       || (entity.Details.ToLower().Contains(search.ToLower()));
             // If no match, return false.
             return false;
         }
+
         #endregion
     }
 }

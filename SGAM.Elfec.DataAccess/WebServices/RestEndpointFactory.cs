@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using RestEase;
+﻿using RestEase;
 using SGAM.Elfec.DataAccess.WebServices.ApiEndpoints;
-using SGAM.Elfec.DataAccess.WebServices.Converters;
-using SGAM.Elfec.DataAccess.WebServices.JsonContractResolver;
+using SGAM.Elfec.Helpers.Utils;
 using SGAM.Elfec.Model;
 
 namespace SGAM.Elfec.DataAccess.WebServices
@@ -13,17 +11,6 @@ namespace SGAM.Elfec.DataAccess.WebServices
     /// </summary>
     public class RestEndpointFactory
     {
-        private static JsonSerializerSettings _settings;
-        static RestEndpointFactory()
-        {
-            _settings = new JsonSerializerSettings()
-            {
-                ContractResolver = new SnakeCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            _settings.Converters.Add(new SnakeCaseEnumConverter { AllowIntegerValues = true });
-            _settings.Converters.Add(new EntityConverter());
-        }
         /// <summary>
         /// Crea un endpoint Rest  con la url por defecto <see cref="Settings.Properties.SGAM.Default.BaseApiURL"/>
         /// </summary>
@@ -31,7 +18,7 @@ namespace SGAM.Elfec.DataAccess.WebServices
         /// <returns>Punto de acceso al webservice rest</returns>
         public static T Create<T>() where T : ISgamApiEndpoint
         {
-            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, _settings);
+            return RestClient.For<T>(Settings.Properties.SGAM.Default.BaseApiURL, JsonUtils.Settings);
         }
         /// <summary>
         /// Crea un endpoint Rest  con la url por defecto <see cref="BASE_URL"/>

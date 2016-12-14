@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace SGAM.Elfec.Helpers.Utils
 {
@@ -15,8 +16,9 @@ namespace SGAM.Elfec.Helpers.Utils
         /// <returns></returns>
         public static T Clone<T>(T source)
         {
-            var serialized = JsonConvert.SerializeObject(source);
-            return JsonConvert.DeserializeObject<T>(serialized);
+            var serialized = JsonConvert.SerializeObject(source, JsonUtils.Settings);
+            Console.WriteLine(serialized);
+            return JsonConvert.DeserializeObject<T>(serialized, JsonUtils.Settings);
         }
     }
 }

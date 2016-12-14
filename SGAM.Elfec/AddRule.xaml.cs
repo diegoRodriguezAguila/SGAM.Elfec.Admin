@@ -8,6 +8,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Application = System.Windows.Application;
 
 namespace SGAM.Elfec
 {
@@ -28,17 +29,18 @@ namespace SGAM.Elfec
             EntitySelector.ItemFilter += presenter.FilterEntities;
             DataContext = presenter;
             InitializeErrorMessage();
-            _loadingControl = new LoadingControl();
-            _loadingControl.Orientation = Orientation.Vertical;
+            _loadingControl = new LoadingControl { Orientation = Orientation.Vertical };
             Loaded += (s, e) => { ValidationErrorsAssistant.ClearErrors(RootPanel); };
         }
 
         private void InitializeErrorMessage()
         {
-            _errorMessage = new SelectableTextBlock();
-            _errorMessage.FontSize = 14;
-            _errorMessage.Foreground = App.Current.Resources["TextErrorColorBrush"] as Brush;
-            _errorMessage.TextWrapping = TextWrapping.Wrap;
+            _errorMessage = new SelectableTextBlock
+            {
+                FontSize = 14,
+                Foreground = Application.Current.Resources["TextErrorColorBrush"] as Brush,
+                TextWrapping = TextWrapping.Wrap
+            };
         }
 
         #region Events

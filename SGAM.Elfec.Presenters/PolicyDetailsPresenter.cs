@@ -20,10 +20,13 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Private Attributes
+
         private Policy _policy;
+
         #endregion
 
         #region Properties
+
         public Policy Policy
         {
             get { return _policy; }
@@ -35,8 +38,11 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Commands
-        public ICommand AddRuleCommand { get { return new DelegateCommand(AddRule); } }
-        public ICommand DeleteRuleCommand { get { return new ListItemCommand<IList>(DeleteRules); } }
+
+        public ICommand AddRuleCommand => new DelegateCommand(AddRule);
+        public ICommand EditRuleCommand => new ListItemCommand<IList>(EditRule);
+        public ICommand DeleteRuleCommand => new ListItemCommand<IList>(DeleteRules);
+
         #endregion
 
         #endregion
@@ -46,26 +52,30 @@ namespace SGAM.Elfec.Presenters
             View.AddRule(Policy);
         }
 
+        private void EditRule(IList items)
+        {
+            var rule = items.Cast<Rule>().ToArray().FirstOrDefault();
+            if (rule != null)
+                View.EditRule(Policy, rule);
+        }
+
         /// <summary>
         /// Deletes the selected entities from the rule
         /// </summary>
-        /// <param name="selectedEntities"></param>
+        /// <param name="selectedRules"></param>
         private void DeleteRules(IList selectedRules)
         {
             var rulesToDel = selectedRules.Cast<Rule>().ToArray();
-            if (rulesToDel != null && rulesToDel.Length > 0 &&
-                View.DeleteConfirmation())
-            {
-                View.DeletingRule();
-                PolicyManager.DeleteRules(Policy.Type, rulesToDel)
-                    .ObserveOn(SynchronizationContext.Current)
-                    .Subscribe((u) =>
-                    {
-                        Policy.Rules.RemoveRange(rulesToDel);
-                        View.RuleDeleted();
-                    }, View.ErrorDeleting);
-            }
+            if (rulesToDel.Length == 0 ||
+                View.DeleteConfirmation()) return;
+            View.DeletingRule();
+            PolicyManager.DeleteRules(Policy.Type, rulesToDel)
+                .ObserveOn(SynchronizationContext.Current)
+                .Subscribe((u) =>
+                {
+                    Policy.Rules.RemoveRange(rulesToDel);
+                    View.RuleDeleted();
+                }, View.ErrorDeleting);
         }
-
     }
 }

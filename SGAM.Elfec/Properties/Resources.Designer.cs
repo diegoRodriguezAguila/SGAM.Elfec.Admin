@@ -682,6 +682,15 @@ namespace SGAM.Elfec.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editar regla.
+        /// </summary>
+        public static string LblEditRule {
+            get {
+                return ResourceManager.GetString("LblEditRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dar versión de alta.
         /// </summary>
         public static string LblEnableAppVersion {

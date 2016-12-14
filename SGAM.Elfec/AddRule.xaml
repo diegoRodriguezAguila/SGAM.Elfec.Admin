@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:SGAM.Elfec"
-             xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"   
-             xmlns:Res="clr-namespace:SGAM.Elfec.Properties"
-             xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
-             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"   
+             xmlns:res="clr-namespace:SGAM.Elfec.Properties"
+             xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
              xmlns:sgam="clr-namespace:SGAM.Elfec.CustomUI;assembly=SGAM.Elfec.CustomUI"
              xmlns:syntax="clr-namespace:SGAM.Elfec.CustomUI.SyntaxHighlight;assembly=SGAM.Elfec.CustomUI"
              xmlns:enums="clr-namespace:SGAM.Elfec.Model.Enums;assembly=SGAM.Elfec.Model"
-             xmlns:Extensions="clr-namespace:Extensions.Wpf.Behaviors;assembly=Extensions.Wpf"
+             xmlns:extensions="clr-namespace:Extensions.Wpf.Behaviors;assembly=Extensions.Wpf"
              xmlns:converters="clr-namespace:SGAM.Elfec.Converters"
              xmlns:utils="clr-namespace:SGAM.Elfec.Utils"
              mc:Ignorable="d"  
-             Tag="{x:Static Res:Resources.LblAddRule}"
+             Tag="{x:Static res:Resources.LblAddRule}"
              Background="White" Height="365" Width="400"
              d:DesignHeight="365" d:DesignWidth="400">
     <UserControl.Resources>
@@ -36,10 +36,10 @@
             <RowDefinition Height="46" />
         </Grid.RowDefinitions>
         <TabControl Name="RootPanel" Padding="10" Grid.Row="0" >
-            <TabItem Header="{x:Static Res:Resources.TabGeneral}" >
+            <TabItem Header="{x:Static res:Resources.TabGeneral}" >
                 <StackPanel  Name="UserInfoPanel"
                          Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Label Content="{x:Static Res:Resources.LblRuleName}" />
+                    <Label Content="{x:Static res:Resources.LblRuleName}" />
                     <TextBox Name="TxtName" Text="{Binding Rule.Name, ValidatesOnDataErrors=True, 
                     ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="150" />
                     <TextBlock Text="{Binding ElementName=TxtName, Path=(Validation.Errors)[0].ErrorContent}" 
@@ -48,31 +48,31 @@
                                Foreground="{StaticResource TextErrorColorBrush}"
                                Margin="0,4,0,0"
                                TextWrapping="Wrap"/>
-                    <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleDescription}"/>
+                    <Label Margin="0,10,0,0" Content="{x:Static res:Resources.LblRuleDescription}"/>
                     <TextBox VerticalContentAlignment="Top" MaxLength="500" Text="{Binding Rule.Description}" 
                          VerticalScrollBarVisibility="Auto" Name="TxtNOMBRE"
                          Grid.ColumnSpan="2" Grid.Row="19" Height="66" TextWrapping="Wrap" AcceptsReturn="True" />
-                    <Label Margin="0,10,0,0"  Content="{x:Static Res:Resources.LblRuleAction}" />
+                    <Label Margin="0,10,0,0"  Content="{x:Static res:Resources.LblRuleAction}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource RuleActionEnumValues}}"
                          IsEditable="False" Height="32" SelectedItem="{Binding Rule.Action}"
                          HorizontalAlignment="Left" Width="160" ItemTemplate="{StaticResource RuleComboBoxItemTemplate}" />
 
                 </StackPanel>
             </TabItem>
-            <TabItem Header="{x:Static Res:Resources.TabEntities}" >
+            <TabItem Header="{x:Static res:Resources.TabEntities}" >
                 <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <Label Content="{x:Static Res:Resources.LblRuleAddEntity}" />
+                        <Label Content="{x:Static res:Resources.LblRuleAddEntity}" />
                         <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="32"/>
                             </Grid.ColumnDefinitions>
-                            <Toolkit:AutoCompleteBox Name="EntitySelector"
+                            <toolkit:AutoCompleteBox Name="EntitySelector"
                                                      Margin="0,0,2,0" 
                                                      TextBoxStyle="{StaticResource DefaultTextBoxStyle}"
                                                      ItemsSource="{Binding Entities}"
@@ -82,20 +82,20 @@
                                                      SelectedItem="{Binding Path=EntityToAdd, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
                                                      ItemTemplate="{StaticResource EntityItemTemplate}" >
 
-                            </Toolkit:AutoCompleteBox>
+                            </toolkit:AutoCompleteBox>
                             <Button Grid.Column="1" Height="32" Width="32" IsDefault="True" Command="{Binding AddEntityCommand}" >
                                 <Button.Content>
                                     <Image Height="24" UseLayoutRounding="True" Width="24" Source="/Resources/AddMedium.png"/>
                                 </Button.Content>
                             </Button>
                         </Grid>
-                        <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleEntities}" />
+                        <Label Margin="0,10,0,0" Content="{x:Static res:Resources.LblRuleEntities}" />
                     </StackPanel>
                     <Border Grid.Row="1" BorderBrush="{StaticResource TextBoxBorderBrush}" BorderThickness="1" >
                         <ListView Name="ListViewEntities" Style="{StaticResource WrapPanelListView}"
                                       ItemsSource="{Binding Rule.Entities}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       ItemContainerStyle="{StaticResource EntityItemOptionStyle}" 
-                                      Tag="{x:Static Res:Resources.LblRuleWithNoEntities}"
+                                      Tag="{x:Static res:Resources.LblRuleWithNoEntities}"
                                       ItemTemplate="{StaticResource EntityItemTemplate}" >
                             <ListView.InputBindings>
                                 <KeyBinding Key="Delete" Command="{Binding Path=DeleteEntityCommand}"
@@ -105,9 +105,9 @@
                     </Border>
                 </Grid>
             </TabItem>
-            <TabItem Header="{x:Static Res:Resources.TabValues}" >
+            <TabItem Header="{x:Static res:Resources.TabValues}" >
                 <StackPanel Orientation="Vertical" >
-                    <Label Content="{x:Static Res:Resources.LblRuleValue}" />
+                    <Label Content="{x:Static res:Resources.LblRuleValue}" />
                     <syntax:SyntaxHighlightBox  Name="TxtValue"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
                                             Text="{Binding Rule.Value, ValidatesOnDataErrors=True, 
@@ -118,7 +118,7 @@
                                Foreground="{StaticResource TextErrorColorBrush}"
                                Margin="0,4,0,0"
                                TextWrapping="Wrap"/>
-                    <Label Margin="0,10,0,0" Content="{x:Static Res:Resources.LblRuleException}" />
+                    <Label Margin="0,10,0,0" Content="{x:Static res:Resources.LblRuleException}" />
                     <syntax:SyntaxHighlightBox  Name="TxtException"
                                             Style="{StaticResource SyntaxHighlightBoxStyle}"
                                             Text="{Binding Rule.Exception}" />
@@ -131,7 +131,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Controls:TransitioningContentControl Name="Transitioning" Grid.Column="0" 
+            <controls:TransitioningContentControl Name="Transitioning" Grid.Column="0" 
                        Transition="Left" HorizontalAlignment="Stretch" />
 
             <Button Grid.Column="1" HorizontalAlignment="Right"
@@ -142,7 +142,7 @@
                                SnapsToDevicePixels="True" Margin="4" />
                         <TextBlock Foreground="{StaticResource AlmostBlackTextBrush}" 
                                    Margin="4,8,8,8" TextWrapping="Wrap"
-                                   VerticalAlignment="Center" Text="{x:Static Res:Resources.BtnSaveRule}"/>
+                                   VerticalAlignment="Center" Text="{x:Static res:Resources.BtnSaveRule}"/>
                     </StackPanel>
                 </Button.Content>
             </Button>

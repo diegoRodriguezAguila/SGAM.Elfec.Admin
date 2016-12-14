@@ -9,6 +9,7 @@ namespace SGAM.Elfec.Model
     /// </summary>
     public class UserGroup : IEntity
     {
+        public string EntityType => GetType().Name;
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,6 +17,6 @@ namespace SGAM.Elfec.Model
 
         public UserGroupStatus Status { get; set; }
 
-        public string Details { get { return "Grupo de Usuarios"; } }
+        public string Details => "Grupo de Usuarios";
     }
 }

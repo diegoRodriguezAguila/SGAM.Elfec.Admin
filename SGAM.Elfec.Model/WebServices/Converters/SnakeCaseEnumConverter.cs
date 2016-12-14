@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 using SGAM.Elfec.Helpers.Text;
 using System;
 
-namespace SGAM.Elfec.DataAccess.WebServices.Converters
+namespace SGAM.Elfec.Model.WebServices.Converters
 {
     /// <summary>
     /// Converts an <see cref="Enum"/> to and from its name string value.

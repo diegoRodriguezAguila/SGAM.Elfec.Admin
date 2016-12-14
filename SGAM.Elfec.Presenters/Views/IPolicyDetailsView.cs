@@ -9,6 +9,8 @@ namespace SGAM.Elfec.Presenters.Views
     public interface IPolicyDetailsView : IBaseView
     {
         void AddRule(Policy policy);
+
+        void EditRule(Policy policy, Rule rule);
         /// <summary>
         /// Pide al usuario confirmación de eliminación
         /// </summary>
@@ -28,5 +30,6 @@ namespace SGAM.Elfec.Presenters.Views
         /// </summary>
         /// <param name="error">error</param>
         void ErrorDeleting(Exception error);
+
     }
 }

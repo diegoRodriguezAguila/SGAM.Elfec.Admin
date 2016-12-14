@@ -28,13 +28,22 @@ namespace SGAM.Elfec
             dialog.ShowDialog();
         }
 
+        public void EditRule(Policy policy, Rule rule)
+        {
+            var editRuleView = new AddRule(policy, rule) { Tag = Properties.Resources.LblEditRule };
+            var dialog = DialogBuilder.For(editRuleView).Build();
+            editRuleView.AddRuleSuccess += (s, e) => { dialog.SetDialogResult(true); };
+            dialog.ShowDialog();
+        }
+
         public bool DeleteConfirmation()
         {
-            return (bool)new ConfirmationDialogBuilder()
+            var showDialog = new ConfirmationDialogBuilder()
                 .SetTitle(Properties.Resources.TitleDeleteRule)
                 .SetMessage(Properties.Resources.MsgDeleteRuleConfirmation)
                 .Build()
                 .ShowDialog();
+            return showDialog != null && (bool)showDialog;
         }
 
         public void DeletingRule()
@@ -42,8 +51,8 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow.
-                StatusBar(Properties.Resources.MsgDeletingRule)
-                .SetCursor(Cursors.AppStarting);
+                    StatusBar(Properties.Resources.MsgDeletingRule)
+                    .SetCursor(Cursors.AppStarting);
             });
         }
 
@@ -52,13 +61,13 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow
-                .StatusBarDefault()
-                .DefaultCursor();
+                    .StatusBarDefault()
+                    .DefaultCursor();
                 new InformationDialog
                 {
                     Title = Properties.Resources.TitleErrorDeletingRule,
                     Message = string.Format(Properties.Resources.MessageErrorDeletingRule,
-                    error.Message),
+                        error.Message),
                     IconType = IconType.Warning
                 }.ShowDialog();
             });
@@ -69,8 +78,8 @@ namespace SGAM.Elfec
             Dispatcher.InvokeAsync(() =>
             {
                 MainWindowService.Instance.MainWindow
-                .StatusBarDefault()
-                .DefaultCursor();
+                    .StatusBarDefault()
+                    .DefaultCursor();
             });
         }
     }

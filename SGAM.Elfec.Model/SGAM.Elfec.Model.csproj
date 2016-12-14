@@ -123,6 +123,11 @@
     <Compile Include="Validations\Validators\DeviceValidator.cs" />
     <Compile Include="Validations\Validators\PolicyRuleValidator.cs" />
     <Compile Include="Validations\Validators\RemoteSessionValidator.cs" />
+    <Compile Include="WebServices\Converters\EntityConverter.cs" />
+    <Compile Include="WebServices\Converters\SnakeCaseEnumConverter.cs" />
+    <Compile Include="WebServices\JsonContractResolver\DeliminatorSeparatedPropertyNamesContractResolver .cs" />
+    <Compile Include="WebServices\JsonContractResolver\SnakeCasePropertyNamesContractResolver.cs" />
+    <Compile Include="WebServices\JsonContractResolver\StringExtensions.cs" />
     <Compile Include="WebServices\RemoteSession.cs" />
     <Compile Include="WebServices\RestErrorResponse.cs" />
   </ItemGroup>

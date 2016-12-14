@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SGAM.Elfec.Model;
 using SGAM.Elfec.Model.Interfaces;
 using System;
 
-namespace SGAM.Elfec.DataAccess.WebServices.Converters
+namespace SGAM.Elfec.Model.WebServices.Converters
 {
     /// <summary>
     /// Conversor que permite convertir entidades <see cref="IEntity"/>
@@ -28,14 +27,18 @@ namespace SGAM.Elfec.DataAccess.WebServices.Converters
             return null;
         }
 
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
+        public override bool CanWrite => false;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            //throw new NotImplementedException();
+            JObject o = (JObject)JToken.FromObject(value);
+            string type = "Null";
+            if (value is User)
+                type = "User";
+            if (value is UserGroup)
+                type = "User";
+            o.AddFirst(new JProperty("entity_type", type));
+            o.WriteTo(writer);
         }
     }
 }

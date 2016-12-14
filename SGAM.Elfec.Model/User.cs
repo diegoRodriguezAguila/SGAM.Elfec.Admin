@@ -11,7 +11,7 @@ namespace SGAM.Elfec.Model
         public string AuthenticationToken { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName { get { return string.Format("{0} {1}", FirstName, LastName); } }
+        public string FullName => $"{FirstName} {LastName}";
         public string Email { get; set; }
         public string Position { get; set; }
         public string CompanyArea { get; set; }
@@ -23,7 +23,7 @@ namespace SGAM.Elfec.Model
 
         public User() { }
 
-        public User(String username, String authenticationToken)
+        public User(string username, string authenticationToken)
         {
             this.Username = username;
             this.AuthenticationToken = authenticationToken;
@@ -37,9 +37,11 @@ namespace SGAM.Elfec.Model
         public bool IsAuthenticable { get { return Username != null && AuthenticationToken != null; } }
 
         #region Entity Methods
-        public string Id { get { return Username; } }
-        public string Name { get { return Username; } }
-        public string Details { get { return FullName; } }
+        public string EntityType => GetType().Name;
+        public string Id => Username;
+        public string Name => Username;
+        public string Details => FullName;
+
         #endregion
     }
 }

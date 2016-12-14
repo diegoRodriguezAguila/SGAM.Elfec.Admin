@@ -22,34 +22,41 @@ namespace SGAM.Elfec.Presenters
         }
 
         #region Private Attributes
+
         private ObservableCollection<UserGroup> _userGroups;
         private ObservableCollection<User> _filteredUsers;
         private UserGroup _selectedUserGroup;
         private string _searchQuery;
         private ListSearcher<User> _listSearcher;
+
         #endregion
 
         #region Properties
+
         public UserGroup SelectedUserGroup
         {
             get { return _selectedUserGroup; }
             set
             {
                 _selectedUserGroup = value;
-                FilteredUsers = _selectedUserGroup?.Members?.ToObservableCollectionAsync();
-                _listSearcher = ListSearcher<User>.For(_selectedUserGroup?.Members)
+                if (_selectedUserGroup != null)
+                {
+                    FilteredUsers = _selectedUserGroup.Members?.ToObservableCollectionAsync();
+                    _listSearcher = ListSearcher<User>.For(_selectedUserGroup.Members)
                         .With(UserMatchHelper.MatchesSearchQuery);
-                _listSearcher.SearchCompleted += SearchCompleted;
+                    _listSearcher.SearchCompleted += SearchCompleted;
+                }
                 RaisePropertyChanged("SelectedUserGroup");
             }
         }
+
         public ObservableCollection<UserGroup> UserGroups
         {
             get { return _userGroups; }
             set
             {
                 _userGroups = value;
-                SelectedUserGroup = _userGroups.First();
+                SelectedUserGroup = _userGroups.FirstOrDefault();
                 RaisePropertyChanged("UserGroups");
             }
         }
@@ -75,20 +82,26 @@ namespace SGAM.Elfec.Presenters
         }
 
         #endregion
+
         #region Commands
+
         public ICommand ShowUserDetailsCommand
         {
-            get
-            {
-                return new ListItemCommand<User>((user) =>
-                {
-                    View.ShowUserDetails(user);
-                });
-            }
+            get { return new ListItemCommand<User>((user) => { View.ShowUserDetails(user); }); }
         }
-        public ICommand DismissUserGroupCommand { get { return new ListItemCommand<UserGroup>(DismissUserGroup); } }
-        public ICommand EnableUserGroupCommand { get { return new ListItemCommand<UserGroup>(EnableUserGroup); } }
+
+        public ICommand DismissUserGroupCommand
+        {
+            get { return new ListItemCommand<UserGroup>(DismissUserGroup); }
+        }
+
+        public ICommand EnableUserGroupCommand
+        {
+            get { return new ListItemCommand<UserGroup>(EnableUserGroup); }
+        }
+
         public ICommand SearchUsersCommand => new DelegateCommand(SearchUsers);
+
         #endregion
 
         #region Private Methods
@@ -102,15 +115,12 @@ namespace SGAM.Elfec.Presenters
             View.OnLoadingData(isRefresh);
             UserGroupManager.GetAllUserGroups(true)
                 .Subscribe(
-                (userGroups) =>
-                {
-                    UserGroups = userGroups.ToObservableCollectionAsync();
-                    View.OnDataLoaded();
-                },
-                (error) =>
-                {
-                    View.OnLoadingErrors(isRefresh, error);
-                });
+                    (userGroups) =>
+                    {
+                        UserGroups = userGroups.ToObservableCollectionAsync();
+                        View.OnDataLoaded();
+                    },
+                    (error) => { View.OnLoadingErrors(isRefresh, error); });
         }
 
         /// <summary>
@@ -123,11 +133,11 @@ namespace SGAM.Elfec.Presenters
             UserGroupManager.UpdateUserGroupStatus(userGroup.Id, UserGroupStatus.Disabled)
                 .ObserveOnDispatcher()
                 .Subscribe(
-                (updatedUserGroup) =>
-                {
-                    RefreshUpatedStatus(userGroup, updatedUserGroup);
-                    View.StatusChanged();
-                }, View.ErrorChangingStatus);
+                    (updatedUserGroup) =>
+                    {
+                        RefreshUpatedStatus(userGroup, updatedUserGroup);
+                        View.StatusChanged();
+                    }, View.ErrorChangingStatus);
         }
 
 
@@ -141,11 +151,11 @@ namespace SGAM.Elfec.Presenters
             UserGroupManager.UpdateUserGroupStatus(userGroup.Id, UserGroupStatus.Enabled)
                 .ObserveOnDispatcher()
                 .Subscribe(
-                (updatedUserGroup) =>
-                {
-                    RefreshUpatedStatus(userGroup, updatedUserGroup);
-                    View.StatusChanged();
-                }, View.ErrorChangingStatus);
+                    (updatedUserGroup) =>
+                    {
+                        RefreshUpatedStatus(userGroup, updatedUserGroup);
+                        View.StatusChanged();
+                    }, View.ErrorChangingStatus);
         }
 
         private void RefreshUpatedStatus(UserGroup userGroup, UserGroup updatedUserGroup)

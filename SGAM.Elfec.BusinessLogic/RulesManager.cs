@@ -7,7 +7,6 @@ using SGAM.Elfec.Security;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
@@ -29,28 +28,48 @@ namespace SGAM.Elfec.BusinessLogic
         {
             if (rule.Id == null) throw new InvalidDataException("The provided rule must have an Id");
             return RestEndpointFactory
-                    .Create<IRulesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
-                    .Update(rule.Id, rule).ToObservable()
-                    .SubscribeOn(ThreadPoolScheduler.Instance)
-                    .InterpretingErrors();
+                .Create<IRulesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
+                .Update(rule.Id, rule).ToObservable()
+                .SubscribeOn(ThreadPoolScheduler.Instance)
+                .InterpretingErrors();
         }
 
         /// <summary>
-        /// Agrega entidades (usuarios o grupos) a la regla con el id especificado,
-        /// Si la lista de entidades está vacia retorna un observable que retorna inmediatamente
+        /// Agrega entidades (usuarios o grupos) a la regla con el id especificado
         /// </summary>
-        /// <param name="userGroupId"></param>
-        /// <param name="members"></param>
-        /// <param name="callback"></param>
-        public static IObservable<Unit> AddEntities(string ruleId, IList<IEntity> entities)
+        /// <param name="rule"></param>
+        /// <param name="entities"></param>
+        public static IObservable<Rule> AddEntities(Rule rule, IList<IEntity> entities)
         {
-            if (entities.IsEmpty())
-                return Observable.Defer(() => Observable.Return(Unit.Default));
+            if (rule.Id == null) throw new InvalidDataException("The provided rule must have an Id");
+            if (entities == null || entities.IsEmpty())
+                return Observable.Defer(() => Observable.Return(rule));
             return RestEndpointFactory
-                    .Create<IRulesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
-                    .AddEntities(ruleId, entities.IsEmpty() ? "0" :
-                    entities.ToString(e => e.Id)).ToObservable()
-                    .InterpretingErrors();
+                .Create<IRulesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
+                .AddEntities(rule.Id, entities.IsEmpty()
+                    ? "0"
+                    : entities.ToString(e => e.Id)).ToObservable()
+                .SubscribeOn(ThreadPoolScheduler.Instance)
+                .InterpretingErrors();
+        }
+
+        /// <summary>
+        /// Elimina entidades (usuarios o grupos) a la regla con el id especificado
+        /// </summary>
+        /// <param name="rule"></param>
+        /// <param name="entities"></param>
+        public static IObservable<Rule> DeleteEntities(Rule rule, IList<IEntity> entities)
+        {
+            if (rule.Id == null) throw new InvalidDataException("The provided rule must have an Id");
+            if (entities == null || entities.IsEmpty())
+                return Observable.Defer(() => Observable.Return(rule));
+            return RestEndpointFactory
+                .Create<IRulesEndpoint>(SessionManager.Instance.CurrentLoggedUser)
+                .DeleteEntities(rule.Id, entities.IsEmpty()
+                    ? "0"
+                    : entities.ToString(e => e.Id)).ToObservable()
+                .SubscribeOn(ThreadPoolScheduler.Instance)
+                .InterpretingErrors();
         }
     }
 }

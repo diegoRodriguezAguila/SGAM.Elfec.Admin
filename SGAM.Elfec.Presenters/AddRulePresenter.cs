@@ -7,6 +7,7 @@ using SGAM.Elfec.Presenters.Presentation.Collections;
 using SGAM.Elfec.Presenters.Views;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -21,11 +22,15 @@ namespace SGAM.Elfec.Presenters
         public AddRulePresenter(IAddRuleView view, Policy policy, Rule rule = null) : base(view)
         {
             _isEditingMode = rule != null;
-            Rule = !_isEditingMode
-                ? new Rule()
-                { Entities = new ObservableCollection<IEntity>() }
-                : ObjectCloner.Clone(rule);
             _policy = policy;
+            if (_isEditingMode)
+            {
+                Rule = ObjectCloner.Clone(rule);
+                Rule.Entities = Rule.Entities.ToObservableCollectionAsync();
+                _entitiesToAdd = new List<IEntity>();
+                _entitiesToDelete = new List<IEntity>();
+            }
+            else Rule = new Rule() { Entities = new ObservableCollection<IEntity>() };
             LoadEntities();
         }
 
@@ -35,8 +40,10 @@ namespace SGAM.Elfec.Presenters
         private IEntity _entityToAdd;
         private string _entityName;
         private Rule _rule;
-        private Policy _policy;
-        private bool _isEditingMode;
+        private readonly Policy _policy;
+        private readonly bool _isEditingMode;
+        private readonly IList<IEntity> _entitiesToAdd;
+        private readonly IList<IEntity> _entitiesToDelete;
 
         #endregion
 
@@ -86,20 +93,11 @@ namespace SGAM.Elfec.Presenters
 
         #region Commands
 
-        public ICommand AddEntityCommand
-        {
-            get { return new DelegateCommand(AddEntity); }
-        }
+        public ICommand AddEntityCommand => new DelegateCommand(AddEntity);
 
-        public ICommand DeleteEntityCommand
-        {
-            get { return new ListItemCommand<IList>(DeleteEntity); }
-        }
+        public ICommand DeleteEntityCommand => new ListItemCommand<IList>(DeleteEntity);
 
-        public ICommand RegisterRuleCommand
-        {
-            get { return new DelegateCommand(RegisterRule); }
-        }
+        public ICommand RegisterRuleCommand => new DelegateCommand(RegisterRule);
 
         #endregion
 
@@ -128,8 +126,16 @@ namespace SGAM.Elfec.Presenters
             if (EntityToAdd == null || Rule.Entities.Contains(EntityToAdd)) return;
             Rule.Entities.Add(EntityToAdd);
             Entities.Remove(EntityToAdd);
+            if (_isEditingMode)
+                AddEntityToEditions(EntityToAdd);
             EntityToAdd = null;
             EntityName = null;
+        }
+
+        private void AddEntityToEditions(IEntity entity)
+        {
+            _entitiesToAdd.Add(entity);
+            _entitiesToDelete.Remove(entity);
         }
 
         /// <summary>
@@ -142,8 +148,16 @@ namespace SGAM.Elfec.Presenters
             if (entitiesToDel == null || entitiesToDel.Count == 0) return;
             Rule.Entities.RemoveRange(entitiesToDel);
             Entities.AddRange(entitiesToDel);
+            if (_isEditingMode)
+                DeleteEntitiesFromEditions(entitiesToDel);
             EntityToAdd = null;
             EntityName = null;
+        }
+
+        private void DeleteEntitiesFromEditions(IList<IEntity> entities)
+        {
+            _entitiesToDelete.AddRange(entities);
+            _entitiesToAdd.RemoveRange(entities);
         }
 
         /// <summary>
@@ -177,6 +191,8 @@ namespace SGAM.Elfec.Presenters
         private void EditRule()
         {
             RulesManager.Update(Rule)
+                .SelectMany(rule => RulesManager.AddEntities(rule, _entitiesToAdd))
+                .SelectMany(rule => RulesManager.DeleteEntities(rule, _entitiesToDelete))
                 .ObserveOn(SynchronizationContext.Current)
                 .Subscribe(rule =>
                 {

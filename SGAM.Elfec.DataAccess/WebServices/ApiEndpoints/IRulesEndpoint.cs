@@ -8,8 +8,9 @@ namespace SGAM.Elfec.DataAccess.WebServices.ApiEndpoints
     {
         [Put("/rules/{ruleId}")]
         Task<Rule> Update([Path] string ruleId, [Body] Rule ruleUpdate);
-        // The "rules" is a relative path the a base URL, which we'll provide later
         [Post("/rules/{ruleId}/entities/{entityIds}")]
-        Task AddEntities([Path] string ruleId, [Path] string entityIds);
+        Task<Rule> AddEntities([Path] string ruleId, [Path] string entityIds);
+        [Delete("/rules/{ruleId}/entities/{entityIds}")]
+        Task<Rule> DeleteEntities([Path] string ruleId, [Path] string entityIds);
     }
 }
